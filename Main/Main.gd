@@ -1,7 +1,8 @@
 extends Node
 
-var data = {
-	"key1": 1
+var state = {
+	"Gold": 100,
+	"Floor": 1,
 }
 # Called when the node enters the scene tree for the first time.
 func _ready():

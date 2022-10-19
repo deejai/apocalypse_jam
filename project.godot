@@ -8,6 +8,28 @@
 
 config_version=5
 
+_global_script_classes=[{
+"base": "Node",
+"class": &"Battle",
+"language": &"GDScript",
+"path": "res://Main/Classes/Battle.gd"
+}, {
+"base": "Node",
+"class": &"Floor",
+"language": &"GDScript",
+"path": "res://Main/Classes/Floor.gd"
+}, {
+"base": "Node",
+"class": &"FloorNode",
+"language": &"GDScript",
+"path": "res://Main/Classes/FloorNode.gd"
+}]
+_global_script_class_icons={
+"Battle": "",
+"Floor": "",
+"FloorNode": ""
+}
+
 [application]
 
 config/name="Apocalypse Td"
@@ -18,3 +40,8 @@ config/icon="res://icon.svg"
 [autoload]
 
 Main="*res://Main/Main.gd"
+
+[display]
+
+window/size/viewport_width=1280
+window/size/viewport_height=720

@@ -6,10 +6,10 @@
 [node name="Node2D" type="Node2D"]
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(50, 44)
 scale = Vector2(1.92332, 1.41223)
 texture = ExtResource("1_bxvy3")
 centered = false
-metadata/_edit_lock_ = true
 
 [node name="Button" type="Button" parent="."]
 offset_left = 493.0
