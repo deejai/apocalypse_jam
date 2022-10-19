@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://cw6lqriofujqd"]
+
+[ext_resource type="Script" path="res://Main/Views/PauseMenu/MainMenuButton.gd" id="1_ik57x"]
+
+[node name="PauseMenu" type="Node2D"]
+
+[node name="Window" type="Window" parent="."]
+
+[node name="Button" type="Button" parent="Window"]
+offset_right = 8.0
+offset_bottom = 8.0
+text = "Main Menu"
+script = ExtResource("1_ik57x")

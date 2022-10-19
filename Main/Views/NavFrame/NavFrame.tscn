@@ -1,0 +1,30 @@
+[gd_scene format=3 uid="uid://ckpo3q5e1jxlq"]
+
+[node name="NavFrame" type="Node2D"]
+
+[node name="Bar" type="Polygon2D" parent="."]
+color = Color(0.490196, 0.568627, 0.666667, 1)
+polygon = PackedVector2Array(0, 620, 1280, 620, 1280, 720, 0, 720)
+
+[node name="Gold" type="Label" parent="Bar"]
+offset_left = 1174.0
+offset_top = 642.0
+offset_right = 1256.0
+offset_bottom = 699.0
+text = "Gold: 0"
+vertical_alignment = 1
+
+[node name="Level" type="Label" parent="Bar"]
+offset_left = 617.0
+offset_top = 643.0
+offset_right = 699.0
+offset_bottom = 700.0
+text = "Level: 0"
+vertical_alignment = 1
+
+[node name="Squad" type="Button" parent="Bar"]
+offset_left = 44.0
+offset_top = 654.0
+offset_right = 101.0
+offset_bottom = 685.0
+text = "Squad"
