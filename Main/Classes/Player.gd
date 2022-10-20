@@ -1,15 +1,11 @@
-extends Node2D
+extends Node
 
-var gold: int
-var floor: Floor
-var squad_active: Array
-var squad_inactive: Array
+class_name Player
 
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
+var gold: int = 0
+var floor: Floor = null
+var squad_active: Array = []
+var squad_inactive: Array = []
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
+func _init():
+	floor = Floor.new(0)

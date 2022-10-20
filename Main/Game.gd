@@ -1,13 +1,13 @@
 extends Node
 
-var state = {
-	"Gold": 100,
-	"Floor": 1,
-}
+var width = 1280
+var height = 720
+
+var player = Player.new()
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
-
+	pass
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):

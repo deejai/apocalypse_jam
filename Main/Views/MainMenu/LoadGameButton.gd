@@ -13,5 +13,4 @@ func _process(delta):
 
 func _button_pressed():
 	add_child(load("res://Main/Views/MapView/MapView.tscn").instantiate())
-	add_child(Unit.new())
-	print("Tets")
+	print("Load Game")

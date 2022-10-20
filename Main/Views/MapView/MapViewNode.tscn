@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://ct7o5ljs7ycc"]
+
+[ext_resource type="Script" path="res://Main/Views/MapView/MapViewNode.gd" id="1_2xf4i"]
+
+[node name="MapViewNode" type="Node2D"]
+script = ExtResource("1_2xf4i")
+
+[node name="Node" type="Polygon2D" parent="."]
+color = Color(0.172549, 0.0627451, 0.0588235, 1)
+polygon = PackedVector2Array(-15, -15, 15, -15, 15, 15, -15, 15)
