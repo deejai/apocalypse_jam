@@ -10,43 +10,33 @@ func _init(level: int):
 	start = FloorNode.new(0)
 	current = start
 
-	var node_1_1 = FloorNode.new(0)
-	var node_1_2 = FloorNode.new(0)
-	var node_1_3 = FloorNode.new(0)
-
-	var node_2_1 = FloorNode.new(0)
-	var node_2_2 = FloorNode.new(0)
-	var node_2_3 = FloorNode.new(0)
-	var node_2_4 = FloorNode.new(0)
-
-	var node_3_1 = FloorNode.new(0)
-	var node_3_2 = FloorNode.new(0)
-
-	end = FloorNode.new(0)
-
-	# First layer
-	FloorNode.link(start, node_1_1)
-	FloorNode.link(start, node_1_2)
-	FloorNode.link(start, node_1_3)
-
-	# Second Layer
-	FloorNode.link(node_1_1, node_2_1)
-	FloorNode.link(node_1_1, node_2_2)
-	FloorNode.link(node_1_2, node_2_2)
-	FloorNode.link(node_1_2, node_2_3)
-	FloorNode.link(node_1_3, node_2_3)
-	FloorNode.link(node_1_3, node_2_4)
-
-	# Third Layer
-	FloorNode.link(node_2_1, node_3_1)
-	FloorNode.link(node_2_2, node_3_1)
-	FloorNode.link(node_2_3, node_3_2)
-	FloorNode.link(node_2_4, node_3_2)
-
-	# Boss Layer
-	FloorNode.link(node_3_1, end)
-	FloorNode.link(node_3_2, end)
-
+	var node_layers = [1,2,5,7,9]
+	var prev_nodes = [start]
+	for i in range(1, len(node_layers)):
+		var new_nodes = []
+		for j in range(node_layers[i]):
+			var new_node = FloorNode.new(0)
+			new_nodes.append(new_node)
+			# connect the appropriate previous nodes to the current node
+			new_node.prev = []
+			var prev_nodes_per_node = 1.0 * node_layers[i-1]/node_layers[i]
+			print("per node: ", prev_nodes_per_node)
+			var relative_index = j * node_layers[i-1] / node_layers[i]
+			print("j, relative index: ", j, ", ", relative_index)
+			var span = range(ceili(relative_index-prev_nodes_per_node/2), floori(relative_index+prev_nodes_per_node/2) + 1)
+			var prev_k = node_layers[i]
+			for k in span:
+				if(k == prev_k):
+					continue
+				if k <= 0:
+					k = 0
+				if k >= len(prev_nodes):
+					k = len(prev_nodes) - 1
+				print("Connect ", i-1, "[", k, "] to ", i, "[", j, "]")
+				FloorNode.link(prev_nodes[k], new_node)
+				prev_k = k
+	
+		prev_nodes = new_nodes
 
 func get_depth():
 	return _get_depth_rec(start)
