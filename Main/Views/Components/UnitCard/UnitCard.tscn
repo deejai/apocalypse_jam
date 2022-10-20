@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://cmt8d7xvxdjab"]
+
+[node name="UnitCard" type="Node2D"]
+
+[node name="Polygon2d" type="Polygon2D" parent="."]
+modulate = Color(0.301961, 0.301961, 0.301961, 1)
+self_modulate = Color(0.301961, 0.301961, 0.301961, 1)
+texture_scale = Vector2(100, 100)
+polygon = PackedVector2Array(150, 0, 0, 0, 0, 77, 150, 77)

@@ -15,6 +15,11 @@ _global_script_classes=[{
 "path": "res://Main/Classes/Battle.gd"
 }, {
 "base": "Node",
+"class": &"Equipment",
+"language": &"GDScript",
+"path": "res://Main/Classes/Equipment.gd"
+}, {
+"base": "Node",
 "class": &"Floor",
 "language": &"GDScript",
 "path": "res://Main/Classes/Floor.gd"
@@ -28,25 +33,20 @@ _global_script_classes=[{
 "class": &"Player",
 "language": &"GDScript",
 "path": "res://Main/Classes/Player.gd"
-}, {
-"base": "Node",
-"class": &"Unit",
-"language": &"GDScript",
-"path": "res://Main/Classes/Unit.gd"
 }]
 _global_script_class_icons={
 "Battle": "",
+"Equipment": "",
 "Floor": "",
 "FloorNode": "",
-"Player": "",
-"Unit": ""
+"Player": ""
 }
 
 [application]
 
 config/name="Apocalypse Td"
 run/main_scene="res://Main/Views/MainMenu/MainMenuView.tscn"
-config/features=PackedStringArray("4.0", "Forward Plus")
+config/features=PackedStringArray("4.0")
 config/icon="res://icon.svg"
 
 [autoload]

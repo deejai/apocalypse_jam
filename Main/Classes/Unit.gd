@@ -3,6 +3,7 @@ extends Node
 class_name Unit
 
 var status: String = "healthy"
+var 
 
 func _init():
 	pass
