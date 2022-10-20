@@ -37,6 +37,15 @@ func _init(level: int):
 				prev_k = k
 	
 		prev_nodes = new_nodes
+		
+	var extra_nodes = [FloorNode.new(0), FloorNode.new(0), FloorNode.new(0)]
+	for pn in prev_nodes:
+		for en in extra_nodes:
+			FloorNode.link(pn, en)
+			
+	var boss_node = FloorNode.new(0)
+	for en in extra_nodes:
+		FloorNode.link(en, boss_node)
 
 func get_depth():
 	return _get_depth_rec(start)
