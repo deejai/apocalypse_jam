@@ -7,10 +7,6 @@ func init(floorNode: FloorNode, x: int, y: int):
 	self.floorNode = floorNode
 	floorNode.sceneNode = self # what if it had a sceneNode and we just overwrote it? probably won't happen :/
 
-	for prev in floorNode.prev:
-		if prev.sceneNode:
-			prev.sceneNode._draw()
-	
 	return self
 
 # Called when the node enters the scene tree for the first time.
@@ -22,8 +18,13 @@ func _ready():
 func _process(delta):
 	pass
 
-func _draw():
-	for next in floorNode.next:
-		if is_instance_valid(next.sceneNode):
-#			print(next.sceneNode.position - self.position)
-			draw_line(Vector2i(0,0), next.sceneNode.position - self.position, Color(255, 0, 0), 1)
+func _input(event: InputEvent):
+	if event is InputEventMouseButton and event.pressed:
+		if position.distance_to(event.position) < $Area/Collision.shape.radius:
+			if floorNode == Game.player.floor.current:
+				# queue up the battle to be grabbed by mapview
+				Game.next_battle = floorNode.battle
+			elif floorNode in Game.player.floor.current.next:
+				Game.player.floor.current = floorNode
+				get_parent().queue_redraw()
+				print("Navigated to next node")

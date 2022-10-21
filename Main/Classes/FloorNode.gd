@@ -16,7 +16,7 @@ func _init(level: int, prev=null, next=null):
 	if(next != null):
 		self.next = next
 
-#	print("Created FloorNode")
+	self.battle = Battle.new(0)
 
 
 static func link(prev_node, next_node):

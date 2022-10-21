@@ -1,9 +1,10 @@
-extends Node
+extends Node2D
 
 
 
 var main_menu = load("res://Main/Views/MainMenu/MainMenuView.tscn")
-var nav_frame = load("res://Main/Views/NavFrame/NavFrame.tscn")
+var nav_frame = load("res://Main/Views/Components/NavFrame/NavFrame.tscn")
+var arena_view = load("res://Main/Views/ArenaView/ArenaView.tscn")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -43,28 +44,56 @@ func _ready():
 		if d.size() > max_breadth:
 			max_breadth = d.size()
 
-	var bandaid_x = 150
-	var bandaid_y = 110
-
 	var mapnode_res = load("res://Main/Views/MapView/MapViewNode.tscn")
 	for r in range(len(node_hierarchy)):
 		var layer = node_hierarchy[r]
-		var y_pos = vpad if len(node_hierarchy) == 1 else bounds.bottom - (vpad + r * (bounds.bottom-bounds.top)/(len(node_hierarchy)-1))
-		var x_span = (bounds.right - bounds.left) * 1.0 * len(layer)/max_breadth
-		var x_pad = (1.0 * ((bounds.right - bounds.left) - x_span)) / 2
+		var y_pos = vpad if len(node_hierarchy) == 1 else vpad + bounds.bottom - (vpad + r * (bounds.bottom-bounds.top)/(len(node_hierarchy)-1))
+		var x_span = (bounds.right - bounds.left) * 1.0 * (len(layer) + (max_breadth-len(layer))/2.0)/max_breadth
+		var x_pad
+		if len(layer) > 1:
+			x_pad = (1.0 * ((bounds.right - bounds.left) - x_span)) / 2
+		else:
+			x_pad = (bounds.right - bounds.left) / 2
 		print("xs ", x_span)
 		print("xp ", x_pad)
-		var x_spacing = x_span / len(layer)
+		var x_spacing = 0 if len(layer) == 1 else x_span / (len(layer)-1)
 		for c in range(len(layer)):
 			var floorNode = layer[c]
 			var x_pos = bounds.left + x_pad + c * x_spacing
 #			print(r, c)
-			var mapnode = mapnode_res.instantiate().init(floorNode, x_pos + bandaid_x, y_pos + bandaid_y)
+			var mapnode = mapnode_res.instantiate().init(floorNode, x_pos, y_pos)
 #			print(mapnode.position)
 			add_child(mapnode)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	pass
+	if(Game.next_battle):
+		get_tree().change_scene_to_packed(arena_view)
 
+func _draw():
+	var node = Game.player.floor.start
+	_draw_node_rec(node)
 
+# could add code to skip redundant draws, but the performance difference is trivial
+func _draw_node_rec(node: FloorNode):
+	if(!node):
+		return
+
+	if(is_instance_valid(node.sceneNode)):
+		# draw the connecting lines
+		for next in node.next:
+			if is_instance_valid(next.sceneNode):
+				draw_line(Vector2i(node.sceneNode.position), next.sceneNode.position - self.position, Color(255, 0, 0), 1)
+
+		# draw the node circle
+		var pos = node.sceneNode.position
+		var radius = node.sceneNode.get_node("Area/Collision").shape.radius
+		if node == Game.player.floor.current:
+			draw_circle(pos, radius, Color.CHARTREUSE)
+		elif Game.player.floor.current in node.prev:
+			draw_circle(pos, radius, Color.GOLD)
+		else:
+			draw_circle(pos, radius, Color.DARK_GRAY)
+
+	for next_node in node.next:
+		_draw_node_rec(next_node)

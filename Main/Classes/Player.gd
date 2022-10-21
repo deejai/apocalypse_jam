@@ -4,7 +4,12 @@ class_name Player
 
 var gold: int = 0
 var floor: Floor = null
-var squad_active: Array = []
+
+var squad_active: Array = [
+	{"unit": Unit.new(), "start_position": Vector2(400, 720-70)},
+	{"unit": Unit.new(), "start_position": Vector2(700, 720-70)}
+]
+
 var squad_inactive: Array = []
 
 func _init():

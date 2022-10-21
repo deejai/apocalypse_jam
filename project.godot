@@ -33,13 +33,19 @@ _global_script_classes=[{
 "class": &"Player",
 "language": &"GDScript",
 "path": "res://Main/Classes/Player.gd"
+}, {
+"base": "Node",
+"class": &"Unit",
+"language": &"GDScript",
+"path": "res://Main/Classes/Unit.gd"
 }]
 _global_script_class_icons={
 "Battle": "",
 "Equipment": "",
 "Floor": "",
 "FloorNode": "",
-"Player": ""
+"Player": "",
+"Unit": ""
 }
 
 [application]
@@ -53,7 +59,12 @@ config/icon="res://icon.svg"
 
 Game="*res://Main/Game.gd"
 
+[debug]
+
+gdscript/warnings/shadowed_variable=0
+
 [display]
 
 window/size/viewport_width=1280
 window/size/viewport_height=720
+window/stretch/mode="viewport"
