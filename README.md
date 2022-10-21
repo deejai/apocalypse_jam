@@ -1,5 +1,11 @@
 # apocalypse_jam
 
+### Current Status
+
+<b>Pre-Development</b>
+
+There is some scaffolding and a few empty scenes you can navigate
+
 ### Run the Game
 
 - Download or clone the repository into a folder
