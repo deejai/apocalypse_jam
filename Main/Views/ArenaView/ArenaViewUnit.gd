@@ -9,7 +9,8 @@ var selected: bool = false
 
 var move_target: Vector2
 
-var stop_timer: int = 0
+var stuck_timer: int = 0
+var stuck: bool = false
 var last_position: Vector2 = Vector2.ZERO
 
 # Called when the node enters the scene tree for the first time.
@@ -23,32 +24,26 @@ func init(unit: Unit):
 	return self
 
 func _ready():
-	print("TEST")
+	print(move_target)
+	print($Collision.name)
+	move_target = position
+	print(position)
 	pass # Replace with function body.
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	stop_timer = max(0, stop_timer - delta)
-	move_to_target(delta, move_target)
+	stuck_timer = max(0, stuck_timer - delta)
+	move_to_target(move_target)
+#	print("mv tar ", move_target)
+#	print("pos ", position)
+#	print("gpos ", global_position)
 
-func move_to_target(delta, target):
-	move_target.x = clamp(move_target.x, 0, 1080)
-	move_target.y = clamp(move_target.y, 0, 720)
-
-	if(position.distance_to(target) < 10):
-		move_target = position
+func move_to_target(target):
+	if(position.distance_to(target) < 5):
 		return
-
-#	velocity = Vector2.ZERO
-#	velocity = position.direction_to(target) * 50
-#	if get_slide_collision_count() and stop_timer == 0:
-#		stop_timer = 150
-#		last_position = position
-#	set_velocity(velocity)
-#	move_and_slide()
-#	print("move?")
-	print(target)
-	var dir = position.direction_to(target)
-	var new_x = clamp(position.x + dir.x * speed, 0, 1080)
-	var new_y = clamp(position.y + dir.y * speed, 0, 720)
-	position = Vector2(new_x, new_y)
+	velocity = global_position.direction_to(target) * speed * 50
+	if get_slide_collision_count() and stuck_timer == 0:
+		stuck = true
+		stuck_timer = 50
+		last_position = position
+	move_and_slide()

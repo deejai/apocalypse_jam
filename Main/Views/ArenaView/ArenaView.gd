@@ -30,16 +30,13 @@ func load_units(arr_from: Array, arr_to: Array):
 			break
 		arena_unit.position = data.start_position
 		arr_to.append(arena_unit)
+		add_child(arena_unit)
 
 func drag_select_rect():
 	return Rect2(mouse_left_pressed_start_pos, get_global_mouse_position()-mouse_left_pressed_start_pos)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	for arena_unit in player_arena_units:
-		if(arena_unit.move_target):
-			arena_unit.move_to_target(delta, arena_unit.move_target)
-
 	queue_redraw()
 	pass
 

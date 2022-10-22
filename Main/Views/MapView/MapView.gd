@@ -54,8 +54,6 @@ func _ready():
 			x_pad = (1.0 * ((bounds.right - bounds.left) - x_span)) / 2
 		else:
 			x_pad = (bounds.right - bounds.left) / 2
-		print("xs ", x_span)
-		print("xp ", x_pad)
 		var x_spacing = 0 if len(layer) == 1 else x_span / (len(layer)-1)
 		for c in range(len(layer)):
 			var floorNode = layer[c]
