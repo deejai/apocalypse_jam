@@ -2,7 +2,7 @@ extends CharacterBody2D
 
 var unit: Unit
 
-var speed: int
+var speed: float
 var hp: int
 
 var selected: bool = false
@@ -32,11 +32,23 @@ func _process(delta):
 	move_to_target(delta, move_target)
 
 func move_to_target(delta, target):
-	velocity = Vector2.ZERO
-	velocity = position.direction_to(target) * 50
-	if get_slide_collision_count() and stop_timer == 0:
-		stop_timer = 150
-		last_position = position
-	set_velocity(velocity)
-	move_and_slide()
-	print("move?")
+	move_target.x = clamp(move_target.x, 0, 1080)
+	move_target.y = clamp(move_target.y, 0, 720)
+
+	if(position.distance_to(target) < 10):
+		move_target = position
+		return
+
+#	velocity = Vector2.ZERO
+#	velocity = position.direction_to(target) * 50
+#	if get_slide_collision_count() and stop_timer == 0:
+#		stop_timer = 150
+#		last_position = position
+#	set_velocity(velocity)
+#	move_and_slide()
+#	print("move?")
+	print(target)
+	var dir = position.direction_to(target)
+	var new_x = clamp(position.x + dir.x * speed, 0, 1080)
+	var new_y = clamp(position.y + dir.y * speed, 0, 720)
+	position = Vector2(new_x, new_y)
