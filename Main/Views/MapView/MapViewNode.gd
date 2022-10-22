@@ -19,7 +19,7 @@ func _process(delta):
 	pass
 
 func _input(event: InputEvent):
-	if event is InputEventMouseButton and event.pressed:
+	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_MASK_LEFT:
 		if position.distance_to(event.position) < $Area/Collision.shape.radius:
 			if floorNode == Game.player.floor.current:
 				# queue up the battle to be grabbed by mapview

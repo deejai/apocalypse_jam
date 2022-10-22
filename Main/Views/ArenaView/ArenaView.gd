@@ -5,6 +5,8 @@ var basic_unit = load("res://Main/Views/ArenaView/ArenaViewUnit.tscn")
 var enemy_arena_units = []
 var player_arena_units = []
 
+var selected_units = []
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	# place our units
@@ -29,13 +31,41 @@ func load_units(arr_from: Array, arr_to: Array):
 func _process(delta):
 	# is the battle over?
 	# handle inputs. buttons, selecting chars, menu, etc
+	queue_redraw()
 	pass
 
 func _draw():
+	for arena_unit in selected_units:
+		draw_circle(arena_unit.position, 25, Color.WHITE)
+
 	for arena_unit in enemy_arena_units:
 		draw_circle(arena_unit.position, 20, Color.MAROON)
-		arena_unit._draw()
 
 	for arena_unit in player_arena_units:
 		draw_circle(arena_unit.position, 20, Color.GREEN_YELLOW)
-		arena_unit._draw()
+
+func _input(event: InputEvent):
+	if event is InputEventMouseButton and event.pressed:
+		if event.button_index == MOUSE_BUTTON_MASK_LEFT:
+			var clicked_unit = null
+			for arr in [enemy_arena_units, player_arena_units]:
+				if(clicked_unit):
+					break
+
+				for arena_unit in arr:
+					var radius = arena_unit.get_node("Collision").shape.radius
+					if arena_unit.position.distance_to(event.position) < radius:
+						clicked_unit = arena_unit
+						break
+
+			for arena_unit in selected_units:
+				arena_unit.selected = false
+
+			selected_units = [clicked_unit] if clicked_unit else []
+			for arena_unit in selected_units:
+				arena_unit.selected = true
+
+		elif event.button_index == MOUSE_BUTTON_MASK_RIGHT:
+			if len(selected_units) > 0 and selected_units[0].unit.is_enemy == false:
+				for arena_unit in selected_units:
+					arena_unit.move_target = event.position

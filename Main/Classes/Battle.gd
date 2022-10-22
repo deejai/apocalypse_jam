@@ -7,4 +7,4 @@ var enemies: Array = []
 func _init(level: int):
 	var positions = [Vector2(500, 100), Vector2(700, 150), Vector2(600, 200)]
 	for i in range(len(positions)):
-		enemies.append({"unit": Unit.new(), "start_position": positions[i]})
+		enemies.append({"unit": Unit.new(true), "start_position": positions[i]})
