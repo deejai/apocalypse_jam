@@ -10,7 +10,7 @@ config_version=5
 
 _global_script_classes=[{
 "base": "Node",
-"class": &"Activated_Ability",
+"class": &"ActivatedAbility",
 "language": &"GDScript",
 "path": "res://Main/Classes/ActivatedAbility.gd"
 }, {
@@ -45,18 +45,24 @@ _global_script_classes=[{
 "path": "res://Main/Classes/Unit.gd"
 }, {
 "base": "Node",
+"class": &"UnitEffect",
+"language": &"GDScript",
+"path": "res://Main/Classes/UnitEffect.gd"
+}, {
+"base": "Node",
 "class": &"UnitUpgrade",
 "language": &"GDScript",
 "path": "res://Main/Classes/UnitUpgrade.gd"
 }]
 _global_script_class_icons={
-"Activated_Ability": "",
+"ActivatedAbility": "",
 "Battle": "",
 "Floor": "",
 "FloorNode": "",
 "Olympian": "",
 "Player": "",
 "Unit": "",
+"UnitEffect": "",
 "UnitUpgrade": ""
 }
 

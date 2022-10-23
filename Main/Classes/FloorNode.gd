@@ -24,7 +24,8 @@ func _init(level: int, prev=null, next=null):
 		for i in range(3):
 			rewards.append(UnitUpgrade.new(level))
 	elif roll < .6667:
-		pass
+		for i in range(3):
+			rewards.append()
 	else:
 		pass
 
