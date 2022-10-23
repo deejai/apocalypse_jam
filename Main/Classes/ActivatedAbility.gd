@@ -4,11 +4,20 @@ class_name ActivatedAbility
 
 enum TARGETING_TYPE {SELF, POINT, UNIT, UNIT_ENEMY, UNIT_ALLY}
 
+var key: String
+var icon: Sprite2D
 var cooldown: int
 var level: int
 var targeting_type: TARGETING_TYPE
 var area_of_effect: int
 var effect: ArenaUnitEffect
+var range: int
+
+func _init(
+	key: String,
+	level: int
+):
+	pass
 
 # Called when the node enters the scene tree for the first time.
 func _ready():

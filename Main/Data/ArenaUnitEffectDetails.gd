@@ -60,10 +60,3 @@ func summon_imp(instance: ArenaUnitEffect, flag: ArenaUnitEffect.FLAG):
 
 		ArenaUnitEffect.FLAG.TICK:
 			pass
-
-var arena_unit_effects = {
-	"Mind Dart": mind_dart,
-	"Soothing Vines": soothing_vines,
-	"Poison Nova": poison_nova,
-	"Summon Imp": summon_imp,
-}
