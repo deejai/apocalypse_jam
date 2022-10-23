@@ -1,6 +1,119 @@
-[gd_scene load_steps=2 format=3 uid="uid://bth8t7m3646o"]
+[gd_scene load_steps=40 format=3 uid="uid://bth8t7m3646o"]
 
 [ext_resource type="Script" path="res://Main/Views/ArenaView/ArenaView.gd" id="1_hy837"]
+[ext_resource type="Texture2D" uid="uid://cfqyw7t8kll0a" path="res://Assets/PNG/land_3.png" id="2_7on8q"]
+[ext_resource type="Texture2D" uid="uid://303gfj0ngr30" path="res://Assets/PNG/land_4.png" id="3_xnw0v"]
+[ext_resource type="Texture2D" uid="uid://b5swbl3mtmndd" path="res://Assets/PNG/land_5.png" id="4_f7hst"]
+[ext_resource type="Texture2D" uid="uid://davj27k66d6tp" path="res://Assets/PNG/land_6.png" id="5_1yqut"]
+[ext_resource type="Texture2D" uid="uid://c7nf3cca86lhi" path="res://Assets/PNG/land_7.png" id="6_wajqr"]
+[ext_resource type="Texture2D" uid="uid://c375bpv4a0ygy" path="res://Assets/PNG/land_8.png" id="7_8ccwp"]
+[ext_resource type="Texture2D" uid="uid://bxd14cr21bw21" path="res://Assets/PNG/land_9.png" id="8_tj6tu"]
+[ext_resource type="Texture2D" uid="uid://c7bqruhkn4wnm" path="res://Assets/PNG/land_10.png" id="9_br2rv"]
+[ext_resource type="Texture2D" uid="uid://b017svulg0502" path="res://Assets/PNG/land_11.png" id="10_qu6y5"]
+[ext_resource type="Texture2D" uid="uid://d4k8kt3w2v8vs" path="res://Assets/PNG/land_12.png" id="11_41rhr"]
+[ext_resource type="Texture2D" uid="uid://cww8x5ngwkds" path="res://Assets/PNG/land_13.png" id="12_rfh5u"]
+[ext_resource type="Texture2D" uid="uid://dqmpnyfxjk648" path="res://Assets/PNG/land_14.png" id="13_k6uat"]
+[ext_resource type="Texture2D" uid="uid://b4iiku34ecjl4" path="res://Assets/PNG/land_15.png" id="14_nffap"]
+[ext_resource type="Texture2D" uid="uid://dsixi65su8xo6" path="res://Assets/PNG/land_16.png" id="15_giknf"]
+[ext_resource type="Texture2D" uid="uid://btefsvir7mlj1" path="res://Assets/PNG/land_17.png" id="16_j7qaa"]
+[ext_resource type="Texture2D" uid="uid://dc62oac1xxldh" path="res://Assets/PNG/land_18.png" id="17_1kpcm"]
+[ext_resource type="Texture2D" uid="uid://r0b1bv3rtnss" path="res://Assets/PNG/land_1.png" id="18_m8qja"]
+[ext_resource type="Texture2D" uid="uid://b45xwg4urqxlq" path="res://Assets/PNG/land_2.png" id="19_q376o"]
+[ext_resource type="Texture2D" uid="uid://pci17ilds4c0" path="res://Assets/PNG/bg.png" id="20_6ub1k"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_05em7"]
+texture = ExtResource("2_7on8q")
+texture_region_size = Vector2i(32, 32)
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_3awpj"]
+texture = ExtResource("3_xnw0v")
+texture_region_size = Vector2i(32, 32)
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_e4ubq"]
+texture = ExtResource("4_f7hst")
+texture_region_size = Vector2i(32, 32)
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_6x881"]
+texture = ExtResource("5_1yqut")
+texture_region_size = Vector2i(256, 256)
+0:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_731uq"]
+texture = ExtResource("6_wajqr")
+texture_region_size = Vector2i(32, 32)
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_evvlx"]
+texture = ExtResource("7_8ccwp")
+texture_region_size = Vector2i(32, 32)
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_trnin"]
+texture = ExtResource("8_tj6tu")
+texture_region_size = Vector2i(32, 32)
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_xstto"]
+texture = ExtResource("9_br2rv")
+texture_region_size = Vector2i(32, 32)
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ocaag"]
+texture = ExtResource("10_qu6y5")
+texture_region_size = Vector2i(32, 32)
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_qk2v0"]
+texture = ExtResource("11_41rhr")
+texture_region_size = Vector2i(32, 32)
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_lhxci"]
+texture = ExtResource("12_rfh5u")
+texture_region_size = Vector2i(32, 32)
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_sa4ep"]
+texture = ExtResource("13_k6uat")
+texture_region_size = Vector2i(32, 32)
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_8pqea"]
+texture = ExtResource("14_nffap")
+texture_region_size = Vector2i(32, 32)
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ibk8t"]
+texture = ExtResource("15_giknf")
+texture_region_size = Vector2i(32, 32)
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_rf1ie"]
+texture = ExtResource("16_j7qaa")
+texture_region_size = Vector2i(32, 32)
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_edhwb"]
+texture = ExtResource("17_1kpcm")
+texture_region_size = Vector2i(32, 32)
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_545wo"]
+texture = ExtResource("18_m8qja")
+texture_region_size = Vector2i(32, 32)
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_r1t67"]
+texture = ExtResource("19_q376o")
+texture_region_size = Vector2i(32, 32)
+
+[sub_resource type="TileSet" id="TileSet_ihsse"]
+tile_size = Vector2i(32, 32)
+sources/98 = SubResource("TileSetAtlasSource_545wo")
+sources/99 = SubResource("TileSetAtlasSource_r1t67")
+sources/100 = SubResource("TileSetAtlasSource_05em7")
+sources/101 = SubResource("TileSetAtlasSource_3awpj")
+sources/102 = SubResource("TileSetAtlasSource_e4ubq")
+sources/103 = SubResource("TileSetAtlasSource_6x881")
+sources/104 = SubResource("TileSetAtlasSource_731uq")
+sources/105 = SubResource("TileSetAtlasSource_evvlx")
+sources/106 = SubResource("TileSetAtlasSource_trnin")
+sources/107 = SubResource("TileSetAtlasSource_xstto")
+sources/108 = SubResource("TileSetAtlasSource_ocaag")
+sources/109 = SubResource("TileSetAtlasSource_qk2v0")
+sources/110 = SubResource("TileSetAtlasSource_lhxci")
+sources/111 = SubResource("TileSetAtlasSource_sa4ep")
+sources/112 = SubResource("TileSetAtlasSource_8pqea")
+sources/113 = SubResource("TileSetAtlasSource_ibk8t")
+sources/114 = SubResource("TileSetAtlasSource_rf1ie")
+sources/115 = SubResource("TileSetAtlasSource_edhwb")
 
 [node name="Arena" type="Node2D"]
 script = ExtResource("1_hy837")
@@ -12,8 +125,19 @@ color = Color(0.384314, 0.654902, 0.776471, 1)
 polygon = PackedVector2Array(1080, 0, 1280, 0, 1280, 720, 1080, 720)
 metadata/_edit_lock_ = true
 
-[node name="Background" type="Polygon2D" parent="."]
+[node name="TileMap" type="TileMap" parent="."]
 z_index = -6
-color = Color(0.333333, 0.243137, 0.0823529, 1)
-polygon = PackedVector2Array(0, 0, 1280, 0, 1280, 720, 0, 720)
-metadata/_edit_lock_ = true
+tile_set = SubResource("TileSet_ihsse")
+format = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(360, 360)
+scale = Vector2(2.8125, 2.8125)
+z_index = -7
+texture = ExtResource("20_6ub1k")
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+position = Vector2(1080, 360)
+scale = Vector2(2.8125, 2.8125)
+z_index = -7
+texture = ExtResource("20_6ub1k")
