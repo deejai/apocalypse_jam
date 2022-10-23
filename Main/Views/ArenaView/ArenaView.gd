@@ -14,17 +14,17 @@ var button_pressed_start_drag_dist = 30
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	# place our units
-	load_units(Game.next_battle.enemies, enemy_arena_units)
-	load_units(Game.player.squad_active, player_arena_units)
+	load_units(Game.next_battle.enemies, enemy_arena_units, ArenaUnit.ALLIANCE.ENEMY)
+	load_units(Game.player.squad_active, player_arena_units, ArenaUnit.ALLIANCE.ALLY)
 	# generate enemy units based on progress and current map node
 	# place enemy units
 	# battle starts
 
 	queue_redraw()
 
-func load_units(arr_from: Array, arr_to: Array):
+func load_units(arr_from: Array, arr_to: Array, alliance: ArenaUnit.ALLIANCE):
 	for data in arr_from:
-		var arena_unit = basic_unit.instantiate().init(data.unit)
+		var arena_unit = basic_unit.instantiate().init(data.unit, alliance)
 		if "start_position" not in data.keys():
 			print(data)
 			break
@@ -94,6 +94,6 @@ func _input(event: InputEvent):
 			mouse_left_pressed_start_pos = event.position
 
 		if event.button_index == MOUSE_BUTTON_MASK_RIGHT:
-			if len(selected_units) > 0 and selected_units[0].unit.is_enemy == false:
+			if len(selected_units) > 0 and selected_units[0].alliance == ArenaUnit.ALLIANCE.ALLY:
 				for arena_unit in selected_units:
 					arena_unit.move_target = event.position

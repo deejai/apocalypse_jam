@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3]
+[gd_scene load_steps=7 format=3 uid="uid://b3e5rtfyakvmu"]
 
 [ext_resource type="Script" path="res://Main/Views/ArenaView/ArenaUnit.gd" id="1_al8vo"]
 [ext_resource type="Texture2D" uid="uid://bkeft3ywmoc4e" path="res://Assets/Apollo2-Sheet.png" id="2_67dvf"]

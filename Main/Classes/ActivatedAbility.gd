@@ -2,9 +2,11 @@ extends Node
 
 class_name ActivatedAbility
 
+enum TARGETING_TYPE {SELF, POINT, UNIT, UNIT_ENEMY, UNIT_ALLY}
+
 var cooldown: int
 var level: int
-var targeting_type: ArenaUnitEffectDetails.TARGETING_TYPE
+var targeting_type: TARGETING_TYPE
 var area_of_effect: int
 var effect: ArenaUnitEffect
 

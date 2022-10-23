@@ -1,7 +1,5 @@
 extends Node
 
-enum TARGETING_TYPE {SELF, POINT, UNIT, UNIT_ENEMY, UNIT_ALLY}
-
 func mind_dart(instance: ArenaUnitEffect, flag: ArenaUnitEffect.FLAG):
 	if(flag == ArenaUnitEffect.FLAG.START):
 		instance.arena_unit.take_damage(10 + instance.level * 5)
