@@ -20,7 +20,7 @@ func _init(level: int):
 
 		# connect the appropriate previous nodes to the current node
 		var arcs = getArcs(node_layers[i-1], node_layers[i])
-		
+
 		for arc in arcs:
 			FloorNode.link(prev_nodes[arc[0]], new_nodes[arc[1]])
 

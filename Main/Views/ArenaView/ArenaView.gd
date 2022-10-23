@@ -42,13 +42,13 @@ func _process(delta):
 
 func _draw():
 	for arena_unit in selected_units:
-		draw_circle(arena_unit.position, 25, Color.WHITE)
+		draw_circle(arena_unit.position, 20, Color.WHITE)
 
 	for arena_unit in enemy_arena_units:
-		draw_circle(arena_unit.position, 20, Color.MAROON)
+		draw_circle(arena_unit.position, 16, Color.MAROON)
 
 	for arena_unit in player_arena_units:
-		draw_circle(arena_unit.position, 20, Color.GREEN_YELLOW)
+		draw_circle(arena_unit.position, 16, Color.GREEN_YELLOW)
 
 
 #	draw_circle(mouse_left_pressed_start_pos, 10, Color.ROSY_BROWN)
