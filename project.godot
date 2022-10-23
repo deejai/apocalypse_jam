@@ -14,6 +14,16 @@ _global_script_classes=[{
 "language": &"GDScript",
 "path": "res://Main/Classes/ActivatedAbility.gd"
 }, {
+"base": "CharacterBody2D",
+"class": &"ArenaUnit",
+"language": &"GDScript",
+"path": "res://Main/Views/ArenaView/ArenaUnit.gd"
+}, {
+"base": "Node",
+"class": &"ArenaUnitEffect",
+"language": &"GDScript",
+"path": "res://Main/Views/ArenaView/ArenaUnitEffect.gd"
+}, {
 "base": "Node",
 "class": &"Battle",
 "language": &"GDScript",
@@ -45,24 +55,20 @@ _global_script_classes=[{
 "path": "res://Main/Classes/Unit.gd"
 }, {
 "base": "Node",
-"class": &"UnitEffect",
-"language": &"GDScript",
-"path": "res://Main/Classes/UnitEffect.gd"
-}, {
-"base": "Node",
 "class": &"UnitUpgrade",
 "language": &"GDScript",
 "path": "res://Main/Classes/UnitUpgrade.gd"
 }]
 _global_script_class_icons={
 "ActivatedAbility": "",
+"ArenaUnit": "",
+"ArenaUnitEffect": "",
 "Battle": "",
 "Floor": "",
 "FloorNode": "",
 "Olympian": "",
 "Player": "",
 "Unit": "",
-"UnitEffect": "",
 "UnitUpgrade": ""
 }
 
@@ -76,6 +82,7 @@ config/icon="res://icon.svg"
 [autoload]
 
 Game="*res://Main/Game.gd"
+ArenaUnitEffectDetails="*res://Main/Data/ArenaUnitEffectDetails.gd"
 
 [debug]
 

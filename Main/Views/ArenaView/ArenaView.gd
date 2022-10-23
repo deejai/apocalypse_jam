@@ -1,7 +1,7 @@
 extends Node2D
 
 var unit_bounds = {"left": 0, "right": 1280-200, "top": 0, "bottom": 720}
-var basic_unit = load("res://Main/Views/ArenaView/ArenaViewUnit.tscn")
+var basic_unit = load("res://Main/Views/ArenaView/ArenaUnit.tscn")
 var enemy_arena_units = []
 var player_arena_units = []
 
@@ -33,7 +33,14 @@ func load_units(arr_from: Array, arr_to: Array):
 		add_child(arena_unit)
 
 func drag_select_rect():
-	return Rect2(mouse_left_pressed_start_pos, get_global_mouse_position()-mouse_left_pressed_start_pos)
+	# i had to do all this because Rect2.has_point only works when the rectangle goes from topleft to botright
+	var x_from_to = [get_global_mouse_position().x, mouse_left_pressed_start_pos.x]
+	var y_from_to = [get_global_mouse_position().y, mouse_left_pressed_start_pos.y]
+	x_from_to.sort()
+	y_from_to.sort()
+	var top_left = Vector2(x_from_to[0], y_from_to[0])
+	var bottom_right = Vector2(x_from_to[1], y_from_to[1])
+	return Rect2(top_left, bottom_right-top_left)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -41,19 +48,6 @@ func _process(delta):
 	pass
 
 func _draw():
-	for arena_unit in selected_units:
-		draw_circle(arena_unit.position, 20, Color.WHITE)
-
-	for arena_unit in enemy_arena_units:
-		draw_circle(arena_unit.position, 16, Color.MAROON)
-
-	for arena_unit in player_arena_units:
-		draw_circle(arena_unit.position, 16, Color.GREEN_YELLOW)
-
-
-#	draw_circle(mouse_left_pressed_start_pos, 10, Color.ROSY_BROWN)
-#	draw_circle(mouse_pos, 10, Color.CORNFLOWER_BLUE)
-
 	if mouse_left_pressed and mouse_left_pressed_start_pos.distance_to(get_global_mouse_position()) > button_pressed_start_drag_dist:
 		draw_rect(
 			drag_select_rect(),

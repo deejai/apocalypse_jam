@@ -1,9 +1,13 @@
 extends CharacterBody2D
 
+class_name ArenaUnit
+
 var unit: Unit
 
 var speed: float
 var hp: int
+
+var dying = false
 
 var selected: bool = false
 
@@ -38,13 +42,23 @@ func _process(delta):
 	if(stuck and stuck_timer == 0):
 		move_target = position
 		stuck = false
-	else:
+	elif move_target != position:
 		move_to_target(move_target)
 		$AnimatedSprite2D.z_index = 100 + 100 * (position.y/720)
 		print($AnimatedSprite2D.z_index)
 #	print("mv tar ", move_target)
 #	print("pos ", position)
 #	print("gpos ", global_position)
+	queue_redraw()
+
+func _draw():
+	if selected:
+		draw_circle(Vector2.ZERO, 20, Color.WHITE)
+
+	if unit.is_enemy:
+		draw_circle(Vector2.ZERO, 16, Color.MAROON)
+	else:
+		draw_circle(Vector2.ZERO, 16, Color.GREEN_YELLOW)
 
 func move_to_target(target):
 	if(position.distance_to(target) < 5):
@@ -70,3 +84,11 @@ func move_to_target(target):
 
 	last_position = position
 	move_and_slide()
+
+func take_damage(amount: int):
+	hp -= amount
+	if hp < 0:
+		dying = true
+
+func receive_healing(amount: int):
+	hp = min(unit.hp, hp + amount)

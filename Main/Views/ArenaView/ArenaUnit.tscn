@@ -1,17 +1,17 @@
-[gd_scene load_steps=7 format=3 uid="uid://y6mwac0hv0pq"]
+[gd_scene load_steps=7 format=3]
 
-[ext_resource type="Script" path="res://Main/Views/ArenaView/ArenaViewUnit.gd" id="1_wkwtb"]
-[ext_resource type="Texture2D" uid="uid://bv1fiaotu03k8" path="res://Assets/Apollo2-Sheet.png" id="2_vqwhn"]
+[ext_resource type="Script" path="res://Main/Views/ArenaView/ArenaUnit.gd" id="1_al8vo"]
+[ext_resource type="Texture2D" uid="uid://bkeft3ywmoc4e" path="res://Assets/Apollo2-Sheet.png" id="2_67dvf"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_tp8tv"]
 radius = 22.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_5sodt"]
-atlas = ExtResource("2_vqwhn")
+atlas = ExtResource("2_67dvf")
 region = Rect2(0, 0, 32, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_npyyf"]
-atlas = ExtResource("2_vqwhn")
+atlas = ExtResource("2_67dvf")
 region = Rect2(32, 0, 32, 64)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_o77n7"]
@@ -24,7 +24,7 @@ animations = [{
 
 [node name="Unit" type="CharacterBody2D"]
 motion_mode = 1
-script = ExtResource("1_wkwtb")
+script = ExtResource("1_al8vo")
 
 [node name="Collision" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_tp8tv")

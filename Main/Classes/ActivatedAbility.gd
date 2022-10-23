@@ -4,9 +4,9 @@ class_name ActivatedAbility
 
 var cooldown: int
 var level: int
-var targeting_type: Game.TARGETING_TYPE
+var targeting_type: ArenaUnitEffectDetails.TARGETING_TYPE
 var area_of_effect: int
-var effect: UnitEffect
+var effect: ArenaUnitEffect
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
