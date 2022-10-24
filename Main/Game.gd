@@ -7,6 +7,7 @@ var player = Player.new()
 
 var next_battle = null
 
+var solidier_voice = load("res://Main/Views/ArenaView/ArenaUnits/SoliderVoice.tscn")
 # Called when the node enters the scene tree for the first time.
 func _ready():
 #	print(OS.window_size())

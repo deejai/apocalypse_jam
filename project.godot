@@ -90,6 +90,7 @@ config/icon="res://icon.svg"
 Game="*res://Main/Game.gd"
 AbilityEffectDetails="*res://Main/Data/AbilityEffectDetails.gd"
 ActivatedAbilityDetails="*res://Main/Data/ActivatedAbilityDetails.gd"
+Audio="*res://Main/Audio.gd"
 
 [debug]
 

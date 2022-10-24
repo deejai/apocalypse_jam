@@ -144,6 +144,7 @@ func apply_damage(amount: int):
 	hp -= amount
 	if hp <= 0:
 		dying = true
+		Audio.soldier_voice_die.play()
 
 func apply_healing(amount: int):
 	if statuses[STATUS.NOHEAL] > 0:

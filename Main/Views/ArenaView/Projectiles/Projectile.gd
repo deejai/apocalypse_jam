@@ -23,6 +23,7 @@ func init(alliance: ArenaUnit.ALLIANCE, position: Vector2, direction: Vector2, s
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	$Sprite2D.rotation = direction.angle()
+	$Sound/Spawn.play()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):

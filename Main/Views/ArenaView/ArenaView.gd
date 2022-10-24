@@ -33,6 +33,7 @@ func setMenuEnabled(enable: bool):
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+
 	# place our units
 	load_units(Game.next_battle.enemies, enemy_arena_units, ArenaUnit.ALLIANCE.ENEMY)
 	load_units(Game.player.squad_active, player_arena_units, ArenaUnit.ALLIANCE.ALLY)
@@ -150,6 +151,9 @@ func _input(event: InputEvent):
 							selected_units.append(arena_unit)
 
 				mouse_left_pressed = false
+				
+				if len(selected_units) > 0:
+					Audio.soldier_voice_yessir.play()
 
 		if event.pressed:
 			if event.button_index == MOUSE_BUTTON_MASK_LEFT:
@@ -169,5 +173,8 @@ func _input(event: InputEvent):
 					for arena_unit in selected_units:
 						arena_unit.attack_target = attack_target
 						arena_unit.move_target = event.position
+
+					if len(selected_units) > 0:
+						Audio.soldier_voice_ok.play()
 	else:
 		pass
