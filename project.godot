@@ -10,6 +10,11 @@ config_version=5
 
 _global_script_classes=[{
 "base": "Node",
+"class": &"AbilityEffect",
+"language": &"GDScript",
+"path": "res://Main/Classes/AbilityEffect.gd"
+}, {
+"base": "Node",
 "class": &"ActivatedAbility",
 "language": &"GDScript",
 "path": "res://Main/Classes/ActivatedAbility.gd"
@@ -18,11 +23,6 @@ _global_script_classes=[{
 "class": &"ArenaUnit",
 "language": &"GDScript",
 "path": "res://Main/Views/ArenaView/ArenaUnits/ArenaUnit.gd"
-}, {
-"base": "Node",
-"class": &"ArenaUnitEffect",
-"language": &"GDScript",
-"path": "res://Main/Views/ArenaView/ArenaUnitEffect.gd"
 }, {
 "base": "Node",
 "class": &"Battle",
@@ -60,9 +60,9 @@ _global_script_classes=[{
 "path": "res://Main/Classes/UnitUpgrade.gd"
 }]
 _global_script_class_icons={
+"AbilityEffect": "",
 "ActivatedAbility": "",
 "ArenaUnit": "",
-"ArenaUnitEffect": "",
 "Battle": "",
 "Floor": "",
 "FloorNode": "",
@@ -82,7 +82,7 @@ config/icon="res://icon.svg"
 [autoload]
 
 Game="*res://Main/Game.gd"
-ArenaUnitEffectDetails="*res://Main/Data/ArenaUnitEffectDetails.gd"
+AbilityEffectDetails="*res://Main/Data/AbilityEffectDetails.gd"
 ActivatedAbilityDetails="*res://Main/Data/ActivatedAbilityDetails.gd"
 
 [debug]

@@ -33,6 +33,8 @@ var statuses = {
 	STATUS.NOHEAL: 0,
 }
 
+var pct_damage_boost
+
 var alliance: ALLIANCE
 
 var time_since_redraw = 0

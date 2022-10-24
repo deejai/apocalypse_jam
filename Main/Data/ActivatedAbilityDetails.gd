@@ -6,7 +6,7 @@ func test():
 var data = {
 	"Mind Dart": {
 		"icon": load("res://Assets/PNG/bg.png"),
-		"effect": ArenaUnitEffectDetails.mind_dart,
+		"effect": AbilityEffectDetails.mind_dart,
 		"targeting_type": ActivatedAbility.TARGETING_TYPE.UNIT_ENEMY,
 		"cooldown_fn": func(level): return max(8, 12 - level),
 		"range_fn": func(level): return 200,

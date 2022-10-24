@@ -1,6 +1,6 @@
 extends Node
 
-class_name ArenaUnitEffect
+class_name AbilityEffect
 
 var identifier: String
 var level: int
@@ -15,14 +15,16 @@ var killme = false
 enum FLAG { START, TICK, END }
 
 func _init(
-	arena_unit: ArenaUnit,
+	props: Dictionary,
 	identifier:String,
 	level: int,
 	effect_fn: Callable,
 	):
-	self.arena_unit = arena_unit
+	for prop_key in props:
+		self.props[prop_key] = props[prop_key]
+
 	self.identifier = identifier
-	self.identifier = identifier
+	self.level = level
 	self.effect_fn = effect_fn
 
 # Called when the node enters the scene tree for the first time.
