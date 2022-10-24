@@ -14,11 +14,6 @@ _global_script_classes=[{
 "language": &"GDScript",
 "path": "res://Main/Classes/ActivatedAbility.gd"
 }, {
-"base": "Node",
-"class": &"ActivatedAbilityDetails",
-"language": &"GDScript",
-"path": "res://Main/Data/ActivatedAbilityDetails.gd"
-}, {
 "base": "CharacterBody2D",
 "class": &"ArenaUnit",
 "language": &"GDScript",
@@ -66,7 +61,6 @@ _global_script_classes=[{
 }]
 _global_script_class_icons={
 "ActivatedAbility": "",
-"ActivatedAbilityDetails": "",
 "ArenaUnit": "",
 "ArenaUnitEffect": "",
 "Battle": "",
@@ -89,6 +83,7 @@ config/icon="res://icon.svg"
 
 Game="*res://Main/Game.gd"
 ArenaUnitEffectDetails="*res://Main/Data/ArenaUnitEffectDetails.gd"
+ActivatedAbilityDetails="*res://Main/Data/ActivatedAbilityDetails.gd"
 
 [debug]
 

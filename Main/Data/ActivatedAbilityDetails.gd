@@ -1,28 +1,15 @@
 extends Node
 
-class_name ActivatedAbilityDetails
+func test():
+	pass
 
 var data = {
 	"Mind Dart": {
 		"icon": load("res://Assets/PNG/bg.png"),
 		"effect": ArenaUnitEffectDetails.mind_dart,
 		"targeting_type": ActivatedAbility.TARGETING_TYPE.UNIT_ENEMY,
-		"levels": {
-			0: {
-				"cooldown": 12,
-				"range": 200,
-				"area_of_effect": 0,
-			},
-			1: {
-				"cooldown": 10,
-				"range": 200,
-				"area_of_effect": 0,
-			},
-			2: {
-				"cooldown": 8,
-				"range": 200,
-				"area_of_effect": 0,
-			}
-		}
+		"cooldown_fn": func(level): return max(8, 12 - level),
+		"range_fn": func(level): return 200,
+		"area_of_effect_fn": func(level): return 0,
 	}
 }
