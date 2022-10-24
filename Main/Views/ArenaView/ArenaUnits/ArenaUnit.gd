@@ -14,12 +14,26 @@ var dying = false
 var selected: bool = false
 
 var move_target: Vector2
+var attack_target: ArenaUnit = null
 
 var stuck_timer: int = 0
 var stuck: bool = false
 var last_position: Vector2
 
+# statuses
+enum STATUS { STUN, SILENCE, ROOT, INVULN, NOHEAL }
+
+var statuses = {
+	STATUS.STUN: 0,
+	STATUS.SILENCE: 0,
+	STATUS.ROOT: 0,
+	STATUS.INVULN: 0,
+	STATUS.NOHEAL: 0,
+}
+
 var alliance: ALLIANCE
+
+var time_since_redraw = 0
 
 # Called when the node enters the scene tree for the first time.
 func init(unit: Unit, alliance: ALLIANCE):
@@ -51,29 +65,42 @@ func _process(delta):
 		move_to_target(move_target)
 		$AnimatedSprite2D.z_index = 100 + 100 * (position.y/720)
 #		print($AnimatedSprite2D.z_index)
-#	print("mv tar ", move_target)
-#	print("pos ", position)
-#	print("gpos ", global_position)
-	queue_redraw()
+
+	time_since_redraw += delta
+	if time_since_redraw > 1.0 / 10:
+		queue_redraw()
+		time_since_redraw = 0
 
 func _draw():
+	print("draw me")
 	if selected:
-		draw_circle(Vector2.ZERO, 20, Color.WHITE)
+		draw_arc(Vector2.ZERO, 20, 0, TAU, 50, Color.WHITE, 2.0, true)
 
-	if alliance == ArenaUnit.ALLIANCE.ENEMY:
-		draw_circle(Vector2.ZERO, 16, Color.MAROON)
+	var hpbar_width = 28
+	var hpbar_height = 4
+	var hpbar_offset = Vector2(0, 12)
+
+	if alliance == ArenaUnit.ALLIANCE.ALLY:
+		# draw green health bar below unit
+		draw_rect(Rect2(hpbar_offset - Vector2(hpbar_width/2, hpbar_height/2), Vector2(hpbar_width, hpbar_height)), Color.GREEN)
+		draw_rect(Rect2(hpbar_offset - Vector2(hpbar_width/2, hpbar_height/2), Vector2(hpbar_width * (unit.hp - hp)/unit.hp, hpbar_height)), Color.RED)
+
 	else:
-		draw_circle(Vector2.ZERO, 16, Color.GREEN_YELLOW)
+		# draw orange health bar below unit
+		draw_rect(Rect2(hpbar_offset - Vector2(hpbar_width/2, hpbar_height/2), Vector2(hpbar_width, hpbar_height)), Color.ORANGE)
+		draw_rect(Rect2(hpbar_offset - Vector2(hpbar_width/2, hpbar_height/2), Vector2(hpbar_width * (unit.hp - hp)/unit.hp, hpbar_height)), Color.RED)
+
 
 func move_to_target(target):
 	if(position.distance_to(target) < 5):
+		$AnimatedSprite2D.animation = "Idle"
+		velocity = Vector2.ZERO
 		return
 
 	velocity = global_position.direction_to(target) * speed * 50
-	if(stuck):
-		pass
-#		print("ive been stuck for ", stuck_timer, " ms")
+
 	if last_position.distance_to(position) < 0.3:
+		$AnimatedSprite2D.animation = "Idle"
 #		print(last_position.distance_to(position))
 		# if we weren't already stuck, we're stuck now. otherwise keep being stuck (do nothing here)
 		if(stuck_timer == 0):
@@ -82,17 +109,28 @@ func move_to_target(target):
 			stuck_timer = 50
 
 	else:
-		# if we were stuck, we're not now
+		# we're moving
 		stuck = false
 		stuck_timer = 0
+
+		$AnimatedSprite2D.animation = "Walk"
 
 	last_position = position
 	move_and_slide()
 
-func take_damage(amount: int):
+func apply_damage(amount: int):
+	if statuses[STATUS.INVULN] > 0:
+		return
+
 	hp -= amount
 	if hp < 0:
 		dying = true
 
-func receive_healing(amount: int):
+func apply_healing(amount: int):
+	if statuses[STATUS.NOHEAL] > 0:
+		return
+
 	hp = min(unit.hp, hp + amount)
+
+func apply_status(status: STATUS, duration: int):
+	statuses[status] = max(statuses[status], duration)

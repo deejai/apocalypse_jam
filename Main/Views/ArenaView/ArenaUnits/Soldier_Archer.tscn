@@ -1,0 +1,42 @@
+[gd_scene load_steps=7 format=3 uid="uid://bbf6wk7u3g01g"]
+
+[ext_resource type="Script" path="res://Main/Views/ArenaView/ArenaUnits/ArenaUnit.gd" id="1_xwo4s"]
+[ext_resource type="Texture2D" uid="uid://cknrd76gtrstu" path="res://Assets/romanSoldier_archer.png" id="2_3t5oh"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_tp8tv"]
+radius = 22.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wko3n"]
+atlas = ExtResource("2_3t5oh")
+region = Rect2(0, 0, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m4ybg"]
+atlas = ExtResource("2_3t5oh")
+region = Rect2(32, 0, 32, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_o77n7"]
+animations = [{
+"frames": [SubResource("AtlasTexture_wko3n")],
+"loop": true,
+"name": &"Idle",
+"speed": 5.0
+}, {
+"frames": [SubResource("AtlasTexture_m4ybg"), SubResource("AtlasTexture_wko3n")],
+"loop": true,
+"name": &"Walk",
+"speed": 5.0
+}]
+
+[node name="Unit" type="CharacterBody2D"]
+motion_mode = 1
+script = ExtResource("1_xwo4s")
+
+[node name="Collision" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_tp8tv")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(-1, -25)
+z_index = 4
+frames = SubResource("SpriteFrames_o77n7")
+animation = &"Idle"
+playing = true

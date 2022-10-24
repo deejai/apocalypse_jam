@@ -1,0 +1,42 @@
+[gd_scene load_steps=7 format=3 uid="uid://bjtddy33a5v8h"]
+
+[ext_resource type="Script" path="res://Main/Views/ArenaView/ArenaUnits/ArenaUnit.gd" id="1_v6a30"]
+[ext_resource type="Texture2D" uid="uid://dl4i0j0x30cmx" path="res://Assets/Olympian_Apollo.png" id="2_tet7r"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_tp8tv"]
+radius = 22.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h573b"]
+atlas = ExtResource("2_tet7r")
+region = Rect2(0, 0, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xpfhh"]
+atlas = ExtResource("2_tet7r")
+region = Rect2(32, 0, 32, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_o77n7"]
+animations = [{
+"frames": [SubResource("AtlasTexture_h573b")],
+"loop": true,
+"name": &"Idle",
+"speed": 5.0
+}, {
+"frames": [SubResource("AtlasTexture_xpfhh"), SubResource("AtlasTexture_h573b")],
+"loop": true,
+"name": &"Walk",
+"speed": 5.0
+}]
+
+[node name="Unit" type="CharacterBody2D"]
+motion_mode = 1
+script = ExtResource("1_v6a30")
+
+[node name="Collision" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_tp8tv")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -22)
+z_index = 4
+frames = SubResource("SpriteFrames_o77n7")
+animation = &"Idle"
+playing = true

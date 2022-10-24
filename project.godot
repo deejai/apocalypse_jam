@@ -22,7 +22,7 @@ _global_script_classes=[{
 "base": "CharacterBody2D",
 "class": &"ArenaUnit",
 "language": &"GDScript",
-"path": "res://Main/Views/ArenaView/ArenaUnit.gd"
+"path": "res://Main/Views/ArenaView/ArenaUnits/ArenaUnit.gd"
 }, {
 "base": "Node",
 "class": &"ArenaUnitEffect",
@@ -100,3 +100,9 @@ window/size/viewport_width=1280
 window/size/viewport_height=720
 window/size/window_width_override=1280
 window/size/window_height_override=720
+
+[rendering]
+
+2d/snap/snap_2d_transforms_to_pixel=true
+2d/snap/snap_2d_vertices_to_pixel=true
+textures/canvas_textures/default_texture_filter=0

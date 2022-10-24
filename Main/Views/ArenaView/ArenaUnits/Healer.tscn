@@ -1,0 +1,42 @@
+[gd_scene load_steps=7 format=3 uid="uid://bwagb54q23nb3"]
+
+[ext_resource type="Script" path="res://Main/Views/ArenaView/ArenaUnits/ArenaUnit.gd" id="1_xwo4s"]
+[ext_resource type="Texture2D" uid="uid://b7iauq4d5lkn2" path="res://Assets/romanHealer.png" id="2_4vbw3"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_tp8tv"]
+radius = 22.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fbffd"]
+atlas = ExtResource("2_4vbw3")
+region = Rect2(0, 0, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xnu5u"]
+atlas = ExtResource("2_4vbw3")
+region = Rect2(32, 0, 32, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_o77n7"]
+animations = [{
+"frames": [SubResource("AtlasTexture_fbffd")],
+"loop": true,
+"name": &"Idle",
+"speed": 5.0
+}, {
+"frames": [SubResource("AtlasTexture_xnu5u"), SubResource("AtlasTexture_fbffd")],
+"loop": true,
+"name": &"Walk",
+"speed": 5.0
+}]
+
+[node name="Unit" type="CharacterBody2D"]
+motion_mode = 1
+script = ExtResource("1_xwo4s")
+
+[node name="Collision" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_tp8tv")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -24)
+z_index = 4
+frames = SubResource("SpriteFrames_o77n7")
+animation = &"Idle"
+playing = true

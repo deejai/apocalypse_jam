@@ -118,12 +118,28 @@ sources/115 = SubResource("TileSetAtlasSource_edhwb")
 [node name="Arena" type="Node2D"]
 script = ExtResource("1_hy837")
 
-[node name="SelectionPanel" type="Polygon2D" parent="."]
+[node name="SidePanel" type="Polygon2D" parent="."]
 scale = Vector2(0.999169, 1)
 z_index = -2
 color = Color(0.384314, 0.654902, 0.776471, 1)
 polygon = PackedVector2Array(1080, 0, 1280, 0, 1280, 720, 1080, 720)
 metadata/_edit_lock_ = true
+
+[node name="SelectedUnits" type="ItemList" parent="SidePanel"]
+offset_left = 1091.91
+offset_top = 15.0
+offset_right = 1131.91
+offset_bottom = 55.0
+scale = Vector2(4.394, 3.26698)
+max_columns = 4
+same_column_width = true
+
+[node name="MenuButton" type="Button" parent="SidePanel"]
+offset_left = 1092.0
+offset_top = 682.0
+offset_right = 1268.0
+offset_bottom = 713.0
+text = "Menu"
 
 [node name="TileMap" type="TileMap" parent="."]
 z_index = -6
@@ -135,9 +151,33 @@ position = Vector2(360, 360)
 scale = Vector2(2.8125, 2.8125)
 z_index = -7
 texture = ExtResource("20_6ub1k")
+metadata/_edit_lock_ = true
 
 [node name="Sprite2D2" type="Sprite2D" parent="."]
 position = Vector2(1080, 360)
 scale = Vector2(2.8125, 2.8125)
 z_index = -7
 texture = ExtResource("20_6ub1k")
+metadata/_edit_lock_ = true
+
+[node name="UnitHighlight" type="Sprite2D" parent="."]
+
+[node name="Menu" type="Polygon2D" parent="."]
+visible = false
+color = Color(0.541176, 0.541176, 0.541176, 0.603922)
+polygon = PackedVector2Array(380, 220, 380, 420, 780, 420, 780, 220)
+metadata/_edit_lock_ = true
+
+[node name="ResumeButton" type="Button" parent="Menu"]
+offset_left = 451.0
+offset_top = 343.0
+offset_right = 710.0
+offset_bottom = 374.0
+text = "Resume"
+
+[node name="MainMenuButton" type="Button" parent="Menu"]
+offset_left = 451.0
+offset_top = 268.0
+offset_right = 710.0
+offset_bottom = 299.0
+text = "Main Menu"

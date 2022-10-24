@@ -17,7 +17,7 @@ extends Node
 func mind_dart(instance: ArenaUnitEffect, flag: ArenaUnitEffect.FLAG):
 	match flag:
 		ArenaUnitEffect.FLAG.START:
-			instance.arena_unit.take_damage(10 + instance.level * 5)
+			instance.arena_unit.apply_damage(10 + instance.level * 5)
 
 		ArenaUnitEffect.FLAG.END:
 			pass
@@ -35,7 +35,7 @@ func soothing_vines(instance: ArenaUnitEffect, flag: ArenaUnitEffect.FLAG):
 			return
 
 		ArenaUnitEffect.FLAG.TICK:
-			instance.arena_unit.receive_healing(5 + instance.level * 1)
+			instance.arena_unit.apply_healing(5 + instance.level * 1)
 			return
 
 func poison_nova(instance: ArenaUnitEffect, flag: ArenaUnitEffect.FLAG):
@@ -47,7 +47,7 @@ func poison_nova(instance: ArenaUnitEffect, flag: ArenaUnitEffect.FLAG):
 			pass
 
 		ArenaUnitEffect.FLAG.TICK:
-			instance.arena_unit.take_damage(7 + instance.level * 3)
+			instance.arena_unit.apply_damage(7 + instance.level * 3)
 
 func summon_imp(instance: ArenaUnitEffect, flag: ArenaUnitEffect.FLAG):
 	match flag:
