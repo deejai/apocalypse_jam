@@ -8,6 +8,7 @@ var battle: Battle = null
 var level: int
 var sceneNode: Node2D
 var rewards: Array = []
+var completed: bool = false
 
 func _init(level: int, prev=null, next=null):
 	self.level = level
@@ -25,7 +26,8 @@ func _init(level: int, prev=null, next=null):
 			rewards.append(UnitUpgrade.new(level))
 	elif roll < .6667:
 		for i in range(3):
-			rewards.append(ActivatedAbility.new())
+#			rewards.append(ActivatedAbility.new())
+			pass
 	else:
 		pass
 

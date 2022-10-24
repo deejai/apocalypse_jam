@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://b5u6qjyhwxvn2"]
+
+[ext_resource type="Texture2D" uid="uid://doc8fn3notks" path="res://Assets/tombstone.png" id="1_73rps"]
+[ext_resource type="Script" path="res://Main/Views/ArenaView/ArenaUnits/Tombstone.gd" id="1_riv6p"]
+
+[node name="Tombstone" type="Sprite2D"]
+texture = ExtResource("1_73rps")
+script = ExtResource("1_riv6p")

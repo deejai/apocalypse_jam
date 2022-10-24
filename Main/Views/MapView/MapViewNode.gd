@@ -24,7 +24,7 @@ func _input(event: InputEvent):
 			if floorNode == Game.player.floor.current:
 				# queue up the battle to be grabbed by mapview
 				Game.next_battle = floorNode.battle
-			elif floorNode in Game.player.floor.current.next:
+			elif Game.player.floor.current.completed and floorNode in Game.player.floor.current.next:
 				Game.player.floor.current = floorNode
 				get_parent().queue_redraw()
 				print("Navigated to next node")

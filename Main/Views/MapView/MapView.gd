@@ -86,9 +86,11 @@ func _draw_node_rec(node: FloorNode):
 		# draw the node circle
 		var pos = node.sceneNode.position
 		var radius = node.sceneNode.get_node("Area/Collision").shape.radius
-		if node == Game.player.floor.current:
+		if node.completed:
+			draw_circle(pos, radius, Color.DARK_GREEN)
+		elif node == Game.player.floor.current:
 			draw_circle(pos, radius, Color.CHARTREUSE)
-		elif Game.player.floor.current in node.prev:
+		elif Game.player.floor.current.completed and Game.player.floor.current in node.prev:
 			draw_circle(pos, radius, Color.GOLD)
 		else:
 			draw_circle(pos, radius, Color.DARK_GRAY)

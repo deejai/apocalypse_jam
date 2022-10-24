@@ -10,6 +10,9 @@ var models = {
 	Unit.BASE.HEALER: load("res://Main/Views/ArenaView/ArenaUnits/Healer.tscn"),
 }
 
+var tombstone = load("res://Main/Views/ArenaView/ArenaUnits/Tombstone.tscn")
+
+var map_view = load("res://Main/Views/MapView/MapView.tscn")
 var main_menu = load("res://Main/Views/MainMenu/MainMenuView.tscn")
 
 var selected_unit_tile = load("res://Assets/selectedunittile_unknown.png")
@@ -30,10 +33,10 @@ func setMenuEnabled(enable: bool):
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	Game.next_battle = null
 	# place our units
 	load_units(Game.next_battle.enemies, enemy_arena_units, ArenaUnit.ALLIANCE.ENEMY)
 	load_units(Game.player.squad_active, player_arena_units, ArenaUnit.ALLIANCE.ALLY)
+	Game.next_battle = null
 	# generate enemy units based on progress and current map node
 	# place enemy units
 	# battle starts
@@ -69,13 +72,33 @@ func drag_select_rect():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	for arr in [selected_units, player_arena_units, enemy_arena_units]:
+		var indices_to_pop = []
+		for i in len(arr):
+			var arena_unit = arr[i]
+			if not is_instance_valid(arena_unit):
+				indices_to_pop.append(i)
+			elif arena_unit.dying:
+				add_child(tombstone.instantiate().init(arena_unit.position))
+				arena_unit.queue_free()
+				indices_to_pop.append(i)
+
+		indices_to_pop.reverse()
+		for i in indices_to_pop:
+			arr.pop_at(i)
+			
+	if(len(enemy_arena_units) == 0):
+		Game.player.floor.current.completed = true
+		queue_free()
+		get_tree().change_scene_to_packed(map_view)
+
 	$SidePanel/SelectedUnits.clear()
 	for i in range(len(selected_units)):
 		var arena_unit = selected_units[i]
 		var icon = arena_unit.get_node("AnimatedSprite2D").get_sprite_frames().get_frame("Idle", 0)
 		$SidePanel/SelectedUnits.add_icon_item(icon, true)
 		$SidePanel/SelectedUnits.set_item_selectable(i, true)
-		
+
 	$SidePanel/SelectedUnits.select(0)
 
 	queue_redraw()
@@ -88,6 +111,10 @@ func _draw():
 			Color.NAVAJO_WHITE,
 			false
 		)
+
+	for arena_unit in selected_units:
+		if(is_instance_valid(arena_unit.attack_target)):
+			draw_arc(arena_unit.attack_target.position, 20, 0, TAU, 50, Color.RED, 2.0, true)
 
 func _input(event: InputEvent):
 	if event is InputEventMouseButton and event.position.x < 1080:

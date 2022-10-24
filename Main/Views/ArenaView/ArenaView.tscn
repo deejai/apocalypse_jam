@@ -126,11 +126,10 @@ polygon = PackedVector2Array(1080, 0, 1280, 0, 1280, 720, 1080, 720)
 metadata/_edit_lock_ = true
 
 [node name="SelectedUnits" type="ItemList" parent="SidePanel"]
-offset_left = 1091.91
+offset_left = 1092.0
 offset_top = 15.0
-offset_right = 1131.91
-offset_bottom = 55.0
-scale = Vector2(4.394, 3.26698)
+offset_right = 1268.0
+offset_bottom = 168.0
 max_columns = 4
 same_column_width = true
 

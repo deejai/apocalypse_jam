@@ -16,6 +16,8 @@ var selected: bool = false
 var move_target: Vector2
 var attack_target: ArenaUnit = null
 
+var attack_cd: int = 0
+
 var stuck_timer: int = 0
 var stuck: bool = false
 var last_position: Vector2
@@ -58,10 +60,22 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	stuck_timer = max(0, stuck_timer - delta)
+	attack_cd = max(0, attack_cd - delta)
+
+	if attack_target != null and (not is_instance_valid(attack_target) or attack_target.dying):
+		attack_target = null
+		move_target = position
+
 	if(stuck and stuck_timer == 0):
 		move_target = position
 		stuck = false
-	elif move_target != position:
+	elif is_instance_valid(attack_target):
+		if position.distance_to(attack_target.position) > unit.range:
+			move_to_target(attack_target.position)
+		elif attack_cd == 0:
+			attack_target.apply_damage(10)
+			attack_cd = 100
+	else:
 		move_to_target(move_target)
 		$AnimatedSprite2D.z_index = 100 + 100 * (position.y/720)
 #		print($AnimatedSprite2D.z_index)
@@ -72,7 +86,6 @@ func _process(delta):
 		time_since_redraw = 0
 
 func _draw():
-	print("draw me")
 	if selected:
 		draw_arc(Vector2.ZERO, 20, 0, TAU, 50, Color.WHITE, 2.0, true)
 
@@ -83,13 +96,12 @@ func _draw():
 	if alliance == ArenaUnit.ALLIANCE.ALLY:
 		# draw green health bar below unit
 		draw_rect(Rect2(hpbar_offset - Vector2(hpbar_width/2, hpbar_height/2), Vector2(hpbar_width, hpbar_height)), Color.GREEN)
-		draw_rect(Rect2(hpbar_offset - Vector2(hpbar_width/2, hpbar_height/2), Vector2(hpbar_width * (unit.hp - hp)/unit.hp, hpbar_height)), Color.RED)
+		draw_rect(Rect2(hpbar_offset - Vector2(hpbar_width/2, hpbar_height/2), Vector2(hpbar_width * (1 - 1.0 * hp/unit.hp), hpbar_height)), Color.RED)
 
 	else:
 		# draw orange health bar below unit
 		draw_rect(Rect2(hpbar_offset - Vector2(hpbar_width/2, hpbar_height/2), Vector2(hpbar_width, hpbar_height)), Color.ORANGE)
-		draw_rect(Rect2(hpbar_offset - Vector2(hpbar_width/2, hpbar_height/2), Vector2(hpbar_width * (unit.hp - hp)/unit.hp, hpbar_height)), Color.RED)
-
+		draw_rect(Rect2(hpbar_offset - Vector2(hpbar_width/2, hpbar_height/2), Vector2(hpbar_width * (1 - 1.0 * hp/unit.hp), hpbar_height)), Color.RED)
 
 func move_to_target(target):
 	if(position.distance_to(target) < 5):
@@ -123,7 +135,9 @@ func apply_damage(amount: int):
 		return
 
 	hp -= amount
-	if hp < 0:
+	print(hp)
+	if hp <= 0:
+		print("im dying!")
 		dying = true
 
 func apply_healing(amount: int):
