@@ -3,9 +3,6 @@
 [ext_resource type="Script" path="res://Main/Views/ArenaView/ArenaUnits/ArenaUnit.gd" id="1_xwo4s"]
 [ext_resource type="Texture2D" uid="uid://cak0syk4882ko" path="res://Assets/romanSoldier_sword.png" id="2_he2yk"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_tp8tv"]
-radius = 22.0
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_t80k4"]
 atlas = ExtResource("2_he2yk")
 region = Rect2(0, 0, 32, 64)
@@ -27,12 +24,12 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_tp8tv"]
+radius = 22.0
+
 [node name="Unit" type="CharacterBody2D"]
 motion_mode = 1
 script = ExtResource("1_xwo4s")
-
-[node name="Collision" type="CollisionShape2D" parent="."]
-shape = SubResource("CircleShape2D_tp8tv")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -24)
@@ -40,3 +37,6 @@ z_index = 4
 frames = SubResource("SpriteFrames_o77n7")
 animation = &"Idle"
 playing = true
+
+[node name="Collision" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_tp8tv")

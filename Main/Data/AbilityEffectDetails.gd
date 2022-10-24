@@ -1,9 +1,11 @@
 extends Node
 
+var proj_spear = load("res://Main/Views/ArenaView/Projectiles/Spear.tscn")
+
 func mind_dart(instance: AbilityEffect, flag: AbilityEffect.FLAG):
 	match flag:
 		AbilityEffect.FLAG.START:
-			instance.props["unit_target"].apply_damage(10 + instance.level * 5)
+			instance.props["target_unit"].apply_damage(10 + instance.level * 5)
 
 		AbilityEffect.FLAG.END:
 			pass
@@ -21,7 +23,7 @@ func soothing_vines(instance: AbilityEffect, flag: AbilityEffect.FLAG):
 			return
 
 		AbilityEffect.FLAG.TICK:
-			instance.props["unit_target"].apply_healing(5 + instance.level * 1)
+			instance.props["target_unit"].apply_healing(5 + instance.level * 1)
 			return
 
 func poison_nova(instance: AbilityEffect, flag: AbilityEffect.FLAG):
@@ -33,13 +35,29 @@ func poison_nova(instance: AbilityEffect, flag: AbilityEffect.FLAG):
 			pass
 
 		AbilityEffect.FLAG.TICK:
-			instance.props["unit_target"].apply_damage(7 + instance.level * 3)
+			instance.props["target_unit"].apply_damage(7 + instance.level * 3)
 
 func summon_imp(instance: AbilityEffect, flag: AbilityEffect.FLAG):
 	match flag:
 		AbilityEffect.FLAG.START:
 			print("Tried to summon imp, but failed")
 			pass
+
+		AbilityEffect.FLAG.END:
+			pass
+
+		AbilityEffect.FLAG.TICK:
+			pass
+
+func throw_spear(instance: AbilityEffect, flag: AbilityEffect.FLAG):
+	match flag:
+		AbilityEffect.FLAG.START:
+			var direction = instance.props["source_unit"].direction_to(instance.props["target_unit"])
+			var spear = proj_spear.instantiate()
+			spear.vecocity = direction * 10
+			spear.damage = 15 + instance.level * 5
+			spear.direction.angle()
+			add_child(spear)
 
 		AbilityEffect.FLAG.END:
 			pass

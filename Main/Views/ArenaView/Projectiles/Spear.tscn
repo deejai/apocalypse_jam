@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://bgi36uxnxor03"]
+
+[ext_resource type="Script" path="res://Main/Views/ArenaView/Projectiles/Projectile.gd" id="1_0ot1x"]
+[ext_resource type="Texture2D" uid="uid://dj7wsva31tg85" path="res://Assets/projectile_spear.png" id="1_iaxx8"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_uwwku"]
+size = Vector2(11, 9.5)
+
+[node name="Spear" type="Node2D"]
+script = ExtResource("1_0ot1x")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_iaxx8")
+
+[node name="Area2D" type="Area2D" parent="."]
+position = Vector2(10.5, -0.25)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_uwwku")

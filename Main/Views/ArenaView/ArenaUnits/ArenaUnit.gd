@@ -8,6 +8,7 @@ var unit: Unit
 
 var speed: float
 var hp: int
+var attack_damage: int
 
 var dying = false
 
@@ -45,6 +46,7 @@ func init(unit: Unit, alliance: ALLIANCE):
 	self.hp = unit.hp
 	self.speed = unit.speed
 	self.alliance = alliance
+	self.attack_damage = unit.attack_damage
 
 	# idk if this logic is helpful
 #	$Collision.shape.radius = 50 if unit.size == "Large" else 30 if  unit.size == "Medium" else 15
@@ -75,7 +77,10 @@ func _process(delta):
 		if position.distance_to(attack_target.position) > unit.range:
 			move_to_target(attack_target.position)
 		elif attack_cd == 0:
-			attack_target.apply_damage(10)
+#			attack_target.apply_damage(10)
+			var direction = position.direction_to(attack_target.position)
+			var spear = AbilityEffectDetails.proj_spear.instantiate().init(alliance, position, direction, 500, attack_damage)
+			get_parent().add_child(spear)
 			attack_cd = 100
 	else:
 		move_to_target(move_target)
@@ -137,9 +142,7 @@ func apply_damage(amount: int):
 		return
 
 	hp -= amount
-	print(hp)
 	if hp <= 0:
-		print("im dying!")
 		dying = true
 
 func apply_healing(amount: int):
