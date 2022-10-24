@@ -7,8 +7,9 @@ enum ALLIANCE { ALLY, ENEMY }
 var unit: Unit
 
 var speed: float
-var hp: int
-var attack_damage: int
+var hp: float
+var attack_damage: float
+var attack_speed: float
 
 var dying = false
 
@@ -17,11 +18,18 @@ var selected: bool = false
 var move_target: Vector2
 var attack_target: ArenaUnit = null
 
-var attack_cd: int = 0
+var attack_cd: float = 0
 
-var stuck_timer: int = 0
+var stuck_timer: float = 0
 var stuck: bool = false
 var last_position: Vector2
+
+var attack_damage_add: float = 0
+var attack_damage_mult: float = 1.0
+var attack_speed_add: float = 0
+var attack_speed_mult: float = 1.0
+var speed_add: float = 0
+var speed_mult: float = 1.0
 
 # statuses
 enum STATUS { STUN, SILENCE, ROOT, INVULN, NOHEAL }
@@ -34,8 +42,6 @@ var statuses = {
 	STATUS.NOHEAL: 0,
 }
 
-var pct_damage_boost
-
 var alliance: ALLIANCE
 
 var time_since_redraw = 0
@@ -47,6 +53,7 @@ func init(unit: Unit, alliance: ALLIANCE):
 	self.speed = unit.speed
 	self.alliance = alliance
 	self.attack_damage = unit.attack_damage
+	self.attack_speed = unit.attack_speed
 
 	# idk if this logic is helpful
 #	$Collision.shape.radius = 50 if unit.size == "Large" else 30 if  unit.size == "Medium" else 15
@@ -76,12 +83,14 @@ func _process(delta):
 	elif is_instance_valid(attack_target):
 		if position.distance_to(attack_target.position) > unit.range:
 			move_to_target(attack_target.position)
-		elif attack_cd == 0:
-#			attack_target.apply_damage(10)
-			var direction = position.direction_to(attack_target.position)
-			var spear = AbilityEffectDetails.proj_spear.instantiate().init(alliance, position, direction, 500, attack_damage)
-			get_parent().add_child(spear)
-			attack_cd = 100
+		else:
+			$AnimatedSprite2D.animation = "Idle"
+			if attack_cd == 0:
+	#			attack_target.apply_damage(10)
+				var direction = position.direction_to(attack_target.position)
+				var spear = AbilityEffectDetails.proj_spear.instantiate().init(alliance, position, direction, 500, get_attack_damage())
+				get_parent().add_child(spear)
+				attack_cd = 2 * (100.0 / get_attack_speed())
 	else:
 		move_to_target(move_target)
 		$AnimatedSprite2D.z_index = 100 + 100 * (position.y/720)
@@ -116,7 +125,7 @@ func move_to_target(target):
 		velocity = Vector2.ZERO
 		return
 
-	velocity = global_position.direction_to(target) * speed * 50
+	velocity = global_position.direction_to(target) * get_speed() * 0.5
 
 	if last_position.distance_to(position) < 0.3:
 		$AnimatedSprite2D.animation = "Idle"
@@ -145,6 +154,9 @@ func apply_damage(amount: int):
 	if hp <= 0:
 		dying = true
 		Audio.soldier_voice_die.play()
+		for i in range(len(Player.squad_active)):
+			Player.squad_active.pop_at(i)
+			break
 
 func apply_healing(amount: int):
 	if statuses[STATUS.NOHEAL] > 0:
@@ -154,3 +166,12 @@ func apply_healing(amount: int):
 
 func apply_status(status: STATUS, duration: int):
 	statuses[status] = max(statuses[status], duration)
+
+func get_attack_damage():
+	return attack_damage * attack_damage_mult + attack_damage_add
+
+func get_attack_speed():
+	return attack_speed * attack_speed_mult + attack_speed_add
+
+func get_speed():
+	return speed * speed_mult + speed_add
