@@ -1,7 +1,6 @@
 extends Node
 
-func test():
-	pass
+class_name ActivatedAbilityDetails
 
 var data = {
 	"Mind Dart": {

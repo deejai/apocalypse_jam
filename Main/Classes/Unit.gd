@@ -8,49 +8,62 @@ enum BASE { OLYMPIAN_APOLLO, SOLDIER_SPEAR, SOLDIER_SWORD, SOLDIER_ARCHER, HEALE
 var status: String = "healthy"
 var speed: float = 100
 var hp: float = 100
-var spec: SPEC
-var base: BASE
+var spec: int
+var base: int
 var range: int = 65
 var attack_damage: float = 5
 var attack_speed: float = 100
 
 # @TODO: add more stats, add animations
 
-func _init(base: BASE):
+var data = {
+	BASE.OLYMPIAN_APOLLO:  {
+		"spec": SPEC.HERO,
+		"range": 150,
+		"hp": 180,
+		"speed": 150,
+		"attack_damage": 15,
+		"attack_speed": 100,
+	},
+	BASE.HEALER: {
+		"spec": SPEC.NORMAL,
+		"range": 200,
+		"hp": 60,
+		"speed": 100,
+		"attack_damage": 4,
+		"attack_speed": 100,
+	},
+	BASE.SOLDIER_SPEAR: {
+		"spec": SPEC.NORMAL,
+		"range": 125,
+		"hp": 100,
+		"speed": 080,
+		"attack_damage": 11,
+		"attack_speed": 100,
+	},
+	BASE.SOLDIER_SWORD: {
+		"spec": SPEC.NORMAL,
+		"range": 75,
+		"hp": 100,
+		"speed": 150,
+		"attack_damage": 10,
+		"attack_speed": 100,
+	},
+	BASE.SOLDIER_ARCHER: {
+		"spec": SPEC.NORMAL,
+		"range": 250,
+		"hp": 60,
+		"speed": 120,
+		"attack_damage": 8,
+		"attack_speed": 100,
+	}
+}
+
+func _init(base: Unit.BASE):
 	self.base = base
-	
-	match base:
-		BASE.OLYMPIAN_APOLLO:
-			self.spec = SPEC.HERO
-			self.attack_damage = 9
-			self.range = 150
-			self.hp = 180
-			self.speed = 150
 
-		BASE.HEALER:
-			self.spec = SPEC.NORMAL
-			self.attack_damage = 3
-			self.range = 175
-			self.hp = 60
-			self.speed = 100
-
-		BASE.SOLDIER_SPEAR:
-			self.spec = SPEC.NORMAL
-			self.attack_damage = 5
-			self.range = 85
-			self.hp = 100
-			self.speed = 120
-
-		BASE.SOLDIER_SWORD:
-			self.spec = SPEC.NORMAL
-			self.attack_damage = 7
-			self.range = 500
-			self.hp = 100
-			self.speed = 130
-
-		BASE.SOLDIER_ARCHER:
-			self.spec = SPEC.NORMAL
-			self.attack_damage = 6
-			self.range = 250
-			self.hp = 60
-			self.speed = 100
+	self.spec = data[base]["spec"]
+	self.attack_damage = data[base]["attack_damage"]
+	self.range = data[base]["range"]
+	self.hp = data[base]["hp"]
+	self.speed = data[base]["speed"]

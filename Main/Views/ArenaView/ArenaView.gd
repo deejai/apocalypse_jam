@@ -182,13 +182,18 @@ func _input(event: InputEvent):
 func ai_decide_targets():
 	# prioritize weak and nearby enemies
 	for arena_unit in enemy_arena_units:
+		if(not is_instance_valid(arena_unit)):
+			continue
 		var closest_ally = null
 		var closest_ally_dist = 9999999
 		for ally in player_arena_units:
+			if(not is_instance_valid(ally)):
+				continue
 			var dist = ally.position.distance_to(arena_unit.position)
 			if dist < closest_ally_dist:
 				closest_ally = ally
 				closest_ally_dist = dist
 
-		arena_unit.attack_target = closest_ally
-		arena_unit.move_target = closest_ally.position
+		if closest_ally:
+			arena_unit.attack_target = closest_ally
+			arena_unit.move_target = closest_ally.position

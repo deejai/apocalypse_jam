@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://bgi36uxnxor03"]
 
 [ext_resource type="Script" path="res://Main/Views/ArenaView/Projectiles/Projectile.gd" id="1_0ot1x"]
-[ext_resource type="Texture2D" uid="uid://dj7wsva31tg85" path="res://Assets/projectile_spear.png" id="1_iaxx8"]
+[ext_resource type="Texture2D" uid="uid://dydpelmib8hfb" path="res://Assets/proj_spear.png" id="2_6ddj6"]
 [ext_resource type="AudioStream" uid="uid://dohqgpyopou5b" path="res://Assets/Audio/Effects/spear_throw.wav" id="3_xra8w"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_uwwku"]
@@ -11,7 +11,7 @@ size = Vector2(11, 9.5)
 script = ExtResource("1_0ot1x")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("1_iaxx8")
+texture = ExtResource("2_6ddj6")
 
 [node name="Area2D" type="Area2D" parent="."]
 position = Vector2(10.5, -0.25)

@@ -2,6 +2,8 @@ extends CharacterBody2D
 
 class_name ArenaUnit
 
+var proj_spear = load("res://Main/Views/ArenaView/Projectiles/Spear.tscn")
+
 enum ALLIANCE { ALLY, ENEMY }
 
 var unit: Unit
@@ -88,7 +90,7 @@ func _process(delta):
 			if attack_cd == 0:
 	#			attack_target.apply_damage(10)
 				var direction = position.direction_to(attack_target.position)
-				var spear = AbilityEffectDetails.proj_spear.instantiate().init(alliance, position, direction, 500, get_attack_damage())
+				var spear = proj_spear.instantiate().init(alliance, position, direction, 350, get_attack_damage())
 				get_parent().add_child(spear)
 				attack_cd = 2 * (100.0 / get_attack_speed())
 	else:
@@ -154,9 +156,10 @@ func apply_damage(amount: int):
 	if hp <= 0:
 		dying = true
 		Audio.soldier_voice_die.play()
-		for i in range(len(Player.squad_active)):
-			Player.squad_active.pop_at(i)
-			break
+		for i in range(len(Game.player.squad_active)):
+			if Game.player.squad_active[i].unit == unit:
+				Game.player.squad_active.pop_at(i)
+				break
 
 func apply_healing(amount: int):
 	if statuses[STATUS.NOHEAL] > 0:
