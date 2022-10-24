@@ -1,6 +1,7 @@
 extends Node
 
 var proj_spear = load("res://Main/Views/ArenaView/Projectiles/Spear.tscn")
+var sun_arrow = load("res://Main/Views/ArenaView/Projectiles/Spear.tscn")
 
 func mind_dart(instance: AbilityEffect, flag: AbilityEffect.FLAG):
 	match flag:
@@ -58,6 +59,38 @@ func throw_spear(instance: AbilityEffect, flag: AbilityEffect.FLAG):
 			spear.damage = 15 + instance.level * 5
 			spear.direction.angle()
 			add_child(spear)
+
+		AbilityEffect.FLAG.END:
+			pass
+
+		AbilityEffect.FLAG.TICK:
+			pass
+			
+func hermes_feet(instance: AbilityEffect, flag: AbilityEffect.FLAG):
+	match flag:
+		AbilityEffect.FLAG.START:
+			var direction = instance.props["source_unit"].direction_to(instance.props["target_unit"])
+			var spear = proj_spear.instantiate()
+			spear.vecocity = direction * 10
+			spear.damage = 15 + instance.level * 5
+			spear.direction.angle()
+			add_child(spear)
+
+		AbilityEffect.FLAG.END:
+			pass
+
+		AbilityEffect.FLAG.TICK:
+			pass
+			
+func sun_arrow(instance: AbilityEffect, flag: AbilityEffect.FLAG):
+	match flag:
+		AbilityEffect.FLAG.START:
+			var direction = instance.props["source_unit"].direction_to(instance.props["target_unit"])
+			var arrow = sun_arrow.instantiate()
+			arrow.vecocity = direction * 10
+			arrow.damage = 50 + instance.level * 5
+			arrow.direction.angle()
+			add_child(arrow)
 
 		AbilityEffect.FLAG.END:
 			pass
