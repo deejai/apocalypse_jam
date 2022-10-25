@@ -31,7 +31,7 @@ func _init(level: int):
 
 			var beefy_soldier = Unit.new(Unit.BASE.SOLDIER_SPEAR)
 			beefy_soldier.attack_damage *= 2
-			beefy_soldier.hp *= 3
+			beefy_soldier.hp *= 2
 			enemies.append({"unit": beefy_soldier, "start_position": Vector2(450, 50 + 25 + 150)})
 			print(enemies)
 

@@ -2,7 +2,7 @@ extends CharacterBody2D
 
 class_name ArenaUnit
 
-enum ALLIANCE { ALLY, ENEMY }
+enum ALLIANCE { PLAYER, ENEMY }
 
 var unit: Unit
 
@@ -110,7 +110,7 @@ func _draw():
 	var hpbar_height = 4
 	var hpbar_offset = Vector2(0, 12)
 
-	if alliance == ArenaUnit.ALLIANCE.ALLY:
+	if alliance == ArenaUnit.ALLIANCE.PLAYER:
 		# draw green health bar below unit
 		draw_rect(Rect2(hpbar_offset - Vector2(hpbar_width/2, hpbar_height/2), Vector2(hpbar_width, hpbar_height)), Color.GREEN)
 		draw_rect(Rect2(hpbar_offset - Vector2(hpbar_width/2, hpbar_height/2), Vector2(hpbar_width * (1 - 1.0 * hp/unit.hp), hpbar_height)), Color.RED)
@@ -178,9 +178,13 @@ func get_attack_speed():
 func get_speed():
 	return speed * speed_mult + speed_add
 
-func auto_attack(target):
+func auto_attack(target: ArenaUnit):
 	if attack_cd == 0:
 		var direction = position.direction_to(target.position)
 		var spear = projectile.instantiate().init(alliance, position, direction, 350, get_attack_damage())
 		get_parent().add_child(spear)
 		attack_cd = 2 * (100.0 / get_attack_speed())
+
+func in_range(target: ArenaUnit):
+	var collision_radius_sum =  $Collision.shape.radius + target.get_node("Collision").shape.radius
+	return position.distance_to(target.position) - collision_radius_sum <= unit.range
