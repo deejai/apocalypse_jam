@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://btnuj1rtn7wfp"]
 
 [ext_resource type="Script" path="res://Main/Views/MainMenu/MainMenuView.gd" id="1_o5j0x"]
-[ext_resource type="Texture2D" uid="uid://ba35lo40w15bj" path="res://Assets/Ignore/Dotadave_2d_background_of_sandy_battlefield_in_ancient_rome_e13a7da6-f824-4f88-8140-ea18ce29849e.png" id="2_me5ed"]
+[ext_resource type="Texture2D" uid="uid://bdfojr8ix22fx" path="res://Assets/bg_colleseum.png" id="2_us8kp"]
 
 [sub_resource type="Theme" id="Theme_ktljd"]
 default_font_size = 14
@@ -14,7 +14,7 @@ script = ExtResource("1_o5j0x")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(1.27936, 0.913721)
-texture = ExtResource("2_me5ed")
+texture = ExtResource("2_us8kp")
 centered = false
 
 [node name="NewGameButton" type="Button" parent="."]

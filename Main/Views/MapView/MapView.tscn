@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://bwninh6kj626c"]
 
 [ext_resource type="Script" path="res://Main/Views/MapView/MapView.gd" id="1_vvenp"]
-[ext_resource type="Texture2D" uid="uid://jwgrxcm3nqsd" path="res://Assets/Ignore/Dotadave_top_down_2d_background_of_sandy_battlefield_in_ancient_1b7b87b6-9236-4ce7-a6c0-9d21e23503be.png" id="2_fr4a7"]
+[ext_resource type="Texture2D" uid="uid://uu2fushq7fg0" path="res://Assets/bg_barren.png" id="2_w7xiq"]
 
 [node name="MapView" type="Node2D"]
 script = ExtResource("1_vvenp")
@@ -16,4 +16,4 @@ metadata/_edit_lock_ = true
 position = Vector2(626, 559)
 scale = Vector2(1.30981, 1.30981)
 z_index = -7
-texture = ExtResource("2_fr4a7")
+texture = ExtResource("2_w7xiq")
