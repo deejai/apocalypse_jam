@@ -14,9 +14,7 @@ var range: int = 65
 var attack_damage: float = 5
 var attack_speed: float = 100
 
-# {"type": "passive" | "active", "ability": "ActivatedAbility" | "PassiveAbility"}
-var ability_slot_1: Dictionary
-var ability_slot_2: Dictionary
+var abilities = []
 
 # @TODO: add more stats, add animations
 

@@ -2,7 +2,7 @@ extends Node
 
 class_name UnitUpgrade
 
-enum EFFECT {MORE_HP, MORE_SPEED, MORE_DAMAGE, RAND}
+enum EFFECT {MORE_HP, MORE_SPEED, MORE_DAMAGE, MORE_ATTACK_SPEED, RAND}
 
 var effect: EFFECT
 var amount: int
@@ -35,4 +35,6 @@ func apply(unit: Unit):
 	elif effect == EFFECT.MORE_SPEED:
 		unit.speed += amount * 10
 	elif effect == EFFECT.MORE_DAMAGE:
-		unit.damage += amount
+		unit.attack_damage += amount
+	elif effect == EFFECT.MORE_ATTACK_SPEED:
+		unit.attack_speed += amount

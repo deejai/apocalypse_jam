@@ -2,8 +2,8 @@ extends AnimatedSprite2D
 
 var upgrade: UnitUpgrade
 
-func init():
-	self.upgrade = UnitUpgrade.new(Game.player.floor.level)
+func init(effect: UnitUpgrade.EFFECT = UnitUpgrade.EFFECT.RAND):
+	self.upgrade = UnitUpgrade.new(Game.player.floor.level, effect)
 	frame = upgrade.effect
 	$Label.text = str(upgrade.amount)
 	return self
