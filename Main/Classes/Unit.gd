@@ -21,12 +21,52 @@ var ability_slot_2: Dictionary
 # @TODO: add more stats, add animations
 
 var data = {
+	BASE.OLYMPIAN_HERMES:	{
+		"spec": SPEC.HERO,
+		"range": 25,
+		"hp": 150,
+		"speed": 200,
+		"attack_damage": 5,
+		"attack_speed": 200,
+	},
 	BASE.OLYMPIAN_APOLLO:  {
 		"spec": SPEC.HERO,
-		"range": 150,
-		"hp": 180,
+		"range": 200,
+		"hp": 150,
 		"speed": 150,
+		"attack_damage": 10,
+		"attack_speed": 100,
+	},
+	BASE.OLYMPIAN_ZEUS:		{
+		"spec": SPEC.HERO,
+		"range": 150,
+		"hp": 200,
+		"speed": 130,
+		"attack_damage": 10,
+		"attack_speed": 100,
+	},
+	BASE.OLYMPIAN_ARES:		{
+		"spec": SPEC.HERO,
+		"range": 50,
+		"hp": 300,
+		"speed": 75,
 		"attack_damage": 15,
+		"attack_speed": 100,
+	},
+	BASE.OLYMPIAN_ATHENA:		{
+		"spec": SPEC.HERO,
+		"range": 50,
+		"hp": 200,
+		"speed": 100,
+		"attack_damage": 10,
+		"attack_speed": 100,
+	},
+	BASE.OLYMPIAN_HADES:		{
+		"spec": SPEC.HERO,
+		"range": 150,
+		"hp": 150,
+		"speed": 100,
+		"attack_damage": 8,
 		"attack_speed": 100,
 	},
 	BASE.HEALER: {

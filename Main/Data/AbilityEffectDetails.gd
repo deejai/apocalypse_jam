@@ -49,7 +49,7 @@ func summon_imp(instance: AbilityEffect, flag: AbilityEffect.FLAG):
 		AbilityEffect.FLAG.TICK:
 			pass
 
-func throw_spear(instance: AbilityEffect, flag: AbilityEffect.FLAG):
+func sun_arrow(instance: AbilityEffect, flag: AbilityEffect.FLAG):
 	match flag:
 		AbilityEffect.FLAG.START:
 			var direction = instance.props["source_unit"].direction_to(instance.props["target_unit"])
@@ -65,3 +65,4 @@ func throw_spear(instance: AbilityEffect, flag: AbilityEffect.FLAG):
 
 		AbilityEffect.FLAG.TICK:
 			pass
+			
