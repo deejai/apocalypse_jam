@@ -14,6 +14,7 @@ var tombstone = load("res://Main/Views/ArenaView/ArenaUnits/Tombstone.tscn")
 
 var map_view = load("res://Main/Views/MapView/MapView.tscn")
 var main_menu = load("res://Main/Views/MainMenu/MainMenuView.tscn")
+var loot_view = load("res://Main/Views/LootView/LootView.tscn")
 
 var selected_unit_tile = load("res://Assets/selectedunittile_unknown.png")
 
@@ -33,7 +34,6 @@ func setMenuEnabled(enable: bool):
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-
 	# place our units
 	load_units(Game.next_battle.enemies, enemy_arena_units, ArenaUnit.ALLIANCE.ENEMY)
 	load_units(Game.player.squad_active, player_arena_units, ArenaUnit.ALLIANCE.ALLY)
@@ -91,7 +91,7 @@ func _process(delta):
 	if(len(enemy_arena_units) == 0):
 		Game.player.floor.current.completed = true
 		queue_free()
-		get_tree().change_scene_to_packed(map_view)
+		get_tree().change_scene_to_packed(loot_view)
 
 	$SidePanel/SelectedUnits.clear()
 	for i in range(len(selected_units)):
@@ -101,6 +101,7 @@ func _process(delta):
 		$SidePanel/SelectedUnits.set_item_selectable(i, true)
 
 	ai_decide_targets()
+	player_acquire_targets()
 
 	queue_redraw()
 	pass
@@ -197,3 +198,20 @@ func ai_decide_targets():
 		if closest_ally:
 			arena_unit.attack_target = closest_ally
 			arena_unit.move_target = closest_ally.position
+
+func player_acquire_targets():
+	for arena_unit in player_arena_units:
+		if(not is_instance_valid(arena_unit)):
+			continue
+		var closest_enemy = null
+		var closest_enemy_dist = 9999999
+		for enemy in enemy_arena_units:
+			if(not is_instance_valid(enemy)):
+				continue
+			var dist = enemy.position.distance_to(arena_unit.position)
+			if dist < arena_unit.unit.range and dist < closest_enemy_dist:
+				closest_enemy = enemy
+				closest_enemy_dist = dist
+
+		if closest_enemy:
+			arena_unit.attack_target = closest_enemy

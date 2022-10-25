@@ -2,7 +2,7 @@ extends Node
 
 class_name Player
 
-var gold: int = 0
+var inventory: Array = []
 var floor: Floor = null
 
 var squad_active: Array = [

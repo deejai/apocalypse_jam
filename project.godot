@@ -15,11 +15,6 @@ _global_script_classes=[{
 "path": "res://Main/Classes/AbilityEffect.gd"
 }, {
 "base": "Node",
-"class": &"AbilityEffectDetails",
-"language": &"GDScript",
-"path": "res://Main/Data/AbilityEffectDetails.gd"
-}, {
-"base": "Node",
 "class": &"ActivatedAbility",
 "language": &"GDScript",
 "path": "res://Main/Classes/ActivatedAbility.gd"
@@ -28,6 +23,11 @@ _global_script_classes=[{
 "class": &"ArenaUnit",
 "language": &"GDScript",
 "path": "res://Main/Views/ArenaView/ArenaUnits/ArenaUnit.gd"
+}, {
+"base": "Node",
+"class": &"Battle",
+"language": &"GDScript",
+"path": "res://Main/Classes/Battle.gd"
 }, {
 "base": "Node",
 "class": &"Floor",
@@ -66,9 +66,9 @@ _global_script_classes=[{
 }]
 _global_script_class_icons={
 "AbilityEffect": "",
-"AbilityEffectDetails": "",
 "ActivatedAbility": "",
 "ArenaUnit": "",
+"Battle": "",
 "Floor": "",
 "FloorNode": "",
 "Olympian": "",

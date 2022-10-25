@@ -10,6 +10,7 @@ var max_hits: int = 1
 var lifespan: int = -1
 var time_alive: int = 0
 var alliance: ArenaUnit.ALLIANCE
+var payload_fn: Callable = func(proj, target): target.apply_damage(proj.damage)
 
 func init(alliance: ArenaUnit.ALLIANCE, position: Vector2, direction: Vector2, speed: int, damage: int):
 	self.alliance = alliance
@@ -37,8 +38,8 @@ func _process(delta):
 
 	position += speed * delta * direction
 	
-	for body in $Area2D.get_overlapping_bodies():
-		if body is ArenaUnit:
-			if body.alliance != alliance:
-				body.apply_damage(damage)
+	for target in $Area2D.get_overlapping_bodies():
+		if target is ArenaUnit:
+			if target.alliance != alliance:
+				payload_fn.call(self, target)
 				hits += 1

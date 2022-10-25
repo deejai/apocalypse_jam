@@ -2,11 +2,15 @@ extends Node
 
 class_name Floor
 
+var level: int
+
 var start: FloorNode
 var current: FloorNode
 var end: FloorNode
 
 func _init(level: int):
+	self.level = level
+
 	start = FloorNode.new(0)
 	current = start
 
