@@ -52,7 +52,7 @@ func _ready():
 
 func load_units(arr_from: Array, arr_to: Array, alliance: ArenaUnit.ALLIANCE):
 	for data in arr_from:
-		var arena_unit = models[data.unit.base].instantiate().init(data.unit, alliance)
+		var arena_unit = models[data.unit.base].instantiate().init(data.unit, alliance, self)
 
 		if "start_position" not in data.keys():
 			print(data)
@@ -218,3 +218,12 @@ func player_auto_attack():
 
 		if closest_enemy:
 			arena_unit.auto_attack(closest_enemy)
+
+func get_units_in_aoe(point: Vector2, aoe: int, alliance: ArenaUnit.ALLIANCE):
+	var unit_list = player_arena_units if alliance == ArenaUnit.ALLIANCE.PLAYER else enemy_arena_units
+	var units_in_aoe = []
+	for arena_unit in unit_list:
+		if(point.distance_to(arena_unit.position) <= aoe):
+			units_in_aoe.append(arena_unit)
+			
+	return units_in_aoe

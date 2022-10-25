@@ -33,6 +33,8 @@ var speed_mult: float = 1.0
 
 var projectile: PackedScene
 
+var arena
+
 # statuses
 enum STATUS { STUN, SILENCE, ROOT, INVULN, NOHEAL }
 
@@ -49,13 +51,14 @@ var alliance: ALLIANCE
 var time_since_redraw = 0
 
 # Called when the node enters the scene tree for the first time.
-func init(unit: Unit, alliance: ALLIANCE):
+func init(unit: Unit, alliance: ALLIANCE, arena):
 	self.unit = unit
 	self.hp = unit.hp
 	self.speed = unit.speed
 	self.alliance = alliance
 	self.attack_damage = unit.attack_damage
 	self.attack_speed = unit.attack_speed
+	self.arena = arena
 
 	match unit.base:
 		Unit.BASE.SOLDIER_SPEAR: projectile = load("res://Main/Views/ArenaView/Projectiles/Spear.tscn")
@@ -182,7 +185,7 @@ func auto_attack(target: ArenaUnit):
 	if attack_cd == 0:
 		var direction = position.direction_to(target.position)
 		var spear = projectile.instantiate().init(alliance, position, direction, 350, get_attack_damage())
-		get_parent().add_child(spear)
+		arena.add_child(spear)
 		attack_cd = 2 * (100.0 / get_attack_speed())
 
 func in_range(target: ArenaUnit):
