@@ -2,6 +2,8 @@ extends Node
 
 class_name AbilityEffectDetails
 
+var proj_spear = load("res://Main/Views/ArenaView/Projectiles/Spear.tscn")
+
 func mind_dart(instance: AbilityEffect, flag: AbilityEffect.FLAG):
 	match flag:
 		AbilityEffect.FLAG.START:
@@ -53,11 +55,12 @@ func throw_spear(instance: AbilityEffect, flag: AbilityEffect.FLAG):
 	match flag:
 		AbilityEffect.FLAG.START:
 			var direction = instance.props["source_unit"].direction_to(instance.props["target_unit"])
-			var spear = proj_spear.instantiate()
-			spear.vecocity = direction * 10
-			spear.damage = 15 + instance.level * 5
-			spear.direction.angle()
-			add_child(spear)
+			var alliance = instance.props["source_unit"].alliance
+			var spear = proj_spear.instantiate().init(alliance, direction, 300, 25)
+			spear.transform *= 2
+			spear.max_hits = -1
+			spear.payload
+			get_parent().add_child(spear)
 
 		AbilityEffect.FLAG.END:
 			pass

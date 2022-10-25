@@ -33,7 +33,6 @@ func setMenuEnabled(enable: bool):
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-
 	# place our units
 	load_units(Game.next_battle.enemies, enemy_arena_units, ArenaUnit.ALLIANCE.ENEMY)
 	load_units(Game.player.squad_active, player_arena_units, ArenaUnit.ALLIANCE.ALLY)

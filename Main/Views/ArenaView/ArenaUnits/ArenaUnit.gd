@@ -2,8 +2,6 @@ extends CharacterBody2D
 
 class_name ArenaUnit
 
-var proj_spear = load("res://Main/Views/ArenaView/Projectiles/Spear.tscn")
-
 enum ALLIANCE { ALLY, ENEMY }
 
 var unit: Unit
@@ -33,6 +31,8 @@ var attack_speed_mult: float = 1.0
 var speed_add: float = 0
 var speed_mult: float = 1.0
 
+var projectile: PackedScene
+
 # statuses
 enum STATUS { STUN, SILENCE, ROOT, INVULN, NOHEAL }
 
@@ -56,6 +56,10 @@ func init(unit: Unit, alliance: ALLIANCE):
 	self.alliance = alliance
 	self.attack_damage = unit.attack_damage
 	self.attack_speed = unit.attack_speed
+
+	match unit.base:
+		Unit.BASE.SOLDIER_SPEAR: projectile = load("res://Main/Views/ArenaView/Projectiles/Spear.tscn")
+		_: projectile = load("res://Main/Views/ArenaView/Projectiles/Spear.tscn")
 
 	# idk if this logic is helpful
 #	$Collision.shape.radius = 50 if unit.size == "Large" else 30 if  unit.size == "Medium" else 15
@@ -90,7 +94,7 @@ func _process(delta):
 			if attack_cd == 0:
 	#			attack_target.apply_damage(10)
 				var direction = position.direction_to(attack_target.position)
-				var spear = proj_spear.instantiate().init(alliance, position, direction, 350, get_attack_damage())
+				var spear = projectile.instantiate().init(alliance, position, direction, 350, get_attack_damage())
 				get_parent().add_child(spear)
 				attack_cd = 2 * (100.0 / get_attack_speed())
 	else:
