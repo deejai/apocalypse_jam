@@ -24,20 +24,10 @@ _global_script_classes=[{
 "language": &"GDScript",
 "path": "res://Main/Classes/ActivatedAbility.gd"
 }, {
-"base": "Node",
-"class": &"ActivatedAbilityDetails",
-"language": &"GDScript",
-"path": "res://Main/Data/ActivatedAbilityDetails.gd"
-}, {
 "base": "CharacterBody2D",
 "class": &"ArenaUnit",
 "language": &"GDScript",
 "path": "res://Main/Views/ArenaView/ArenaUnits/ArenaUnit.gd"
-}, {
-"base": "Node",
-"class": &"Battle",
-"language": &"GDScript",
-"path": "res://Main/Classes/Battle.gd"
 }, {
 "base": "Node",
 "class": &"Floor",
@@ -78,9 +68,7 @@ _global_script_class_icons={
 "AbilityEffect": "",
 "AbilityEffectDetails": "",
 "ActivatedAbility": "",
-"ActivatedAbilityDetails": "",
 "ArenaUnit": "",
-"Battle": "",
 "Floor": "",
 "FloorNode": "",
 "Olympian": "",
@@ -100,6 +88,8 @@ config/icon="res://icon.svg"
 [autoload]
 
 Game="*res://Main/Game.gd"
+AbilityEffectDetails="*res://Main/Data/AbilityEffectDetails.gd"
+ActivatedAbilityDetails="*res://Main/Data/ActivatedAbilityDetails.gd"
 Audio="*res://Main/Audio.gd"
 
 [debug]
