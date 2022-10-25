@@ -1,20 +1,19 @@
-[gd_scene load_steps=2 format=3 uid="uid://bwninh6kj626c"]
+[gd_scene load_steps=3 format=3 uid="uid://bwninh6kj626c"]
 
 [ext_resource type="Script" path="res://Main/Views/MapView/MapView.gd" id="1_vvenp"]
+[ext_resource type="Texture2D" uid="uid://jwgrxcm3nqsd" path="res://Assets/Ignore/Dotadave_top_down_2d_background_of_sandy_battlefield_in_ancient_1b7b87b6-9236-4ce7-a6c0-9d21e23503be.png" id="2_fr4a7"]
 
 [node name="MapView" type="Node2D"]
 script = ExtResource("1_vvenp")
-
-[node name="ReturnToMainMenu" type="Button" parent="."]
-offset_left = 1144.0
-offset_top = 666.0
-offset_right = 1261.0
-offset_bottom = 697.0
-text = "Do Something"
-metadata/_edit_use_anchors_ = true
 
 [node name="Polygon2D" type="Polygon2D" parent="."]
 visible = false
 z_index = -1
 polygon = PackedVector2Array(0, 0, 1280, 0, 1280, 720, 0, 720)
 metadata/_edit_lock_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(626, 559)
+scale = Vector2(1.30981, 1.30981)
+z_index = -7
+texture = ExtResource("2_fr4a7")

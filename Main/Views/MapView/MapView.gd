@@ -8,8 +8,6 @@ var arena_view = load("res://Main/Views/ArenaView/ArenaView.tscn")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	$ReturnToMainMenu.connect("pressed", func(): get_tree().change_scene_to_packed(main_menu))
-
 	add_child(nav_frame.instantiate())
 
 	var start = Game.player.floor.start
