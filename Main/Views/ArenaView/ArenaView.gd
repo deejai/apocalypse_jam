@@ -14,6 +14,7 @@ var tombstone = load("res://Main/Views/ArenaView/ArenaUnits/Tombstone.tscn")
 
 var map_view = load("res://Main/Views/MapView/MapView.tscn")
 var main_menu = load("res://Main/Views/MainMenu/MainMenuView.tscn")
+var loot_view = load("res://Main/Views/LootView/LootView.tscn")
 
 var selected_unit_tile = load("res://Assets/selectedunittile_unknown.png")
 
@@ -90,7 +91,7 @@ func _process(delta):
 	if(len(enemy_arena_units) == 0):
 		Game.player.floor.current.completed = true
 		queue_free()
-		get_tree().change_scene_to_packed(map_view)
+		get_tree().change_scene_to_packed(loot_view)
 
 	$SidePanel/SelectedUnits.clear()
 	for i in range(len(selected_units)):

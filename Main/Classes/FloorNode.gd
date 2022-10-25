@@ -19,7 +19,7 @@ func _init(level: int, prev=null, next=null):
 		self.next = next
 
 	self.battle = Battle.new(level)
-	
+
 	var roll = randf()
 	if roll < 0.3333:
 		for i in range(3):
