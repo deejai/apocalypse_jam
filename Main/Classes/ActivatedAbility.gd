@@ -2,7 +2,7 @@ extends Node
 
 class_name ActivatedAbility
 
-enum TARGETING_TYPE {SELF, POINT, UNIT, UNIT_ENEMY, UNIT_ALLY}
+enum TARGETING_TYPE {SELF, POINT, UNIT, UNIT_ENEMY, UNIT_PLAYER}
 
 var key: String
 var icon: Sprite2D

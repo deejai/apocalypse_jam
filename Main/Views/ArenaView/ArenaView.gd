@@ -36,7 +36,7 @@ func setMenuEnabled(enable: bool):
 func _ready():
 	# place our units
 	load_units(Game.next_battle.enemies, enemy_arena_units, ArenaUnit.ALLIANCE.ENEMY)
-	load_units(Game.player.squad_active, player_arena_units, ArenaUnit.ALLIANCE.ALLY)
+	load_units(Game.player.squad_active, player_arena_units, ArenaUnit.ALLIANCE.PLAYER)
 	Game.next_battle = null
 	# generate enemy units based on progress and current map node
 	# place enemy units
@@ -153,7 +153,7 @@ func _input(event: InputEvent):
 
 				mouse_left_pressed = false
 				
-				if len(selected_units) > 0:
+				if len(selected_units) > 0 and selected_units[0].alliance == ArenaUnit.ALLIANCE.PLAYER:
 					Audio.soldier_voice_yessir.play()
 
 		if event.pressed:
@@ -162,7 +162,7 @@ func _input(event: InputEvent):
 				mouse_left_pressed_start_pos = event.position
 
 			if event.button_index == MOUSE_BUTTON_MASK_RIGHT:
-				if len(selected_units) > 0 and selected_units[0].alliance == ArenaUnit.ALLIANCE.ALLY:
+				if len(selected_units) > 0 and selected_units[0].alliance == ArenaUnit.ALLIANCE.PLAYER:
 					var attack_target = null
 
 					for arena_unit in enemy_arena_units:
@@ -175,8 +175,7 @@ func _input(event: InputEvent):
 						arena_unit.attack_target = attack_target
 						arena_unit.move_target = event.position
 
-					if len(selected_units) > 0:
-						Audio.soldier_voice_ok.play()
+					Audio.soldier_voice_ok.play()
 	else:
 		pass
 
