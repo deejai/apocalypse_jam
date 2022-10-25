@@ -34,7 +34,7 @@ var speed_mult: float = 1.0
 var projectile: PackedScene
 
 # statuses
-enum STATUS { STUN, SILENCE, ROOT, INVULN, NOHEAL }
+enum STATUS { STUN, SILENCE, ROOT, INVULN, NOHEAL, ONFIRE }
 
 var statuses = {
 	STATUS.STUN: 0,
@@ -42,7 +42,10 @@ var statuses = {
 	STATUS.ROOT: 0,
 	STATUS.INVULN: 0,
 	STATUS.NOHEAL: 0,
+	STATUS.ONFIRE: 0,
 }
+
+var fire_particles = null
 
 var alliance: ALLIANCE
 
@@ -67,6 +70,7 @@ func init(unit: Unit, alliance: ALLIANCE):
 	return self
 
 func _ready():
+	apply_status(STATUS.ONFIRE, 15)
 #	print(move_target)
 #	print($Collision.name)
 	move_target = position
@@ -78,6 +82,8 @@ func _ready():
 func _process(delta):
 	stuck_timer = max(0, stuck_timer - delta)
 	attack_cd = max(0, attack_cd - delta)
+	
+	handle_statuses()
 
 	if attack_target != null and (not is_instance_valid(attack_target) or attack_target.dying):
 		attack_target = null
@@ -188,3 +194,12 @@ func auto_attack(target: ArenaUnit):
 func in_range(target: ArenaUnit):
 	var collision_radius_sum =  $Collision.shape.radius + target.get_node("Collision").shape.radius
 	return position.distance_to(target.position) - collision_radius_sum <= unit.range
+
+func handle_statuses():
+	if fire_particles == null and statuses[STATUS.ONFIRE] > 0:
+		print("make fire", randf())
+		fire_particles = load("res://Main/Particles/Fire.tscn").instantiate()
+		add_child(fire_particles)
+	elif fire_particles and statuses[STATUS.ONFIRE] == 0:
+		fire_particles.queue_free()
+		fire_particles = null

@@ -48,7 +48,6 @@ func _ready():
 	$SidePanel/MenuButton.connect("pressed", func(): setMenuEnabled(true))
 	$Menu/ResumeButton.connect("pressed", func(): setMenuEnabled(false))
 	$Menu/MainMenuButton.connect("pressed", func():
-		Game.arena = null
 		queue_free()
 		get_tree().change_scene_to_packed(main_menu)
 	)
@@ -96,7 +95,6 @@ func _process(delta):
 	if(len(enemy_arena_units) == 0):
 		Game.player.floor.current.completed = true
 		# save the game here?
-		Game.arena = null
 		queue_free()
 		get_tree().change_scene_to_packed(loot_view)
 
