@@ -7,6 +7,8 @@ var player = Player.new()
 
 var next_battle = null
 
+var arena = null
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 #	print(OS.window_size())

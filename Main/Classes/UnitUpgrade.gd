@@ -14,7 +14,7 @@ func _init(level:int, effect: EFFECT = EFFECT.RAND):
 		var roll = randf()
 		self.effect = EFFECT.MORE_HP if roll < .3333 else EFFECT.MORE_SPEED if roll < .6667 else EFFECT.MORE_DAMAGE
 
-	self.amount = 1 + randi_range(0, level)
+	self.amount = 1 + randi_range(0, 2 + level*2)
 
 	# rare chance to get next level upgrade
 	var roll = randf()
@@ -31,8 +31,8 @@ func _process(delta):
 
 func apply(unit: Unit):
 	if effect == EFFECT.MORE_HP:
-		unit.hp += 1
+		unit.hp += amount * 10
 	elif effect == EFFECT.MORE_SPEED:
-		unit.speed += 1
+		unit.speed += amount * 10
 	elif effect == EFFECT.MORE_DAMAGE:
-		unit.damage += 1
+		unit.damage += amount

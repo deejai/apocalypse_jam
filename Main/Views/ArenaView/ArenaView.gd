@@ -21,6 +21,8 @@ var selected_unit_tile = load("res://Assets/selectedunittile_unknown.png")
 var enemy_arena_units = []
 var player_arena_units = []
 
+var active_effects = []
+
 var selected_units = []
 
 var mouse_left_pressed = false
@@ -38,6 +40,7 @@ func _ready():
 	load_units(Game.next_battle.enemies, enemy_arena_units, ArenaUnit.ALLIANCE.ENEMY)
 	load_units(Game.player.squad_active, player_arena_units, ArenaUnit.ALLIANCE.PLAYER)
 	Game.next_battle = null
+	Game.arena = self
 	# generate enemy units based on progress and current map node
 	# place enemy units
 	# battle starts
@@ -45,6 +48,8 @@ func _ready():
 	$SidePanel/MenuButton.connect("pressed", func(): setMenuEnabled(true))
 	$Menu/ResumeButton.connect("pressed", func(): setMenuEnabled(false))
 	$Menu/MainMenuButton.connect("pressed", func():
+		Game.arena = null
+		queue_free()
 		get_tree().change_scene_to_packed(main_menu)
 	)
 
@@ -52,7 +57,7 @@ func _ready():
 
 func load_units(arr_from: Array, arr_to: Array, alliance: ArenaUnit.ALLIANCE):
 	for data in arr_from:
-		var arena_unit = models[data.unit.base].instantiate().init(data.unit, alliance, self)
+		var arena_unit = models[data.unit.base].instantiate().init(data.unit, alliance)
 
 		if "start_position" not in data.keys():
 			print(data)
@@ -90,6 +95,8 @@ func _process(delta):
 			
 	if(len(enemy_arena_units) == 0):
 		Game.player.floor.current.completed = true
+		# save the game here?
+		Game.arena = null
 		queue_free()
 		get_tree().change_scene_to_packed(loot_view)
 
@@ -128,7 +135,7 @@ func _input(event: InputEvent):
 					for arr in [enemy_arena_units, player_arena_units]:
 						if(clicked_unit):
 							break
-
+ 
 						for arena_unit in arr:
 							var radius = arena_unit.get_node("Collision").shape.radius
 							if arena_unit.position.distance_to(event.position) < radius:
@@ -225,5 +232,5 @@ func get_units_in_aoe(point: Vector2, aoe: int, alliance: ArenaUnit.ALLIANCE):
 	for arena_unit in unit_list:
 		if(point.distance_to(arena_unit.position) <= aoe):
 			units_in_aoe.append(arena_unit)
-			
+
 	return units_in_aoe
