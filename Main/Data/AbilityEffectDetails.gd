@@ -1,7 +1,5 @@
 extends Node
 
-class_name AbilityEffectDetails
-
 var proj_spear = load("res://Main/Views/ArenaView/Projectiles/Spear.tscn")
 
 func mind_dart(instance: AbilityEffect, flag: AbilityEffect.FLAG):

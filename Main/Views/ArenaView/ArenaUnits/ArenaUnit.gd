@@ -92,7 +92,6 @@ func _process(delta):
 		else:
 			$AnimatedSprite2D.animation = "Idle"
 			if attack_cd == 0:
-	#			attack_target.apply_damage(10)
 				var direction = position.direction_to(attack_target.position)
 				var spear = projectile.instantiate().init(alliance, position, direction, 350, get_attack_damage())
 				get_parent().add_child(spear)

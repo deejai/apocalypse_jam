@@ -1,7 +1,5 @@
 extends Node
 
-class_name ActivatedAbilityDetails
-
 var data = {
 	"Mind Dart": {
 		"icon": load("res://Assets/PNG/bg.png"),

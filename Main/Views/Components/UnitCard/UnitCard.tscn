@@ -70,5 +70,4 @@ button_mask = 1
 keep_pressed_outside = false
 shortcut = null
 button_group = null
-shortcut_context = null
 script = null
