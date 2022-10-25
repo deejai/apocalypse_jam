@@ -101,7 +101,7 @@ func _process(delta):
 		$SidePanel/SelectedUnits.set_item_selectable(i, true)
 
 	ai_decide_targets()
-	player_acquire_targets()
+	player_auto_attack()
 
 	queue_redraw()
 	pass
@@ -199,10 +199,14 @@ func ai_decide_targets():
 			arena_unit.attack_target = closest_ally
 			arena_unit.move_target = closest_ally.position
 
-func player_acquire_targets():
+func player_auto_attack():
 	for arena_unit in player_arena_units:
 		if(not is_instance_valid(arena_unit)):
 			continue
+			
+		if(arena_unit.attack_target):
+			continue
+
 		var closest_enemy = null
 		var closest_enemy_dist = 9999999
 		for enemy in enemy_arena_units:
@@ -214,4 +218,4 @@ func player_acquire_targets():
 				closest_enemy_dist = dist
 
 		if closest_enemy:
-			arena_unit.attack_target = closest_enemy
+			arena_unit.auto_attack(closest_enemy)

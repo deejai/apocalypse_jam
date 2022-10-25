@@ -91,11 +91,7 @@ func _process(delta):
 			move_to_target(attack_target.position)
 		else:
 			$AnimatedSprite2D.animation = "Idle"
-			if attack_cd == 0:
-				var direction = position.direction_to(attack_target.position)
-				var spear = projectile.instantiate().init(alliance, position, direction, 350, get_attack_damage())
-				get_parent().add_child(spear)
-				attack_cd = 2 * (100.0 / get_attack_speed())
+			auto_attack(attack_target)
 	else:
 		move_to_target(move_target)
 		$AnimatedSprite2D.z_index = 100 + 100 * (position.y/720)
@@ -181,3 +177,10 @@ func get_attack_speed():
 
 func get_speed():
 	return speed * speed_mult + speed_add
+
+func auto_attack(target):
+	if attack_cd == 0:
+		var direction = position.direction_to(target.position)
+		var spear = projectile.instantiate().init(alliance, position, direction, 350, get_attack_damage())
+		get_parent().add_child(spear)
+		attack_cd = 2 * (100.0 / get_attack_speed())

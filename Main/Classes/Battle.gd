@@ -35,6 +35,5 @@ func _init(level: int):
 			enemies.append({"unit": beefy_soldier, "start_position": Vector2(450, 50 + 25 + 150)})
 			print(enemies)
 
-		
 #	for i in range(len(positions)):
 #		enemies.append({"unit": Unit.new(Unit.BASE.SOLDIER_SWORD), "start_position": positions[i]})
