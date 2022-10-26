@@ -32,7 +32,6 @@ amount = 16
 lifetime = 0.6
 speed_scale = 0.3
 explosiveness = 0.35
-trail_length_secs = 0.01
 trail_sections = 2
 trail_section_subdivisions = 2
 process_material = SubResource("ParticleProcessMaterial_kcr7b")
