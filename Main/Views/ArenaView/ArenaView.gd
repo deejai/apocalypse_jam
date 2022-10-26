@@ -11,6 +11,10 @@ var models = {
 }
 
 var particles_fire = load("res://Main/Particles/Fire.tscn")
+var particles_stun = load("res://Main/Particles/Stun.tscn")
+var particles_poison = load("res://Main/Particles/Poison.tscn")
+
+var particles_unimplemented = load("res://Main/Particles/Unimplemented.tscn")
 
 var tombstone = load("res://Main/Views/ArenaView/ArenaUnits/Tombstone.tscn")
 

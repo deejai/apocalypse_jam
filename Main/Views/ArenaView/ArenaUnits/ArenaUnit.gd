@@ -36,18 +36,19 @@ var projectile: PackedScene
 var ability_cooldowns: Dictionary = {}
 
 # statuses
-enum STATUS { STUN, SILENCE, ROOT, INVULN, NOHEAL, ONFIRE }
+enum STATUS { STUN, SILENCE, ROOT, INVULN, NOHEAL, ONFIRE, POISON, HEAL }
 
 var statuses = {
-	STATUS.STUN: 0,
-	STATUS.SILENCE: 0,
-	STATUS.ROOT: 0,
-	STATUS.INVULN: 0,
-	STATUS.NOHEAL: 0,
-	STATUS.ONFIRE: 0,
+	STATUS.STUN: {"duration": 0, "particles_instance": null, "particles_scene": Game.arena.stun_particles},
+	STATUS.SILENCE: {"duration": 0, "particles_instance": null, "particles_scene": null},
+	STATUS.ROOT: {"duration": 0, "particles_instance": null, "particles_scene": null},
+	STATUS.INVULN: {"duration": 0, "particles_instance": null, "particles_scene": null},
+	STATUS.HEAL: {"duration": 0, "particles_instance": null, "particles_scene": null},
+	STATUS.NOHEAL: {"duration": 0, "particles_instance": null, "particles_scene": null},
+	STATUS.ONFIRE: {"duration": 0, "particles_instance": null, "particles_scene": Game.arena.fire_particles},
+	STATUS.POISON: {"duration": 0, "particles_instance": null, "particles_scene": Game.arena.poison_particles},
 }
 
-var fire_particles = null
 
 var alliance: ALLIANCE
 
@@ -206,9 +207,15 @@ func handle_statuses(delta):
 	for status in statuses:
 		statuses[status] = max(0, statuses[status]-delta)
 
-	if fire_particles == null and statuses[STATUS.ONFIRE] > 0:
-		fire_particles = Game.arena.particles_fire.instantiate()
-		add_child(fire_particles)
-	elif fire_particles != null and statuses[STATUS.ONFIRE] == 0:
-		fire_particles.queue_free()
-		fire_particles = null
+	for status in STATUS:
+		if statuses[status]["duration"] > 0 and statuses[status]["particles_instance"] == null:
+			if statuses[status]["particles_scene"] == null:
+				# status particles are not implemented
+				statuses[status]["particles_instance"] = statuses[status]["particles_scene"].instantiate()
+				add_child(statuses[status]["particles_instance"])
+			else:
+				statuses[status]["particles_instance"] = statuses[status]["particles_scene"].instantiate()
+				add_child(statuses[status]["particles_instance"])
+		elif statuses[status]["particles_instance"] != null and statuses[status]["duration"] == 0.0:
+			statuses[status]["particles_instance"].queue_free()
+			statuses[status]["particles_instance"] = null
