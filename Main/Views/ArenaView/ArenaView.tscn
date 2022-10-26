@@ -159,8 +159,6 @@ z_index = -7
 texture = ExtResource("20_6ub1k")
 metadata/_edit_lock_ = true
 
-[node name="UnitHighlight" type="Sprite2D" parent="."]
-
 [node name="Menu" type="Polygon2D" parent="."]
 visible = false
 color = Color(0.541176, 0.541176, 0.541176, 0.603922)
@@ -180,3 +178,20 @@ offset_top = 268.0
 offset_right = 710.0
 offset_bottom = 299.0
 text = "Main Menu"
+
+[node name="UnitControl" type="Node2D" parent="."]
+position = Vector2(1180, 287)
+scale = Vector2(1.1875, 1.02857)
+
+[node name="Background" type="Polygon2D" parent="UnitControl"]
+z_index = 13
+color = Color(0.654902, 0.843137, 0.929412, 1)
+polygon = PackedVector2Array(-75, -50, 75, -50, 75, 50, -75, 50)
+metadata/_edit_lock_ = true
+
+[node name="Portrait" type="ItemList" parent="UnitControl"]
+offset_left = -61.0
+offset_top = -42.0
+offset_right = -29.0
+offset_bottom = -12.0
+auto_height = true

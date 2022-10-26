@@ -10,6 +10,8 @@ var models = {
 	Unit.BASE.HEALER: load("res://Main/Views/ArenaView/ArenaUnits/Healer.tscn"),
 }
 
+var particles_fire = load("res://Main/Particles/Fire.tscn")
+
 var tombstone = load("res://Main/Views/ArenaView/ArenaUnits/Tombstone.tscn")
 
 var map_view = load("res://Main/Views/MapView/MapView.tscn")
@@ -28,6 +30,10 @@ var selected_units = []
 var mouse_left_pressed = false
 var mouse_left_pressed_start_pos = Vector2.ZERO
 var button_pressed_start_drag_dist = 30
+
+var in_targeting_mode = false
+var highlighted_unit = null
+var targeting_ability = null
 
 func setMenuEnabled(enable: bool):
 	$Menu.visible = enable
@@ -122,65 +128,128 @@ func _draw():
 	for arena_unit in selected_units:
 		if(is_instance_valid(arena_unit.attack_target)):
 			draw_arc(arena_unit.attack_target.position, 20, 0, TAU, 50, Color.RED, 2.0, true)
+			
+	if(in_targeting_mode):
+		if is_instance_valid(highlighted_unit):
+			draw_circle(get_global_mouse_position(), max(15, targeting_ability.area_of_effect), Color(Color.DARK_RED, 0.3))
+			draw_arc(highlighted_unit.position, targeting_ability.range, 0, TAU, 50, Color.RED, 1.0, true)
+		else:
+			in_targeting_mode = false
 
 func _input(event: InputEvent):
+	if event is InputEventKey and event.pressed and event.keycode == KEY_Q:
+		engage_ability(0)
+
+	if event is InputEventKey and event.pressed and event.keycode == KEY_W:
+		engage_ability(1)
+
+	if event is InputEventKey and event.pressed and event.keycode == KEY_E:
+		engage_ability(2)
+
 	if event is InputEventMouseButton and event.position.x < 1080:
 	# clicked on battlefield
-		if not event.pressed:
-			if event.button_index == MOUSE_BUTTON_MASK_LEFT and mouse_left_pressed:
-				if event.position.distance_to(mouse_left_pressed_start_pos) < button_pressed_start_drag_dist:
-					var clicked_unit = null
-					for arr in [enemy_arena_units, player_arena_units]:
-						if(clicked_unit):
-							break
- 
-						for arena_unit in arr:
-							var radius = arena_unit.get_node("Collision").shape.radius
-							if arena_unit.position.distance_to(event.position) < radius:
-								clicked_unit = arena_unit
+		if in_targeting_mode and event.pressed and event.button_index == MOUSE_BUTTON_MASK_LEFT and highlighted_unit.position.distance_to(event.position) <= targeting_ability.range:
+		# try to cast ability
+			if is_instance_valid(highlighted_unit):
+				if targeting_ability.targeting_type == ActivatedAbility.TARGETING_TYPE.SINGLE_UNIT:
+					var units = get_units_in_aoe(
+						get_global_mouse_position(),
+						20,
+						ActivatedAbility.affected_alliances(highlighted_unit.alliance, targeting_ability.targets)
+					)
+					
+					if len(units) == 0:
+						print("No unit targeted")
+					else:
+						cast_on_units([units[0]])
+
+				elif targeting_ability.targeting_type == ActivatedAbility.TARGETING_TYPE.UNITS_IN_AOE:
+					var units = get_units_in_aoe(
+						get_global_mouse_position(),
+						targeting_ability.area_of_effect,
+						ActivatedAbility.affected_alliances(highlighted_unit.alliance, targeting_ability.targets)
+					)
+					cast_on_units(units)
+					
+				elif targeting_ability.targeting_type == ActivatedAbility.TARGETING_TYPE.POINT:
+					var effect = AbilityEffect.new(
+						{"target_point": highlighted_unit},
+						targeting_ability.key,
+						targeting_ability.level,
+						targeting_ability.effect_fn,
+						targeting_ability.duration
+					)
+					active_effects.append(effect)
+					Game.arena.add_child(effect)
+				else:
+					assert(false)
+
+				highlighted_unit.ability_cooldowns[targeting_ability] = targeting_ability.cooldown
+				in_targeting_mode = false
+
+			else:
+				in_targeting_mode = false
+		else:
+			in_targeting_mode = false
+		# select units, issue orders, etc
+			if not event.pressed:
+				if event.button_index == MOUSE_BUTTON_MASK_LEFT and mouse_left_pressed:
+					if event.position.distance_to(mouse_left_pressed_start_pos) < button_pressed_start_drag_dist:
+						var clicked_unit = null
+						for arr in [enemy_arena_units, player_arena_units]:
+							if(clicked_unit):
 								break
 
-					for arena_unit in selected_units:
-						arena_unit.selected = false
+							for arena_unit in arr:
+								var radius = arena_unit.get_node("Collision").shape.radius
+								if arena_unit.position.distance_to(event.position) < radius:
+									clicked_unit = arena_unit
+									break
 
-					selected_units = [clicked_unit] if clicked_unit else []
-					for arena_unit in selected_units:
-						arena_unit.selected = true
-				else:
-					for arena_unit in selected_units:
-						arena_unit.selected = false
+						for arena_unit in selected_units:
+							arena_unit.selected = false
 
-					selected_units = []
-					for arena_unit in player_arena_units:
-						if(drag_select_rect().has_point(arena_unit.position)):
+						selected_units = [clicked_unit] if clicked_unit else []
+						for arena_unit in selected_units:
 							arena_unit.selected = true
-							selected_units.append(arena_unit)
+					else:
+						for arena_unit in selected_units:
+							arena_unit.selected = false
 
-				mouse_left_pressed = false
-				
-				if len(selected_units) > 0 and selected_units[0].alliance == ArenaUnit.ALLIANCE.PLAYER:
-					Audio.soldier_voice_yessir.play()
+						selected_units = []
+						for arena_unit in player_arena_units:
+							if(drag_select_rect().has_point(arena_unit.position)):
+								arena_unit.selected = true
+								selected_units.append(arena_unit)
 
-		if event.pressed:
-			if event.button_index == MOUSE_BUTTON_MASK_LEFT:
-				mouse_left_pressed = true
-				mouse_left_pressed_start_pos = event.position
+					mouse_left_pressed = false
+					
+					if len(selected_units) > 0 and selected_units[0].alliance == ArenaUnit.ALLIANCE.PLAYER:
+						Audio.soldier_voice_yessir.play()
+						highlighted_unit = selected_units[0]
+					else:
+						highlighted_unit = null
 
-			if event.button_index == MOUSE_BUTTON_MASK_RIGHT:
-				if len(selected_units) > 0 and selected_units[0].alliance == ArenaUnit.ALLIANCE.PLAYER:
-					var attack_target = null
+			if event.pressed:
+				if event.button_index == MOUSE_BUTTON_MASK_LEFT:
+					mouse_left_pressed = true
+					mouse_left_pressed_start_pos = event.position
 
-					for arena_unit in enemy_arena_units:
-						var radius = arena_unit.get_node("Collision").shape.radius
-						if arena_unit.position.distance_to(event.position) < radius:
-							attack_target = arena_unit
-							break
+				if event.button_index == MOUSE_BUTTON_MASK_RIGHT:
+					if len(selected_units) > 0 and selected_units[0].alliance == ArenaUnit.ALLIANCE.PLAYER:
+						var attack_target = null
 
-					for arena_unit in selected_units:
-						arena_unit.attack_target = attack_target
-						arena_unit.move_target = event.position
+						for arena_unit in enemy_arena_units:
+							var radius = arena_unit.get_node("Collision").shape.radius
+							if arena_unit.position.distance_to(event.position) < radius:
+								attack_target = arena_unit
+								break
 
-					Audio.soldier_voice_ok.play()
+						for arena_unit in selected_units:
+							arena_unit.attack_target = attack_target
+							arena_unit.move_target = event.position
+
+						Audio.soldier_voice_ok.play()
 	else:
 		pass
 
@@ -224,11 +293,72 @@ func player_auto_attack():
 		if closest_enemy:
 			arena_unit.auto_attack(closest_enemy)
 
-func get_units_in_aoe(point: Vector2, aoe: int, alliance: ArenaUnit.ALLIANCE):
-	var unit_list = player_arena_units if alliance == ArenaUnit.ALLIANCE.PLAYER else enemy_arena_units
+func get_units_in_aoe(point: Vector2, aoe: int, alliances: Array[ArenaUnit.ALLIANCE]):
+	var arrs = []
+	for alliance in alliances:
+		if alliance == ArenaUnit.ALLIANCE.PLAYER:
+			arrs.append(player_arena_units)
+		elif alliance == ArenaUnit.ALLIANCE.ENEMY:
+			arrs.append(enemy_arena_units)
+
 	var units_in_aoe = []
-	for arena_unit in unit_list:
-		if(point.distance_to(arena_unit.position) <= aoe):
-			units_in_aoe.append(arena_unit)
+	for arr in arrs:
+		for arena_unit in arr:
+			if(not is_instance_valid(arena_unit)):
+				continue
+			if arena_unit.position.distance_to(point) <= aoe:
+				units_in_aoe.append(arena_unit)
 
 	return units_in_aoe
+
+func engage_ability(ability_index: int):
+	if not is_instance_valid(highlighted_unit) or highlighted_unit.alliance != ArenaUnit.ALLIANCE.PLAYER:
+		return
+
+	if highlighted_unit.statuses[ArenaUnit.STATUS.STUN] > 0 or highlighted_unit.statuses[ArenaUnit.STATUS.SILENCE] > 0:
+		# TODO: Say "Silenced" or "Stunned" or something
+		return
+		
+	if ability_index >= len(highlighted_unit.unit.abilities):
+		return
+
+	targeting_ability = highlighted_unit.unit.abilities[ability_index]
+
+	if highlighted_unit.ability_cooldowns[targeting_ability] > 0:
+		# TODO: play sound effect
+		return
+
+	if not targeting_ability is ActivatedAbility:
+		# do nothing
+		return
+
+	var units_to_affect = []
+
+	match targeting_ability.targeting_type:
+		ActivatedAbility.TARGETING_TYPE.SELF:
+			# cast immediately
+			if targeting_ability.aoe > 0:
+				units_to_affect = get_units_in_aoe(
+					highlighted_unit.position,
+					targeting_ability.aoe,
+					AbilityEffect.affected_alliances(highlighted_unit.alliance, targeting_ability.affected_alliances)
+				)
+			else:
+				units_to_affect = [highlighted_unit]
+		_:
+			# enter targeting mode
+			in_targeting_mode = true
+
+	cast_on_units(units_to_affect)
+
+func cast_on_units(targets: Array):
+	for unit in targets:
+		var effect = AbilityEffect.new(
+			{"source_unit": highlighted_unit, "target_unit": unit},
+			targeting_ability.key,
+			targeting_ability.level,
+			targeting_ability.effect_fn,
+			targeting_ability.duration
+		)
+		active_effects.append(effect)
+		Game.arena.add_child(effect)

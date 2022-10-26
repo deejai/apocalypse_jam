@@ -4,11 +4,11 @@ class_name AbilityEffect
 
 var identifier: String
 var level: int
-var duration: int = 0
+var duration: float = 0.0
 var effect_fn: Callable
-var time_elapsed: int = 0
+var time_elapsed: float = 0
 var ticks_applied: int = 0
-var tick_interval: int = 500 # every .5 seconds by default
+var tick_interval: float = .5 # every .5 seconds by default
 var props: Dictionary = {}
 var killme = false
 
@@ -19,6 +19,7 @@ func _init(
 	identifier:String,
 	level: int,
 	effect_fn: Callable,
+	duration: float = 0.0
 	):
 	for prop_key in props:
 		self.props[prop_key] = props[prop_key]
@@ -26,6 +27,7 @@ func _init(
 	self.identifier = identifier
 	self.level = level
 	self.effect_fn = effect_fn
+	self.duration = duration
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -42,7 +44,10 @@ func _process(delta):
 		print("zero")
 
 	# catch up on ticks if we missed any
-	for i in range(num_ticks_to_apply()):
+	var ticks_to_apply = num_ticks_to_apply()
+	print(ticks_to_apply)
+	for i in range(ticks_to_apply):
+		print("tick")
 		effect_fn.call(self, FLAG.TICK)
 
 	if(time_elapsed >= duration):
@@ -52,5 +57,5 @@ func _process(delta):
 		queue_free()
 
 func num_ticks_to_apply():
-	return max(0, time_elapsed / tick_interval - ticks_applied)
+	return max(0, floor(time_elapsed / tick_interval) - ticks_applied)
 

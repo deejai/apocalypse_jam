@@ -14,9 +14,7 @@ var range: int = 65
 var attack_damage: float = 5
 var attack_speed: float = 100
 
-# {"type": "passive" | "active", "ability": "ActivatedAbility" | "PassiveAbility"}
-var ability_slot_1: Dictionary
-var ability_slot_2: Dictionary
+var abilities = []
 
 # @TODO: add more stats, add animations
 
@@ -28,6 +26,7 @@ var data = {
 		"speed": 150,
 		"attack_damage": 15,
 		"attack_speed": 100,
+		"abilities": [ActivatedAbility.new("Mind Dart", 1), ActivatedAbility.new("Hellfire", 1)]
 	},
 	BASE.HEALER: {
 		"spec": SPEC.NORMAL,
@@ -71,3 +70,7 @@ func _init(base: Unit.BASE):
 	self.range = data[base]["range"]
 	self.hp = data[base]["hp"]
 	self.speed = data[base]["speed"]
+	
+	if data[base].has("abilities"):
+		for ability in data[base]["abilities"]:
+			self.abilities.append(ability)

@@ -10,7 +10,7 @@ var rewards = {}
 func _ready():
 	for i in [1,2,3,4]:
 		var frame = get_node("RewardFrame" + str(i))
-		rewards[i] = unit_upgrade.instantiate().init()
+		rewards[i] = unit_upgrade.instantiate().init(i-1)
 		frame.add_child(rewards[i])
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

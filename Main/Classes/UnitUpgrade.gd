@@ -2,7 +2,7 @@ extends Node
 
 class_name UnitUpgrade
 
-enum EFFECT {MORE_HP, MORE_SPEED, MORE_DAMAGE, RAND}
+enum EFFECT {MORE_HP, MORE_DAMAGE, MORE_SPEED, MORE_RANGE, RAND}
 
 var effect: EFFECT
 var amount: int
@@ -12,9 +12,22 @@ func _init(level:int, effect: EFFECT = EFFECT.RAND):
 		self.effect = effect
 	else:
 		var roll = randf()
-		self.effect = EFFECT.MORE_HP if roll < .3333 else EFFECT.MORE_SPEED if roll < .6667 else EFFECT.MORE_DAMAGE
+		self.effect = EFFECT.values()[randi() % (len(EFFECT)-1)]
 
-	self.amount = 1 + randi_range(0, 2 + level*2)
+	var multiplier
+	match self.effect:
+		EFFECT.MORE_HP:
+			multiplier = 10
+		EFFECT.MORE_SPEED:
+			multiplier = 10
+		EFFECT.MORE_DAMAGE:
+			multiplier = 2
+		EFFECT.MORE_RANGE:
+			multiplier = 10
+		_:
+			assert(false)
+
+	self.amount = randi_range(1 + multiplier/2, (2 + level)*multiplier)
 
 	# rare chance to get next level upgrade
 	var roll = randf()
@@ -30,9 +43,14 @@ func _process(delta):
 	pass
 
 func apply(unit: Unit):
-	if effect == EFFECT.MORE_HP:
-		unit.hp += amount * 10
-	elif effect == EFFECT.MORE_SPEED:
-		unit.speed += amount * 10
-	elif effect == EFFECT.MORE_DAMAGE:
-		unit.damage += amount
+	match effect:
+		EFFECT.MORE_HP:
+			unit.hp += amount
+		EFFECT.MORE_SPEED:
+			unit.speed += amount
+		EFFECT.MORE_DAMAGE:
+			unit.damage += amount
+		EFFECT.MORE_RANGE:
+			unit.range += amount
+		_:
+			assert(false)

@@ -13,18 +13,18 @@ func _init(level: int):
 
 	match type:
 		TYPE.ZERG_RUSH:
-			for r in range(2):
-				for c in range(5):
+			for r in range(randi_range(3,4)):
+				for c in range(randi_range(4, 6)):
 					var x_offset = 0 if r == 0 else 75
 					var position = Vector2(x_offset + 300 + c*150, 50 + 25 * r)
 					var unit = Unit.new(Unit.BASE.SOLDIER_SWORD)
-					unit.hp *= .5
-					unit.attack_damage *= 0.25
-					unit.attack_speed *= 2
+					unit.hp *= .4
+					unit.attack_damage *= 0.2
+					unit.attack_speed *= 2.5
 					unit.speed *= 2
 					enemies.append({"unit": unit, "start_position": position})
 		TYPE.HEAL_ONE:
-			for c in range(5):
+			for c in range(randi_range(3,6)):
 				var position = Vector2(150 + c*150, 50 + 25 + 70)
 				var unit = Unit.new(Unit.BASE.HEALER)
 				enemies.append({"unit": unit, "start_position": position})

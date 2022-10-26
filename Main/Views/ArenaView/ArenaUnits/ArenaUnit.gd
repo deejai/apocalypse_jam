@@ -33,6 +33,8 @@ var speed_mult: float = 1.0
 
 var projectile: PackedScene
 
+var ability_cooldowns: Dictionary = {}
+
 # statuses
 enum STATUS { STUN, SILENCE, ROOT, INVULN, NOHEAL, ONFIRE }
 
@@ -64,13 +66,15 @@ func init(unit: Unit, alliance: ALLIANCE):
 		Unit.BASE.SOLDIER_SPEAR: projectile = load("res://Main/Views/ArenaView/Projectiles/Spear.tscn")
 		_: projectile = load("res://Main/Views/ArenaView/Projectiles/Spear.tscn")
 
+	for ability in unit.abilities:
+		ability_cooldowns[ability] = 0.0
+
 	# idk if this logic is helpful
 #	$Collision.shape.radius = 50 if unit.size == "Large" else 30 if  unit.size == "Medium" else 15
 
 	return self
 
 func _ready():
-	apply_status(STATUS.ONFIRE, 15)
 #	print(move_target)
 #	print($Collision.name)
 	move_target = position
@@ -82,8 +86,11 @@ func _ready():
 func _process(delta):
 	stuck_timer = max(0, stuck_timer - delta)
 	attack_cd = max(0, attack_cd - delta)
-	
-	handle_statuses()
+
+	for ability in ability_cooldowns:
+		ability_cooldowns[ability] = max(0, ability_cooldowns[ability] - delta)
+
+	handle_statuses(delta)
 
 	if attack_target != null and (not is_instance_valid(attack_target) or attack_target.dying):
 		attack_target = null
@@ -195,11 +202,13 @@ func in_range(target: ArenaUnit):
 	var collision_radius_sum =  $Collision.shape.radius + target.get_node("Collision").shape.radius
 	return position.distance_to(target.position) - collision_radius_sum <= unit.range
 
-func handle_statuses():
+func handle_statuses(delta):
+	for status in statuses:
+		statuses[status] = max(0, statuses[status]-delta)
+
 	if fire_particles == null and statuses[STATUS.ONFIRE] > 0:
-		print("make fire", randf())
-		fire_particles = load("res://Main/Particles/Fire.tscn").instantiate()
+		fire_particles = Game.arena.particles_fire.instantiate()
 		add_child(fire_particles)
-	elif fire_particles and statuses[STATUS.ONFIRE] == 0:
+	elif fire_particles != null and statuses[STATUS.ONFIRE] == 0:
 		fire_particles.queue_free()
 		fire_particles = null

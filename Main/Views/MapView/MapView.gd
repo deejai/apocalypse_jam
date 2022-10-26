@@ -79,7 +79,7 @@ func _draw_node_rec(node: FloorNode):
 		# draw the connecting lines
 		for next in node.next:
 			if is_instance_valid(next.sceneNode):
-				draw_line(Vector2i(node.sceneNode.position), next.sceneNode.position - self.position, Color(255, 0, 0), 1)
+				draw_line(Vector2i(node.sceneNode.position), next.sceneNode.position - self.position, Color(Color.CORAL, 0.6), 4)
 
 		# draw the node circle
 		var pos = node.sceneNode.position
