@@ -36,20 +36,19 @@ var projectile: PackedScene
 var ability_cooldowns: Dictionary = {}
 
 # statuses
-enum STATUS { STUN, SILENCE, ROOT, INVULN, NOHEAL, ONFIRE, POISON, HEAL }
+enum STATUS { STUN, SILENCE, ROOT, INVULN, NOHEAL, ONFIRE, POISON, HEAL, HIT }
 
 var statuses = {
-	STATUS.STUN: {"duration": 0, "particles_instance": null, "particles_scene": Game.arena.stun_particles},
+	STATUS.STUN: {"duration": 0, "particles_instance": null, "particles_scene": Game.arena.particles_stun},
 	STATUS.SILENCE: {"duration": 0, "particles_instance": null, "particles_scene": null},
 	STATUS.ROOT: {"duration": 0, "particles_instance": null, "particles_scene": null},
 	STATUS.INVULN: {"duration": 0, "particles_instance": null, "particles_scene": null},
 	STATUS.HEAL: {"duration": 0, "particles_instance": null, "particles_scene": null},
 	STATUS.NOHEAL: {"duration": 0, "particles_instance": null, "particles_scene": null},
-	STATUS.ONFIRE: {"duration": 0, "particles_instance": null, "particles_scene": Game.arena.fire_particles},
-	STATUS.POISON: {"duration": 0, "particles_instance": null, "particles_scene": Game.arena.poison_particles},
+	STATUS.ONFIRE: {"duration": 0, "particles_instance": null, "particles_scene": Game.arena.particles_fire},
+	STATUS.POISON: {"duration": 0, "particles_instance": null, "particles_scene": Game.arena.particles_poison},
 	STATUS.HIT: {"duration": 0, "particles_instance": null, "particles_scene": null},
 }
-
 
 var alliance: ALLIANCE
 
@@ -68,7 +67,7 @@ func init(unit: Unit, alliance: ALLIANCE):
 		Unit.BASE.SOLDIER_SPEAR: projectile = load("res://Main/Views/ArenaView/Projectiles/Spear.tscn")
 		_: projectile = load("res://Main/Views/ArenaView/Projectiles/Spear.tscn")
 
-	for ability in unit.abilities:
+	for ability in unit.activated_abilities:
 		ability_cooldowns[ability] = 0.0
 
 	# idk if this logic is helpful
@@ -81,6 +80,12 @@ func _ready():
 #	print($Collision.name)
 	move_target = position
 	last_position = position
+	
+	print(Game.arena.particles_stun)
+	
+	apply_status(STATUS.STUN, 5)
+	apply_status(STATUS.ONFIRE, 2)
+	apply_status(STATUS.POISON, 10)
 #	print(position)
 	pass # Replace with function body.
 
@@ -163,7 +168,7 @@ func move_to_target(target):
 	move_and_slide()
 
 func apply_damage(amount: int):
-	if statuses[STATUS.INVULN] > 0:
+	if statuses[STATUS.INVULN]["duration"] > 0.0:
 		return
 
 	hp -= amount
@@ -176,13 +181,13 @@ func apply_damage(amount: int):
 				break
 
 func apply_healing(amount: int):
-	if statuses[STATUS.NOHEAL] > 0:
+	if statuses[STATUS.NOHEAL]["duration"] > 0.0:
 		return
 
 	hp = min(unit.hp, hp + amount)
 
 func apply_status(status: STATUS, duration: int):
-	statuses[status] = max(statuses[status], duration)
+	statuses[status]["duration"] = max(statuses[status]["duration"], duration)
 
 func get_attack_damage():
 	return attack_damage * attack_damage_mult + attack_damage_add
@@ -205,10 +210,10 @@ func in_range(target: ArenaUnit):
 	return position.distance_to(target.position) - collision_radius_sum <= unit.range
 
 func handle_statuses(delta):
-	for status in statuses:
-		statuses[status] = max(0, statuses[status]-delta)
+	for status in STATUS.values():
+		statuses[status]["duration"] = max(0, statuses[status]["duration"]-delta)
 
-	for status in STATUS:
+	for status in STATUS.values():
 		if statuses[status]["duration"] > 0 and statuses[status]["particles_instance"] == null:
 			if statuses[status]["particles_scene"] == null:
 				# status particles are not implemented

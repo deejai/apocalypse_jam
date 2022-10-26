@@ -20,7 +20,7 @@ orbit_velocity_max = 0.0
 linear_accel_min = -100.0
 linear_accel_max = -100.0
 scale_min = 0.0
-scale_max = 3.0
+scale_max = 7.0
 color_ramp = SubResource("GradientTexture1D_6ghue")
 
 [node name="Particles" type="Node2D"]
@@ -30,6 +30,8 @@ z_index = 300
 position = Vector2(0, -16)
 amount = 16
 lifetime = 0.6
+speed_scale = 0.3
+explosiveness = 0.35
 trail_length_secs = 0.01
 trail_sections = 2
 trail_section_subdivisions = 2

@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://08g7b6l0pwr6"]
 
-[ext_resource type="Texture2D" uid="uid://5ftlkqujn24d" path="res://Assets/upgrades_free.png" id="1_a75cv"]
+[ext_resource type="Texture2D" uid="uid://bsbwhs031m2xs" path="res://Assets/upgrades_free.png" id="1_a75cv"]
 [ext_resource type="Script" path="res://Main/Views/Components/UnitUpgradeItem.gd" id="2_ufyer"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_h22yx"]

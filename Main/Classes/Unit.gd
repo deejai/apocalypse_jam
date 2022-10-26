@@ -74,5 +74,5 @@ func _init(base: Unit.BASE, level: int = 0):
 
 	if data[base].has("abilities"):
 		for ability_key in data[base]["abilities"]:
-			var ability = new
-			self.abilities.append(ability)
+			var ability = ActivatedAbility.new(ability_key, level)
+			self.activated_abilities.append(ability)

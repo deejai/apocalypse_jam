@@ -47,10 +47,11 @@ func setMenuEnabled(enable: bool):
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	# place our units
+	print(particles_stun)
+	Game.arena = self
 	load_units(Game.next_battle.enemies, enemy_arena_units, ArenaUnit.ALLIANCE.ENEMY)
 	load_units(Game.player.squad_active, player_arena_units, ArenaUnit.ALLIANCE.PLAYER)
 	Game.next_battle = null
-	Game.arena = self
 	# generate enemy units based on progress and current map node
 	# place enemy units
 	# battle starts
