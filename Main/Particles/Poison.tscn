@@ -1,0 +1,35 @@
+[gd_scene load_steps=4 format=3]
+
+[sub_resource type="Gradient" id="Gradient_86rhm"]
+offsets = PackedFloat32Array(0.0111421, 0.994429)
+colors = PackedColorArray(0.968627, 0.243137, 0.133333, 0.580392, 1, 0.996078, 0.25098, 0.376471)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_6ghue"]
+gradient = SubResource("Gradient_86rhm")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_kcr7b"]
+particle_flag_disable_z = true
+direction = Vector3(0, -1, 0)
+spread = 86.82
+flatness = 0.08
+gravity = Vector3(0, -180, 0)
+initial_velocity_min = 30.0
+initial_velocity_max = 60.0
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+linear_accel_min = -100.0
+linear_accel_max = -100.0
+scale_min = 0.0
+scale_max = 5.93
+color_ramp = SubResource("GradientTexture1D_6ghue")
+
+[node name="Fire" type="Node2D"]
+z_index = 300
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+amount = 64
+lifetime = 0.3
+trail_length_secs = 0.01
+trail_sections = 2
+trail_section_subdivisions = 2
+process_material = SubResource("ParticleProcessMaterial_kcr7b")
