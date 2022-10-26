@@ -141,7 +141,7 @@ func hellfire(instance: AbilityEffect, flag: AbilityEffect.FLAG):
 			pass
 
 		AbilityEffect.FLAG.TICK:
-			instance.props["target_unit"].apply_damage(50 + level*3)
+			instance.props["target_unit"].apply_damage(5 + level*3)
 			pass
 
 # Called when the node enters the scene tree for the first time.

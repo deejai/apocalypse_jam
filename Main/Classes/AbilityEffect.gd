@@ -45,10 +45,11 @@ func _process(delta):
 
 	# catch up on ticks if we missed any
 	var ticks_to_apply = num_ticks_to_apply()
-	print(ticks_to_apply)
+	print(time_elapsed)
 	for i in range(ticks_to_apply):
-		print("tick")
 		effect_fn.call(self, FLAG.TICK)
+	
+	ticks_applied += ticks_to_apply
 
 	if(time_elapsed >= duration):
 		effect_fn.call(self, FLAG.END)
