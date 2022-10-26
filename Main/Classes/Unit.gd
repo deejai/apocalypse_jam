@@ -14,7 +14,8 @@ var range: int = 65
 var attack_damage: float = 5
 var attack_speed: float = 100
 
-var abilities = []
+var activated_abilities = []
+var passive_abilities = []
 
 # @TODO: add more stats, add animations
 
@@ -26,7 +27,7 @@ var data = {
 		"speed": 150,
 		"attack_damage": 15,
 		"attack_speed": 100,
-		"abilities": [ActivatedAbility.new("Mind Dart", 1), ActivatedAbility.new("Hellfire", 1)]
+		"abilities":  ["Mind Dart", "Hellfire"]
 	},
 	BASE.HEALER: {
 		"spec": SPEC.NORMAL,
@@ -62,15 +63,16 @@ var data = {
 	}
 }
 
-func _init(base: Unit.BASE):
+func _init(base: Unit.BASE, level: int = 0):
 	self.base = base
 
 	self.spec = data[base]["spec"]
-	self.attack_damage = data[base]["attack_damage"]
+	self.attack_damage = data[base]["attack_damage"] * (1.0 + 0.25 * level)
 	self.range = data[base]["range"]
-	self.hp = data[base]["hp"]
+	self.hp = data[base]["hp"] * (1.0 + 0.15 * level)
 	self.speed = data[base]["speed"]
-	
+
 	if data[base].has("abilities"):
-		for ability in data[base]["abilities"]:
+		for ability_key in data[base]["abilities"]:
+			var ability = new
 			self.abilities.append(ability)

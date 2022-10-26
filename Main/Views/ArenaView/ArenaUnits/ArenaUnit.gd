@@ -47,6 +47,7 @@ var statuses = {
 	STATUS.NOHEAL: {"duration": 0, "particles_instance": null, "particles_scene": null},
 	STATUS.ONFIRE: {"duration": 0, "particles_instance": null, "particles_scene": Game.arena.fire_particles},
 	STATUS.POISON: {"duration": 0, "particles_instance": null, "particles_scene": Game.arena.poison_particles},
+	STATUS.HIT: {"duration": 0, "particles_instance": null, "particles_scene": null},
 }
 
 
@@ -211,7 +212,7 @@ func handle_statuses(delta):
 		if statuses[status]["duration"] > 0 and statuses[status]["particles_instance"] == null:
 			if statuses[status]["particles_scene"] == null:
 				# status particles are not implemented
-				statuses[status]["particles_instance"] = statuses[status]["particles_scene"].instantiate()
+				statuses[status]["particles_instance"] = Game.arena.particles_unimplemented.instantiate()
 				add_child(statuses[status]["particles_instance"])
 			else:
 				statuses[status]["particles_instance"] = statuses[status]["particles_scene"].instantiate()

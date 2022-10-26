@@ -23,7 +23,7 @@ scale_min = 0.0
 scale_max = 5.93
 color_ramp = SubResource("GradientTexture1D_6ghue")
 
-[node name="Fire" type="Node2D"]
+[node name="Particles" type="Node2D"]
 z_index = 300
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="."]

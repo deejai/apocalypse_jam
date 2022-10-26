@@ -17,7 +17,7 @@ func _init(level: int):
 				for c in range(randi_range(4, 6)):
 					var x_offset = 0 if r == 0 else 75
 					var position = Vector2(x_offset + 300 + c*150, 50 + 25 * r)
-					var unit = Unit.new(Unit.BASE.SOLDIER_SWORD)
+					var unit = Unit.new(Unit.BASE.SOLDIER_SWORD, level)
 					unit.hp *= .4
 					unit.attack_damage *= 0.2
 					unit.attack_speed *= 2.5
@@ -26,10 +26,10 @@ func _init(level: int):
 		TYPE.HEAL_ONE:
 			for c in range(randi_range(3,6)):
 				var position = Vector2(150 + c*150, 50 + 25 + 70)
-				var unit = Unit.new(Unit.BASE.HEALER)
+				var unit = Unit.new(Unit.BASE.HEALER, level)
 				enemies.append({"unit": unit, "start_position": position})
 
-			var beefy_soldier = Unit.new(Unit.BASE.SOLDIER_SPEAR)
+			var beefy_soldier = Unit.new(Unit.BASE.SOLDIER_SPEAR, level)
 			beefy_soldier.attack_damage *= 2
 			beefy_soldier.hp *= 2
 			enemies.append({"unit": beefy_soldier, "start_position": Vector2(450, 50 + 25 + 150)})
