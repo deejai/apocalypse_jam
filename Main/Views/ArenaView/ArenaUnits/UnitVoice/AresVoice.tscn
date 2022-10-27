@@ -1,0 +1,32 @@
+[gd_scene load_steps=6 format=3 uid="uid://cp7l1oxld0nue"]
+
+[ext_resource type="AudioStream" uid="uid://dcu6i2ymq82ro" path="res://Assets/Audio/Voice/Soldiers/ok.wav" id="1_nfd1h"]
+[ext_resource type="AudioStream" uid="uid://ct4bc0lyiw57x" path="res://Assets/Audio/Voice/Soldiers/death_blagh.wav" id="2_qe4ek"]
+[ext_resource type="AudioStream" uid="uid://crcgx2873xf4x" path="res://Assets/Audio/Voice/Soldiers/mmoof.wav" id="3_nq881"]
+[ext_resource type="AudioStream" uid="uid://cxp7yjqnetjrv" path="res://Assets/Audio/Voice/Soldiers/yessir.wav" id="4_iydxl"]
+[ext_resource type="AudioStream" uid="uid://cktydpsym6web" path="res://Assets/Audio/Voice/Soldiers/salve1.wav" id="5_t3ndh"]
+
+[node name="AresVoice" type="Node2D"]
+
+[node name="Response" type="Node" parent="."]
+
+[node name="Ok" type="AudioStreamPlayer" parent="Response"]
+stream = ExtResource("1_nfd1h")
+
+[node name="Die" type="Node" parent="."]
+
+[node name="blagh" type="AudioStreamPlayer" parent="Die"]
+stream = ExtResource("2_qe4ek")
+
+[node name="Hit" type="Node" parent="."]
+
+[node name="mmoof" type="AudioStreamPlayer" parent="Hit"]
+stream = ExtResource("3_nq881")
+
+[node name="Greeting" type="Node" parent="."]
+
+[node name="Yessir" type="AudioStreamPlayer2D" parent="Greeting"]
+stream = ExtResource("4_iydxl")
+
+[node name="Salve" type="AudioStreamPlayer" parent="Greeting"]
+stream = ExtResource("5_t3ndh")

@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://bh6hp27ee4ke2"
+path="res://.godot/imported/Hermes Blink 1.wav-7a73fe8f2c33735af74163397152d5c6.sample"
+
+[deps]
+
+source_file="res://Assets/Audio/Effects/Hermes Blink 1.wav"
+dest_files=["res://.godot/imported/Hermes Blink 1.wav-7a73fe8f2c33735af74163397152d5c6.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

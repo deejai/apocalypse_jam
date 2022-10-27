@@ -1,21 +1,41 @@
 extends Node
 
+enum VOICE {SOLDIER, HEALER, HERMES, APOLLO, ZEUS, ARES, ATHENA, HADES}
 
-var solidier_voice = load("res://Main/Views/ArenaView/ArenaUnits/SoliderVoice.tscn")
-var soldier_voice_yessir
-var soldier_voice_ok
-var soldier_voice_die
+var soldier_voice = load("res://Main/Views/ArenaView/ArenaUnits/UnitVoice/SoldierVoice.tscn").instantiate()
+var healer_voice = load("res://Main/Views/ArenaView/ArenaUnits/UnitVoice/HealerVoice.tscn").instantiate()
+var apollo_voice = load("res://Main/Views/ArenaView/ArenaUnits/UnitVoice/ApolloVoice.tscn").instantiate()
+var ares_voice = load("res://Main/Views/ArenaView/ArenaUnits/UnitVoice/Aresoice.tscn").instantiate()
+var athena_voice = load("res://Main/Views/ArenaView/ArenaUnits/UnitVoice/AthenaVoice.tscn").instantiate()
+var hades_voice = load("res://Main/Views/ArenaView/ArenaUnits/UnitVoice/HadesVoice.tscn").instantiate()
+var hermes_voice = load("res://Main/Views/ArenaView/ArenaUnits/UnitVoice/HermesVoice.tscn").instantiate()
+var zeus_voice = load("res://Main/Views/ArenaView/ArenaUnits/UnitVoice/ZeusVoice.tscn").instantiate()
+
 # Called when the node enters the scene tree for the first time.
-
+var data = {}
+var voiceSceneMap = {
+	VOICE.SOLDIER: soldier_voice,
+	VOICE.HEALER: healer_voice,
+	VOICE.HERMES: hermes_voice,
+	VOICE.APOLLO: apollo_voice,
+	VOICE.ZEUS: zeus_voice,
+	VOICE.ARES: ares_voice,
+	VOICE.ATHENA: athena_voice,
+	VOICE.HADES: hades_voice,
+}
 func _ready():
-	var v = solidier_voice.instantiate()
-	soldier_voice_yessir = v.get_node("ResponseYessir")
-	soldier_voice_ok = v.get_node("ResponseOk")
-	soldier_voice_die = v.get_node("Die")
-	add_child(v)
+	
+	for v in VOICE:
+		data[v]= {}
+		for key in ["Greeting", "Response", "Die", "Hit", "FriendlyCast", "EnemyCast"]:
+			data[v][key] = []
+			for vl in voiceSceneMap[v].get_node(key).get_children():
+				data[v][key].append(vl)
 	pass # Replace with function body.
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	pass
+
+

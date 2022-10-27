@@ -1,0 +1,40 @@
+[gd_scene load_steps=7 format=3 uid="uid://b2vvg6erhx76b"]
+
+[ext_resource type="AudioStream" uid="uid://xggbmib27fhh" path="res://Assets/Audio/Voice/Healer/Healer_female on my way.wav" id="1_nq6io"]
+[ext_resource type="AudioStream" uid="uid://du5886bdk6j65" path="res://Assets/Audio/Voice/Healer/Healer death line.wav" id="2_fk8w0"]
+[ext_resource type="AudioStream" uid="uid://d4j07owarmror" path="res://Assets/Audio/Voice/Healer/Female pain 1.wav" id="3_2no17"]
+[ext_resource type="AudioStream" uid="uid://b4pcpibu6tsy5" path="res://Assets/Audio/Voice/Healer/Female Yes.wav" id="4_e278i"]
+[ext_resource type="AudioStream" uid="uid://b82rjfauoa1jy" path="res://Assets/Audio/Voice/Healer/Healer all better.wav" id="5_efofe"]
+[ext_resource type="AudioStream" uid="uid://c1v6q4yrdix88" path="res://Assets/Audio/Voice/Healer/Healer that_s gotta hurt.wav" id="6_jjdlk"]
+
+[node name="HealerVoice" type="Node2D"]
+
+[node name="Response" type="Node" parent="."]
+
+[node name="OnMyWay" type="AudioStreamPlayer" parent="Response"]
+stream = ExtResource("1_nq6io")
+
+[node name="Die" type="Node" parent="."]
+
+[node name="die" type="AudioStreamPlayer" parent="Die"]
+stream = ExtResource("2_fk8w0")
+
+[node name="Hit" type="Node" parent="."]
+
+[node name="hit1" type="AudioStreamPlayer" parent="Hit"]
+stream = ExtResource("3_2no17")
+
+[node name="Greeting" type="Node" parent="."]
+
+[node name="yes" type="AudioStreamPlayer" parent="Greeting"]
+stream = ExtResource("4_e278i")
+
+[node name="FriendlyCast" type="Node" parent="."]
+
+[node name="allBetter" type="AudioStreamPlayer" parent="FriendlyCast"]
+stream = ExtResource("5_efofe")
+
+[node name="EnemyCast" type="Node" parent="."]
+
+[node name="thatsGottaHurt" type="AudioStreamPlayer" parent="EnemyCast"]
+stream = ExtResource("6_jjdlk")

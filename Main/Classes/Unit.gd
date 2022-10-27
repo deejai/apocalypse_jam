@@ -26,6 +26,7 @@ var passive_abilities = []
 var data = {
 	BASE.OLYMPIAN_APOLLO:  {
 		"spec": SPEC.HERO,
+		"voice": Audio.VOICE.APOLLO,
 		"range": 150,
 		"hp": 180,
 		"speed": 150,
@@ -35,6 +36,7 @@ var data = {
 	},
 	BASE.HEALER: {
 		"spec": SPEC.NORMAL,
+		"voice": Audio.VOICE.HEALER,
 		"range": 200,
 		"hp": 60,
 		"speed": 100,
@@ -43,6 +45,7 @@ var data = {
 	},
 	BASE.SOLDIER_SPEAR: {
 		"spec": SPEC.NORMAL,
+		"voice": Audio.VOICE.SOLDIER,
 		"range": 125,
 		"hp": 100,
 		"speed": 080,
@@ -51,6 +54,7 @@ var data = {
 	},
 	BASE.SOLDIER_SWORD: {
 		"spec": SPEC.NORMAL,
+		"voice": Audio.VOICE.SOLDIER,
 		"range": 75,
 		"hp": 100,
 		"speed": 150,
@@ -59,6 +63,7 @@ var data = {
 	},
 	BASE.SOLDIER_ARCHER: {
 		"spec": SPEC.NORMAL,
+		"voice": Audio.VOICE.SOLDIER,
 		"range": 250,
 		"hp": 60,
 		"speed": 120,
