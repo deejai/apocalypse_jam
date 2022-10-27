@@ -14,6 +14,8 @@ var range: int = 65
 var attack_damage: float = 5
 var attack_speed: float = 100
 
+var level: int
+
 var projectile
 
 var activated_abilities = []
@@ -67,6 +69,8 @@ var data = {
 
 func _init(base: Unit.BASE, level: int = 0):
 	self.base = base
+	
+	self.level = level
 
 	self.spec = data[base]["spec"]
 	self.attack_damage = data[base]["attack_damage"] * (1.0 + 0.25 * level)
@@ -83,3 +87,14 @@ func _init(base: Unit.BASE, level: int = 0):
 	match base:
 		BASE.SOLDIER_SPEAR: projectile = load("res://Main/Views/ArenaView/Projectiles/Spear.tscn")
 		_: projectile = load("res://Main/Views/ArenaView/Projectiles/Spear.tscn")
+
+func get_meta_data():
+	var abilities = []
+	for arr in [activated_abilities, passive_abilities]:
+		for ability in arr:
+			abilities.append(ability)
+	
+	return {
+		"stats": str("Speed: ", speed, "\nHP: ", hp, "\nRange: ", range, "\nAttack Damage: ", attack_damage, "\nAttack Speed: ", attack_speed, " (", 100.0/attack_speed, " attack(s) per second)"),
+		"abilities": abilities
+	}

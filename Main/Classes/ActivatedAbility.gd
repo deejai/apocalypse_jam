@@ -15,6 +15,7 @@ var duration: float
 var effect_fn: Callable
 var range: int
 var targets: TARGETS
+var description: String
 
 func _init (
 	key: String,
@@ -137,11 +138,18 @@ func _set_details():
 	area_of_effect = data["area_of_effect_fn"].call(level)
 	duration = data["duration_fn"].call(level)
 	targets = data["targets"]
+	description = data["description_fn"].call(level)
 
 func set_level(level: int):
 	assert(level >= 0)
 	self.level = level
 	_set_details()
+
+func level_up():
+	set_level(level+1)
+
+func get_meta_data():
+	return str(description, "\n\nCooldown: ", cooldown, "s\nRange: ", range, "\nArea of Effect: ", area_of_effect, "\nDuration: ", duration, "s")
 
 static func affected_alliances(alliance: ArenaUnit.ALLIANCE, which: TARGETS) -> Array[ArenaUnit.ALLIANCE]:
 	match which:
@@ -166,6 +174,7 @@ static func get_ability_data():
 			"range_fn": func(level): return 200,
 			"area_of_effect_fn": func(level): return 0,
 			"duration_fn": func(level): return 0,
+			"description_fn": func(level): return str("Shoot a projectile that deals ", 10 + 5*level, " instant damage to a unit")
 		},
 		"Hellfire": {
 			"icon": load("res://Assets/PNG/bg.png"),
@@ -176,5 +185,6 @@ static func get_ability_data():
 			"range_fn": func(level): return 135,
 			"area_of_effect_fn": func(level): return 50 + level * 20,
 			"duration_fn": func(level): return 3,
+			"description_fn": func(level): return str("Deal ", 5 + 3*level, " damage in a targeted area every 0.5 seconds")
 		}
 	}

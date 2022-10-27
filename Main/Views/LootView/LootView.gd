@@ -1,61 +1,10 @@
 extends Node2D
 
+class_name LootView
+
 var map_view = load("res://Main/Views/MapView/MapView.tscn")
 
-var item_scene = load("res://Main/Views/Components/ItemScene.tscn")
-
-var unit_upgrade_hp = load("res://Assets/upgrades_free_split_hp.png")
-var unit_upgrade_range = load("res://Assets/upgrades_free_split_range.png")
-var unit_upgrade_damage = load("res://Assets/upgrades_free_split_damage.png")
-var unit_upgrade_speed = load("res://Assets/upgrades_free_split_speed.png")
-var ability_upgrade = load("res://Assets/upgrade_ability.png")
-var new_unit = load("res://Assets/node_newunit.png")
-var new_ability = load("res://Assets/upgrade_newability.png")
-
 var rewards = {}
-
-func get_inventory_item_scene(item):
-	var scene = item_scene.instantiate()
-	var label: String
-	var sprite: Texture2D
-
-	if item is Unit:
-		sprite = Shared.get_models()[item.base].instantiate().get_node("AnimatedSprite2D").get_sprite_frames().get_frame("Idle", 0)
-	elif item is UnitUpgrade:
-		label = str(item.amount)
-		match item.effect:
-			UnitUpgrade.EFFECT.MORE_HP:
-				sprite = unit_upgrade_hp
-				label = "+" + str(item.amount) + " unit " + "hp"
-			UnitUpgrade.EFFECT.MORE_DAMAGE:
-				sprite = unit_upgrade_damage
-				label = "+" + str(item.amount) + " unit " + "dmg"
-			UnitUpgrade.EFFECT.MORE_SPEED:
-				sprite = unit_upgrade_speed
-				label = "+" + str(item.amount) + " unit " + "speed"
-			UnitUpgrade.EFFECT.MORE_RANGE:
-				sprite = unit_upgrade_range
-				label = "+" + str(item.amount) + " unit " + "range"
-			_:
-				assert(false)
-	elif item is Unit:
-		label = Unit.BASE.keys()[Unit.base]
-		sprite = new_unit
-	elif (item is ActivatedAbility) or (item is PassiveAbility):
-		label = item.key + " Lv " + str(item.level)
-		sprite = new_ability
-	elif item is AbilityUpgrade:
-		label = "+1 Ability Lv"
-		sprite = ability_upgrade
-	else:
-		print(item)
-		assert(false)
-
-	scene.get_node("Sprite2D").texture = sprite
-	scene.get_node("Label").text = label
-
-	return scene
-
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	var primary_type = Game.player.floor.current.reward_type
@@ -119,9 +68,8 @@ func _ready():
 
 	for i in [1,2,3,4]:
 		var frame = get_node("RewardFrame" + str(i))
-		var scene = get_inventory_item_scene(rewards[i])
+		var scene = LootView.get_inventory_item_scene(rewards[i])
 		scene.position = Vector2(100, 75)
-		scene.scale = Vector2(3, 3)
 		frame.add_child(scene)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -157,3 +105,51 @@ func _input(event):
 			var frame = get_node("RewardFrame" + str(i))
 			if Geometry2D.is_point_in_polygon(event.position - frame.position, frame.get_polygon()):
 				pass # could show tooltip here
+
+static func get_inventory_item_scene(item):
+	var scene = load("res://Main/Views/Components/ItemScene.tscn").instantiate()
+	var label: String
+	var sprite: Texture2D
+
+	if item is Unit:
+		scene.get_node("Sprite2D").scale = Vector2(2.5, 2.5)
+		scene.get_node("Label").position += Vector2(0, 40)
+		label = "Lv " + str(item.level + 1)
+		sprite = Shared.get_models()[item.base].instantiate().get_node("AnimatedSprite2D").get_sprite_frames().get_frame("Idle", 0)
+	elif item is UnitUpgrade:
+		scene.get_node("Sprite2D").scale = Vector2(4, 4)
+		label = str(item.amount)
+		match item.effect:
+			UnitUpgrade.EFFECT.MORE_HP:
+				sprite = load("res://Assets/upgrades_free_split_hp.png")
+				label = "+" + str(item.amount) + " unit " + "hp"
+			UnitUpgrade.EFFECT.MORE_DAMAGE:
+				sprite = load("res://Assets/upgrades_free_split_damage.png")
+				label = "+" + str(item.amount) + " unit " + "dmg"
+			UnitUpgrade.EFFECT.MORE_SPEED:
+				sprite = load("res://Assets/upgrades_free_split_speed.png")
+				label = "+" + str(item.amount) + " unit " + "speed"
+			UnitUpgrade.EFFECT.MORE_RANGE:
+				sprite = load("res://Assets/upgrades_free_split_range.png")
+				label = "+" + str(item.amount) + " unit " + "range"
+			_:
+				assert(false)
+	elif item is ActivatedAbility:
+		scene.get_node("Sprite2D").scale = Vector2(0.5, 0.5)
+		label = item.key + " Lv " + str(item.level + 1)
+		sprite = load("res://Assets/RPG_Fantasy_256/TomeBlue.png")
+	elif  item is PassiveAbility:
+		scene.get_node("Sprite2D").scale = Vector2(0.5, 0.5)
+		label = item.key + " Lv " + str(item.level + 1)
+		sprite = load("res://Assets/RPG_Fantasy_256/TomeGreen.png")
+	elif item is AbilityUpgrade:
+		label = "+1 Ability Lv"
+		sprite = load("res://Assets/RPG_Fantasy_256/Scroll.png")
+	else:
+		print(item)
+		assert(false)
+
+	scene.get_node("Sprite2D").texture = sprite
+	scene.get_node("Label").text = label
+
+	return scene

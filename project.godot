@@ -44,6 +44,11 @@ _global_script_classes=[{
 "language": &"GDScript",
 "path": "res://Main/Classes/FloorNode.gd"
 }, {
+"base": "Node2D",
+"class": &"LootView",
+"language": &"GDScript",
+"path": "res://Main/Views/LootView/LootView.gd"
+}, {
 "base": "Unit",
 "class": &"Olympian",
 "language": &"GDScript",
@@ -87,6 +92,7 @@ _global_script_class_icons={
 "Battle": "",
 "Floor": "",
 "FloorNode": "",
+"LootView": "",
 "Olympian": "",
 "PassiveAbility": "",
 "Player": "",

@@ -8,13 +8,13 @@ enum TYPE { ZERG_RUSH, HEAL_ONE, SPAM_UNIT, BALANCED, RANGE_PLUS_TANKS }
 
 func _init(level: int):
 	var type = TYPE.values()[ randi() % len(TYPE) ]
-	return
+
 	type %= 2 # increase as you add more unit configurations
 
 	match type:
 		TYPE.ZERG_RUSH:
-			for r in range(randi_range(3,4)):
-				for c in range(randi_range(4, 6)):
+			for r in range(randi_range(2,3)):
+				for c in range(randi_range(3, 4)):
 					var x_offset = 0 if r == 0 else 75
 					var position = Vector2(x_offset + 300 + c*150, 50 + 25 * r)
 					var unit = Unit.new(Unit.BASE.SOLDIER_SWORD, level)

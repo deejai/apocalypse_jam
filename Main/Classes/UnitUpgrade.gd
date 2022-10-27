@@ -49,7 +49,7 @@ func apply(unit):
 		EFFECT.MORE_SPEED:
 			unit.speed += amount
 		EFFECT.MORE_DAMAGE:
-			unit.damage += amount
+			unit.attack_damage += amount
 		EFFECT.MORE_RANGE:
 			unit.range += amount
 		_:
