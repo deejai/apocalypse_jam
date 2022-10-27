@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=3 uid="uid://babu5hvl6k0xs"]
+
+[ext_resource type="AudioStream" uid="uid://3eakmtgxkblv" path="res://Assets/Audio/Voice/Soldiers/yessir.wav" id="1_4v33k"]
+[ext_resource type="AudioStream" uid="uid://bkco25oyky0cs" path="res://Assets/Audio/Voice/Soldiers/ok.wav" id="1_j55lq"]
+[ext_resource type="AudioStream" uid="uid://hny2gurwylas" path="res://Assets/Audio/Voice/Soldiers/death_blagh.wav" id="2_jdyau"]
+
+[node name="SoliderVoice" type="Node2D"]
+
+[node name="ResponseYessir" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("1_4v33k")
+
+[node name="ResponseOk" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("1_j55lq")
+
+[node name="Die" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("2_jdyau")

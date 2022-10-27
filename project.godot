@@ -34,7 +34,7 @@ _global_script_classes=[{
 "language": &"GDScript",
 "path": "res://Main/Classes/Battle.gd"
 }, {
-"base": "Node",
+"base": "Node2D",
 "class": &"Floor",
 "language": &"GDScript",
 "path": "res://Main/Classes/Floor.gd"
@@ -112,8 +112,6 @@ config/icon="res://icon.svg"
 [autoload]
 
 Game="*res://Main/Game.gd"
-AbilityEffectDetails="*res://Main/Data/AbilityEffectDetails.gd"
-ActivatedAbilityDetails="*res://Main/Data/ActivatedAbilityDetails.gd"
 Audio="*res://Main/Audio.gd"
 
 [debug]
@@ -124,6 +122,7 @@ gdscript/warnings/shadowed_variable=0
 
 window/size/viewport_width=1280
 window/size/viewport_height=720
+window/size/resizable=false
 window/size/window_width_override=1280
 window/size/window_height_override=720
 
