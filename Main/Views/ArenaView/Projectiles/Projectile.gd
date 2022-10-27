@@ -12,7 +12,7 @@ var time_alive: int = 0
 var alliance: ArenaUnit.ALLIANCE
 var payload_fn: Callable = func(proj, target):
 	target.apply_damage(proj.damage)
-	target.apply_status(ArenaUnit.STATUS.HIT, 0.05)
+	target.apply_status(ArenaUnit.STATUS.HIT, 0.3)
 
 func init(alliance: ArenaUnit.ALLIANCE, position: Vector2, direction: Vector2, speed: int, damage: int):
 	self.alliance = alliance

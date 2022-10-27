@@ -34,7 +34,7 @@ _global_script_classes=[{
 "language": &"GDScript",
 "path": "res://Main/Classes/Battle.gd"
 }, {
-"base": "Node2D",
+"base": "Node",
 "class": &"Floor",
 "language": &"GDScript",
 "path": "res://Main/Classes/Floor.gd"
@@ -112,6 +112,8 @@ config/icon="res://icon.svg"
 [autoload]
 
 Game="*res://Main/Game.gd"
+AbilityEffectDetails="*res://Main/Data/AbilityEffectDetails.gd"
+ActivatedAbilityDetails="*res://Main/Data/ActivatedAbilityDetails.gd"
 Audio="*res://Main/Audio.gd"
 
 [debug]
