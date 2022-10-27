@@ -4,6 +4,7 @@ class_name Unit
 
 enum SPEC { NORMAL, HERO, SUMMON }
 enum BASE { OLYMPIAN_APOLLO, SOLDIER_SPEAR, SOLDIER_SWORD, SOLDIER_ARCHER, HEALER }
+var voice: Audio.VOICE
 
 var status: String = "healthy"
 var speed: float = 100
@@ -75,9 +76,11 @@ var data = {
 func _init(base: Unit.BASE, level: int = 0):
 	self.base = base
 	
+	
 	self.level = level
 
 	self.spec = data[base]["spec"]
+	self.voice = data[base]["voice"]
 	self.attack_damage = data[base]["attack_damage"] * (1.0 + 0.25 * level)
 	self.range = data[base]["range"]
 	self.hp = data[base]["hp"] * (1.0 + 0.15 * level)

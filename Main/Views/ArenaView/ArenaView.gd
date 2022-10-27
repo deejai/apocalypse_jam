@@ -224,8 +224,9 @@ func _input(event: InputEvent):
 					mouse_left_pressed = false
 					
 					if len(selected_units) > 0 and selected_units[0].alliance == ArenaUnit.ALLIANCE.PLAYER:
-						Audio.soldier_voice_yessir.play()
 						highlighted_unit = selected_units[0]
+						Audio.data[highlighted_unit.unit.voice].Greeting[randi()%len(Audio.data[highlighted_unit.unit.voice].Greeting)].play()
+						
 					else:
 						highlighted_unit = null
 
@@ -247,8 +248,7 @@ func _input(event: InputEvent):
 						for arena_unit in selected_units:
 							arena_unit.attack_target = attack_target
 							arena_unit.move_target = event.position
-
-						Audio.soldier_voice_ok.play()
+							Audio.data[arena_unit.unit.voice].Response[randi()%len(Audio.data[arena_unit.unit.voice].Response)].play()
 	else:
 		pass
 

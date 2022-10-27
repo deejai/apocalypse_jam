@@ -1,10 +1,10 @@
 [gd_scene load_steps=6 format=3 uid="uid://ca4thmnsuj5dq"]
 
-[ext_resource type="AudioStream" uid="uid://dcu6i2ymq82ro" path="res://Assets/Audio/Voice/Soldiers/ok.wav" id="1_nfd1h"]
-[ext_resource type="AudioStream" uid="uid://ct4bc0lyiw57x" path="res://Assets/Audio/Voice/Soldiers/death_blagh.wav" id="2_qe4ek"]
-[ext_resource type="AudioStream" uid="uid://crcgx2873xf4x" path="res://Assets/Audio/Voice/Soldiers/mmoof.wav" id="3_nq881"]
-[ext_resource type="AudioStream" uid="uid://cxp7yjqnetjrv" path="res://Assets/Audio/Voice/Soldiers/yessir.wav" id="4_iydxl"]
-[ext_resource type="AudioStream" uid="uid://cktydpsym6web" path="res://Assets/Audio/Voice/Soldiers/salve1.wav" id="5_t3ndh"]
+[ext_resource type="AudioStream" uid="uid://dfi36q3q7822x" path="res://Assets/Audio/Voice/Soldiers/ok.wav" id="1_nfd1h"]
+[ext_resource type="AudioStream" uid="uid://bn7sacvyk0xij" path="res://Assets/Audio/Voice/Soldiers/death_blagh.wav" id="2_qe4ek"]
+[ext_resource type="AudioStream" uid="uid://cg1flooudg3lh" path="res://Assets/Audio/Voice/Soldiers/mmoof.wav" id="3_nq881"]
+[ext_resource type="AudioStream" uid="uid://cf53keexevlsk" path="res://Assets/Audio/Voice/Soldiers/yessir.wav" id="4_iydxl"]
+[ext_resource type="AudioStream" uid="uid://f6thgn27t6e3" path="res://Assets/Audio/Voice/Soldiers/salve1.wav" id="5_t3ndh"]
 
 [node name="ApolloVoice" type="Node2D"]
 
@@ -30,3 +30,7 @@ stream = ExtResource("4_iydxl")
 
 [node name="Salve" type="AudioStreamPlayer" parent="Greeting"]
 stream = ExtResource("5_t3ndh")
+
+[node name="FriendlyCast" type="Node" parent="."]
+
+[node name="EnemyCast" type="Node" parent="."]

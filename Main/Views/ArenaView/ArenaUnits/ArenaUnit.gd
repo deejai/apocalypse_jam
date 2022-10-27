@@ -168,7 +168,7 @@ func apply_damage(amount: int):
 	hp -= amount
 	if hp <= 0:
 		dying = true
-		Audio.soldier_voice_die.play()
+		Audio.data[unit.voice].Die[randi()%len(Audio.data[unit.voice].Die)].play()
 		for i in range(len(Game.player.squad)):
 			if Game.player.squad[i].unit == unit:
 				Game.player.squad.pop_at(i)

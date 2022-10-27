@@ -1,8 +1,8 @@
 [gd_scene load_steps=4 format=3 uid="uid://cse3rga63w0lp"]
 
-[ext_resource type="AudioStream" uid="uid://bpai78r3k8lp2" path="res://Assets/Audio/Voice/Athena/Athena such incompetence.wav" id="1_bw78n"]
-[ext_resource type="AudioStream" uid="uid://dabwd25n54nnc" path="res://Assets/Audio/Voice/Athena/Female Battle Cry 2.wav" id="2_58lw0"]
-[ext_resource type="AudioStream" uid="uid://7k4j7lvmwn18" path="res://Assets/Audio/Voice/Athena/Athena headache.wav" id="3_ol278"]
+[ext_resource type="AudioStream" uid="uid://dumsu5uj45643" path="res://Assets/Audio/Voice/Athena/Athena such incompetence.wav" id="1_bw78n"]
+[ext_resource type="AudioStream" uid="uid://bgxq38t308vpq" path="res://Assets/Audio/Voice/Athena/Female Battle Cry 2.wav" id="2_58lw0"]
+[ext_resource type="AudioStream" uid="uid://cix3y3hfs4frx" path="res://Assets/Audio/Voice/Athena/Athena headache.wav" id="3_ol278"]
 
 [node name="AthenaVoice" type="Node2D"]
 
@@ -22,3 +22,7 @@ stream = ExtResource("2_58lw0")
 
 [node name="headache" type="AudioStreamPlayer" parent="Greeting"]
 stream = ExtResource("3_ol278")
+
+[node name="FriendlyCast" type="Node" parent="."]
+
+[node name="EnemyCast" type="Node" parent="."]
