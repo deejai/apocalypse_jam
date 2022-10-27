@@ -1,8 +1,8 @@
 [gd_scene load_steps=4 format=3 uid="uid://cse3rga63w0lp"]
 
-[ext_resource type="AudioStream" uid="uid://du57qf4cqxg4p" path="res://Assets/Audio/Voice/Athena/Athena such incompetence.wav" id="1_bw78n"]
-[ext_resource type="AudioStream" uid="uid://bd3ulu34khqkt" path="res://Assets/Audio/Voice/Athena/Female Battle Cry 2.wav" id="2_58lw0"]
-[ext_resource type="AudioStream" uid="uid://6y7p23epgkgc" path="res://Assets/Audio/Voice/Athena/Athena headache.wav" id="3_ol278"]
+[ext_resource type="AudioStream" uid="uid://da5nol2jgsoyy" path="res://Assets/Audio/Voice/Athena/Athena such incompetence.wav" id="1_bw78n"]
+[ext_resource type="AudioStream" uid="uid://cwf2dp3uo0pjw" path="res://Assets/Audio/Voice/Athena/Female Battle Cry 2.wav" id="2_58lw0"]
+[ext_resource type="AudioStream" uid="uid://do3y6kbj4oeic" path="res://Assets/Audio/Voice/Athena/Athena headache.wav" id="3_ol278"]
 
 [node name="AthenaVoice" type="Node2D"]
 

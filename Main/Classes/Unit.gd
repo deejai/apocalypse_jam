@@ -3,7 +3,7 @@ extends Node
 class_name Unit
 
 enum SPEC { NORMAL, HERO, SUMMON }
-enum BASE { OLYMPIAN_APOLLO, SOLDIER_SPEAR, SOLDIER_SWORD, SOLDIER_ARCHER, HEALER }
+enum BASE { OLYMPIAN_APOLLO, OLYMPIAN_ATHENA, OLYMPIAN_ARES, OLYMPIAN_HADES, OLYMPIAN_HERMES, OLYMPIAN_ZEUS, SOLDIER_SPEAR, SOLDIER_SWORD, SOLDIER_ARCHER, HEALER }
 var voice: Audio.VOICE
 
 var status: String = "healthy"
@@ -28,9 +28,59 @@ var data = {
 	BASE.OLYMPIAN_APOLLO:  {
 		"spec": SPEC.HERO,
 		"voice": Audio.VOICE.APOLLO,
-		"range": 150,
-		"hp": 180,
+		"range": 200,
+		"hp": 150,
 		"speed": 150,
+		"attack_damage": 15,
+		"attack_speed": 100,
+		"abilities":  ["Mind Dart", "Hellfire"]
+	},
+	BASE.OLYMPIAN_ARES:  {
+		"spec": SPEC.HERO,
+		"voice": Audio.VOICE.ARES,
+		"range": 50,
+		"hp": 300,
+		"speed": 100,
+		"attack_damage": 30,
+		"attack_speed": 50,
+		"abilities":  ["Mind Dart", "Hellfire"]
+	},
+	BASE.OLYMPIAN_ATHENA:  {
+		"spec": SPEC.HERO,
+		"voice": Audio.VOICE.ATHENA,
+		"range": 50,
+		"hp": 200,
+		"speed": 100,
+		"attack_damage": 15,
+		"attack_speed": 100,
+		"abilities":  ["Mind Dart", "Hellfire"]
+	},
+	BASE.OLYMPIAN_HADES:  {
+		"spec": SPEC.HERO,
+		"voice": Audio.VOICE.HADES,
+		"range": 150,
+		"hp": 150,
+		"speed": 100,
+		"attack_damage": 10,
+		"attack_speed": 100,
+		"abilities":  ["Mind Dart", "Hellfire"]
+	},
+	BASE.OLYMPIAN_HERMES:  {
+		"spec": SPEC.HERO,
+		"voice": Audio.VOICE.HERMES,
+		"range": 25,
+		"hp": 100,
+		"speed": 200,
+		"attack_damage": 8,
+		"attack_speed": 200,
+		"abilities":  ["Mind Dart", "Hellfire"]
+	},
+	BASE.OLYMPIAN_ZEUS:  {
+		"spec": SPEC.HERO,
+		"voice": Audio.VOICE.ZEUS,
+		"range": 150,
+		"hp": 200,
+		"speed": 130,
 		"attack_damage": 15,
 		"attack_speed": 100,
 		"abilities":  ["Mind Dart", "Hellfire"]
@@ -38,34 +88,34 @@ var data = {
 	BASE.HEALER: {
 		"spec": SPEC.NORMAL,
 		"voice": Audio.VOICE.HEALER,
-		"range": 200,
+		"range": 100,
 		"hp": 60,
 		"speed": 100,
-		"attack_damage": 4,
+		"attack_damage": 6,
 		"attack_speed": 100,
 	},
 	BASE.SOLDIER_SPEAR: {
 		"spec": SPEC.NORMAL,
 		"voice": Audio.VOICE.SOLDIER,
-		"range": 125,
-		"hp": 100,
+		"range": 50,
+		"hp": 150,
 		"speed": 080,
-		"attack_damage": 11,
+		"attack_damage": 10,
 		"attack_speed": 100,
 	},
 	BASE.SOLDIER_SWORD: {
 		"spec": SPEC.NORMAL,
 		"voice": Audio.VOICE.SOLDIER,
-		"range": 75,
+		"range": 40,
 		"hp": 100,
 		"speed": 150,
-		"attack_damage": 10,
+		"attack_damage": 8,
 		"attack_speed": 100,
 	},
 	BASE.SOLDIER_ARCHER: {
 		"spec": SPEC.NORMAL,
 		"voice": Audio.VOICE.SOLDIER,
-		"range": 250,
+		"range": 150,
 		"hp": 60,
 		"speed": 120,
 		"attack_damage": 8,
