@@ -65,15 +65,15 @@ func init(unit, alliance: ALLIANCE):
 
 func _ready():
 	statuses = {
-		STATUS.STUN: {"duration": 0, "particles_instance": null, "particles_scene": Game.arena.particles_stun},
-		STATUS.SILENCE: {"duration": 0, "particles_instance": null, "particles_scene": null},
-		STATUS.ROOT: {"duration": 0, "particles_instance": null, "particles_scene": null},
-		STATUS.INVULN: {"duration": 0, "particles_instance": null, "particles_scene": null},
-		STATUS.HEAL: {"duration": 0, "particles_instance": null, "particles_scene": null},
-		STATUS.NOHEAL: {"duration": 0, "particles_instance": null, "particles_scene": null},
-		STATUS.ONFIRE: {"duration": 0, "particles_instance": null, "particles_scene": Game.arena.particles_fire},
-		STATUS.POISON: {"duration": 0, "particles_instance": null, "particles_scene": Game.arena.particles_poison},
-		STATUS.HIT: {"duration": 0, "particles_instance": null, "particles_scene": Game.arena.particles_bloodspurt},
+		STATUS.STUN: {"duration": 0.0, "particles_instance": null, "particles_scene": Game.arena.particles_stun},
+		STATUS.SILENCE: {"duration": 0.0, "particles_instance": null, "particles_scene": null},
+		STATUS.ROOT: {"duration": 0.0, "particles_instance": null, "particles_scene": null},
+		STATUS.INVULN: {"duration": 0.0, "particles_instance": null, "particles_scene": null},
+		STATUS.HEAL: {"duration": 0.0, "particles_instance": null, "particles_scene": null},
+		STATUS.NOHEAL: {"duration": 0.0, "particles_instance": null, "particles_scene": null},
+		STATUS.ONFIRE: {"duration": 0.0, "particles_instance": null, "particles_scene": Game.arena.particles_fire},
+		STATUS.POISON: {"duration": 0.0, "particles_instance": null, "particles_scene": Game.arena.particles_poison},
+		STATUS.HIT: {"duration": 0.0, "particles_instance": null, "particles_scene": Game.arena.particles_bloodspurt},
 	}
 #	print(move_target)
 #	print($Collision.name)
@@ -174,13 +174,13 @@ func apply_damage(amount: int):
 				Game.player.squad.pop_at(i)
 				break
 
-func apply_healing(amount: int):
+func apply_healing(amount: float):
 	if statuses[STATUS.NOHEAL]["duration"] > 0.0:
 		return
 
 	hp = min(unit.hp, hp + amount)
 
-func apply_status(status: STATUS, duration: int):
+func apply_status(status: STATUS, duration: float):
 	statuses[status]["duration"] = max(statuses[status]["duration"], duration)
 
 func get_attack_damage():
@@ -205,6 +205,8 @@ func in_range(target: ArenaUnit):
 
 func handle_statuses(delta):
 	for status in STATUS.values():
+		if status == STATUS.HIT:
+			print(statuses[status]["duration"])
 		statuses[status]["duration"] = max(0, statuses[status]["duration"]-delta)
 
 	for status in STATUS.values():
@@ -219,6 +221,7 @@ func handle_statuses(delta):
 			else:
 				statuses[status]["particles_instance"] = statuses[status]["particles_scene"].instantiate()
 				add_child(statuses[status]["particles_instance"])
+
 		elif statuses[status]["particles_instance"] != null and statuses[status]["duration"] == 0.0:
 			statuses[status]["particles_instance"].queue_free()
 			statuses[status]["particles_instance"] = null

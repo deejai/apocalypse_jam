@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://c14inf2ms8wl6"
+path="res://.godot/imported/Body Impact 1.wav-bc84f0c125cb75d7f4c918ca8be4f04f.sample"
+
+[deps]
+
+source_file="res://Assets/Audio/Effects/Body Impact 1.wav"
+dest_files=["res://.godot/imported/Body Impact 1.wav-bc84f0c125cb75d7f4c918ca8be4f04f.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

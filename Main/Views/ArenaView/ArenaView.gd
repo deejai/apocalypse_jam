@@ -6,7 +6,7 @@ var particles_fire = load("res://Main/Particles/Fire.tscn")
 var particles_stun = load("res://Main/Particles/Stun.tscn")
 var particles_poison = load("res://Main/Particles/Poison.tscn")
 var particles_smokecloud = load("res://Main/Particles/SmokeCloud.tscn")
-var particles_bloodspurt = load("res://Main/Particles/BloodSpurt.tscn")
+var particles_bloodspurt = load("res://Main/Particles/Blood.tscn")
 
 var particles_unimplemented = load("res://Main/Particles/Unimplemented.tscn")
 
@@ -24,7 +24,6 @@ var player_arena_units = []
 var active_effects = []
 
 var selected_units = []
-
 var mouse_left_pressed = false
 var mouse_left_pressed_start_pos = Vector2.ZERO
 var button_pressed_start_drag_dist = 30

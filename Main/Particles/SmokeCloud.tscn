@@ -1,8 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://x354lk1bh0sv"]
+[gd_scene load_steps=4 format=3 uid="uid://c5wllvte3tc0r"]
 
 [sub_resource type="Gradient" id="Gradient_n8ycn"]
-offsets = PackedFloat32Array(0, 0.331169, 0.337662, 0.915584, 1)
-colors = PackedColorArray(0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1)
+offsets = PackedFloat32Array(0, 0.337662, 1)
+colors = PackedColorArray(0.43134, 0.43134, 0.43134, 0.690196, 0.537255, 0.537255, 0.537255, 0.756863, 0.703808, 0.703808, 0.703808, 0.745098)
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_lvdrd"]
 gradient = SubResource("Gradient_n8ycn")
@@ -21,8 +21,8 @@ orbit_velocity_min = 0.0
 orbit_velocity_max = 0.0
 linear_accel_min = -100.0
 linear_accel_max = -100.0
-scale_min = 0.0
-scale_max = 5.93
+scale_min = 4.92
+scale_max = 14.78
 color = Color(0.658824, 0.643137, 0.647059, 0.866667)
 color_ramp = SubResource("GradientTexture1D_lvdrd")
 
@@ -30,9 +30,10 @@ color_ramp = SubResource("GradientTexture1D_lvdrd")
 z_index = 300
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="."]
-amount = 150
-lifetime = 5.0
+amount = 64
+lifetime = 4.0
 preprocess = 2.0
+speed_scale = 2.21
 trail_length_secs = 1.0
 trail_sections = 2
 trail_section_subdivisions = 2

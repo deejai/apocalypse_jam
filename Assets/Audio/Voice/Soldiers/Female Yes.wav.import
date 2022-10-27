@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://chr1p8vrfli01"
+path="res://.godot/imported/Female Yes.wav-3f7c160698fad81fa3f1596cc8a7732e.sample"
+
+[deps]
+
+source_file="res://Assets/Audio/Voice/Soldiers/Female Yes.wav"
+dest_files=["res://.godot/imported/Female Yes.wav-3f7c160698fad81fa3f1596cc8a7732e.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0
