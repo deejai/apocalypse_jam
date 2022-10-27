@@ -5,6 +5,8 @@ var unit_bounds = {"left": 0, "right": 1280-200, "top": 0, "bottom": 720}
 var particles_fire = load("res://Main/Particles/Fire.tscn")
 var particles_stun = load("res://Main/Particles/Stun.tscn")
 var particles_poison = load("res://Main/Particles/Poison.tscn")
+var particles_smokecloud = load("res://Main/Particles/SmokeCloud.tscn")
+var particles_bloodspurt = load("res://Main/Particles/BloodSpurt.tscn")
 
 var particles_unimplemented = load("res://Main/Particles/Unimplemented.tscn")
 

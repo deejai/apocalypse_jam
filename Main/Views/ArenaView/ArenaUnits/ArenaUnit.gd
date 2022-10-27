@@ -73,7 +73,7 @@ func _ready():
 		STATUS.NOHEAL: {"duration": 0, "particles_instance": null, "particles_scene": null},
 		STATUS.ONFIRE: {"duration": 0, "particles_instance": null, "particles_scene": Game.arena.particles_fire},
 		STATUS.POISON: {"duration": 0, "particles_instance": null, "particles_scene": Game.arena.particles_poison},
-		STATUS.HIT: {"duration": 0, "particles_instance": null, "particles_scene": null},
+		STATUS.HIT: {"duration": 0, "particles_instance": null, "particles_scene": Game.arena.particles_bloodspurt},
 	}
 #	print(move_target)
 #	print($Collision.name)
