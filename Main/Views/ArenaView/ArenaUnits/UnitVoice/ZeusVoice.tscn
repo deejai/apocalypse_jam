@@ -1,10 +1,10 @@
 [gd_scene load_steps=6 format=3 uid="uid://du7i8t66yv6xb"]
 
-[ext_resource type="AudioStream" uid="uid://dfi36q3q7822x" path="res://Assets/Audio/Voice/Soldiers/ok.wav" id="1_nfd1h"]
-[ext_resource type="AudioStream" uid="uid://bn7sacvyk0xij" path="res://Assets/Audio/Voice/Soldiers/death_blagh.wav" id="2_qe4ek"]
-[ext_resource type="AudioStream" uid="uid://cg1flooudg3lh" path="res://Assets/Audio/Voice/Soldiers/mmoof.wav" id="3_nq881"]
-[ext_resource type="AudioStream" uid="uid://cf53keexevlsk" path="res://Assets/Audio/Voice/Soldiers/yessir.wav" id="4_iydxl"]
-[ext_resource type="AudioStream" uid="uid://f6thgn27t6e3" path="res://Assets/Audio/Voice/Soldiers/salve1.wav" id="5_t3ndh"]
+[ext_resource type="AudioStream" uid="uid://c12yhylkmlx5k" path="res://Assets/Audio/Voice/Soldiers/ok.wav" id="1_nfd1h"]
+[ext_resource type="AudioStream" uid="uid://c5w0mpmfxg13r" path="res://Assets/Audio/Voice/Soldiers/death_blagh.wav" id="2_qe4ek"]
+[ext_resource type="AudioStream" uid="uid://ckjgabhlunoje" path="res://Assets/Audio/Voice/Soldiers/mmoof.wav" id="3_nq881"]
+[ext_resource type="AudioStream" uid="uid://dupho7hu6fvlj" path="res://Assets/Audio/Voice/Soldiers/yessir.wav" id="4_iydxl"]
+[ext_resource type="AudioStream" uid="uid://cqhc2fth3xo8e" path="res://Assets/Audio/Voice/Soldiers/salve1.wav" id="5_t3ndh"]
 
 [node name="ZeusVoice" type="Node2D"]
 

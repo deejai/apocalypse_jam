@@ -1,5 +1,8 @@
 extends Node
 
+var battleMusic = load("res://Main/Views/Audio/battleMusic.tscn").instantiate()
+var menuMusic = load("res://Main/Views/Audio/menuMusic.tscn").instantiate()
+
 enum VOICE {SOLDIER, HEALER, HERMES, APOLLO, ZEUS, ARES, ATHENA, HADES}
 
 var soldier_voice = load("res://Main/Views/ArenaView/ArenaUnits/UnitVoice/SoldierVoice.tscn").instantiate()
@@ -29,9 +32,6 @@ func _ready():
 		data[v]= {}
 		for key in ["Greeting", "Response", "Die", "Hit", "FriendlyCast", "EnemyCast"]:
 			data[v][key] = []
-			print(v)
-			print(data)
-			print(key)
 			for vl in voiceSceneMap[v].get_node(key).get_children():
 				data[v][key].append(vl)
 	pass # Replace with function body.

@@ -40,6 +40,8 @@ func setMenuEnabled(enable: bool):
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	Game.arena = self
+	
+	Audio.battleMusic.play()
 
 	# place our units
 	print(particles_stun)

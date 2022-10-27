@@ -1,11 +1,11 @@
 [gd_scene load_steps=7 format=3 uid="uid://b2vvg6erhx76b"]
 
-[ext_resource type="AudioStream" uid="uid://dpcm2mhocm7iq" path="res://Assets/Audio/Voice/Healer/Healer_female on my way.wav" id="1_nq6io"]
-[ext_resource type="AudioStream" uid="uid://bln58nmpk3kbq" path="res://Assets/Audio/Voice/Healer/Healer death line.wav" id="2_fk8w0"]
-[ext_resource type="AudioStream" uid="uid://c5ny4rsdwmlxq" path="res://Assets/Audio/Voice/Healer/Female pain 1.wav" id="3_2no17"]
-[ext_resource type="AudioStream" uid="uid://qt6w4wruqobf" path="res://Assets/Audio/Voice/Healer/Female Yes.wav" id="4_e278i"]
-[ext_resource type="AudioStream" uid="uid://chqte2twflgie" path="res://Assets/Audio/Voice/Healer/Healer all better.wav" id="5_efofe"]
-[ext_resource type="AudioStream" uid="uid://c5htrshghqohb" path="res://Assets/Audio/Voice/Healer/Healer that_s gotta hurt.wav" id="6_jjdlk"]
+[ext_resource type="AudioStream" uid="uid://b1s55ppvcqhrx" path="res://Assets/Audio/Voice/Healer/Healer_female on my way.wav" id="1_nq6io"]
+[ext_resource type="AudioStream" uid="uid://bpn2413wfnkqm" path="res://Assets/Audio/Voice/Healer/Healer death line.wav" id="2_fk8w0"]
+[ext_resource type="AudioStream" uid="uid://cnrsrpmfnrod3" path="res://Assets/Audio/Voice/Healer/Female pain 1.wav" id="3_2no17"]
+[ext_resource type="AudioStream" uid="uid://dili1eo37wnjq" path="res://Assets/Audio/Voice/Healer/Female Yes.wav" id="4_e278i"]
+[ext_resource type="AudioStream" uid="uid://c6cd1mi0re3sm" path="res://Assets/Audio/Voice/Healer/Healer all better.wav" id="5_efofe"]
+[ext_resource type="AudioStream" uid="uid://dh5kr0swhscsq" path="res://Assets/Audio/Voice/Healer/Healer that_s gotta hurt.wav" id="6_jjdlk"]
 
 [node name="HealerVoice" type="Node2D"]
 
