@@ -23,32 +23,7 @@ func _init (
 	self.key = key
 	set_level(level)
 
-var ability_data = {
-	"Mind Dart": {
-		"icon": load("res://Assets/PNG/bg.png"),
-		"effect_fn": mind_dart,
-		"targeting_type": ActivatedAbility.TARGETING_TYPE.SINGLE_UNIT,
-		"targets": ActivatedAbility.TARGETS.OTHER,
-		"cooldown_fn": func(level): return max(3, 6 - level),
-		"range_fn": func(level): return 200,
-		"area_of_effect_fn": func(level): return 0,
-		"duration_fn": func(level): return 0,
-	},
-	"Hellfire": {
-		"icon": load("res://Assets/PNG/bg.png"),
-		"effect_fn": hellfire,
-		"targeting_type": ActivatedAbility.TARGETING_TYPE.UNITS_IN_AOE,
-		"targets": ActivatedAbility.TARGETS.OTHER,
-		"cooldown_fn": func(level): return max(8, 12 - level),
-		"range_fn": func(level): return 135,
-		"area_of_effect_fn": func(level): return 50 + level * 20,
-		"duration_fn": func(level): return 3,
-	}
-}
-
-var proj_spear = load("res://Main/Views/ArenaView/Projectiles/Spear.tscn")
-
-func mind_dart(instance: AbilityEffect, flag: AbilityEffect.FLAG):
+static func mind_dart(instance: AbilityEffect, flag: AbilityEffect.FLAG):
 	if not is_instance_valid(instance.props["target_unit"]):
 		instance.queue_free()
 		return
@@ -63,7 +38,7 @@ func mind_dart(instance: AbilityEffect, flag: AbilityEffect.FLAG):
 		AbilityEffect.FLAG.TICK:
 			pass
 
-func soothing_vines(instance: AbilityEffect, flag: AbilityEffect.FLAG):
+static func soothing_vines(instance: AbilityEffect, flag: AbilityEffect.FLAG):
 	if not is_instance_valid(instance.props["target_unit"]):
 		instance.queue_free()
 		return
@@ -80,7 +55,7 @@ func soothing_vines(instance: AbilityEffect, flag: AbilityEffect.FLAG):
 			instance.props["target_unit"].apply_healing(5 + instance.level * 1)
 			return
 
-func poison_nova(instance: AbilityEffect, flag: AbilityEffect.FLAG):
+static func poison_nova(instance: AbilityEffect, flag: AbilityEffect.FLAG):
 	if not is_instance_valid(instance.props["target_unit"]):
 		instance.queue_free()
 		return
@@ -95,7 +70,7 @@ func poison_nova(instance: AbilityEffect, flag: AbilityEffect.FLAG):
 		AbilityEffect.FLAG.TICK:
 			instance.props["target_unit"].apply_damage(7 + instance.level * 3)
 
-func summon_imp(instance: AbilityEffect, flag: AbilityEffect.FLAG):
+static func summon_imp(instance: AbilityEffect, flag: AbilityEffect.FLAG):
 	match flag:
 		AbilityEffect.FLAG.START:
 			print("Tried to summon imp, but failed")
@@ -107,7 +82,7 @@ func summon_imp(instance: AbilityEffect, flag: AbilityEffect.FLAG):
 		AbilityEffect.FLAG.TICK:
 			pass
 
-func throw_spear(instance: AbilityEffect, flag: AbilityEffect.FLAG):
+static func throw_spear(instance: AbilityEffect, flag: AbilityEffect.FLAG):
 	if not is_instance_valid(instance.props["target_unit"]) or not is_instance_valid(instance.props["source_unit"]):
 		instance.queue_free()
 		return
@@ -116,10 +91,10 @@ func throw_spear(instance: AbilityEffect, flag: AbilityEffect.FLAG):
 		AbilityEffect.FLAG.START:
 			var direction = instance.props["source_unit"].direction_to(instance.props["target_unit"])
 			var alliance = instance.props["source_unit"].alliance
-			var spear = proj_spear.instantiate().init(alliance, direction, 300, 25)
+			var spear = load("res://Main/Views/ArenaView/Projectiles/Spear.tscn").instantiate().init(alliance, direction, 300, 25)
 			spear.transform *= 2
 			spear.max_hits = -1
-			get_parent().add_child(spear)
+			Game.arena.add_child(spear)
 
 		AbilityEffect.FLAG.END:
 			pass
@@ -127,7 +102,7 @@ func throw_spear(instance: AbilityEffect, flag: AbilityEffect.FLAG):
 		AbilityEffect.FLAG.TICK:
 			pass
 
-func hellfire(instance: AbilityEffect, flag: AbilityEffect.FLAG):
+static func hellfire(instance: AbilityEffect, flag: AbilityEffect.FLAG):
 	if not is_instance_valid(instance.props["target_unit"]):
 		instance.queue_free()
 		return
@@ -141,7 +116,7 @@ func hellfire(instance: AbilityEffect, flag: AbilityEffect.FLAG):
 			pass
 
 		AbilityEffect.FLAG.TICK:
-			instance.props["target_unit"].apply_damage(5 + level*3)
+			instance.props["target_unit"].apply_damage(5 + instance.level*3)
 			pass
 
 # Called when the node enters the scene tree for the first time.
@@ -153,7 +128,7 @@ func _process(delta):
 	pass
 
 func _set_details():
-	var data = ability_data[key]
+	var data = get_ability_data()[key]
 	icon = data["icon"]
 	effect_fn = data["effect_fn"]
 	targeting_type = data["targeting_type"]
@@ -179,3 +154,27 @@ static func affected_alliances(alliance: ArenaUnit.ALLIANCE, which: TARGETS) -> 
 		_:
 			assert(false)
 			return []
+
+static func get_ability_data():
+	return {
+		"Mind Dart": {
+			"icon": load("res://Assets/PNG/bg.png"),
+			"effect_fn": func(instance, flag): ActivatedAbility.mind_dart(instance, flag),
+			"targeting_type": ActivatedAbility.TARGETING_TYPE.SINGLE_UNIT,
+			"targets": ActivatedAbility.TARGETS.OTHER,
+			"cooldown_fn": func(level): return max(3, 6 - level),
+			"range_fn": func(level): return 200,
+			"area_of_effect_fn": func(level): return 0,
+			"duration_fn": func(level): return 0,
+		},
+		"Hellfire": {
+			"icon": load("res://Assets/PNG/bg.png"),
+			"effect_fn": func(instance, flag): ActivatedAbility.hellfire(instance, flag),
+			"targeting_type": ActivatedAbility.TARGETING_TYPE.UNITS_IN_AOE,
+			"targets": ActivatedAbility.TARGETS.OTHER,
+			"cooldown_fn": func(level): return max(8, 12 - level),
+			"range_fn": func(level): return 135,
+			"area_of_effect_fn": func(level): return 50 + level * 20,
+			"duration_fn": func(level): return 3,
+		}
+	}

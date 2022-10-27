@@ -2,14 +2,6 @@ extends Node2D
 
 var unit_bounds = {"left": 0, "right": 1280-200, "top": 0, "bottom": 720}
 
-var models = {
-	Unit.BASE.OLYMPIAN_APOLLO: load("res://Main/Views/ArenaView/ArenaUnits/Olympian_Apollo.tscn"),
-	Unit.BASE.SOLDIER_SWORD: load("res://Main/Views/ArenaView/ArenaUnits/Soldier_Sword.tscn"),
-	Unit.BASE.SOLDIER_SPEAR: load("res://Main/Views/ArenaView/ArenaUnits/Soldier_Spear.tscn"),
-	Unit.BASE.SOLDIER_ARCHER: load("res://Main/Views/ArenaView/ArenaUnits/Soldier_Archer.tscn"),
-	Unit.BASE.HEALER: load("res://Main/Views/ArenaView/ArenaUnits/Healer.tscn"),
-}
-
 var particles_fire = load("res://Main/Particles/Fire.tscn")
 var particles_stun = load("res://Main/Particles/Stun.tscn")
 var particles_poison = load("res://Main/Particles/Poison.tscn")
@@ -46,11 +38,12 @@ func setMenuEnabled(enable: bool):
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	Game.arena = self
+
 	# place our units
 	print(particles_stun)
-	Game.arena = self
 	load_units(Game.next_battle.enemies, enemy_arena_units, ArenaUnit.ALLIANCE.ENEMY)
-	load_units(Game.player.squad_active, player_arena_units, ArenaUnit.ALLIANCE.PLAYER)
+	load_units(Game.player.squad, player_arena_units, ArenaUnit.ALLIANCE.PLAYER)
 	Game.next_battle = null
 	# generate enemy units based on progress and current map node
 	# place enemy units
@@ -67,7 +60,7 @@ func _ready():
 
 func load_units(arr_from: Array, arr_to: Array, alliance: ArenaUnit.ALLIANCE):
 	for data in arr_from:
-		var arena_unit = models[data.unit.base].instantiate().init(data.unit, alliance)
+		var arena_unit = Shared.get_models()[data.unit.base].instantiate().init(data.unit, alliance)
 
 		if "start_position" not in data.keys():
 			print(data)
@@ -320,14 +313,14 @@ func engage_ability(ability_index: int):
 	if not is_instance_valid(highlighted_unit) or highlighted_unit.alliance != ArenaUnit.ALLIANCE.PLAYER:
 		return
 
-	if highlighted_unit.statuses[ArenaUnit.STATUS.STUN] > 0 or highlighted_unit.statuses[ArenaUnit.STATUS.SILENCE] > 0:
+	if highlighted_unit.statuses[ArenaUnit.STATUS.STUN]["duration"] > 0 or highlighted_unit.statuses[ArenaUnit.STATUS.SILENCE]["duration"] > 0:
 		# TODO: Say "Silenced" or "Stunned" or something
 		return
 		
-	if ability_index >= len(highlighted_unit.unit.abilities):
+	if ability_index >= len(highlighted_unit.unit.activated_abilities):
 		return
 
-	targeting_ability = highlighted_unit.unit.abilities[ability_index]
+	targeting_ability = highlighted_unit.unit.activated_abilities[ability_index]
 
 	if highlighted_unit.ability_cooldowns[targeting_ability] > 0:
 		# TODO: play sound effect

@@ -8,7 +8,7 @@ enum TYPE { ZERG_RUSH, HEAL_ONE, SPAM_UNIT, BALANCED, RANGE_PLUS_TANKS }
 
 func _init(level: int):
 	var type = TYPE.values()[ randi() % len(TYPE) ]
-
+	return
 	type %= 2 # increase as you add more unit configurations
 
 	match type:
@@ -33,4 +33,3 @@ func _init(level: int):
 			beefy_soldier.attack_damage *= 2
 			beefy_soldier.hp *= 2
 			enemies.append({"unit": beefy_soldier, "start_position": Vector2(450, 50 + 25 + 150)})
-			print(enemies)

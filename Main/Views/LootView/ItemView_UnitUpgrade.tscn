@@ -1,22 +1,22 @@
-[gd_scene load_steps=8 format=3 uid="uid://08g7b6l0pwr6"]
+[gd_scene load_steps=8 format=3 uid="uid://djo0vhhc4k3ja"]
 
-[ext_resource type="Texture2D" uid="uid://bsbwhs031m2xs" path="res://Assets/upgrades_free.png" id="1_a75cv"]
-[ext_resource type="Script" path="res://Main/Views/Components/UnitUpgradeItem.gd" id="2_ufyer"]
+[ext_resource type="Texture2D" uid="uid://5ftlkqujn24d" path="res://Assets/upgrades_free.png" id="1_l25mv"]
+[ext_resource type="Script" path="res://Main/Views/LootView/UnitUpgradeItem.gd" id="2_11ffm"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_h22yx"]
-atlas = ExtResource("1_a75cv")
+atlas = ExtResource("1_l25mv")
 region = Rect2(0, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_nfap2"]
-atlas = ExtResource("1_a75cv")
+atlas = ExtResource("1_l25mv")
 region = Rect2(32, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_54ved"]
-atlas = ExtResource("1_a75cv")
+atlas = ExtResource("1_l25mv")
 region = Rect2(64, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_dwd6r"]
-atlas = ExtResource("1_a75cv")
+atlas = ExtResource("1_l25mv")
 region = Rect2(96, 0, 32, 32)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_ax28t"]
@@ -31,7 +31,7 @@ animations = [{
 position = Vector2(100, 100)
 scale = Vector2(4, 4)
 frames = SubResource("SpriteFrames_ax28t")
-script = ExtResource("2_ufyer")
+script = ExtResource("2_11ffm")
 
 [node name="Label" type="Label" parent="."]
 offset_left = 10.25

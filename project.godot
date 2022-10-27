@@ -15,6 +15,11 @@ _global_script_classes=[{
 "path": "res://Main/Classes/AbilityEffect.gd"
 }, {
 "base": "Node",
+"class": &"AbilityUpgrade",
+"language": &"GDScript",
+"path": "res://Main/Classes/AbilityUpgrade.gd"
+}, {
+"base": "Node",
 "class": &"ActivatedAbility",
 "language": &"GDScript",
 "path": "res://Main/Classes/ActivatedAbility.gd"
@@ -29,7 +34,7 @@ _global_script_classes=[{
 "language": &"GDScript",
 "path": "res://Main/Classes/Battle.gd"
 }, {
-"base": "Node",
+"base": "Node2D",
 "class": &"Floor",
 "language": &"GDScript",
 "path": "res://Main/Classes/Floor.gd"
@@ -45,6 +50,11 @@ _global_script_classes=[{
 "path": "res://Main/Classes/Olympian.gd"
 }, {
 "base": "Node",
+"class": &"PassiveAbility",
+"language": &"GDScript",
+"path": "res://Main/Classes/PassiveAbility.gd"
+}, {
+"base": "Node",
 "class": &"Player",
 "language": &"GDScript",
 "path": "res://Main/Classes/Player.gd"
@@ -53,6 +63,11 @@ _global_script_classes=[{
 "class": &"Projectile",
 "language": &"GDScript",
 "path": "res://Main/Views/ArenaView/Projectiles/Projectile.gd"
+}, {
+"base": "Node",
+"class": &"Shared",
+"language": &"GDScript",
+"path": "res://Main/Shared.gd"
 }, {
 "base": "Node",
 "class": &"Unit",
@@ -66,14 +81,17 @@ _global_script_classes=[{
 }]
 _global_script_class_icons={
 "AbilityEffect": "",
+"AbilityUpgrade": "",
 "ActivatedAbility": "",
 "ArenaUnit": "",
 "Battle": "",
 "Floor": "",
 "FloorNode": "",
 "Olympian": "",
+"PassiveAbility": "",
 "Player": "",
 "Projectile": "",
+"Shared": "",
 "Unit": "",
 "UnitUpgrade": ""
 }

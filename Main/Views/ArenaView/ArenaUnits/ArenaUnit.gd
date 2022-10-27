@@ -4,7 +4,7 @@ class_name ArenaUnit
 
 enum ALLIANCE { PLAYER, ENEMY }
 
-var unit: Unit
+var unit
 
 var speed: float
 var hp: float
@@ -38,24 +38,14 @@ var ability_cooldowns: Dictionary = {}
 # statuses
 enum STATUS { STUN, SILENCE, ROOT, INVULN, NOHEAL, ONFIRE, POISON, HEAL, HIT }
 
-var statuses = {
-	STATUS.STUN: {"duration": 0, "particles_instance": null, "particles_scene": Game.arena.particles_stun},
-	STATUS.SILENCE: {"duration": 0, "particles_instance": null, "particles_scene": null},
-	STATUS.ROOT: {"duration": 0, "particles_instance": null, "particles_scene": null},
-	STATUS.INVULN: {"duration": 0, "particles_instance": null, "particles_scene": null},
-	STATUS.HEAL: {"duration": 0, "particles_instance": null, "particles_scene": null},
-	STATUS.NOHEAL: {"duration": 0, "particles_instance": null, "particles_scene": null},
-	STATUS.ONFIRE: {"duration": 0, "particles_instance": null, "particles_scene": Game.arena.particles_fire},
-	STATUS.POISON: {"duration": 0, "particles_instance": null, "particles_scene": Game.arena.particles_poison},
-	STATUS.HIT: {"duration": 0, "particles_instance": null, "particles_scene": null},
-}
+var statuses
 
 var alliance: ALLIANCE
 
 var time_since_redraw = 0
 
 # Called when the node enters the scene tree for the first time.
-func init(unit: Unit, alliance: ALLIANCE):
+func init(unit, alliance: ALLIANCE):
 	self.unit = unit
 	self.hp = unit.hp
 	self.speed = unit.speed
@@ -63,9 +53,7 @@ func init(unit: Unit, alliance: ALLIANCE):
 	self.attack_damage = unit.attack_damage
 	self.attack_speed = unit.attack_speed
 
-	match unit.base:
-		Unit.BASE.SOLDIER_SPEAR: projectile = load("res://Main/Views/ArenaView/Projectiles/Spear.tscn")
-		_: projectile = load("res://Main/Views/ArenaView/Projectiles/Spear.tscn")
+	self.projectile = unit.projectile
 
 	for ability in unit.activated_abilities:
 		ability_cooldowns[ability] = 0.0
@@ -76,6 +64,17 @@ func init(unit: Unit, alliance: ALLIANCE):
 	return self
 
 func _ready():
+	statuses = {
+		STATUS.STUN: {"duration": 0, "particles_instance": null, "particles_scene": Game.arena.particles_stun},
+		STATUS.SILENCE: {"duration": 0, "particles_instance": null, "particles_scene": null},
+		STATUS.ROOT: {"duration": 0, "particles_instance": null, "particles_scene": null},
+		STATUS.INVULN: {"duration": 0, "particles_instance": null, "particles_scene": null},
+		STATUS.HEAL: {"duration": 0, "particles_instance": null, "particles_scene": null},
+		STATUS.NOHEAL: {"duration": 0, "particles_instance": null, "particles_scene": null},
+		STATUS.ONFIRE: {"duration": 0, "particles_instance": null, "particles_scene": Game.arena.particles_fire},
+		STATUS.POISON: {"duration": 0, "particles_instance": null, "particles_scene": Game.arena.particles_poison},
+		STATUS.HIT: {"duration": 0, "particles_instance": null, "particles_scene": null},
+	}
 #	print(move_target)
 #	print($Collision.name)
 	move_target = position
@@ -175,9 +174,9 @@ func apply_damage(amount: int):
 	if hp <= 0:
 		dying = true
 		Audio.soldier_voice_die.play()
-		for i in range(len(Game.player.squad_active)):
-			if Game.player.squad_active[i].unit == unit:
-				Game.player.squad_active.pop_at(i)
+		for i in range(len(Game.player.squad)):
+			if Game.player.squad[i].unit == unit:
+				Game.player.squad.pop_at(i)
 				break
 
 func apply_healing(amount: int):
@@ -214,6 +213,9 @@ func handle_statuses(delta):
 		statuses[status]["duration"] = max(0, statuses[status]["duration"]-delta)
 
 	for status in STATUS.values():
+		if not is_instance_valid(statuses[status]["particles_instance"]):
+			statuses[status]["particles_instance"] = null
+
 		if statuses[status]["duration"] > 0 and statuses[status]["particles_instance"] == null:
 			if statuses[status]["particles_scene"] == null:
 				# status particles are not implemented

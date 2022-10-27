@@ -1,0 +1,65 @@
+[gd_scene load_steps=8 format=3 uid="uid://ctals811w0l1e"]
+
+[ext_resource type="Texture2D" uid="uid://5ftlkqujn24d" path="res://Assets/upgrades_free.png" id="1_l25mv"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h22yx"]
+atlas = ExtResource("1_l25mv")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nfap2"]
+atlas = ExtResource("1_l25mv")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_54ved"]
+atlas = ExtResource("1_l25mv")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dwd6r"]
+atlas = ExtResource("1_l25mv")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ax28t"]
+animations = [{
+"frames": [SubResource("AtlasTexture_h22yx"), SubResource("AtlasTexture_nfap2"), SubResource("AtlasTexture_54ved"), SubResource("AtlasTexture_dwd6r")],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="GDScript" id="GDScript_dnuq8"]
+script/source = "extends AnimatedSprite2D
+
+var item
+
+enum TYPE {UNIT_UPGRADE, NEW_UNIT, NEW_ABILITY, ABILITY_UPGRADE, RAND}
+
+func init():
+	
+	for unit_upgrade_type in [UnitUpgrade.MORE_HP, UnitUpgrade.MORE_DAMAGE, UnitUpgrade.MORE_SPEED, UnitUpgrade.MORE_RANGE]:
+		self.item = UnitUpgrade.new(Game.player.floor.level, unit_upgrade_type)
+		frame = upgrade.effect
+		$Label.text = str(upgrade.amount)
+	return self
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	pass # Replace with function body.
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	pass
+"
+
+[node name="UnitUpgrade" type="AnimatedSprite2D"]
+position = Vector2(100, 100)
+scale = Vector2(4, 4)
+frames = SubResource("SpriteFrames_ax28t")
+script = SubResource("GDScript_dnuq8")
+
+[node name="Label" type="Label" parent="."]
+offset_left = 10.25
+offset_top = 9.75
+offset_right = 21.25
+offset_bottom = 35.75
+scale = Vector2(0.5355, 0.5355)
+text = "3"

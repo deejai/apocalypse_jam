@@ -4,13 +4,15 @@ class_name FloorNode
 
 var next: Array = []
 var prev: Array = []
-var battle: Battle = null
+var battle = null
 var level: int
 var sceneNode: Node2D
-var rewards: Array = []
 var completed: bool = false
+var boss_node: bool = false
 
-func _init(level: int, prev=null, next=null):
+var reward_type # Shared.NODE_TYPE
+
+func _init(level: int, prev=null, next=null, boss: bool = false):
 	self.level = level
 
 	if(prev != null):
@@ -18,18 +20,7 @@ func _init(level: int, prev=null, next=null):
 	if(next != null):
 		self.next = next
 
-	self.battle = Battle.new(level)
-
-	var roll = randf()
-	if roll < 0.3333:
-		for i in range(3):
-			rewards.append(UnitUpgrade.new(level))
-	elif roll < .6667:
-		for i in range(3):
-#			rewards.append(ActivatedAbility.new())
-			pass
-	else:
-		pass
+	self.reward_type = randi() % 3
 
 static func link(prev_node, next_node):
 	if prev_node not in next_node.prev:

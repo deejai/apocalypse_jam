@@ -42,7 +42,7 @@ func _ready():
 func _process(delta):
 	pass
 
-func apply(unit: Unit):
+func apply(unit):
 	match effect:
 		EFFECT.MORE_HP:
 			unit.hp += amount

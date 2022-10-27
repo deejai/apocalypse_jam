@@ -1,4 +1,4 @@
-extends Node
+extends Node2D
 
 class_name Floor
 
@@ -12,14 +12,16 @@ func _init(level: int):
 	self.level = level
 
 	start = FloorNode.new(0)
+	start.battle = Battle.new(level)
 	current = start
 
-	var node_layers = [1,2,4,7,3]
+	var node_layers = [1,3,randi_range(4,6),randi_range(5,7),randi_range(5,7),randi_range(3,5),randi_range(2,3)]
 	var prev_nodes = [start]
 	for i in range(1, len(node_layers)):
 		var new_nodes = []
 		for j in range(node_layers[i]):
 			var new_node = FloorNode.new(0)
+			new_node.battle = Battle.new(level)
 			new_nodes.append(new_node)
 
 		# connect the appropriate previous nodes to the current node
@@ -31,6 +33,7 @@ func _init(level: int):
 		prev_nodes = new_nodes
 		
 	var boss_node = FloorNode.new(0)
+	boss_node.boss_node = true
 	for pn in prev_nodes:
 		FloorNode.link(pn, boss_node)
 
@@ -48,7 +51,7 @@ func getArcs(n, m):
 	var th = 0.5 / min(n, m)
 	for i in range(n):
 		for j in range(m):
-			if (abs(a[i] - b[j]) <= th):
+			if (abs(a[i] - b[j]) <= th + 0.05):
 				arcs.append([i, j])
 
 	return arcs

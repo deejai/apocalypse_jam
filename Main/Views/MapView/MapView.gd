@@ -1,13 +1,13 @@
 extends Node2D
 
-
-
 var main_menu = load("res://Main/Views/MainMenu/MainMenuView.tscn")
 var nav_frame = load("res://Main/Views/Components/NavFrame/NavFrame.tscn")
 var arena_view = load("res://Main/Views/ArenaView/ArenaView.tscn")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	Game.arena = null
+
 	add_child(nav_frame.instantiate())
 
 	var start = Game.player.floor.start
@@ -63,7 +63,8 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	if(Game.next_battle):
+	if(Game.next_battle != null):
+		print("Change scene")
 		get_tree().change_scene_to_packed(arena_view)
 
 func _draw():
@@ -79,19 +80,19 @@ func _draw_node_rec(node: FloorNode):
 		# draw the connecting lines
 		for next in node.next:
 			if is_instance_valid(next.sceneNode):
-				draw_line(Vector2i(node.sceneNode.position), next.sceneNode.position - self.position, Color(Color.CORAL, 0.6), 4)
+				draw_line(Vector2i(node.sceneNode.position), next.sceneNode.position - self.position, Color(Color.CORAL, 0.6), 6)
 
 		# draw the node circle
 		var pos = node.sceneNode.position
 		var radius = node.sceneNode.get_node("Area/Collision").shape.radius
 		if node.completed:
-			draw_circle(pos, radius, Color.DARK_GREEN)
+			draw_circle(pos, radius, Color(Color.DARK_GREEN, 0.7))
 		elif node == Game.player.floor.current:
-			draw_circle(pos, radius, Color.CHARTREUSE)
+			draw_circle(pos, radius, Color(Color.CHARTREUSE, 0.7))
 		elif Game.player.floor.current.completed and Game.player.floor.current in node.prev:
-			draw_circle(pos, radius, Color.GOLD)
+			draw_circle(pos, radius, Color(Color.GOLD, 0.7))
 		else:
-			draw_circle(pos, radius, Color.DARK_GRAY)
+			draw_circle(pos, radius, Color(Color.DARK_GRAY, 0.7))
 
 	for next_node in node.next:
 		_draw_node_rec(next_node)

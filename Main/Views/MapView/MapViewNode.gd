@@ -3,6 +3,22 @@ extends Node2D
 var floorNode: FloorNode
 
 func init(floorNode: FloorNode, x: int, y: int):
+	match floorNode.reward_type:
+		Shared.REWARD_TYPE.NEW_UNIT:
+			$AnimatedSprite2D.frame = 0
+
+		Shared.REWARD_TYPE.UNIT_UPGRADE:
+			$AnimatedSprite2D.frame = 1
+
+		Shared.REWARD_TYPE.WILDCARD:
+			$AnimatedSprite2D.frame = 2
+
+		_:
+			assert(false)
+			
+	if floorNode.boss_node == true:
+		$AnimatedSprite2D.frame = 3
+
 	self.position = Vector2i(x, y)
 	self.floorNode = floorNode
 	floorNode.sceneNode = self # what if it had a sceneNode and we just overwrote it? probably won't happen :/
@@ -16,6 +32,9 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	pass
+
+func _draw():
 	pass
 
 func _input(event: InputEvent):

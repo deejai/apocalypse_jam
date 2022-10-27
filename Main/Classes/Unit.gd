@@ -14,6 +14,8 @@ var range: int = 65
 var attack_damage: float = 5
 var attack_speed: float = 100
 
+var projectile
+
 var activated_abilities = []
 var passive_abilities = []
 
@@ -76,3 +78,8 @@ func _init(base: Unit.BASE, level: int = 0):
 		for ability_key in data[base]["abilities"]:
 			var ability = ActivatedAbility.new(ability_key, level)
 			self.activated_abilities.append(ability)
+			
+	
+	match base:
+		BASE.SOLDIER_SPEAR: projectile = load("res://Main/Views/ArenaView/Projectiles/Spear.tscn")
+		_: projectile = load("res://Main/Views/ArenaView/Projectiles/Spear.tscn")
