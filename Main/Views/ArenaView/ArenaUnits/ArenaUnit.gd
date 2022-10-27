@@ -79,12 +79,7 @@ func _ready():
 #	print($Collision.name)
 	move_target = position
 	last_position = position
-	
-	print(Game.arena.particles_stun)
-	
-	apply_status(STATUS.STUN, 5)
-	apply_status(STATUS.ONFIRE, 2)
-	apply_status(STATUS.POISON, 10)
+
 #	print(position)
 	pass # Replace with function body.
 
