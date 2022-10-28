@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://bjtddy33a5v8h"]
 
 [ext_resource type="Script" path="res://Main/Views/ArenaView/ArenaUnits/ArenaUnit.gd" id="1_v6a30"]
-[ext_resource type="Texture2D" uid="uid://cauhf7cq01mk1" path="res://Assets/Olympian_Apollo.png" id="2_tet7r"]
+[ext_resource type="Texture2D" uid="uid://dl4i0j0x30cmx" path="res://Assets/Olympian_Apollo.png" id="2_tet7r"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_tp8tv"]
 radius = 22.0

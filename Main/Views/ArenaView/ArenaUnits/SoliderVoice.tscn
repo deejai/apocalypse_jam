@@ -1,8 +1,8 @@
 [gd_scene load_steps=4 format=3 uid="uid://b00k2hgp4qsfd"]
 
-[ext_resource type="AudioStream" uid="uid://drhkkutyrg7i2" path="res://Assets/Audio/Voice/Soldiers/yessir.wav" id="1_4v33k"]
-[ext_resource type="AudioStream" uid="uid://bkt2b53jibm7c" path="res://Assets/Audio/Voice/Soldiers/ok.wav" id="1_j55lq"]
-[ext_resource type="AudioStream" uid="uid://dtqvpay0uamv3" path="res://Assets/Audio/Voice/Soldiers/death_blagh.wav" id="2_jdyau"]
+[ext_resource type="AudioStream" uid="uid://cacjujvcdcux7" path="res://Assets/Audio/Voice/Soldiers/yessir.wav" id="1_4v33k"]
+[ext_resource type="AudioStream" uid="uid://clbp0o0ga5b35" path="res://Assets/Audio/Voice/Soldiers/ok.wav" id="1_j55lq"]
+[ext_resource type="AudioStream" uid="uid://bj445i77hlif5" path="res://Assets/Audio/Voice/Soldiers/death_blagh.wav" id="2_jdyau"]
 
 [node name="SoliderVoice" type="Node2D"]
 

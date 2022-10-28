@@ -1,8 +1,8 @@
 [gd_scene load_steps=5 format=3 uid="uid://bgi36uxnxor03"]
 
 [ext_resource type="Script" path="res://Main/Views/ArenaView/Projectiles/Projectile.gd" id="1_0ot1x"]
-[ext_resource type="Texture2D" uid="uid://dp7mxynh2aaln" path="res://Assets/proj_spear.png" id="2_6ddj6"]
-[ext_resource type="AudioStream" uid="uid://c3tkq18yfajk4" path="res://Assets/Audio/Effects/spear_throw.wav" id="3_xra8w"]
+[ext_resource type="Texture2D" uid="uid://dydpelmib8hfb" path="res://Assets/proj_spear.png" id="2_6ddj6"]
+[ext_resource type="AudioStream" uid="uid://21nlumwkhfpw" path="res://Assets/Audio/Effects/spear_throw.wav" id="3_xra8w"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_uwwku"]
 size = Vector2(11, 9.5)
