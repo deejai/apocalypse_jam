@@ -1,4 +1,4 @@
-[gd_scene load_steps=2 format=3]
+[gd_scene load_steps=2 format=3 uid="uid://ecwww8bln6bn"]
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_hfapr"]
 emission_shape = 6
