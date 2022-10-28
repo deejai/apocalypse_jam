@@ -1,8 +1,7 @@
 [gd_scene load_steps=2 format=3 uid="uid://dtlf2lxj6wy6p"]
 
-[ext_resource type="AudioStream" uid="uid://3pvckboytvsq" path="res://Assets/Audio/Music/battleMusic.wav" id="1_ae0rv"]
+[ext_resource type="AudioStream" uid="uid://bvpcbeagy5vq7" path="res://Assets/Audio/Music/battleMusic.wav" id="1_ae0rv"]
 
-[node name="battleMusic" type="Node2D"]
-
-[node name="battleMusic" type="AudioStreamPlayer2D" parent="."]
+[node name="battleMusic" type="AudioStreamPlayer"]
 stream = ExtResource("1_ae0rv")
+volume_db = -12.0

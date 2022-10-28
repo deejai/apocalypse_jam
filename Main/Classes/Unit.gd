@@ -68,7 +68,7 @@ var data = {
 	BASE.OLYMPIAN_HERMES:  {
 		"spec": SPEC.HERO,
 		"voice": Audio.VOICE.HERMES,
-		"range": 25,
+		"range": 50,
 		"hp": 100,
 		"speed": 200,
 		"attack_damage": 8,
@@ -106,7 +106,7 @@ var data = {
 	BASE.SOLDIER_SWORD: {
 		"spec": SPEC.NORMAL,
 		"voice": Audio.VOICE.SOLDIER,
-		"range": 40,
+		"range": 50,
 		"hp": 100,
 		"speed": 150,
 		"attack_damage": 8,

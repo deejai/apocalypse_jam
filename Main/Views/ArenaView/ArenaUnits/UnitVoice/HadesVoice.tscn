@@ -1,36 +1,73 @@
-[gd_scene load_steps=6 format=3 uid="uid://37vdl5rqng6s"]
+[gd_scene load_steps=13 format=3 uid="uid://37vdl5rqng6s"]
 
-[ext_resource type="AudioStream" uid="uid://yveuk4h5om1s" path="res://Assets/Audio/Voice/Soldiers/ok.wav" id="1_nfd1h"]
-[ext_resource type="AudioStream" uid="uid://bdykcp7qg2y66" path="res://Assets/Audio/Voice/Soldiers/death_blagh.wav" id="2_qe4ek"]
-[ext_resource type="AudioStream" uid="uid://c1fyj18fxupju" path="res://Assets/Audio/Voice/Soldiers/mmoof.wav" id="3_nq881"]
-[ext_resource type="AudioStream" uid="uid://halybq74o1g3" path="res://Assets/Audio/Voice/Soldiers/yessir.wav" id="4_iydxl"]
-[ext_resource type="AudioStream" uid="uid://w728mnv875v0" path="res://Assets/Audio/Voice/Soldiers/salve1.wav" id="5_t3ndh"]
+[ext_resource type="AudioStream" uid="uid://cir2d7ayr23yy" path="res://Assets/Audio/Voice/Hades/hiss2.wav" id="1_648hq"]
+[ext_resource type="AudioStream" uid="uid://cnwpmrs1ex3uw" path="res://Assets/Audio/Voice/Hades/hiss3.wav" id="2_bfl3s"]
+[ext_resource type="AudioStream" uid="uid://cxk82h2peshxc" path="res://Assets/Audio/Voice/Hades/hadesdeath1.wav" id="3_tbwi2"]
+[ext_resource type="AudioStream" uid="uid://c8si18mxgoifu" path="res://Assets/Audio/Voice/Hades/hadesdeath2.wav" id="4_4pl4v"]
+[ext_resource type="AudioStream" uid="uid://daly4g0gk722u" path="res://Assets/Audio/Voice/Hades/hadesdeath3.wav" id="5_pd5x0"]
+[ext_resource type="AudioStream" uid="uid://c7bjys6fw02mk" path="res://Assets/Audio/Voice/Hades/hadesdeath4.wav" id="6_aw42q"]
+[ext_resource type="AudioStream" uid="uid://b17ut3gjc8cn" path="res://Assets/Audio/Voice/Soldiers/hit3.wav" id="7_i3l55"]
+[ext_resource type="AudioStream" uid="uid://cnlpeia4iovq4" path="res://Assets/Audio/Voice/Hades/hiss1.wav" id="8_coqdu"]
+[ext_resource type="AudioStream" uid="uid://cdyjlnbkevait" path="res://Assets/Audio/Voice/Soldiers/hit4.wav" id="8_okp5f"]
+[ext_resource type="AudioStream" uid="uid://c07r1nynn43iu" path="res://Assets/Audio/Voice/Hades/humbug1.wav" id="9_ylle4"]
+[ext_resource type="AudioStream" uid="uid://d0feah6ef4kul" path="res://Assets/Audio/Voice/Hades/humbug2.wav" id="10_5tsrv"]
+[ext_resource type="AudioStream" uid="uid://b8778ssqh12gu" path="res://Assets/Audio/Voice/Hades/humbug3.wav" id="11_cwvh0"]
 
 [node name="HadesVoice" type="Node2D"]
 
 [node name="Response" type="Node" parent="."]
 
+[node name="Ok2" type="AudioStreamPlayer" parent="Response"]
+stream = ExtResource("1_648hq")
+
 [node name="Ok" type="AudioStreamPlayer" parent="Response"]
-stream = ExtResource("1_nfd1h")
+stream = ExtResource("2_bfl3s")
 
 [node name="Die" type="Node" parent="."]
 
+[node name="blagh4" type="AudioStreamPlayer" parent="Die"]
+stream = ExtResource("3_tbwi2")
+
+[node name="blagh2" type="AudioStreamPlayer" parent="Die"]
+stream = ExtResource("4_4pl4v")
+
 [node name="blagh" type="AudioStreamPlayer" parent="Die"]
-stream = ExtResource("2_qe4ek")
+stream = ExtResource("5_pd5x0")
+
+[node name="blagh3" type="AudioStreamPlayer" parent="Die"]
+stream = ExtResource("6_aw42q")
 
 [node name="Hit" type="Node" parent="."]
 
 [node name="mmoof" type="AudioStreamPlayer" parent="Hit"]
-stream = ExtResource("3_nq881")
+stream = ExtResource("7_i3l55")
+
+[node name="mmoof2" type="AudioStreamPlayer" parent="Hit"]
+stream = ExtResource("8_okp5f")
 
 [node name="Greeting" type="Node" parent="."]
 
-[node name="Yessir" type="AudioStreamPlayer2D" parent="Greeting"]
-stream = ExtResource("4_iydxl")
-
-[node name="Salve" type="AudioStreamPlayer" parent="Greeting"]
-stream = ExtResource("5_t3ndh")
+[node name="Yessir" type="AudioStreamPlayer" parent="Greeting"]
+stream = ExtResource("8_coqdu")
 
 [node name="FriendlyCast" type="Node" parent="."]
 
+[node name="AudioStreamPlayer3" type="AudioStreamPlayer" parent="FriendlyCast"]
+stream = ExtResource("9_ylle4")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="FriendlyCast"]
+stream = ExtResource("10_5tsrv")
+
+[node name="AudioStreamPlayer2" type="AudioStreamPlayer" parent="FriendlyCast"]
+stream = ExtResource("11_cwvh0")
+
 [node name="EnemyCast" type="Node" parent="."]
+
+[node name="AudioStreamPlayer3" type="AudioStreamPlayer" parent="EnemyCast"]
+stream = ExtResource("9_ylle4")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="EnemyCast"]
+stream = ExtResource("10_5tsrv")
+
+[node name="AudioStreamPlayer2" type="AudioStreamPlayer" parent="EnemyCast"]
+stream = ExtResource("11_cwvh0")

@@ -24,13 +24,13 @@ func _init(level: int):
 					unit.speed *= 2
 					enemies.append({"unit": unit, "start_position": position})
 		TYPE.HEAL_ONE:
-			for c in range(randi_range(2,4)):
-				var position = Vector2(150 + c*150, 50 + 25 + 70)
+			for c in range(randi_range(2,5)):
+				var position = Vector2(150 + c*150, 100)
 				var healer_unit = Unit.new(Unit.BASE.HEALER, level)
 				enemies.append({"unit": healer_unit, "start_position": position})
-				var strong_unit = Unit.new(Unit.BASE.SOLDIER_SPEAR, level)
-				strong_unit.hp *= 2
-				enemies.append({"unit": strong_unit, "start_position": Vector2(150 + c*150, 50 + 25 + 150)})
+			var strong_unit = Unit.new(Unit.BASE.SOLDIER_SPEAR, level)
+			strong_unit.hp *= 2
+			enemies.append({"unit": strong_unit, "start_position": Vector2(650, 200)})
 		TYPE.BALANCED:
 			for c in range(randi_range(3,6)):
 				var position = Vector2(150 + c*150, 50 + 25 + 70)

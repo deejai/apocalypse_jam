@@ -33,13 +33,23 @@ func _ready():
 		for key in ["Greeting", "Response", "Die", "Hit", "FriendlyCast", "EnemyCast"]:
 			data[v][key] = []
 			for vl in voiceSceneMap[v].get_node(key).get_children():
+				if key in ["Die", "Hit"]:
+					vl.volume_db = -9
+				else:
+					vl.volume_db = -6
 				data[v][key].append(vl)
 	for line in voiceSceneMap: 
 		add_child(voiceSceneMap[line])
-	pass # Replace with function body.
+
+	add_child(menuMusic)
+	add_child(battleMusic)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	pass
-
+	if Game.arena == null and !menuMusic.is_playing():
+		battleMusic.stop()
+		menuMusic.play()
+	elif Game.arena != null and !battleMusic.is_playing():
+		menuMusic.stop()
+		battleMusic.play()

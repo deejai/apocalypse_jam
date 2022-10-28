@@ -1,36 +1,56 @@
-[gd_scene load_steps=6 format=3 uid="uid://6bguqwikryv5"]
+[gd_scene load_steps=11 format=3 uid="uid://6bguqwikryv5"]
 
-[ext_resource type="AudioStream" uid="uid://yveuk4h5om1s" path="res://Assets/Audio/Voice/Soldiers/ok.wav" id="1_nfd1h"]
-[ext_resource type="AudioStream" uid="uid://bdykcp7qg2y66" path="res://Assets/Audio/Voice/Soldiers/death_blagh.wav" id="2_qe4ek"]
-[ext_resource type="AudioStream" uid="uid://c1fyj18fxupju" path="res://Assets/Audio/Voice/Soldiers/mmoof.wav" id="3_nq881"]
-[ext_resource type="AudioStream" uid="uid://halybq74o1g3" path="res://Assets/Audio/Voice/Soldiers/yessir.wav" id="4_iydxl"]
-[ext_resource type="AudioStream" uid="uid://w728mnv875v0" path="res://Assets/Audio/Voice/Soldiers/salve1.wav" id="5_t3ndh"]
+[ext_resource type="AudioStream" uid="uid://0hrpsx1y2pc0" path="res://Assets/Audio/Voice/Hermes/zoom1.wav" id="1_04jv4"]
+[ext_resource type="AudioStream" uid="uid://d3co6ayowlq0b" path="res://Assets/Audio/Voice/Soldiers/longdeath3.wav" id="2_vcwmv"]
+[ext_resource type="AudioStream" uid="uid://d0q84gnqjj1aq" path="res://Assets/Audio/Voice/Soldiers/longdeath4.wav" id="3_c2ket"]
+[ext_resource type="AudioStream" uid="uid://dt21u2klnfuvv" path="res://Assets/Audio/Voice/Soldiers/hit8.wav" id="4_e3t8c"]
+[ext_resource type="AudioStream" uid="uid://bh056k5jfjhsp" path="res://Assets/Audio/Voice/Soldiers/hit9.wav" id="5_e2a03"]
+[ext_resource type="AudioStream" uid="uid://ckus5wsut86ec" path="res://Assets/Audio/Voice/Hermes/hermesgofast1.wav" id="6_8bknl"]
+[ext_resource type="AudioStream" uid="uid://y70chh3g8pgj" path="res://Assets/Audio/Voice/Hermes/hermesgofast3.wav" id="7_10x0h"]
+[ext_resource type="AudioStream" uid="uid://mirpnlmfpixh" path="res://Assets/Audio/Voice/Hermes/zoom4.wav" id="8_rosgb"]
+[ext_resource type="AudioStream" uid="uid://cs34eeyuqjjqy" path="res://Assets/Audio/Voice/Hermes/zoom5.wav" id="9_3rtod"]
+[ext_resource type="AudioStream" uid="uid://2fdsxrpnsnb0" path="res://Assets/Audio/Voice/Hermes/zoom3.wav" id="10_e18dl"]
 
 [node name="HermesVoice" type="Node2D"]
 
 [node name="Response" type="Node" parent="."]
 
-[node name="Ok" type="AudioStreamPlayer" parent="Response"]
-stream = ExtResource("1_nfd1h")
+[node name="1" type="AudioStreamPlayer" parent="Response"]
+stream = ExtResource("1_04jv4")
 
 [node name="Die" type="Node" parent="."]
 
-[node name="blagh" type="AudioStreamPlayer" parent="Die"]
-stream = ExtResource("2_qe4ek")
+[node name="1" type="AudioStreamPlayer" parent="Die"]
+stream = ExtResource("2_vcwmv")
+
+[node name="2" type="AudioStreamPlayer" parent="Die"]
+stream = ExtResource("3_c2ket")
 
 [node name="Hit" type="Node" parent="."]
 
-[node name="mmoof" type="AudioStreamPlayer" parent="Hit"]
-stream = ExtResource("3_nq881")
+[node name="1" type="AudioStreamPlayer" parent="Hit"]
+stream = ExtResource("4_e3t8c")
+
+[node name="2" type="AudioStreamPlayer" parent="Hit"]
+stream = ExtResource("5_e2a03")
 
 [node name="Greeting" type="Node" parent="."]
 
-[node name="Yessir" type="AudioStreamPlayer2D" parent="Greeting"]
-stream = ExtResource("4_iydxl")
+[node name="1" type="AudioStreamPlayer" parent="Greeting"]
+stream = ExtResource("6_8bknl")
 
-[node name="Salve" type="AudioStreamPlayer" parent="Greeting"]
-stream = ExtResource("5_t3ndh")
+[node name="2" type="AudioStreamPlayer" parent="Greeting"]
+stream = ExtResource("7_10x0h")
 
 [node name="FriendlyCast" type="Node" parent="."]
 
+[node name="1" type="AudioStreamPlayer" parent="FriendlyCast"]
+stream = ExtResource("8_rosgb")
+
+[node name="2" type="AudioStreamPlayer" parent="FriendlyCast"]
+stream = ExtResource("9_3rtod")
+
 [node name="EnemyCast" type="Node" parent="."]
+
+[node name="1" type="AudioStreamPlayer" parent="EnemyCast"]
+stream = ExtResource("10_e18dl")

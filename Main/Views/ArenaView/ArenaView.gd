@@ -229,11 +229,18 @@ func _input(event: InputEvent):
 								selected_units.append(arena_unit)
 
 					mouse_left_pressed = false
-					
+
 					if len(selected_units) > 0 and selected_units[0].alliance == ArenaUnit.ALLIANCE.PLAYER:
 						highlighted_unit = selected_units[0]
-						Audio.data[highlighted_unit.unit.voice].Greeting[randi()%len(Audio.data[highlighted_unit.unit.voice].Greeting)].play()
-						
+
+						var voice_lines = []
+						for arena_unit in selected_units:
+							voice_lines.append(Audio.data[arena_unit.unit.voice].Greeting[randi()%len(Audio.data[arena_unit.unit.voice].Greeting)])
+
+						# play up to 3 random voice lines from selected units
+						for i in range(min(3, len(voice_lines))):
+							voice_lines.pop_at(randi() % len(voice_lines)).play()
+
 					else:
 						highlighted_unit = null
 
@@ -252,10 +259,17 @@ func _input(event: InputEvent):
 								attack_target = arena_unit
 								break
 
+
+						var voice_lines = []
 						for arena_unit in selected_units:
 							arena_unit.attack_target = attack_target
 							arena_unit.move_target = event.position
-							Audio.data[arena_unit.unit.voice].Response[randi()%len(Audio.data[arena_unit.unit.voice].Response)].play()
+
+							voice_lines.append(Audio.data[arena_unit.unit.voice].Response[randi()%len(Audio.data[arena_unit.unit.voice].Response)])
+
+						# play up to 3 random voice lines from selected units
+						for i in range(min(3, len(voice_lines))):
+							voice_lines.pop_at(randi() % len(voice_lines)).play()
 	else:
 		pass
 

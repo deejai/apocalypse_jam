@@ -1,36 +1,66 @@
-[gd_scene load_steps=6 format=3 uid="uid://ca4thmnsuj5dq"]
+[gd_scene load_steps=12 format=3 uid="uid://ca4thmnsuj5dq"]
 
-[ext_resource type="AudioStream" uid="uid://yveuk4h5om1s" path="res://Assets/Audio/Voice/Soldiers/ok.wav" id="1_nfd1h"]
-[ext_resource type="AudioStream" uid="uid://bdykcp7qg2y66" path="res://Assets/Audio/Voice/Soldiers/death_blagh.wav" id="2_qe4ek"]
-[ext_resource type="AudioStream" uid="uid://c1fyj18fxupju" path="res://Assets/Audio/Voice/Soldiers/mmoof.wav" id="3_nq881"]
-[ext_resource type="AudioStream" uid="uid://halybq74o1g3" path="res://Assets/Audio/Voice/Soldiers/yessir.wav" id="4_iydxl"]
-[ext_resource type="AudioStream" uid="uid://w728mnv875v0" path="res://Assets/Audio/Voice/Soldiers/salve1.wav" id="5_t3ndh"]
+[ext_resource type="AudioStream" uid="uid://d0rqbdcu5gvg6" path="res://Assets/Audio/Voice/Apollo/pokeme1.wav" id="1_b2y8p"]
+[ext_resource type="AudioStream" uid="uid://csv6rhj7cqen8" path="res://Assets/Audio/Voice/Apollo/pokeme2.wav" id="2_jgt0o"]
+[ext_resource type="AudioStream" uid="uid://cdnuoeq0wcxa8" path="res://Assets/Audio/Voice/Soldiers/longdeath5.wav" id="3_d44ar"]
+[ext_resource type="AudioStream" uid="uid://bh0kwc84aafns" path="res://Assets/Audio/Voice/Soldiers/longdeath6.wav" id="4_xkcp4"]
+[ext_resource type="AudioStream" uid="uid://b17ut3gjc8cn" path="res://Assets/Audio/Voice/Soldiers/hit3.wav" id="5_kdgoh"]
+[ext_resource type="AudioStream" uid="uid://cdyjlnbkevait" path="res://Assets/Audio/Voice/Soldiers/hit4.wav" id="6_15bxt"]
+[ext_resource type="AudioStream" uid="uid://cq1avbvgtyu8l" path="res://Assets/Audio/Voice/Apollo/donttouch1.wav" id="7_5lfdb"]
+[ext_resource type="AudioStream" uid="uid://drjiexnd4w65s" path="res://Assets/Audio/Voice/Apollo/donttouch2.wav" id="8_sqdq7"]
+[ext_resource type="AudioStream" uid="uid://ce0r484cggse1" path="res://Assets/Audio/Voice/Apollo/youllburn1.wav" id="9_ow6y0"]
+[ext_resource type="AudioStream" uid="uid://e4kmijfq6khh" path="res://Assets/Audio/Voice/Apollo/toohot2.wav" id="11_taht2"]
+[ext_resource type="AudioStream" uid="uid://bvocho4s2i30w" path="res://Assets/Audio/Voice/Apollo/toohot5.wav" id="12_exlpb"]
 
 [node name="ApolloVoice" type="Node2D"]
 
 [node name="Response" type="Node" parent="."]
 
-[node name="Ok" type="AudioStreamPlayer" parent="Response"]
-stream = ExtResource("1_nfd1h")
+[node name="1" type="AudioStreamPlayer" parent="Response"]
+stream = ExtResource("1_b2y8p")
+
+[node name="2" type="AudioStreamPlayer" parent="Response"]
+stream = ExtResource("2_jgt0o")
 
 [node name="Die" type="Node" parent="."]
 
-[node name="blagh" type="AudioStreamPlayer" parent="Die"]
-stream = ExtResource("2_qe4ek")
+[node name="1" type="AudioStreamPlayer" parent="Die"]
+stream = ExtResource("3_d44ar")
+
+[node name="2" type="AudioStreamPlayer" parent="Die"]
+stream = ExtResource("4_xkcp4")
 
 [node name="Hit" type="Node" parent="."]
 
-[node name="mmoof" type="AudioStreamPlayer" parent="Hit"]
-stream = ExtResource("3_nq881")
+[node name="1" type="AudioStreamPlayer" parent="Hit"]
+stream = ExtResource("5_kdgoh")
+
+[node name="2" type="AudioStreamPlayer" parent="Hit"]
+stream = ExtResource("6_15bxt")
 
 [node name="Greeting" type="Node" parent="."]
 
-[node name="Yessir" type="AudioStreamPlayer2D" parent="Greeting"]
-stream = ExtResource("4_iydxl")
+[node name="1" type="AudioStreamPlayer" parent="Greeting"]
+stream = ExtResource("7_5lfdb")
 
-[node name="Salve" type="AudioStreamPlayer" parent="Greeting"]
-stream = ExtResource("5_t3ndh")
+[node name="2" type="AudioStreamPlayer" parent="Greeting"]
+stream = ExtResource("8_sqdq7")
+
+[node name="3" type="AudioStreamPlayer" parent="Greeting"]
+stream = ExtResource("9_ow6y0")
 
 [node name="FriendlyCast" type="Node" parent="."]
 
+[node name="1" type="AudioStreamPlayer" parent="FriendlyCast"]
+stream = ExtResource("11_taht2")
+
+[node name="2" type="AudioStreamPlayer" parent="FriendlyCast"]
+stream = ExtResource("12_exlpb")
+
 [node name="EnemyCast" type="Node" parent="."]
+
+[node name="1" type="AudioStreamPlayer" parent="EnemyCast"]
+stream = ExtResource("11_taht2")
+
+[node name="2" type="AudioStreamPlayer" parent="EnemyCast"]
+stream = ExtResource("12_exlpb")

@@ -17,22 +17,23 @@ func _init(level:int, effect: EFFECT = EFFECT.RAND):
 	var multiplier
 	match self.effect:
 		EFFECT.MORE_HP:
-			multiplier = 10
+			multiplier = 12
 		EFFECT.MORE_SPEED:
-			multiplier = 10
+			multiplier = 12
 		EFFECT.MORE_DAMAGE:
-			multiplier = 2
+			multiplier = 3
 		EFFECT.MORE_RANGE:
-			multiplier = 10
+			multiplier = 12
 		_:
 			assert(false)
 
-	self.amount = randi_range(1 + multiplier/2, (2 + level)*multiplier)
 
 	# rare chance to get next level upgrade
 	var roll = randf()
 	if roll > 0.9:
-		self.amount += 1
+		self.amount += randi_range(1,2)
+
+	self.amount = randi_range(1 + multiplier/3, (2 + level)*multiplier)
 
 # Called when the node enters the scene tree for the first time.
 func _ready():

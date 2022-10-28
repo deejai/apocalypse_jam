@@ -1,28 +1,52 @@
-[gd_scene load_steps=4 format=3 uid="uid://cse3rga63w0lp"]
+[gd_scene load_steps=10 format=3 uid="uid://cse3rga63w0lp"]
 
-[ext_resource type="AudioStream" uid="uid://83i0tk32btto" path="res://Assets/Audio/Voice/Athena/Athena such incompetence.wav" id="1_bw78n"]
-[ext_resource type="AudioStream" uid="uid://yyjw541lfl6b" path="res://Assets/Audio/Voice/Athena/Female Battle Cry 2.wav" id="2_58lw0"]
-[ext_resource type="AudioStream" uid="uid://x11ku7emyqhw" path="res://Assets/Audio/Voice/Athena/Athena headache.wav" id="3_ol278"]
+[ext_resource type="AudioStream" uid="uid://by5rwjfpbw1q5" path="res://Assets/Audio/Voice/Healer/Healer_female on my way.wav" id="1_3uus0"]
+[ext_resource type="AudioStream" uid="uid://b0v42eramcjxv" path="res://Assets/Audio/Voice/Athena/Athena such incompetence.wav" id="1_bw78n"]
+[ext_resource type="AudioStream" uid="uid://ca1sf2f7bof60" path="res://Assets/Audio/Voice/Athena/Female Battle Cry 2.wav" id="2_58lw0"]
+[ext_resource type="AudioStream" uid="uid://dco8ath6b0wji" path="res://Assets/Audio/Voice/Healer/Female Pain 5.wav" id="3_5qthc"]
+[ext_resource type="AudioStream" uid="uid://ck4f6csplcpjv" path="res://Assets/Audio/Voice/Athena/Athena headache.wav" id="3_ol278"]
+[ext_resource type="AudioStream" uid="uid://dcoy581tmrx8e" path="res://Assets/Audio/Voice/Healer/Female grunt 2.wav" id="4_kocen"]
+[ext_resource type="AudioStream" uid="uid://ba2gvf4y15uwx" path="res://Assets/Audio/Voice/Healer/Female Grunt 3.wav" id="5_l62fk"]
+[ext_resource type="AudioStream" uid="uid://isvuukgqn06s" path="res://Assets/Audio/Voice/Healer/Female Yes.wav" id="6_ki5e0"]
+[ext_resource type="AudioStream" uid="uid://deypmtbbdyxjq" path="res://Assets/Audio/Voice/Healer/Female Battle Cry 1.wav" id="7_nid4h"]
 
 [node name="AthenaVoice" type="Node2D"]
 
 [node name="Response" type="Node" parent="."]
 
-[node name="incompetence" type="AudioStreamPlayer" parent="Response"]
-stream = ExtResource("1_bw78n")
-
-[node name="battlecry" type="AudioStreamPlayer" parent="Response"]
-stream = ExtResource("2_58lw0")
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Response"]
+stream = ExtResource("1_3uus0")
 
 [node name="Die" type="Node" parent="."]
 
+[node name="1" type="AudioStreamPlayer" parent="Die"]
+stream = ExtResource("3_5qthc")
+
 [node name="Hit" type="Node" parent="."]
+
+[node name="2" type="AudioStreamPlayer" parent="Hit"]
+stream = ExtResource("4_kocen")
+
+[node name="1" type="AudioStreamPlayer" parent="Hit"]
+stream = ExtResource("5_l62fk")
 
 [node name="Greeting" type="Node" parent="."]
 
 [node name="headache" type="AudioStreamPlayer" parent="Greeting"]
 stream = ExtResource("3_ol278")
 
+[node name="yes" type="AudioStreamPlayer" parent="Greeting"]
+stream = ExtResource("6_ki5e0")
+
 [node name="FriendlyCast" type="Node" parent="."]
 
+[node name="1" type="AudioStreamPlayer" parent="FriendlyCast"]
+stream = ExtResource("7_nid4h")
+
 [node name="EnemyCast" type="Node" parent="."]
+
+[node name="incompetence" type="AudioStreamPlayer" parent="EnemyCast"]
+stream = ExtResource("1_bw78n")
+
+[node name="battlecry" type="AudioStreamPlayer" parent="EnemyCast"]
+stream = ExtResource("2_58lw0")
