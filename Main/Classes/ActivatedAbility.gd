@@ -186,5 +186,16 @@ static func get_ability_data():
 			"area_of_effect_fn": func(level): return 50 + level * 20,
 			"duration_fn": func(level): return 3,
 			"description_fn": func(level): return str("Deal ", 5 + 3*level, " damage in a targeted area every 0.5 seconds")
-		}
+		},
+		"Heal": {
+			"icon": load("res://Assets/RPG_Fantasy_256/HeatFull.png"),
+			"effect_fn": func(instance, flag): ActivatedAbility.heal(instance, flag),
+			"targeting_type": ActivatedAbility.TARGETING_TYPE.SINGLE_UNIT,
+			"targets": ActivatedAbility.TARGETS.OTHER,
+			"cooldown_fn": func(level): return max(3, 6 - level),
+			"range_fn": func(level): return 200,
+			"area_of_effect_fn": func(level): return 0,
+			"duration_fn": func(level): return 0,
+			"description_fn": func(level): return str(10 + 5*level, " instant heal to a friendly unit")
+		},
 	}

@@ -33,7 +33,7 @@ var data = {
 		"speed": 150,
 		"attack_damage": 15,
 		"attack_speed": 100,
-		"abilities":  ["Mind Dart", "Hellfire"]
+		"abilities":  ["Hellfire"]
 	},
 	BASE.OLYMPIAN_ARES:  {
 		"spec": SPEC.HERO,
@@ -43,7 +43,7 @@ var data = {
 		"speed": 100,
 		"attack_damage": 30,
 		"attack_speed": 50,
-		"abilities":  ["Mind Dart", "Hellfire"]
+		"abilities":  []
 	},
 	BASE.OLYMPIAN_ATHENA:  {
 		"spec": SPEC.HERO,
@@ -53,7 +53,7 @@ var data = {
 		"speed": 100,
 		"attack_damage": 15,
 		"attack_speed": 100,
-		"abilities":  ["Mind Dart", "Hellfire"]
+		"abilities":  ["Heal"]
 	},
 	BASE.OLYMPIAN_HADES:  {
 		"spec": SPEC.HERO,
@@ -63,7 +63,7 @@ var data = {
 		"speed": 100,
 		"attack_damage": 10,
 		"attack_speed": 100,
-		"abilities":  ["Mind Dart", "Hellfire"]
+		"abilities":  []
 	},
 	BASE.OLYMPIAN_HERMES:  {
 		"spec": SPEC.HERO,
@@ -73,7 +73,7 @@ var data = {
 		"speed": 200,
 		"attack_damage": 8,
 		"attack_speed": 200,
-		"abilities":  ["Mind Dart", "Hellfire"]
+		"abilities":  ["Mind Dart"]
 	},
 	BASE.OLYMPIAN_ZEUS:  {
 		"spec": SPEC.HERO,
@@ -83,7 +83,7 @@ var data = {
 		"speed": 130,
 		"attack_damage": 15,
 		"attack_speed": 100,
-		"abilities":  ["Mind Dart", "Hellfire"]
+		"abilities":  []
 	},
 	BASE.HEALER: {
 		"spec": SPEC.NORMAL,
@@ -93,6 +93,7 @@ var data = {
 		"speed": 100,
 		"attack_damage": 6,
 		"attack_speed": 100,
+		"abilities": ["Heal"]
 	},
 	BASE.SOLDIER_SPEAR: {
 		"spec": SPEC.NORMAL,
