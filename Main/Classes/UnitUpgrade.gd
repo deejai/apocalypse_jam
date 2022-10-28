@@ -17,7 +17,7 @@ func _init(level:int, effect: EFFECT = EFFECT.RAND):
 	var multiplier
 	match self.effect:
 		EFFECT.MORE_HP:
-			multiplier = 12
+			multiplier = 18
 		EFFECT.MORE_SPEED:
 			multiplier = 12
 		EFFECT.MORE_DAMAGE:
@@ -33,7 +33,7 @@ func _init(level:int, effect: EFFECT = EFFECT.RAND):
 	if roll > 0.9:
 		self.amount += randi_range(1,2)
 
-	self.amount = randi_range(1 + multiplier/3, (2 + level)*multiplier)
+	self.amount = randi_range(1 + multiplier/2, (2 + level)*multiplier)
 
 # Called when the node enters the scene tree for the first time.
 func _ready():

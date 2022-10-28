@@ -1,26 +1,44 @@
-[gd_scene load_steps=7 format=3 uid="uid://btv23vv2gtf84"]
+[gd_scene load_steps=9 format=3 uid="uid://btv23vv2gtf84"]
 
 [ext_resource type="Script" path="res://Main/Views/ArenaView/ArenaUnits/ArenaUnit.gd" id="1_xwo4s"]
-[ext_resource type="Texture2D" uid="uid://dshrt25h6os31" path="res://Assets/romanSoldier_sword.png" id="2_he2yk"]
+[ext_resource type="Texture2D" uid="uid://shrhqsf1byrf" path="res://Assets/romanSoldierFast.png" id="2_o0hlq"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_t80k4"]
-atlas = ExtResource("2_he2yk")
+[sub_resource type="AtlasTexture" id="AtlasTexture_fl32a"]
+atlas = ExtResource("2_o0hlq")
+region = Rect2(64, 0, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q1wed"]
+atlas = ExtResource("2_o0hlq")
 region = Rect2(0, 0, 32, 64)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_ddl4d"]
-atlas = ExtResource("2_he2yk")
+[sub_resource type="AtlasTexture" id="AtlasTexture_ku83t"]
+atlas = ExtResource("2_o0hlq")
+region = Rect2(96, 0, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lgudg"]
+atlas = ExtResource("2_o0hlq")
 region = Rect2(32, 0, 32, 64)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_o77n7"]
 animations = [{
-"frames": [SubResource("AtlasTexture_t80k4")],
+"frames": [SubResource("AtlasTexture_fl32a")],
 "loop": true,
-"name": &"Idle",
+"name": &"Idle_Down",
 "speed": 5.0
 }, {
-"frames": [SubResource("AtlasTexture_ddl4d"), SubResource("AtlasTexture_t80k4")],
+"frames": [SubResource("AtlasTexture_q1wed")],
 "loop": true,
-"name": &"Walk",
+"name": &"Idle_Up",
+"speed": 5.0
+}, {
+"frames": [SubResource("AtlasTexture_ku83t"), SubResource("AtlasTexture_fl32a")],
+"loop": true,
+"name": &"Walk_Down",
+"speed": 5.0
+}, {
+"frames": [SubResource("AtlasTexture_lgudg"), SubResource("AtlasTexture_q1wed")],
+"loop": true,
+"name": &"Walk_Up",
 "speed": 5.0
 }]
 
@@ -35,7 +53,7 @@ script = ExtResource("1_xwo4s")
 position = Vector2(0, -24)
 z_index = 4
 frames = SubResource("SpriteFrames_o77n7")
-animation = &"Idle"
+animation = &"Idle_Up"
 playing = true
 
 [node name="Collision" type="CollisionShape2D" parent="."]

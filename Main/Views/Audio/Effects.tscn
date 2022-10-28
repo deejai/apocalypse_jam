@@ -1,0 +1,28 @@
+[gd_scene load_steps=7 format=3 uid="uid://0cs27741ll0g"]
+
+[ext_resource type="AudioStream" uid="uid://c1kxf3321jyrd" path="res://Assets/Audio/Effects/Apollo Sun Arrow.wav" id="1_pnatg"]
+[ext_resource type="AudioStream" uid="uid://c66prcwlbb6vu" path="res://Assets/Audio/Effects/Ares Cycle of War.wav" id="2_jks5j"]
+[ext_resource type="AudioStream" uid="uid://p311lf3ptl4p" path="res://Assets/Audio/Effects/Arrow 1.wav" id="3_nnciq"]
+[ext_resource type="AudioStream" uid="uid://bl0ad5o43b856" path="res://Assets/Audio/Effects/Fire Attack 1.wav" id="4_x33et"]
+[ext_resource type="AudioStream" uid="uid://ch6amug4vtnsb" path="res://Assets/Audio/Effects/Lightning Attack 1.wav" id="5_u8vsu"]
+[ext_resource type="AudioStream" uid="uid://bq4ujr10v60ye" path="res://Assets/Audio/Effects/Heal 2.wav" id="6_ml2g6"]
+
+[node name="Effects" type="Node2D"]
+
+[node name="apollo_woosh" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("1_pnatg")
+
+[node name="ares_drums" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_jks5j")
+
+[node name="arrow1" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_nnciq")
+
+[node name="fireattack1" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_x33et")
+
+[node name="lightning1" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_u8vsu")
+
+[node name="heal2" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_ml2g6")

@@ -33,7 +33,7 @@ func _ready():
 	for i in len(Game.player.squad):
 		var data = Game.player.squad[i]
 		var scene = Shared.get_models()[data.unit.base].instantiate()
-		var texture = scene.get_node("AnimatedSprite2D").get_sprite_frames().get_frame("Idle", 0)
+		var texture = scene.get_node("AnimatedSprite2D").get_sprite_frames().get_frame("Idle_Down", 0)
 		var label = str(Unit.BASE.keys()[data.unit.base], " lv ", str(data.unit.level + 1))
 		$Units.add_item(label, texture)
 		$Units.set_item_metadata(i, {"data": data.unit})

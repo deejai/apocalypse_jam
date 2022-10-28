@@ -74,6 +74,7 @@ func load_units(arr_from: Array, arr_to: Array, alliance: ArenaUnit.ALLIANCE):
 			print(data)
 			break
 		arena_unit.position = data.start_position
+
 		arr_to.append(arena_unit)
 		add_child(arena_unit)
 
@@ -110,13 +111,6 @@ func _process(delta):
 		queue_free()
 		get_tree().change_scene_to_packed(loot_view)
 
-	$SidePanel/SelectedUnits.clear()
-	for i in range(len(selected_units)):
-		var arena_unit = selected_units[i]
-		var icon = arena_unit.get_node("AnimatedSprite2D").get_sprite_frames().get_frame("Idle", 0)
-		$SidePanel/SelectedUnits.add_icon_item(icon, true)
-		$SidePanel/SelectedUnits.set_item_selectable(i, true)
-
 	ai_decide_targets()
 	player_auto_attack()
 
@@ -143,14 +137,23 @@ func _draw():
 			in_targeting_mode = false
 
 func _input(event: InputEvent):
-	if event is InputEventKey and event.pressed and event.keycode == KEY_Q:
-		engage_ability(0)
+	if is_instance_valid(highlighted_unit):
+		var ability_index = -1
 
-	if event is InputEventKey and event.pressed and event.keycode == KEY_W:
-		engage_ability(1)
+		if event is InputEventKey and event.pressed and event.keycode == KEY_Q:
+			ability_index = 0
 
-	if event is InputEventKey and event.pressed and event.keycode == KEY_E:
-		engage_ability(2)
+		if event is InputEventKey and event.pressed and event.keycode == KEY_W:
+			ability_index = 1
+
+		if event is InputEventKey and event.pressed and event.keycode == KEY_E:
+			ability_index = 2
+
+		if ability_index != -1:
+			if highlighted_unit.statuses[ArenaUnit.STATUS.STUN]["duration"] == 0.0 and highlighted_unit.statuses[ArenaUnit.STATUS.SILENCE]["duration"] == 0.0:
+				print("SILENCED/STUNNED")
+			else:
+				engage_ability(ability_index)
 
 	if event is InputEventMouseButton and event.position.x < 1080:
 	# clicked on battlefield
@@ -229,6 +232,8 @@ func _input(event: InputEvent):
 								selected_units.append(arena_unit)
 
 					mouse_left_pressed = false
+
+					update_sidebar_units()
 
 					if len(selected_units) > 0 and selected_units[0].alliance == ArenaUnit.ALLIANCE.PLAYER:
 						highlighted_unit = selected_units[0]
@@ -382,3 +387,11 @@ func cast_on_units(targets: Array):
 		)
 		active_effects.append(effect)
 		Game.arena.add_child(effect)
+
+func update_sidebar_units():
+	$SidePanel/SelectedUnits.clear()
+	for i in range(len(selected_units)):
+		var arena_unit = selected_units[i]
+		var icon = arena_unit.get_node("AnimatedSprite2D").get_sprite_frames().get_frame("Idle_Down", 0)
+		$SidePanel/SelectedUnits.add_icon_item(icon, true)
+		$SidePanel/SelectedUnits.set_item_selectable(i, true)

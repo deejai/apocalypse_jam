@@ -16,6 +16,7 @@ var effect_fn: Callable
 var range: int
 var targets: TARGETS
 var description: String
+var sound
 
 func _init (
 	key: String,
@@ -131,7 +132,11 @@ func _process(delta):
 func _set_details():
 	var data = get_ability_data()[key]
 	icon = data["icon"]
-	effect_fn = data["effect_fn"]
+	sound = data["sound"]
+	sound.volume_db = -8
+	effect_fn = func(instance, flag):
+		sound.play()
+		data["effect_fn"].call(instance, flag)
 	targeting_type = data["targeting_type"]
 	cooldown = data["cooldown_fn"].call(level)
 	range = data["range_fn"].call(level)
@@ -167,6 +172,7 @@ static func get_ability_data():
 	return {
 		"Mind Dart": {
 			"icon": load("res://Assets/PNG/bg.png"),
+			"sound": Audio.effects.get_node("arrow1"),
 			"effect_fn": func(instance, flag): ActivatedAbility.mind_dart(instance, flag),
 			"targeting_type": ActivatedAbility.TARGETING_TYPE.SINGLE_UNIT,
 			"targets": ActivatedAbility.TARGETS.OTHER,
@@ -178,6 +184,7 @@ static func get_ability_data():
 		},
 		"Hellfire": {
 			"icon": load("res://Assets/PNG/bg.png"),
+			"sound": Audio.effects.get_node("fireattack1"),
 			"effect_fn": func(instance, flag): ActivatedAbility.hellfire(instance, flag),
 			"targeting_type": ActivatedAbility.TARGETING_TYPE.UNITS_IN_AOE,
 			"targets": ActivatedAbility.TARGETS.OTHER,
@@ -189,6 +196,7 @@ static func get_ability_data():
 		},
 		"Heal": {
 			"icon": load("res://Assets/RPG_Fantasy_256/HeatFull.png"),
+			"sound": Audio.effects.get_node("heal2"),
 			"effect_fn": func(instance, flag): ActivatedAbility.heal(instance, flag),
 			"targeting_type": ActivatedAbility.TARGETING_TYPE.SINGLE_UNIT,
 			"targets": ActivatedAbility.TARGETS.OTHER,

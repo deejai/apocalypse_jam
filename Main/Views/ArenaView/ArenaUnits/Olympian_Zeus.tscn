@@ -1,21 +1,29 @@
-[gd_scene load_steps=5 format=3 uid="uid://m8ruaanqj2fd"]
+[gd_scene load_steps=7 format=3 uid="uid://m8ruaanqj2fd"]
 
 [ext_resource type="Script" path="res://Main/Views/ArenaView/ArenaUnits/ArenaUnit.gd" id="1_v6a30"]
-[ext_resource type="Texture2D" uid="uid://2u3fuiluj2o4" path="res://Assets/Zeus.png" id="2_10v08"]
+[ext_resource type="Texture2D" uid="uid://cub1uc10tbkgv" path="res://Assets/Zeus-sheet.png" id="3_8iese"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_tp8tv"]
 radius = 22.0
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_i453m"]
+atlas = ExtResource("3_8iese")
+region = Rect2(0, 0, 48, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pb28j"]
+atlas = ExtResource("3_8iese")
+region = Rect2(48, 0, 48, 80)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_o77n7"]
 animations = [{
-"frames": [ExtResource("2_10v08")],
+"frames": [SubResource("AtlasTexture_i453m")],
 "loop": true,
-"name": &"Idle",
+"name": &"Idle_Up",
 "speed": 5.0
 }, {
-"frames": [ExtResource("2_10v08")],
+"frames": [SubResource("AtlasTexture_pb28j"), SubResource("AtlasTexture_i453m")],
 "loop": true,
-"name": &"Walk",
+"name": &"Walk_Up",
 "speed": 5.0
 }]
 
@@ -30,5 +38,5 @@ shape = SubResource("CircleShape2D_tp8tv")
 position = Vector2(0, -33)
 z_index = 4
 frames = SubResource("SpriteFrames_o77n7")
-animation = &"Idle"
+animation = &"Idle_Up"
 playing = true

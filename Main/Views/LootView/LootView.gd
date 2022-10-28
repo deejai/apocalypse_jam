@@ -115,7 +115,8 @@ static func get_inventory_item_scene(item):
 		scene.get_node("Sprite2D").scale = Vector2(2.5, 2.5)
 		scene.get_node("Label").position += Vector2(0, 40)
 		label = "Lv " + str(item.level + 1)
-		sprite = Shared.get_models()[item.base].instantiate().get_node("AnimatedSprite2D").get_sprite_frames().get_frame("Idle", 0)
+		sprite = Shared.get_models()[item.base].instantiate().get_node("AnimatedSprite2D").get_sprite_frames().get_frame("Idle_Down
+		", 0)
 	elif item is UnitUpgrade:
 		scene.get_node("Sprite2D").scale = Vector2(4, 4)
 		label = str(item.amount)

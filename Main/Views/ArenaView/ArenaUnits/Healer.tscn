@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://bwagb54q23nb3"]
 
 [ext_resource type="Script" path="res://Main/Views/ArenaView/ArenaUnits/ArenaUnit.gd" id="1_xwo4s"]
-[ext_resource type="Texture2D" uid="uid://dcth4fncppsy5" path="res://Assets/romanHealer.png" id="2_4vbw3"]
+[ext_resource type="Texture2D" uid="uid://bty0y14xt4gq1" path="res://Assets/romanHealer.png" id="2_4vbw3"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_tp8tv"]
 radius = 22.0
@@ -18,12 +18,12 @@ region = Rect2(32, 0, 32, 64)
 animations = [{
 "frames": [SubResource("AtlasTexture_fbffd")],
 "loop": true,
-"name": &"Idle",
+"name": &"Idle_Up",
 "speed": 5.0
 }, {
 "frames": [SubResource("AtlasTexture_xnu5u"), SubResource("AtlasTexture_fbffd")],
 "loop": true,
-"name": &"Walk",
+"name": &"Walk_Up",
 "speed": 5.0
 }]
 
@@ -38,5 +38,5 @@ shape = SubResource("CircleShape2D_tp8tv")
 position = Vector2(0, -24)
 z_index = 4
 frames = SubResource("SpriteFrames_o77n7")
-animation = &"Idle"
+animation = &"Idle_Up"
 playing = true

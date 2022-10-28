@@ -1,29 +1,47 @@
-[gd_scene load_steps=7 format=3 uid="uid://bbf6wk7u3g01g"]
+[gd_scene load_steps=9 format=3 uid="uid://bbf6wk7u3g01g"]
 
 [ext_resource type="Script" path="res://Main/Views/ArenaView/ArenaUnits/ArenaUnit.gd" id="1_xwo4s"]
-[ext_resource type="Texture2D" uid="uid://cknrd76gtrstu" path="res://Assets/romanSoldier_archer.png" id="2_3t5oh"]
+[ext_resource type="Texture2D" uid="uid://bk3corlcca8yq" path="res://Assets/romanSoldierRanged.png" id="2_um7l1"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_tp8tv"]
 radius = 22.0
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_wko3n"]
-atlas = ExtResource("2_3t5oh")
+[sub_resource type="AtlasTexture" id="AtlasTexture_06xan"]
+atlas = ExtResource("2_um7l1")
+region = Rect2(64, 0, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_76ikb"]
+atlas = ExtResource("2_um7l1")
 region = Rect2(0, 0, 32, 64)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_m4ybg"]
-atlas = ExtResource("2_3t5oh")
+[sub_resource type="AtlasTexture" id="AtlasTexture_rg80i"]
+atlas = ExtResource("2_um7l1")
+region = Rect2(96, 0, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xyvnk"]
+atlas = ExtResource("2_um7l1")
 region = Rect2(32, 0, 32, 64)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_o77n7"]
 animations = [{
-"frames": [SubResource("AtlasTexture_wko3n")],
+"frames": [SubResource("AtlasTexture_06xan")],
 "loop": true,
-"name": &"Idle",
+"name": &"Idle_Down",
 "speed": 5.0
 }, {
-"frames": [SubResource("AtlasTexture_m4ybg"), SubResource("AtlasTexture_wko3n")],
+"frames": [SubResource("AtlasTexture_76ikb")],
 "loop": true,
-"name": &"Walk",
+"name": &"Idle_Up",
+"speed": 5.0
+}, {
+"frames": [SubResource("AtlasTexture_rg80i"), SubResource("AtlasTexture_06xan")],
+"loop": true,
+"name": &"Walk_Down",
+"speed": 5.0
+}, {
+"frames": [SubResource("AtlasTexture_xyvnk"), SubResource("AtlasTexture_76ikb")],
+"loop": true,
+"name": &"Walk_Up",
 "speed": 5.0
 }]
 
@@ -38,5 +56,5 @@ shape = SubResource("CircleShape2D_tp8tv")
 position = Vector2(-1, -25)
 z_index = 4
 frames = SubResource("SpriteFrames_o77n7")
-animation = &"Idle"
+animation = &"Walk_Down"
 playing = true

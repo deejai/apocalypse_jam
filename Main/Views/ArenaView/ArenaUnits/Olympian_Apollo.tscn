@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://bjtddy33a5v8h"]
 
 [ext_resource type="Script" path="res://Main/Views/ArenaView/ArenaUnits/ArenaUnit.gd" id="1_v6a30"]
-[ext_resource type="Texture2D" uid="uid://cauhf7cq01mk1" path="res://Assets/Olympian_Apollo.png" id="2_tet7r"]
+[ext_resource type="Texture2D" uid="uid://dkw7fwx0vad5f" path="res://Assets/Olympian_Apollo.png" id="2_tet7r"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_tp8tv"]
 radius = 22.0
@@ -18,12 +18,12 @@ region = Rect2(32, 0, 32, 64)
 animations = [{
 "frames": [SubResource("AtlasTexture_h573b")],
 "loop": true,
-"name": &"Idle",
+"name": &"Idle_Up",
 "speed": 5.0
 }, {
 "frames": [SubResource("AtlasTexture_xpfhh"), SubResource("AtlasTexture_h573b")],
 "loop": true,
-"name": &"Walk",
+"name": &"Walk_Up",
 "speed": 5.0
 }]
 
@@ -38,5 +38,5 @@ shape = SubResource("CircleShape2D_tp8tv")
 position = Vector2(0, -22)
 z_index = 4
 frames = SubResource("SpriteFrames_o77n7")
-animation = &"Idle"
+animation = &"Idle_Up"
 playing = true

@@ -33,7 +33,8 @@ var data = {
 		"speed": 150,
 		"attack_damage": 15,
 		"attack_speed": 100,
-		"abilities":  ["Hellfire"]
+		"activated_abilities":  ["Hellfire"],
+		"passive_abilities": []
 	},
 	BASE.OLYMPIAN_ARES:  {
 		"spec": SPEC.HERO,
@@ -43,7 +44,8 @@ var data = {
 		"speed": 100,
 		"attack_damage": 30,
 		"attack_speed": 50,
-		"abilities":  []
+		"activated_abilities":  [],
+		"passive_abilities": []
 	},
 	BASE.OLYMPIAN_ATHENA:  {
 		"spec": SPEC.HERO,
@@ -53,7 +55,8 @@ var data = {
 		"speed": 100,
 		"attack_damage": 15,
 		"attack_speed": 100,
-		"abilities":  ["Heal"]
+		"activated_abilities":  ["Heal"],
+		"passive_abilities": []
 	},
 	BASE.OLYMPIAN_HADES:  {
 		"spec": SPEC.HERO,
@@ -63,7 +66,8 @@ var data = {
 		"speed": 100,
 		"attack_damage": 10,
 		"attack_speed": 100,
-		"abilities":  []
+		"activated_abilities":  [],
+		"passive_abilities": []
 	},
 	BASE.OLYMPIAN_HERMES:  {
 		"spec": SPEC.HERO,
@@ -73,7 +77,8 @@ var data = {
 		"speed": 200,
 		"attack_damage": 8,
 		"attack_speed": 200,
-		"abilities":  ["Mind Dart"]
+		"activated_abilities":  ["Mind Dart"],
+		"passive_abilities": []
 	},
 	BASE.OLYMPIAN_ZEUS:  {
 		"spec": SPEC.HERO,
@@ -83,7 +88,8 @@ var data = {
 		"speed": 130,
 		"attack_damage": 15,
 		"attack_speed": 100,
-		"abilities":  []
+		"activated_abilities":  [],
+		"passive_abilities": ["Interrupting Shock"]
 	},
 	BASE.HEALER: {
 		"spec": SPEC.NORMAL,
@@ -93,7 +99,8 @@ var data = {
 		"speed": 100,
 		"attack_damage": 6,
 		"attack_speed": 100,
-		"abilities": ["Heal"]
+		"activated_abilities": ["Heal"],
+		"passive_abilities": []
 	},
 	BASE.SOLDIER_SPEAR: {
 		"spec": SPEC.NORMAL,
@@ -137,10 +144,17 @@ func _init(base: Unit.BASE, level: int = 0):
 	self.hp = data[base]["hp"] * (1.0 + 0.15 * level)
 	self.speed = data[base]["speed"]
 
-	if data[base].has("abilities"):
-		for ability_key in data[base]["abilities"]:
+	if data[base].has("activated_abilities"):
+		for ability_key in data[base]["activated_abilities"]:
+			
 			var ability = ActivatedAbility.new(ability_key, level)
 			self.activated_abilities.append(ability)
+
+	if data[base].has("passive_abilities"):
+		for ability_key in data[base]["passive_abilities"]:
+			
+			var ability = PassiveAbility.new(ability_key, level)
+			self.passive_abilities.append(ability)
 			
 	
 	match base:

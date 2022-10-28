@@ -2,6 +2,7 @@ extends Node
 
 var battleMusic = load("res://Main/Views/Audio/battleMusic.tscn").instantiate()
 var menuMusic = load("res://Main/Views/Audio/menuMusic.tscn").instantiate()
+var effects = load("res://Main/Views/Audio/Effects.tscn").instantiate()
 
 enum VOICE {SOLDIER, HEALER, HERMES, APOLLO, ZEUS, ARES, ATHENA, HADES}
 
@@ -43,7 +44,7 @@ func _ready():
 
 	add_child(menuMusic)
 	add_child(battleMusic)
-
+	add_child(effects)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):

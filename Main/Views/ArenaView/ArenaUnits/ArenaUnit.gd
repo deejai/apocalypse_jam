@@ -44,6 +44,10 @@ var alliance: ALLIANCE
 
 var time_since_redraw = 0
 
+var facing_up: bool = true
+
+var passive_ticks: float = 0
+
 # Called when the node enters the scene tree for the first time.
 func init(unit, alliance: ALLIANCE):
 	self.unit = unit
@@ -54,8 +58,14 @@ func init(unit, alliance: ALLIANCE):
 	self.attack_speed = unit.attack_speed
 
 	self.projectile = unit.projectile
+	
+	if self.alliance == ALLIANCE.ENEMY:
+		facing_up = false
 
 	for ability in unit.activated_abilities:
+		ability_cooldowns[ability] = 0.0
+
+	for ability in unit.passive_abilities:
 		ability_cooldowns[ability] = 0.0
 
 	# idk if this logic is helpful
@@ -88,6 +98,11 @@ func _process(delta):
 	stuck_timer = max(0, stuck_timer - delta)
 	attack_cd = max(0, attack_cd - delta)
 
+	passive_ticks = (passive_ticks + delta)
+	if passive_ticks > 100:
+		passive_ticks -= 100
+	process_passive_abilities()
+
 	for ability in ability_cooldowns:
 		ability_cooldowns[ability] = max(0, ability_cooldowns[ability] - delta)
 
@@ -104,7 +119,7 @@ func _process(delta):
 		if position.distance_to(attack_target.position) > unit.range:
 			move_to_target(attack_target.position)
 		else:
-			$AnimatedSprite2D.animation = "Idle"
+			$AnimatedSprite2D.animation = "Idle_Up" if facing_up else "Idle_Down"
 			auto_attack(attack_target)
 	else:
 		move_to_target(move_target)
@@ -135,15 +150,20 @@ func _draw():
 		draw_rect(Rect2(hpbar_offset - Vector2(hpbar_width/2, hpbar_height/2), Vector2(hpbar_width * (1 - 1.0 * hp/unit.hp), hpbar_height)), Color.RED)
 
 func move_to_target(target):
+	if(statuses[STATUS.STUN]["duration"] > 0.0 or statuses[STATUS.ROOT]["duration"]):
+		return
+
 	if(position.distance_to(target) < 5):
-		$AnimatedSprite2D.animation = "Idle"
+		$AnimatedSprite2D.animation = "Idle_Up" if facing_up else "Idle_Down"
 		velocity = Vector2.ZERO
 		return
 
 	velocity = global_position.direction_to(target) * get_speed() * 0.5
+	
+	facing_up = true if velocity.y < 0 else false
 
 	if last_position.distance_to(position) < 0.3:
-		$AnimatedSprite2D.animation = "Idle"
+		$AnimatedSprite2D.animation = "Idle_Up" if facing_up else "Idle_Down"
 #		print(last_position.distance_to(position))
 		# if we weren't already stuck, we're stuck now. otherwise keep being stuck (do nothing here)
 		if(stuck_timer == 0):
@@ -156,7 +176,7 @@ func move_to_target(target):
 		stuck = false
 		stuck_timer = 0
 
-		$AnimatedSprite2D.animation = "Walk"
+		$AnimatedSprite2D.animation = "Walk_Up" if facing_up else "Walk_Down"
 
 	last_position = position
 	move_and_slide()
@@ -193,6 +213,9 @@ func get_speed():
 	return speed * speed_mult + speed_add
 
 func auto_attack(target: ArenaUnit):
+	if(statuses[STATUS.STUN]["duration"] > 0.0):
+		return
+
 	if attack_cd == 0:
 		var direction = position.direction_to(target.position)
 		var spear = projectile.instantiate().init(alliance, position, direction, 350, get_attack_damage())
@@ -205,8 +228,6 @@ func in_range(target: ArenaUnit):
 
 func handle_statuses(delta):
 	for status in STATUS.values():
-		if status == STATUS.HIT:
-			print(statuses[status]["duration"])
 		statuses[status]["duration"] = max(0, statuses[status]["duration"]-delta)
 
 	for status in STATUS.values():
@@ -225,3 +246,18 @@ func handle_statuses(delta):
 		elif statuses[status]["particles_instance"] != null and statuses[status]["duration"] == 0.0:
 			statuses[status]["particles_instance"].queue_free()
 			statuses[status]["particles_instance"] = null
+
+func process_passive_abilities():
+	for ability in unit.passive_abilities:
+		if floori(passive_ticks) % ability.cooldown == 0 and ability_cooldowns[ability] == 0.0:
+			print("tick")
+			ability_cooldowns[ability] = ability.cooldown
+
+			var units = Game.arena.get_units_in_aoe(
+					position,
+					350,
+					ActivatedAbility.affected_alliances(alliance, ability.targets)
+				)
+
+			for unit in units:
+				ability.effect_fn.call(ability, unit)
