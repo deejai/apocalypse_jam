@@ -39,21 +39,21 @@ static func mind_dart(instance: AbilityEffect, flag: AbilityEffect.FLAG):
 		AbilityEffect.FLAG.TICK:
 			pass
 
-static func soothing_vines(instance: AbilityEffect, flag: AbilityEffect.FLAG):
+static func heal(instance: AbilityEffect, flag: AbilityEffect.FLAG):
 	if not is_instance_valid(instance.props["target_unit"]):
 		instance.queue_free()
 		return
 
 	match flag:
 		AbilityEffect.FLAG.START:
-			instance.duration = 3
+			instance.props["target_unit"].apply_status(ArenaUnit.STATUS.HEAL, 1)
 			return
 
 		AbilityEffect.FLAG.END:
 			return
 
 		AbilityEffect.FLAG.TICK:
-			instance.props["target_unit"].apply_healing(5 + instance.level * 1)
+			instance.props["target_unit"].apply_healing(10 + instance.level * 1)
 			return
 
 static func poison_nova(instance: AbilityEffect, flag: AbilityEffect.FLAG):
@@ -186,5 +186,16 @@ static func get_ability_data():
 			"area_of_effect_fn": func(level): return 50 + level * 20,
 			"duration_fn": func(level): return 3,
 			"description_fn": func(level): return str("Deal ", 5 + 3*level, " damage in a targeted area every 0.5 seconds")
-		}
+		},
+		"Heal": {
+			"icon": load("res://Assets/RPG_Fantasy_256/HeatFull.png"),
+			"effect_fn": func(instance, flag): ActivatedAbility.heal(instance, flag),
+			"targeting_type": ActivatedAbility.TARGETING_TYPE.SINGLE_UNIT,
+			"targets": ActivatedAbility.TARGETS.OTHER,
+			"cooldown_fn": func(level): return max(3, 6 - level),
+			"range_fn": func(level): return 200,
+			"area_of_effect_fn": func(level): return 0,
+			"duration_fn": func(level): return 0,
+			"description_fn": func(level): return str(10 + 5*level, " instant heal to a friendly unit")
+		},
 	}
