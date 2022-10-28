@@ -2,3 +2,6 @@
 .godot/
 Assets/**.import
 Assets/Ignore
+Assets/Audio/**.wav.import
+*.import
+*.DS_Store
