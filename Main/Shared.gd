@@ -16,6 +16,11 @@ func _process(delta):
 static func get_models():
 	return {
 		Unit.BASE.OLYMPIAN_APOLLO: load("res://Main/Views/ArenaView/ArenaUnits/Olympian_Apollo.tscn"),
+		Unit.BASE.OLYMPIAN_ATHENA: load("res://Main/Views/ArenaView/ArenaUnits/Olympian_Athena.tscn"),
+		Unit.BASE.OLYMPIAN_ARES: load("res://Main/Views/ArenaView/ArenaUnits/Olympian_Ares.tscn"),
+		Unit.BASE.OLYMPIAN_HADES: load("res://Main/Views/ArenaView/ArenaUnits/Olympian_Hades.tscn"),
+		Unit.BASE.OLYMPIAN_HERMES: load("res://Main/Views/ArenaView/ArenaUnits/Olympian_Hermes.tscn"),
+		Unit.BASE.OLYMPIAN_ZEUS: load("res://Main/Views/ArenaView/ArenaUnits/Olympian_Zeus.tscn"),
 		Unit.BASE.SOLDIER_SWORD: load("res://Main/Views/ArenaView/ArenaUnits/Soldier_Sword.tscn"),
 		Unit.BASE.SOLDIER_SPEAR: load("res://Main/Views/ArenaView/ArenaUnits/Soldier_Spear.tscn"),
 		Unit.BASE.SOLDIER_ARCHER: load("res://Main/Views/ArenaView/ArenaUnits/Soldier_Archer.tscn"),

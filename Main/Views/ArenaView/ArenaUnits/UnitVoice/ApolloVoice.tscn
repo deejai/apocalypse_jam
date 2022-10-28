@@ -1,10 +1,10 @@
 [gd_scene load_steps=6 format=3 uid="uid://ca4thmnsuj5dq"]
 
-[ext_resource type="AudioStream" uid="uid://bkt2b53jibm7c" path="res://Assets/Audio/Voice/Soldiers/ok.wav" id="1_nfd1h"]
-[ext_resource type="AudioStream" uid="uid://dtqvpay0uamv3" path="res://Assets/Audio/Voice/Soldiers/death_blagh.wav" id="2_qe4ek"]
-[ext_resource type="AudioStream" uid="uid://dg1s02hmqawb4" path="res://Assets/Audio/Voice/Soldiers/mmoof.wav" id="3_nq881"]
-[ext_resource type="AudioStream" uid="uid://drhkkutyrg7i2" path="res://Assets/Audio/Voice/Soldiers/yessir.wav" id="4_iydxl"]
-[ext_resource type="AudioStream" uid="uid://bia0l1006yd4t" path="res://Assets/Audio/Voice/Soldiers/salve1.wav" id="5_t3ndh"]
+[ext_resource type="AudioStream" uid="uid://yveuk4h5om1s" path="res://Assets/Audio/Voice/Soldiers/ok.wav" id="1_nfd1h"]
+[ext_resource type="AudioStream" uid="uid://bdykcp7qg2y66" path="res://Assets/Audio/Voice/Soldiers/death_blagh.wav" id="2_qe4ek"]
+[ext_resource type="AudioStream" uid="uid://c1fyj18fxupju" path="res://Assets/Audio/Voice/Soldiers/mmoof.wav" id="3_nq881"]
+[ext_resource type="AudioStream" uid="uid://halybq74o1g3" path="res://Assets/Audio/Voice/Soldiers/yessir.wav" id="4_iydxl"]
+[ext_resource type="AudioStream" uid="uid://w728mnv875v0" path="res://Assets/Audio/Voice/Soldiers/salve1.wav" id="5_t3ndh"]
 
 [node name="ApolloVoice" type="Node2D"]
 

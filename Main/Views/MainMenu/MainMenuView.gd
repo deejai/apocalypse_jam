@@ -13,6 +13,7 @@ func _ready():
 		print("Load Game")
 		self.get_tree().change_scene_to_packed(map_view)
 	)
+	#add_child(Audio.menuMusic)
 	#Audio.menuMusic.play()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
