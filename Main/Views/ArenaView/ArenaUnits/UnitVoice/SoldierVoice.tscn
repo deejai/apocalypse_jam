@@ -8,32 +8,29 @@
 
 [node name="SoldierVoice" type="Node2D"]
 
-[node name="Response" type="Node" parent="."]
+[node name="Response" type="Node2D" parent="."]
 
-[node name="Ok" type="AudioStreamPlayer" parent="Response"]
+[node name="ok" type="AudioStreamPlayer2D" parent="Response"]
 stream = ExtResource("1_bs4fi")
-volume_db = 1.0
 
-[node name="Die" type="Node" parent="."]
-
-[node name="blagh" type="AudioStreamPlayer" parent="Die"]
-stream = ExtResource("2_baly0")
-volume_db = 1.0
-
-[node name="Hit" type="Node" parent="."]
-
-[node name="mmoof" type="AudioStreamPlayer" parent="Hit"]
-stream = ExtResource("3_ykii6")
-volume_db = 1.0
-
-[node name="Greeting" type="Node" parent="."]
+[node name="Greeting" type="Node2D" parent="."]
 
 [node name="Yessir" type="AudioStreamPlayer2D" parent="Greeting"]
 stream = ExtResource("4_eygud")
 
-[node name="Salve" type="AudioStreamPlayer" parent="Greeting"]
+[node name="Salve" type="AudioStreamPlayer2D" parent="Greeting"]
 stream = ExtResource("5_25xxh")
 
-[node name="FriendlyCast" type="Node" parent="."]
+[node name="Hit" type="Node2D" parent="."]
 
-[node name="EnemyCast" type="Node" parent="."]
+[node name="mmoof2" type="AudioStreamPlayer2D" parent="Hit"]
+stream = ExtResource("3_ykii6")
+
+[node name="Die" type="Node2D" parent="."]
+
+[node name="blagh" type="AudioStreamPlayer2D" parent="Die"]
+stream = ExtResource("2_baly0")
+
+[node name="FriendlyCast" type="Node2D" parent="."]
+
+[node name="EnemyCast" type="Node2D" parent="."]

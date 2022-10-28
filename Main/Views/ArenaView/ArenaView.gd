@@ -41,7 +41,7 @@ func setMenuEnabled(enable: bool):
 func _ready():
 	Game.arena = self
 	
-	Audio.battleMusic.play()
+	#Audio.battleMusic.battleMusic.play()
 
 	# place our units
 	print(particles_stun)

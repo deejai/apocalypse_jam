@@ -29,11 +29,13 @@ var voiceSceneMap = {
 func _ready():
 	
 	for v in VOICE.values():
-		data[v]= {}
+		data[v] = {}
 		for key in ["Greeting", "Response", "Die", "Hit", "FriendlyCast", "EnemyCast"]:
 			data[v][key] = []
 			for vl in voiceSceneMap[v].get_node(key).get_children():
 				data[v][key].append(vl)
+	for line in voiceSceneMap: 
+		add_child(voiceSceneMap[line])
 	pass # Replace with function body.
 
 
