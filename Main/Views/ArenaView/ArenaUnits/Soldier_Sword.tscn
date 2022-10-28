@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://btv23vv2gtf84"]
 
 [ext_resource type="Script" path="res://Main/Views/ArenaView/ArenaUnits/ArenaUnit.gd" id="1_xwo4s"]
-[ext_resource type="Texture2D" uid="uid://cak0syk4882ko" path="res://Assets/romanSoldier_sword.png" id="2_he2yk"]
+[ext_resource type="Texture2D" uid="uid://dshrt25h6os31" path="res://Assets/romanSoldier_sword.png" id="2_he2yk"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_t80k4"]
 atlas = ExtResource("2_he2yk")
