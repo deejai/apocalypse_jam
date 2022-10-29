@@ -160,11 +160,11 @@ func _input(event: InputEvent):
 		if in_targeting_mode and event.pressed and event.button_index == MOUSE_BUTTON_MASK_LEFT and highlighted_unit.position.distance_to(event.position) <= targeting_ability.range:
 		# try to cast ability
 			if is_instance_valid(highlighted_unit):
-				if targeting_ability.targeting_type == ActivatedAbility.TARGETING_TYPE.SINGLE_UNIT:
+				if targeting_ability.targeting_type == Shared.TARGETING_TYPE.SINGLE_UNIT:
 					var units = get_units_in_aoe(
 						get_global_mouse_position(),
 						20,
-						ActivatedAbility.affected_alliances(highlighted_unit.alliance, targeting_ability.targets)
+						ArenaUnit.affected_alliances(highlighted_unit.alliance, targeting_ability.targets)
 					)
 					
 					if len(units) == 0:
@@ -172,15 +172,15 @@ func _input(event: InputEvent):
 					else:
 						cast_on_units([units[0]])
 
-				elif targeting_ability.targeting_type == ActivatedAbility.TARGETING_TYPE.UNITS_IN_AOE:
+				elif targeting_ability.targeting_type == Shared.TARGETING_TYPE.UNITS_IN_AOE:
 					var units = get_units_in_aoe(
 						get_global_mouse_position(),
 						targeting_ability.area_of_effect,
-						ActivatedAbility.affected_alliances(highlighted_unit.alliance, targeting_ability.targets)
+						ArenaUnit.affected_alliances(highlighted_unit.alliance, targeting_ability.targets)
 					)
 					cast_on_units(units)
 					
-				elif targeting_ability.targeting_type == ActivatedAbility.TARGETING_TYPE.POINT:
+				elif targeting_ability.targeting_type == Shared.TARGETING_TYPE.POINT:
 					var effect = AbilityEffect.new(
 						{"target_point": highlighted_unit},
 						targeting_ability.key,
@@ -360,13 +360,13 @@ func engage_ability(ability_index: int):
 	var units_to_affect = []
 
 	match targeting_ability.targeting_type:
-		ActivatedAbility.TARGETING_TYPE.SELF:
+		Shared.TARGETING_TYPE.SELF:
 			# cast immediately
 			if targeting_ability.aoe > 0:
 				units_to_affect = get_units_in_aoe(
 					highlighted_unit.position,
 					targeting_ability.aoe,
-					AbilityEffect.affected_alliances(highlighted_unit.alliance, targeting_ability.affected_alliances)
+					ArenaUnit.affected_alliances(highlighted_unit.alliance, targeting_ability.affected_alliances)
 				)
 			else:
 				units_to_affect = [highlighted_unit]

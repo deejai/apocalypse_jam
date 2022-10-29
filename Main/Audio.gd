@@ -28,13 +28,12 @@ var voiceSceneMap = {
 	VOICE.HADES: hades_voice,
 }
 func _ready():
-	
 	for v in VOICE.values():
 		data[v] = {}
 		for key in ["Greeting", "Response", "Die", "Hit", "FriendlyCast", "EnemyCast"]:
 			data[v][key] = []
 			for vl in voiceSceneMap[v].get_node(key).get_children():
-				if key in ["Die", "Hit"]:
+				if key in ["Hit"]:
 					vl.volume_db = -9
 				else:
 					vl.volume_db = -6

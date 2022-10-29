@@ -24,13 +24,13 @@ func _ready():
 				ActivatedAbility.new(ActivatedAbility.get_ability_data().keys()[randi() % len(ActivatedAbility.get_ability_data().keys())], 0),
 				PassiveAbility.new(PassiveAbility.get_ability_data().keys()[randi() % len(PassiveAbility.get_ability_data().keys())]),
 				AbilityUpgrade.new(level),
-				Unit.new([Unit.BASE.HEALER, Unit.BASE.SOLDIER_SPEAR, Unit.BASE.SOLDIER_SWORD, Unit.BASE.SOLDIER_ARCHER][randi() % 4], level)
+				Unit.new([Shared.BASE.HEALER, Shared.BASE.SOLDIER_SPEAR, Shared.BASE.SOLDIER_SWORD, Shared.BASE.SOLDIER_ARCHER][randi() % 4], level)
 			][randi() % 4]
 
 		Shared.REWARD_TYPE.NEW_UNIT:
 			var offset = randi() % 4
 			for i in [1,2,3]:
-				rewards[i] = Unit.new([Unit.BASE.HEALER, Unit.BASE.SOLDIER_SPEAR, Unit.BASE.SOLDIER_SWORD, Unit.BASE.SOLDIER_ARCHER][(i + offset) % 4], level)
+				rewards[i] = Unit.new([Shared.BASE.HEALER, Shared.BASE.SOLDIER_SPEAR, Shared.BASE.SOLDIER_SWORD, Shared.BASE.SOLDIER_ARCHER][(i + offset) % 4], level)
 
 			rewards[4] = [
 				ActivatedAbility.new(ActivatedAbility.get_ability_data().keys()[randi() % len(ActivatedAbility.get_ability_data().keys())], 0),
@@ -49,8 +49,8 @@ func _ready():
 				ActivatedAbility.new(ActivatedAbility.get_ability_data().keys()[randi() % len(ActivatedAbility.get_ability_data().keys())], 0),
 				PassiveAbility.new(PassiveAbility.get_ability_data().keys()[randi() % len(PassiveAbility.get_ability_data().keys())]),
 				AbilityUpgrade.new(level),
-				Unit.new([Unit.BASE.HEALER, Unit.BASE.SOLDIER_SPEAR, Unit.BASE.SOLDIER_SWORD, Unit.BASE.SOLDIER_ARCHER][unit1_i], level),
-				Unit.new([Unit.BASE.HEALER, Unit.BASE.SOLDIER_SPEAR, Unit.BASE.SOLDIER_SWORD, Unit.BASE.SOLDIER_ARCHER][unit2_i], level),
+				Unit.new([Shared.BASE.HEALER, Shared.BASE.SOLDIER_SPEAR, Shared.BASE.SOLDIER_SWORD, Shared.BASE.SOLDIER_ARCHER][unit1_i], level),
+				Unit.new([Shared.BASE.HEALER, Shared.BASE.SOLDIER_SPEAR, Shared.BASE.SOLDIER_SWORD, Shared.BASE.SOLDIER_ARCHER][unit2_i], level),
 				UnitUpgrade.new(level, unit_up1_i),
 				UnitUpgrade.new(level, unit_up2_i),
 			]

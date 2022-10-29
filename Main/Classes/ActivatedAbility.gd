@@ -2,19 +2,16 @@ extends Node
 
 class_name ActivatedAbility
 
-enum TARGETING_TYPE {SELF, POINT, SINGLE_UNIT, UNITS_IN_AOE}
-enum TARGETS {SAME, OTHER, ALL}
-
 var key: String
 var icon: CompressedTexture2D
 var cooldown: float
 var level: int
-var targeting_type: TARGETING_TYPE
+var targeting_type: Shared.TARGETING_TYPE
 var area_of_effect: int
 var duration: float
 var effect_fn: Callable
 var range: int
-var targets: TARGETS
+var targets: Shared.TARGETS
 var description: String
 var sound
 
@@ -156,26 +153,14 @@ func level_up():
 func get_meta_data():
 	return str(description, "\n\nCooldown: ", cooldown, "s\nRange: ", range, "\nArea of Effect: ", area_of_effect, "\nDuration: ", duration, "s")
 
-static func affected_alliances(alliance: ArenaUnit.ALLIANCE, which: TARGETS) -> Array[ArenaUnit.ALLIANCE]:
-	match which:
-		TARGETS.SAME:
-			return [alliance]
-		TARGETS.OTHER:
-			return [ArenaUnit.ALLIANCE.PLAYER] if alliance == ArenaUnit.ALLIANCE.ENEMY else [ArenaUnit.ALLIANCE.ENEMY]
-		TARGETS.ALL:
-			return [ArenaUnit.ALLIANCE.ENEMY, ArenaUnit.ALLIANCE.PLAYER]
-		_:
-			assert(false)
-			return []
-
 static func get_ability_data():
 	return {
 		"Mind Dart": {
 			"icon": load("res://Assets/PNG/bg.png"),
 			"sound": Audio.effects.get_node("arrow1"),
 			"effect_fn": func(instance, flag): ActivatedAbility.mind_dart(instance, flag),
-			"targeting_type": ActivatedAbility.TARGETING_TYPE.SINGLE_UNIT,
-			"targets": ActivatedAbility.TARGETS.OTHER,
+			"targeting_type": Shared.TARGETING_TYPE.SINGLE_UNIT,
+			"targets": Shared.TARGETS.OTHER,
 			"cooldown_fn": func(level): return max(3, 6 - level),
 			"range_fn": func(level): return 200,
 			"area_of_effect_fn": func(level): return 0,
@@ -186,8 +171,8 @@ static func get_ability_data():
 			"icon": load("res://Assets/PNG/bg.png"),
 			"sound": Audio.effects.get_node("fireattack1"),
 			"effect_fn": func(instance, flag): ActivatedAbility.hellfire(instance, flag),
-			"targeting_type": ActivatedAbility.TARGETING_TYPE.UNITS_IN_AOE,
-			"targets": ActivatedAbility.TARGETS.OTHER,
+			"targeting_type": Shared.TARGETING_TYPE.UNITS_IN_AOE,
+			"targets": Shared.TARGETS.OTHER,
 			"cooldown_fn": func(level): return max(8, 12 - level),
 			"range_fn": func(level): return 135,
 			"area_of_effect_fn": func(level): return 50 + level * 20,
@@ -198,8 +183,8 @@ static func get_ability_data():
 			"icon": load("res://Assets/RPG_Fantasy_256/HeatFull.png"),
 			"sound": Audio.effects.get_node("heal2"),
 			"effect_fn": func(instance, flag): ActivatedAbility.heal(instance, flag),
-			"targeting_type": ActivatedAbility.TARGETING_TYPE.SINGLE_UNIT,
-			"targets": ActivatedAbility.TARGETS.OTHER,
+			"targeting_type": Shared.TARGETING_TYPE.SINGLE_UNIT,
+			"targets": Shared.TARGETS.OTHER,
 			"cooldown_fn": func(level): return max(3, 6 - level),
 			"range_fn": func(level): return 200,
 			"area_of_effect_fn": func(level): return 0,

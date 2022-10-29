@@ -9,6 +9,10 @@ var current: FloorNode
 var end: FloorNode
 
 func _init(level: int):
+	if level == -1:
+		# manual mode. used for loading from save
+		return
+
 	self.level = level
 
 	start = FloorNode.new(0)

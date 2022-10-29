@@ -7,7 +7,7 @@ var key
 var icon
 var effect_fn: Callable
 var cooldown: int
-var targets: ActivatedAbility.TARGETS
+var targets: Shared.TARGETS
 var description: String
 var sound
 
@@ -39,7 +39,7 @@ static func get_ability_data():
 				target.apply_status(ArenaUnit.STATUS.STUN, 0.3 + 0.15 * instance.level)
 				target.apply_damage(4 + 1 * instance.level),
 			"cooldown": 4,
-			"targets": ActivatedAbility.TARGETS.OTHER,
+			"targets": Shared.TARGETS.OTHER,
 			"description_fn": func(level): return str("Stun nearby enemies for ", 0.3 + 0.15 * level, " seconds and deal ", 4 + 1 * level, " damage every 4 seconds")
 		},
 	}

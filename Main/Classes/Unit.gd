@@ -2,11 +2,8 @@ extends Node
 
 class_name Unit
 
-enum SPEC { NORMAL, HERO, SUMMON }
-enum BASE { OLYMPIAN_APOLLO, OLYMPIAN_ATHENA, OLYMPIAN_ARES, OLYMPIAN_HADES, OLYMPIAN_HERMES, OLYMPIAN_ZEUS, SOLDIER_SPEAR, SOLDIER_SWORD, SOLDIER_ARCHER, HEALER }
 var voice: Audio.VOICE
 
-var status: String = "healthy"
 var speed: float = 100
 var hp: float = 100
 var spec: int
@@ -24,118 +21,13 @@ var passive_abilities = []
 
 # @TODO: add more stats, add animations
 
-var data = {
-	BASE.OLYMPIAN_APOLLO:  {
-		"spec": SPEC.HERO,
-		"voice": Audio.VOICE.APOLLO,
-		"range": 200,
-		"hp": 150,
-		"speed": 150,
-		"attack_damage": 15,
-		"attack_speed": 100,
-		"activated_abilities":  ["Hellfire"],
-		"passive_abilities": []
-	},
-	BASE.OLYMPIAN_ARES:  {
-		"spec": SPEC.HERO,
-		"voice": Audio.VOICE.ARES,
-		"range": 50,
-		"hp": 300,
-		"speed": 100,
-		"attack_damage": 30,
-		"attack_speed": 50,
-		"activated_abilities":  [],
-		"passive_abilities": []
-	},
-	BASE.OLYMPIAN_ATHENA:  {
-		"spec": SPEC.HERO,
-		"voice": Audio.VOICE.ATHENA,
-		"range": 50,
-		"hp": 200,
-		"speed": 100,
-		"attack_damage": 15,
-		"attack_speed": 100,
-		"activated_abilities":  ["Heal"],
-		"passive_abilities": []
-	},
-	BASE.OLYMPIAN_HADES:  {
-		"spec": SPEC.HERO,
-		"voice": Audio.VOICE.HADES,
-		"range": 150,
-		"hp": 150,
-		"speed": 100,
-		"attack_damage": 10,
-		"attack_speed": 100,
-		"activated_abilities":  [],
-		"passive_abilities": []
-	},
-	BASE.OLYMPIAN_HERMES:  {
-		"spec": SPEC.HERO,
-		"voice": Audio.VOICE.HERMES,
-		"range": 50,
-		"hp": 100,
-		"speed": 200,
-		"attack_damage": 8,
-		"attack_speed": 200,
-		"activated_abilities":  ["Mind Dart"],
-		"passive_abilities": []
-	},
-	BASE.OLYMPIAN_ZEUS:  {
-		"spec": SPEC.HERO,
-		"voice": Audio.VOICE.ZEUS,
-		"range": 150,
-		"hp": 200,
-		"speed": 130,
-		"attack_damage": 15,
-		"attack_speed": 100,
-		"activated_abilities":  [],
-		"passive_abilities": ["Interrupting Shock"]
-	},
-	BASE.HEALER: {
-		"spec": SPEC.NORMAL,
-		"voice": Audio.VOICE.HEALER,
-		"range": 100,
-		"hp": 60,
-		"speed": 100,
-		"attack_damage": 6,
-		"attack_speed": 100,
-		"activated_abilities": ["Heal"],
-		"passive_abilities": []
-	},
-	BASE.SOLDIER_SPEAR: {
-		"spec": SPEC.NORMAL,
-		"voice": Audio.VOICE.SOLDIER,
-		"range": 50,
-		"hp": 150,
-		"speed": 080,
-		"attack_damage": 10,
-		"attack_speed": 100,
-	},
-	BASE.SOLDIER_SWORD: {
-		"spec": SPEC.NORMAL,
-		"voice": Audio.VOICE.SOLDIER,
-		"range": 50,
-		"hp": 100,
-		"speed": 150,
-		"attack_damage": 8,
-		"attack_speed": 100,
-	},
-	BASE.SOLDIER_ARCHER: {
-		"spec": SPEC.NORMAL,
-		"voice": Audio.VOICE.SOLDIER,
-		"range": 150,
-		"hp": 60,
-		"speed": 120,
-		"attack_damage": 8,
-		"attack_speed": 100,
-	}
-}
-
-func _init(base: Unit.BASE, level: int = 0):
+func _init(base, level: int = 0):
 	self.base = base
 	
 	
 	self.level = level
+	
+	var data = Shared.get_unit_data()
 
 	self.spec = data[base]["spec"]
 	self.voice = data[base]["voice"]
@@ -146,19 +38,19 @@ func _init(base: Unit.BASE, level: int = 0):
 
 	if data[base].has("activated_abilities"):
 		for ability_key in data[base]["activated_abilities"]:
-			
+
 			var ability = ActivatedAbility.new(ability_key, level)
 			self.activated_abilities.append(ability)
 
 	if data[base].has("passive_abilities"):
 		for ability_key in data[base]["passive_abilities"]:
-			
+
 			var ability = PassiveAbility.new(ability_key, level)
 			self.passive_abilities.append(ability)
 			
 	
 	match base:
-		BASE.SOLDIER_SPEAR: projectile = load("res://Main/Views/ArenaView/Projectiles/Spear.tscn")
+		Shared.BASE.SOLDIER_SPEAR: projectile = load("res://Main/Views/ArenaView/Projectiles/Spear.tscn")
 		_: projectile = load("res://Main/Views/ArenaView/Projectiles/Spear.tscn")
 
 func get_meta_data():

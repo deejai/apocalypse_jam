@@ -256,8 +256,20 @@ func process_passive_abilities():
 			var units = Game.arena.get_units_in_aoe(
 					position,
 					350,
-					ActivatedAbility.affected_alliances(alliance, ability.targets)
+					Shared.affected_alliances(alliance, ability.targets)
 				)
 
 			for unit in units:
 				ability.effect_fn.call(ability, unit)
+
+static func affected_alliances(alliance: ArenaUnit.ALLIANCE, which):
+	match which:
+		Shared.TARGETS.SAME:
+			return [alliance]
+		Shared.TARGETS.OTHER:
+			return [ArenaUnit.ALLIANCE.PLAYER] if alliance == ArenaUnit.ALLIANCE.ENEMY else [ArenaUnit.ALLIANCE.ENEMY]
+		Shared.TARGETS.ALL:
+			return [ArenaUnit.ALLIANCE.ENEMY, ArenaUnit.ALLIANCE.PLAYER]
+		_:
+			assert(false)
+			return []

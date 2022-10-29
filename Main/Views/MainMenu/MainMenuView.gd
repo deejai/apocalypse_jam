@@ -6,12 +6,14 @@ var map_view = load("res://Main/Views/MapView/MapView.tscn")
 func _ready():
 	$NewGameButton.connect("pressed", func():
 		print("New Game")
+#		Game.player = Player.new()
 		self.get_tree().change_scene_to_packed(map_view)
 	)
 
 	$LoadGameButton.connect("pressed", func():
 		print("Load Game")
-		Game.load_game()
+		Game.player = Player.new(false)
+		SaveLoad.load_game(Game.player)
 		self.get_tree().change_scene_to_packed(map_view)
 	)
 
