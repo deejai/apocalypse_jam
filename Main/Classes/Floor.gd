@@ -67,3 +67,9 @@ func _get_depth_rec(node: FloorNode):
 			max_depth = depth
 
 	return max_depth + 1
+
+static func floor_to_json(floor: Floor):
+	pass
+
+static func json_to_floor(floor: Floor):
+	pass

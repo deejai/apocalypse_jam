@@ -11,6 +11,7 @@ func _ready():
 
 	$LoadGameButton.connect("pressed", func():
 		print("Load Game")
+		Game.load_game()
 		self.get_tree().change_scene_to_packed(map_view)
 	)
 

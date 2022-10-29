@@ -4,7 +4,9 @@ var map_view = load("res://Main/Views/MapView/MapView.tscn")
 # Called when the node enters the scene tree for the first time.
 
 var _use_item_button_function = func(): print("No use")
-var use_item_button_function = func(): _use_item_button_function.call()
+var use_item_button_function = func():
+	Audio.effects.get_node("ui_equip").play()
+	_use_item_button_function.call()
 
 func _ready():
 	$ReturnToMapButton.connect("pressed", func(): get_tree().change_scene_to_packed(map_view))
@@ -127,7 +129,7 @@ func update_use_item_button():
 			$UseItemButton.text = "Upgrade Ability"
 			$UseItemButton.disabled = false
 			_use_item_button_function = func():
-				selected_ability.level_up()
+				selected_ability.set_level(selected_ability.level + selected_item.amount)
 
 				Game.player.inventory.pop_at(Game.player.inventory.find(selected_item))
 				$Items.remove_item(selected_item_index)

@@ -18,3 +18,19 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	pass
+
+func save_game():
+	var file = FileAccess.open("user://slot1.save", FileAccess.WRITE)
+	var save_data = {
+		"player": player,
+		"next_battle": next_battle
+	}
+	file.store_line(JSON.stringify(save_data))
+
+func load_game():
+	var file = FileAccess.open("user://slot1.save", FileAccess.READ)
+	if(file == null):
+		return
+	var save_data = JSON.parse_string(file.get_as_text())
+	player = save_data["player"]
+	next_battle = save_data["next_battle"]

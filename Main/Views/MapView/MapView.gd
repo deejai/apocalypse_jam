@@ -8,6 +8,8 @@ var arena_view = load("res://Main/Views/ArenaView/ArenaView.tscn")
 func _ready():
 	Game.arena = null
 
+	Game.save_game()
+
 	add_child(nav_frame.instantiate())
 
 	var start = Game.player.floor.start

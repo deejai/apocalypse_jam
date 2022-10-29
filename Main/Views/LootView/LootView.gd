@@ -23,7 +23,7 @@ func _ready():
 			rewards[4] = [
 				ActivatedAbility.new(ActivatedAbility.get_ability_data().keys()[randi() % len(ActivatedAbility.get_ability_data().keys())], 0),
 				PassiveAbility.new(PassiveAbility.get_ability_data().keys()[randi() % len(PassiveAbility.get_ability_data().keys())]),
-				AbilityUpgrade.new(),
+				AbilityUpgrade.new(level),
 				Unit.new([Unit.BASE.HEALER, Unit.BASE.SOLDIER_SPEAR, Unit.BASE.SOLDIER_SWORD, Unit.BASE.SOLDIER_ARCHER][randi() % 4], level)
 			][randi() % 4]
 
@@ -35,7 +35,7 @@ func _ready():
 			rewards[4] = [
 				ActivatedAbility.new(ActivatedAbility.get_ability_data().keys()[randi() % len(ActivatedAbility.get_ability_data().keys())], 0),
 				PassiveAbility.new(PassiveAbility.get_ability_data().keys()[randi() % len(PassiveAbility.get_ability_data().keys())]),
-				AbilityUpgrade.new(),
+				AbilityUpgrade.new(level),
 				UnitUpgrade.new(level, randi() % 4)
 			][randi() % 4]
 
@@ -48,7 +48,7 @@ func _ready():
 			var reward_choices = [
 				ActivatedAbility.new(ActivatedAbility.get_ability_data().keys()[randi() % len(ActivatedAbility.get_ability_data().keys())], 0),
 				PassiveAbility.new(PassiveAbility.get_ability_data().keys()[randi() % len(PassiveAbility.get_ability_data().keys())]),
-				AbilityUpgrade.new(),
+				AbilityUpgrade.new(level),
 				Unit.new([Unit.BASE.HEALER, Unit.BASE.SOLDIER_SPEAR, Unit.BASE.SOLDIER_SWORD, Unit.BASE.SOLDIER_ARCHER][unit1_i], level),
 				Unit.new([Unit.BASE.HEALER, Unit.BASE.SOLDIER_SPEAR, Unit.BASE.SOLDIER_SWORD, Unit.BASE.SOLDIER_ARCHER][unit2_i], level),
 				UnitUpgrade.new(level, unit_up1_i),
@@ -144,7 +144,7 @@ static func get_inventory_item_scene(item):
 		label = item.key + " Lv " + str(item.level + 1)
 		sprite = load("res://Assets/RPG_Fantasy_256/TomeGreen.png")
 	elif item is AbilityUpgrade:
-		label = "+1 Ability Lv"
+		label = str("Ability Lv +", item.amount)
 		sprite = load("res://Assets/RPG_Fantasy_256/Scroll.png")
 	else:
 		print(item)

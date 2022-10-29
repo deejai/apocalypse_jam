@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://0cs27741ll0g"]
+[gd_scene load_steps=8 format=3 uid="uid://0cs27741ll0g"]
 
 [ext_resource type="AudioStream" uid="uid://c1kxf3321jyrd" path="res://Assets/Audio/Effects/Apollo Sun Arrow.wav" id="1_pnatg"]
 [ext_resource type="AudioStream" uid="uid://c66prcwlbb6vu" path="res://Assets/Audio/Effects/Ares Cycle of War.wav" id="2_jks5j"]
@@ -6,6 +6,7 @@
 [ext_resource type="AudioStream" uid="uid://bl0ad5o43b856" path="res://Assets/Audio/Effects/Fire Attack 1.wav" id="4_x33et"]
 [ext_resource type="AudioStream" uid="uid://ch6amug4vtnsb" path="res://Assets/Audio/Effects/Lightning Attack 1.wav" id="5_u8vsu"]
 [ext_resource type="AudioStream" uid="uid://bq4ujr10v60ye" path="res://Assets/Audio/Effects/Heal 2.wav" id="6_ml2g6"]
+[ext_resource type="AudioStream" uid="uid://wn4wydndende" path="res://Assets/Audio/Effects/UI Equip.wav" id="7_jts7c"]
 
 [node name="Effects" type="Node2D"]
 
@@ -26,3 +27,6 @@ stream = ExtResource("5_u8vsu")
 
 [node name="heal2" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("6_ml2g6")
+
+[node name="ui_equip" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_jts7c")
