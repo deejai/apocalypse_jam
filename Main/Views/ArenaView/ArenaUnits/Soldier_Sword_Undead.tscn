@@ -1,0 +1,68 @@
+[gd_scene load_steps=11 format=3 uid="uid://cyevrtu1yff67"]
+
+[ext_resource type="Script" path="res://Main/Views/ArenaView/ArenaUnits/ArenaUnit.gd" id="1_xwo4s"]
+[ext_resource type="Texture2D" uid="uid://dc78vg6wtcg82" path="res://Assets/UndeadRomanSoldierFast.png" id="2_w3ed7"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n6533"]
+atlas = ExtResource("2_w3ed7")
+region = Rect2(64, 0, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_luaon"]
+atlas = ExtResource("2_w3ed7")
+region = Rect2(0, 0, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bbxmw"]
+atlas = ExtResource("2_w3ed7")
+region = Rect2(96, 0, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_auwh2"]
+atlas = ExtResource("2_w3ed7")
+region = Rect2(64, 0, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fpuw2"]
+atlas = ExtResource("2_w3ed7")
+region = Rect2(32, 0, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_au3g0"]
+atlas = ExtResource("2_w3ed7")
+region = Rect2(0, 0, 32, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_o77n7"]
+animations = [{
+"frames": [SubResource("AtlasTexture_n6533")],
+"loop": true,
+"name": &"Idle_Down",
+"speed": 5.0
+}, {
+"frames": [SubResource("AtlasTexture_luaon")],
+"loop": true,
+"name": &"Idle_Up",
+"speed": 5.0
+}, {
+"frames": [SubResource("AtlasTexture_bbxmw"), SubResource("AtlasTexture_auwh2")],
+"loop": true,
+"name": &"Walk_Down",
+"speed": 5.0
+}, {
+"frames": [SubResource("AtlasTexture_fpuw2"), SubResource("AtlasTexture_au3g0")],
+"loop": true,
+"name": &"Walk_Up",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_tp8tv"]
+radius = 22.0
+
+[node name="Unit" type="CharacterBody2D"]
+motion_mode = 1
+script = ExtResource("1_xwo4s")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -24)
+z_index = 4
+frames = SubResource("SpriteFrames_o77n7")
+animation = &"Idle_Up"
+playing = true
+
+[node name="Collision" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_tp8tv")
