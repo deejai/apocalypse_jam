@@ -65,29 +65,29 @@ static func save_game(player):
 		"UnitUpgrades": [],
 	}
 	
-#	for i in range(len(player.inventory)):
-#		var item = player.inventory[i]
-#		if item is AbilityUpgrade:
-#			inventorySaveObj["AbilityUpgrades"].append(
-#				item.amount
-#			)
-#		elif item is ActivatedAbility:
-#			inventorySaveObj["ActivatedAbilities"].append({
-#				"key": item.key,
-#				"level": item.level,
-#			})
-#		elif item is PassiveAbility:
-#			inventorySaveObj["PassiveAbilities"].append({
-#				"key": item.key,
-#				"level": item.level,
-#			})
-#		elif item is UnitUpgrade:
-#			inventorySaveObj["PassiveAbilities"].append({
-#				"effect": item.effect,
-#				"amount": item.amount,
-#			})
-#		else:
-#			assert(false)
+	for i in range(len(player.inventory)):
+		var item = player.inventory[i]
+		if item is AbilityUpgrade:
+			inventorySaveObj["AbilityUpgrades"].append(
+				item.amount
+			)
+		elif item is ActivatedAbility:
+			inventorySaveObj["ActivatedAbilities"].append({
+				"key": item.key,
+				"level": item.level,
+			})
+		elif item is PassiveAbility:
+			inventorySaveObj["PassiveAbilities"].append({
+				"key": item.key,
+				"level": item.level,
+			})
+		elif item is UnitUpgrade:
+			inventorySaveObj["PassiveAbilities"].append({
+				"effect": item.effect,
+				"amount": item.amount,
+			})
+		else:
+			assert(false)
 
 	var squadSaveObj = []
 

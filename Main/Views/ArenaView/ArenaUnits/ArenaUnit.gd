@@ -256,7 +256,7 @@ func process_passive_abilities():
 			var units = Game.arena.get_units_in_aoe(
 					position,
 					350,
-					Shared.affected_alliances(alliance, ability.targets)
+					ArenaUnit.affected_alliances(alliance, ability.targets)
 				)
 
 			for unit in units:

@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://bth8t7m3646o"]
 
 [ext_resource type="Script" path="res://Main/Views/ArenaView/ArenaView.gd" id="1_hy837"]
-[ext_resource type="Texture2D" uid="uid://b0k378korliav" path="res://Assets/Tilesets/Floor0/Entire_Tileset.png" id="2_g4bpl"]
+[ext_resource type="Texture2D" uid="uid://fmpj1uve5f40" path="res://Assets/Tilesets/Floor0/Entire_Tileset.png" id="2_g4bpl"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_0dtf7"]
 texture = ExtResource("2_g4bpl")

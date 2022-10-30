@@ -11,7 +11,7 @@ func _init(level: int, p_type: TYPE = TYPE.RAND):
 	var type
 	
 	if p_type == TYPE.RAND:
-		type = TYPE.values()[ randi() % len(TYPE) ]
+		type = TYPE.values()[ randi() % (len(TYPE)-1) ]
 
 	else:
 		type = p_type
@@ -44,7 +44,7 @@ func _init(level: int, p_type: TYPE = TYPE.RAND):
 			for c in range(randi_range(3,6)):
 				var position = Vector2(150 + c*150, 50 + 25 + 70)
 				var heal_unit = Unit.new(Shared.BASE.HEALER, level)
-				var ranged_unit = Unit.new(Shared.BASE.ARCHER, level)
+				var ranged_unit = Unit.new(Shared.BASE.SOLDIER_ARCHER, level)
 				var strong_unit = Unit.new(Shared.BASE.SOLDIER_SPEAR, level)
 				enemies.append({"unit": heal_unit, "start_position": position})
 				enemies.append({"unit": ranged_unit, "start_position": Vector2(150 + c*150, 50 + 25 + 120)})

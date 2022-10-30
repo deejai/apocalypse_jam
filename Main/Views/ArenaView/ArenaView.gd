@@ -318,7 +318,7 @@ func player_auto_attack():
 		if closest_enemy:
 			arena_unit.auto_attack(closest_enemy)
 
-func get_units_in_aoe(point: Vector2, aoe: int, alliances: Array[ArenaUnit.ALLIANCE]):
+func get_units_in_aoe(point: Vector2, aoe: int, alliances: Array):
 	var arrs = []
 	for alliance in alliances:
 		if alliance == ArenaUnit.ALLIANCE.PLAYER:
