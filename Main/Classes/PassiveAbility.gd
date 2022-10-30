@@ -50,8 +50,38 @@ static func get_ability_data():
 				target.apply_healing(4 + 1 * instance.level),
 			"cooldown": 6,
 			"targets": Shared.TARGETS.SAME,
-			"description_fn": func(level): return str("Heal nearby enemies for ", 4 + 1 * level, " hp every 6 seconds")
+			"description_fn": func(level): return str("Heal nearby allies for ", 4 + 1 * level, " hp every 6 seconds")
 		},
+		"Apollos Heat": {
+			"icon": load("res://Assets/PNG/bg.png"),
+			"sound": Audio.effects.get_node("fireattack1"),
+			"effect_fn": func(instance, target):
+				target.apply_status(ArenaUnit.STATUS.FIRE, 0.3)
+				target.apply_damage(4 + 1 * instance.level),
+			"cooldown": 1,
+			"targets": Shared.TARGETS.OTHER,
+			"description_fn": func(level): return str("Damage nearby enemies for ", 1 * level, " hp every second")
+		},
+		"Hades Despair": {
+			"icon": load("res://Assets/PNG/bg.png"),
+			"sound": Audio.effects.get_node("fireattack1"),
+			"effect_fn": func(instance, target):
+				target.apply_status(ArenaUnit.STATUS.POISON, 0.3)
+				target.apply_damage(1 + 1 * instance.level),
+			"cooldown": 1,
+			"targets": Shared.TARGETS.OTHER,
+			"description_fn": func(level): return str("Damage nearby enemies for ", 1+1 * level, " hp every second")
+			},
+			"Hermes Feet": {
+			"icon": load("res://Assets/PNG/bg.png"),
+			"sound": Audio.effects.get_node("apollow_woosh"),
+			"effect_fn": func(instance, target):
+				target.apply_damage(1 + 1 * instance.level),
+			"cooldown": 1,
+			"targets": Shared.TARGETS.OTHER,
+			"description_fn": func(level): return str("Damage nearby enemies for ", 1+1 * level, " hp every second")
+			}
+
 	}
 
 func _set_details():
