@@ -44,14 +44,14 @@ static func heal(instance: AbilityEffect, flag: AbilityEffect.FLAG):
 
 	match flag:
 		AbilityEffect.FLAG.START:
-			instance.props["target_unit"].apply_status(ArenaUnit.STATUS.HEAL, 1)
+			instance.props["target_unit"].apply_status(ArenaUnit.STATUS.HEAL, .3)
+			instance.props["target_unit"].apply_healing(10 + instance.level * 5)
 			return
 
 		AbilityEffect.FLAG.END:
 			return
 
 		AbilityEffect.FLAG.TICK:
-			instance.props["target_unit"].apply_healing(10 + instance.level * 1)
 			return
 
 static func poison_nova(instance: AbilityEffect, flag: AbilityEffect.FLAG):
@@ -184,7 +184,7 @@ static func get_ability_data():
 			"sound": Audio.effects.get_node("heal2"),
 			"effect_fn": func(instance, flag): ActivatedAbility.heal(instance, flag),
 			"targeting_type": Shared.TARGETING_TYPE.SINGLE_UNIT,
-			"targets": Shared.TARGETS.OTHER,
+			"targets": Shared.TARGETS.SAME,
 			"cooldown_fn": func(level): return max(3, 6 - level),
 			"range_fn": func(level): return 200,
 			"area_of_effect_fn": func(level): return 0,

@@ -42,6 +42,16 @@ static func get_ability_data():
 			"targets": Shared.TARGETS.OTHER,
 			"description_fn": func(level): return str("Stun nearby enemies for ", 0.3 + 0.15 * level, " seconds and deal ", 4 + 1 * level, " damage every 4 seconds")
 		},
+		"Healing Wind": {
+			"icon": load("res://Assets/PNG/bg.png"),
+			"sound": Audio.effects.get_node("heal2"),
+			"effect_fn": func(instance, target):
+				target.apply_status(ArenaUnit.STATUS.HEAL, 0.3)
+				target.apply_healing(4 + 1 * instance.level),
+			"cooldown": 6,
+			"targets": Shared.TARGETS.SAME,
+			"description_fn": func(level): return str("Heal nearby enemies for ", 4 + 1 * level, " hp every 6 seconds")
+		},
 	}
 
 func _set_details():

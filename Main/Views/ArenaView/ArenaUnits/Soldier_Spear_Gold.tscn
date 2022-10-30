@@ -1,53 +1,53 @@
-[gd_scene load_steps=11 format=3 uid="uid://kvcgemd7u3kj"]
+[gd_scene load_steps=11 format=3 uid="uid://cclxilo8q1bcp"]
 
 [ext_resource type="Script" path="res://Main/Views/ArenaView/ArenaUnits/ArenaUnit.gd" id="1_xwo4s"]
-[ext_resource type="Texture2D" uid="uid://ppebguv6axdl" path="res://Assets/romanSoldierTank.png" id="2_o8f3y"]
+[ext_resource type="Texture2D" uid="uid://ck0fs1bc11jpk" path="res://Assets/romanSoldierTankDLC-sheet.png" id="2_0u2lw"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_tp8tv"]
 radius = 22.0
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_71rrt"]
-atlas = ExtResource("2_o8f3y")
+[sub_resource type="AtlasTexture" id="AtlasTexture_njpsa"]
+atlas = ExtResource("2_0u2lw")
 region = Rect2(64, 0, 32, 64)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_m6uw2"]
-atlas = ExtResource("2_o8f3y")
+[sub_resource type="AtlasTexture" id="AtlasTexture_5miw4"]
+atlas = ExtResource("2_0u2lw")
 region = Rect2(0, 0, 32, 64)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_g6agv"]
-atlas = ExtResource("2_o8f3y")
+[sub_resource type="AtlasTexture" id="AtlasTexture_haf3t"]
+atlas = ExtResource("2_0u2lw")
 region = Rect2(96, 0, 32, 64)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_ur2ms"]
-atlas = ExtResource("2_o8f3y")
+[sub_resource type="AtlasTexture" id="AtlasTexture_82l48"]
+atlas = ExtResource("2_0u2lw")
 region = Rect2(64, 0, 32, 64)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_6w2ka"]
-atlas = ExtResource("2_o8f3y")
+[sub_resource type="AtlasTexture" id="AtlasTexture_2sjcm"]
+atlas = ExtResource("2_0u2lw")
 region = Rect2(32, 0, 32, 64)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_ayja7"]
-atlas = ExtResource("2_o8f3y")
+[sub_resource type="AtlasTexture" id="AtlasTexture_mhcgs"]
+atlas = ExtResource("2_0u2lw")
 region = Rect2(0, 0, 32, 64)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_o77n7"]
 animations = [{
-"frames": [SubResource("AtlasTexture_71rrt")],
+"frames": [SubResource("AtlasTexture_njpsa")],
 "loop": true,
 "name": &"Idle_Down",
 "speed": 5.0
 }, {
-"frames": [SubResource("AtlasTexture_m6uw2")],
+"frames": [SubResource("AtlasTexture_5miw4")],
 "loop": true,
 "name": &"Idle_Up",
 "speed": 5.0
 }, {
-"frames": [SubResource("AtlasTexture_g6agv"), SubResource("AtlasTexture_ur2ms")],
+"frames": [SubResource("AtlasTexture_haf3t"), SubResource("AtlasTexture_82l48")],
 "loop": true,
 "name": &"Walk_Down",
 "speed": 5.0
 }, {
-"frames": [SubResource("AtlasTexture_6w2ka"), SubResource("AtlasTexture_ayja7")],
+"frames": [SubResource("AtlasTexture_2sjcm"), SubResource("AtlasTexture_mhcgs")],
 "loop": true,
 "name": &"Walk_Up",
 "speed": 5.0
