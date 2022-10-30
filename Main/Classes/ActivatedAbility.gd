@@ -203,4 +203,28 @@ static func get_ability_data():
 			"duration_fn": func(level): return 3,
 			"description_fn": func(level): return str("Deal ", 5 + 3*level, " damage in a targeted area every 0.5 seconds")
 		},
+		"Cycle of War": {
+			"icon": load("res://Assets/PNG/bg.png"),
+			"sound": Audio.effects.get_node("ares_drums"),
+			"effect_fn": func(instance, flag): ActivatedAbility.cycle_of_war(instance, flag),
+			"targeting_type": Shared.TARGETING_TYPE.UNITS_IN_AOE,
+			"targets": Shared.TARGETS.OTHER,
+			"cooldown_fn": func(level): return max(8, 12 - level),
+			"range_fn": func(level): return 0,
+			"area_of_effect_fn": func(level): return 50 + level * 20,
+			"duration_fn": func(level): return 0,
+			"description_fn": func(level): return str("Deal ", 20 + 5*level, " damage centered on caster")
+		},
+		"Hand of Hades": {
+			"icon": load("res://Assets/PNG/bg.png"),
+			"sound": Audio.effects.get_node("ares_drums"),
+			"effect_fn": func(instance, flag): ActivatedAbility.hand_of_hades(instance, flag),
+			"targeting_type": Shared.TARGETING_TYPE.UNITS_IN_AOE,
+			"targets": Shared.TARGETS.OTHER,
+			"cooldown_fn": func(level): return max(8, 12 - level),
+			"range_fn": func(level): return 135,
+			"area_of_effect_fn": func(level): return 50 + level * 20,
+			"duration_fn": func(level): return 5,
+			"description_fn": func(level): return str("Root enemies in place for ", 5 +1*level, " seconds")
+		},
 	}
