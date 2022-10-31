@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://cf1raj8hleqjc"]
 
-[ext_resource type="Texture2D" uid="uid://dpayhk87b151a" path="res://Assets/RPG_Fantasy_256/TomeGreen.png" id="1_5sumg"]
+[ext_resource type="Texture2D" uid="uid://52btwuln0oe1" path="res://Assets/RPG_Fantasy_256/TomeGreen.png" id="1_5sumg"]
 
 [node name="ItemScene" type="Node2D"]
 
@@ -9,10 +9,10 @@ scale = Vector2(0.5, 0.5)
 texture = ExtResource("1_5sumg")
 
 [node name="Label" type="Label" parent="."]
-offset_left = -48.0
+offset_left = -192.0
 offset_top = 48.0
-offset_right = 126.0
-offset_bottom = 93.0
+offset_right = 482.0
+offset_bottom = 97.0
 scale = Vector2(0.574295, 0.574295)
 theme_override_font_sizes/font_size = 30
 text = "Error"

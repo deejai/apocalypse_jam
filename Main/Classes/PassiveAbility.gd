@@ -86,6 +86,7 @@ static func get_ability_data():
 
 func _set_details():
 	var data = get_ability_data()[key]
+	print(key)
 	icon = data["icon"]
 	sound = data["sound"]
 	sound.volume_db = -12

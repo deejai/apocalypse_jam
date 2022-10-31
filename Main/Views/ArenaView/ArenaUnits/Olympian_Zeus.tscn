@@ -64,5 +64,5 @@ shape = SubResource("CircleShape2D_tp8tv")
 position = Vector2(0, -33)
 z_index = 4
 frames = SubResource("SpriteFrames_o77n7")
-animation = &"Walk_Down"
+animation = &"Idle_Up"
 playing = true

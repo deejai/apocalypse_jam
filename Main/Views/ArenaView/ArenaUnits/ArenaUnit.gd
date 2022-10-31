@@ -18,17 +18,17 @@ var selected: bool = false
 var move_target: Vector2
 var attack_target: ArenaUnit = null
 
-var attack_cd: float = 0
+var attack_cd: float = 0.0
 
-var stuck_timer: float = 0
+var stuck_timer: float = 0.0
 var stuck: bool = false
 var last_position: Vector2
 
-var attack_damage_add: float = 0
+var attack_damage_add: float = 0.0
 var attack_damage_mult: float = 1.0
-var attack_speed_add: float = 0
+var attack_speed_add: float = 0.0
 var attack_speed_mult: float = 1.0
-var speed_add: float = 0
+var speed_add: float = 0.0
 var speed_mult: float = 1.0
 
 var projectile: PackedScene
@@ -141,13 +141,13 @@ func _draw():
 
 	if alliance == ArenaUnit.ALLIANCE.PLAYER:
 		# draw green health bar below unit
-		draw_rect(Rect2(hpbar_offset - Vector2(hpbar_width/2, hpbar_height/2), Vector2(hpbar_width, hpbar_height)), Color.GREEN)
-		draw_rect(Rect2(hpbar_offset - Vector2(hpbar_width/2, hpbar_height/2), Vector2(hpbar_width * (1 - 1.0 * hp/unit.hp), hpbar_height)), Color.RED)
+		draw_rect(Rect2(hpbar_offset - Vector2(hpbar_width/2.0, hpbar_height/2.0), Vector2(hpbar_width, hpbar_height)), Color.GREEN)
+		draw_rect(Rect2(hpbar_offset - Vector2(hpbar_width/2.0, hpbar_height/2.0), Vector2(hpbar_width * (1 - 1.0 * hp/unit.hp), hpbar_height)), Color.RED)
 
 	else:
 		# draw orange health bar below unit
-		draw_rect(Rect2(hpbar_offset - Vector2(hpbar_width/2, hpbar_height/2), Vector2(hpbar_width, hpbar_height)), Color.ORANGE)
-		draw_rect(Rect2(hpbar_offset - Vector2(hpbar_width/2, hpbar_height/2), Vector2(hpbar_width * (1 - 1.0 * hp/unit.hp), hpbar_height)), Color.RED)
+		draw_rect(Rect2(hpbar_offset - Vector2(hpbar_width/2.0, hpbar_height/2.0), Vector2(hpbar_width, hpbar_height)), Color.ORANGE)
+		draw_rect(Rect2(hpbar_offset - Vector2(hpbar_width/2.0, hpbar_height/2.0), Vector2(hpbar_width * (1 - 1.0 * hp/unit.hp), hpbar_height)), Color.RED)
 
 func move_to_target(target):
 	if(statuses[STATUS.STUN]["duration"] > 0.0 or statuses[STATUS.ROOT]["duration"]):

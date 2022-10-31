@@ -5,6 +5,8 @@ class_name LootView
 var map_view = load("res://Main/Views/MapView/MapView.tscn")
 
 var rewards = {}
+var rewards_taken: int = 0
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	var primary_type = Game.player.floor.current.reward_type
@@ -97,8 +99,13 @@ func _input(event):
 					Game.player.squad.append({"unit": rewards[i], "start_position": valid_positions[randi() % len(valid_positions)]})
 				else:
 					Game.player.inventory.append(rewards[i])
-				queue_free()
-				get_tree().change_scene_to_packed(map_view)
+					
+				rewards_taken += 1
+				frame.position = Vector2(-500, -500)
+				
+				if rewards_taken == 2:
+					queue_free()
+					get_tree().change_scene_to_packed(map_view)
 
 	elif event is InputEventMouseMotion:
 		for i in [1,2,3,4]:
@@ -115,8 +122,7 @@ static func get_inventory_item_scene(item):
 		scene.get_node("Sprite2D").scale = Vector2(2.5, 2.5)
 		scene.get_node("Label").position += Vector2(0, 40)
 		label = "Lv " + str(item.level + 1)
-		sprite = Shared.get_models()[item.base].instantiate().get_node("AnimatedSprite2D").get_sprite_frames().get_frame("Idle_Down
-		", 0)
+		sprite = Shared.get_models()[item.base].instantiate().get_node("AnimatedSprite2D").get_sprite_frames().get_frame("Idle_Down", 0)
 	elif item is UnitUpgrade:
 		scene.get_node("Sprite2D").scale = Vector2(4, 4)
 		label = str(item.amount)

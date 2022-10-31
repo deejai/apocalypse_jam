@@ -17,7 +17,7 @@ func _init(newgame: bool = true):
 		#	{"unit": Unit.new(Shared.BASE.OLYMPIAN_ATHENA), "start_position": Vector2(300, 720-100)},
 		#	{"unit": Unit.new(Shared.BASE.OLYMPIAN_HADES), "start_position": Vector2(400, 720-100)},
 		#	{"unit": Unit.new(Shared.BASE.OLYMPIAN_HERMES), "start_position": Vector2(400, 720-100)},
-			{"unit": Unit.new(Shared.BASE.OLYMPIAN_ZEUS), "start_position": Vector2(400, 720-100)},
+#			{"unit": Unit.new(Shared.BASE.OLYMPIAN_ZEUS), "start_position": Vector2(400, 720-100)},
 			{"unit": Unit.new(Shared.BASE.SOLDIER_SWORD), "start_position": Vector2(250, 720-70)},
 			{"unit": Unit.new(Shared.BASE.SOLDIER_SPEAR), "start_position": Vector2(350, 720-70)},
 			{"unit": Unit.new(Shared.BASE.SOLDIER_ARCHER), "start_position": Vector2(450, 720-70)},

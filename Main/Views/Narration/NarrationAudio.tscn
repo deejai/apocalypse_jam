@@ -1,0 +1,32 @@
+[gd_scene load_steps=8 format=3 uid="uid://hdu2xj1yiut1"]
+
+[ext_resource type="AudioStream" uid="uid://blkcv0ku3vbp8" path="res://Assets/Audio/Narration/Narration Opening.wav" id="1_spafb"]
+[ext_resource type="AudioStream" uid="uid://b04mr5i48c28h" path="res://Assets/Audio/Narration/Narration First Boss Battle.wav" id="2_hav5f"]
+[ext_resource type="AudioStream" uid="uid://v67ac5rq0rcg" path="res://Assets/Audio/Narration/Narration Boss Battle 2.wav" id="3_2wj4x"]
+[ext_resource type="AudioStream" uid="uid://csfuj52mishhp" path="res://Assets/Audio/Narration/Narration Boss Battle 3.wav" id="4_5br80"]
+[ext_resource type="AudioStream" uid="uid://c0rmomelauhp5" path="res://Assets/Audio/Narration/Narration Boss Battle 4.wav" id="5_p8l7c"]
+[ext_resource type="AudioStream" uid="uid://co60ufx0u1eon" path="res://Assets/Audio/Narration/Narration Lose the Game.wav" id="6_56y2b"]
+[ext_resource type="AudioStream" uid="uid://hhag40w4bpi7" path="res://Assets/Audio/Narration/Narration Win the Game.wav" id="6_frp7l"]
+
+[node name="NarrationAudio" type="Node2D"]
+
+[node name="NewGame" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("1_spafb")
+
+[node name="Floor0" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_hav5f")
+
+[node name="Floor1" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_2wj4x")
+
+[node name="Floor2" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_5br80")
+
+[node name="Floor3" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_p8l7c")
+
+[node name="Floor4" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_frp7l")
+
+[node name="Loss" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_56y2b")

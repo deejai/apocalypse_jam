@@ -36,6 +36,8 @@ var in_targeting_mode = false
 var highlighted_unit = null
 var targeting_ability = null
 
+var voice_cd: float = 0.0
+
 func setMenuEnabled(enable: bool):
 	$Menu.visible = enable
 	$Menu/ResumeButton.disabled = not enable
@@ -90,6 +92,8 @@ func drag_select_rect():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	voice_cd = max(0.0, voice_cd - delta)
+
 	for arr in [selected_units, player_arena_units, enemy_arena_units]:
 		var indices_to_pop = []
 		for i in len(arr):
@@ -150,7 +154,7 @@ func _input(event: InputEvent):
 			ability_index = 2
 
 		if ability_index != -1:
-			if highlighted_unit.statuses[ArenaUnit.STATUS.STUN]["duration"] == 0.0 and highlighted_unit.statuses[ArenaUnit.STATUS.SILENCE]["duration"] == 0.0:
+			if highlighted_unit.statuses[ArenaUnit.STATUS.STUN]["duration"] > 0.0 or highlighted_unit.statuses[ArenaUnit.STATUS.SILENCE]["duration"] > 0.0:
 				print("SILENCED/STUNNED")
 			else:
 				engage_ability(ability_index)
@@ -242,9 +246,11 @@ func _input(event: InputEvent):
 						for arena_unit in selected_units:
 							voice_lines.append(Audio.data[arena_unit.unit.voice].Greeting[randi()%len(Audio.data[arena_unit.unit.voice].Greeting)])
 
-						# play up to 3 random voice lines from selected units
-						for i in range(min(3, len(voice_lines))):
-							voice_lines.pop_at(randi() % len(voice_lines)).play()
+						if(voice_cd == 0.0):
+							voice_cd = 2.5
+							# play up to 3 random voice lines from selected units
+							for i in range(min(3, len(voice_lines))):
+								voice_lines.pop_at(randi() % len(voice_lines)).play()
 
 					else:
 						highlighted_unit = null
@@ -272,9 +278,11 @@ func _input(event: InputEvent):
 
 							voice_lines.append(Audio.data[arena_unit.unit.voice].Response[randi()%len(Audio.data[arena_unit.unit.voice].Response)])
 
-						# play up to 3 random voice lines from selected units
-						for i in range(min(3, len(voice_lines))):
-							voice_lines.pop_at(randi() % len(voice_lines)).play()
+						if(voice_cd == 0.0):
+							voice_cd = 2.5
+							# play up to 3 random voice lines from selected units
+							for i in range(min(3, len(voice_lines))):
+								voice_lines.pop_at(randi() % len(voice_lines)).play()
 	else:
 		pass
 

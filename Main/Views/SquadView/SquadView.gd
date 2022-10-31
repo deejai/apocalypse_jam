@@ -104,7 +104,7 @@ func update_use_item_button():
 			_use_item_button_function = func():
 				if selected_item is ActivatedAbility:
 					selected_unit.activated_abilities.append(selected_item)
-				elif selected_item is ActivatedAbility:
+				elif selected_item is PassiveAbility:
 					selected_unit.passive_abilities.append(selected_item)
 
 				Game.player.inventory.pop_at(Game.player.inventory.find(selected_item))

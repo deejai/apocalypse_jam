@@ -1,8 +1,3 @@
-[gd_scene load_steps=2 format=3 uid="uid://dp8xpxgjx4awu"]
-
-[ext_resource type="Texture2D" uid="uid://ddpwv8vsdyeo7" path="res://Assets/selectedunittile_unknown.png" id="1_vc5wo"]
+[gd_scene format=3 uid="uid://dp8xpxgjx4awu"]
 
 [node name="SelectedUnitTile" type="Node2D"]
-
-[node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("1_vc5wo")

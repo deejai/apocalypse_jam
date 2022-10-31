@@ -21,7 +21,7 @@ func _init(level: int, p_type: TYPE = TYPE.RAND):
 	match type:
 		TYPE.ZERG_RUSH:
 			for r in range(randi_range(2,3)):
-				for c in range(randi_range(3, 4)):
+				for c in range(randi_range(3, 4+level * (3-r))):
 					var x_offset = 0 if r == 0 else 75
 					var position = Vector2(x_offset + 300 + c*150, 50 + 25 * r)
 					var unit = Unit.new(Shared.BASE.SOLDIER_SWORD, level)
@@ -32,7 +32,7 @@ func _init(level: int, p_type: TYPE = TYPE.RAND):
 					enemies.append({"unit": unit, "start_position": position})
 
 		TYPE.HEAL_ONE:
-			for c in range(randi_range(2,5)):
+			for c in range(randi_range(3,5+level)):
 				var position = Vector2(150 + c*150, 100)
 				var healer_unit = Unit.new(Shared.BASE.HEALER, level)
 				enemies.append({"unit": healer_unit, "start_position": position})
@@ -41,7 +41,7 @@ func _init(level: int, p_type: TYPE = TYPE.RAND):
 			enemies.append({"unit": strong_unit, "start_position": Vector2(650, 200)})
 
 		TYPE.BALANCED:
-			for c in range(randi_range(3,6)):
+			for c in range(randi_range(2,3+level)):
 				var position = Vector2(150 + c*150, 50 + 25 + 70)
 				var heal_unit = Unit.new(Shared.BASE.HEALER, level)
 				var ranged_unit = Unit.new(Shared.BASE.SOLDIER_ARCHER, level)
@@ -51,6 +51,8 @@ func _init(level: int, p_type: TYPE = TYPE.RAND):
 				enemies.append({"unit": strong_unit, "start_position": Vector2(150 + c*150, 50 + 25 + 180)})
 
 		TYPE.SPAM_UNIT:
+			# roll to determine enemy type
+			# spawn ~4-(6 + level) of them
 			enemies.append({"unit": Unit.new(Shared.BASE.SOLDIER_ARCHER, level), "start_position": Vector2(450, 75)})
 
 		TYPE.RANGE_PLUS_TANKS:

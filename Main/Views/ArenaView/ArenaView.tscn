@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://bth8t7m3646o"]
+[gd_scene load_steps=6 format=3 uid="uid://bth8t7m3646o"]
 
 [ext_resource type="Script" path="res://Main/Views/ArenaView/ArenaView.gd" id="1_hy837"]
-[ext_resource type="Texture2D" uid="uid://fmpj1uve5f40" path="res://Assets/Tilesets/Floor0/Entire_Tileset.png" id="2_g4bpl"]
+[ext_resource type="Texture2D" uid="uid://b0k378korliav" path="res://Assets/Tilesets/Floor0/Entire_Tileset.png" id="2_g4bpl"]
+[ext_resource type="FontFile" uid="uid://hgwr1clcqlnw" path="res://Assets/Fonts/MPLUSRounded1c-Regular.ttf" id="2_mrydh"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_0dtf7"]
 texture = ExtResource("2_g4bpl")
@@ -1435,7 +1436,7 @@ script = ExtResource("1_hy837")
 
 [node name="SidePanel" type="Polygon2D" parent="."]
 scale = Vector2(0.999169, 1)
-z_index = -2
+z_index = 550
 color = Color(0.384314, 0.654902, 0.776471, 0.392157)
 polygon = PackedVector2Array(1080, 0, 1280, 0, 1280, 720, 1080, 720)
 metadata/_edit_lock_ = true
@@ -1479,18 +1480,63 @@ text = "Main Menu"
 position = Vector2(1180, 287)
 scale = Vector2(1.1875, 1.02857)
 
-[node name="Background" type="Polygon2D" parent="UnitControl"]
-z_index = 13
+[node name="Portrait" type="Polygon2D" parent="UnitControl"]
+position = Vector2(3.36841, 4.86111)
+scale = Vector2(1.01053, 1.16667)
+z_index = 650
+color = Color(0.74902, 0.847059, 0.823529, 1)
+polygon = PackedVector2Array(-65.6842, -40.8334, -65.6842, -9.72223, -37.0526, -9.72223, -37.0526, -40.8334)
+
+[node name="Ability1" type="Polygon2D" parent="UnitControl"]
+position = Vector2(3.36841, 49.5835)
+scale = Vector2(1.01053, 1.16667)
+z_index = 650
+color = Color(0.74902, 0.847059, 0.823529, 1)
+polygon = PackedVector2Array(-65.6842, -40.8334, -65.6842, -9.72223, -37.0526, -9.72223, -37.0526, -40.8334)
+
+[node name="Ability2" type="Polygon2D" parent="UnitControl"]
+position = Vector2(50.5263, 49.5835)
+scale = Vector2(1.01053, 1.16667)
+z_index = 650
+color = Color(0.74902, 0.847059, 0.823529, 1)
+polygon = PackedVector2Array(-65.6842, -40.8334, -65.6842, -9.72223, -37.0526, -9.72223, -37.0526, -40.8334)
+
+[node name="Ability3" type="Polygon2D" parent="UnitControl"]
+position = Vector2(97.6843, 49.5834)
+scale = Vector2(1.01053, 1.16667)
+z_index = 650
+color = Color(0.74902, 0.847059, 0.823529, 1)
+polygon = PackedVector2Array(-65.6842, -40.8334, -65.6842, -9.72223, -37.0526, -9.72223, -37.0526, -40.8334)
+
+[node name="HighlightedUnitBackground" type="Polygon2D" parent="UnitControl"]
+z_index = 600
 color = Color(0.654902, 0.843137, 0.929412, 1)
 polygon = PackedVector2Array(-75, -50, 75, -50, 75, 50, -75, 50)
 metadata/_edit_lock_ = true
 
-[node name="Portrait" type="ItemList" parent="UnitControl"]
-offset_left = -61.0
-offset_top = -42.0
-offset_right = -29.0
-offset_bottom = -12.0
-auto_height = true
+[node name="Label" type="Label" parent="UnitControl/HighlightedUnitBackground"]
+offset_left = -16.8421
+offset_top = -42.7778
+offset_right = 59.1579
+offset_bottom = -22.7778
+theme_override_fonts/font = ExtResource("2_mrydh")
+theme_override_font_sizes/font_size = 12
+text = "Selected Unit"
+metadata/_edit_use_anchors_ = true
+
+[node name="HP_fg" type="Polygon2D" parent="UnitControl"]
+position = Vector2(164.756, -6.7081)
+scale = Vector2(2.76471, 0.310026)
+z_index = 660
+color = Color(0.356863, 0.588235, 0.458824, 1)
+polygon = PackedVector2Array(-65.6842, -40.8334, -65.6842, -9.72223, -37.0526, -9.72223, -37.0526, -40.8334)
+
+[node name="HP_bg" type="Polygon2D" parent="UnitControl"]
+position = Vector2(164.755, -6.68411)
+scale = Vector2(2.76471, 0.312499)
+z_index = 650
+color = Color(0.788235, 0.392157, 0.388235, 1)
+polygon = PackedVector2Array(-65.6842, -40.8334, -65.6842, -9.72223, -37.0526, -9.72223, -37.0526, -26.2966, -37.0526, -40.8334)
 
 [node name="TileMap" type="TileMap" parent="."]
 scale = Vector2(2, 2)

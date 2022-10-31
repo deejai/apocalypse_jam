@@ -9,6 +9,9 @@ var next_battle = null
 
 var arena = null
 
+var next_narration = null
+var pause_music = false
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 #	print(OS.window_size())

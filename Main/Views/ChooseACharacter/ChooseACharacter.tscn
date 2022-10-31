@@ -1,0 +1,153 @@
+[gd_scene load_steps=14 format=3 uid="uid://d4b24877v741c"]
+
+[ext_resource type="FontFile" uid="uid://hgwr1clcqlnw" path="res://Assets/Fonts/MPLUSRounded1c-Regular.ttf" id="1_f3ilt"]
+[ext_resource type="Script" path="res://Main/Views/ChooseACharacter/ChooseACharacter.gd" id="1_rnsor"]
+[ext_resource type="Texture2D" uid="uid://cub1uc10tbkgv" path="res://Assets/Zeus-sheet.png" id="2_th1s1"]
+[ext_resource type="Texture2D" uid="uid://cixfw4mtdxxoh" path="res://Assets/Apollo3.png" id="3_7rcuh"]
+[ext_resource type="Texture2D" uid="uid://duac6q1ppwqqs" path="res://Assets/Hermes-sheet.png" id="4_co34y"]
+[ext_resource type="Texture2D" uid="uid://dtqprxnnwmxat" path="res://Assets/Athena-sheet.png" id="5_40p15"]
+[ext_resource type="Texture2D" uid="uid://dbpco66vppk87" path="res://Assets/Ares-sheet.png" id="6_hg5us"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_panms"]
+atlas = ExtResource("2_th1s1")
+region = Rect2(96, 0, 48, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s3yrt"]
+atlas = ExtResource("3_7rcuh")
+region = Rect2(64, 0, 32, 72)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y8el6"]
+atlas = ExtResource("4_co34y")
+region = Rect2(64, 0, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o0wcs"]
+atlas = ExtResource("5_40p15")
+region = Rect2(64, 0, 32, 72)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5b7un"]
+atlas = ExtResource("6_hg5us")
+region = Rect2(96, 0, 48, 74)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_wplv4"]
+animations = [{
+"frames": [SubResource("AtlasTexture_panms"), SubResource("AtlasTexture_s3yrt"), SubResource("AtlasTexture_y8el6"), SubResource("AtlasTexture_o0wcs"), SubResource("AtlasTexture_5b7un")],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="ChooseACharacter" type="Node2D"]
+script = ExtResource("1_rnsor")
+
+[node name="Background" type="Polygon2D" parent="."]
+color = Color(0, 0, 0, 1)
+polygon = PackedVector2Array(0, 0, 1280, 0, 1280, 720, 0, 720)
+metadata/_edit_lock_ = true
+
+[node name="Header" type="Label" parent="."]
+offset_left = 192.0
+offset_top = 112.0
+offset_right = 1114.0
+offset_bottom = 151.0
+theme_override_fonts/font = ExtResource("1_f3ilt")
+theme_override_font_sizes/font_size = 23
+text = "You'll need the help of an Olympian to save the world..."
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="Label_Zeus" type="Label" parent="."]
+offset_left = 384.0
+offset_top = 436.0
+offset_right = 472.0
+offset_bottom = 475.0
+theme_override_fonts/font = ExtResource("1_f3ilt")
+theme_override_font_sizes/font_size = 23
+text = "Zeus"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="Label_Ares" type="Label" parent="."]
+offset_left = 600.333
+offset_top = 400.0
+offset_right = 688.333
+offset_bottom = 439.0
+theme_override_fonts/font = ExtResource("1_f3ilt")
+theme_override_font_sizes/font_size = 23
+text = "Ares"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="Label_Apollo" type="Label" parent="."]
+offset_left = 960.0
+offset_top = 500.958
+offset_right = 1048.0
+offset_bottom = 539.958
+theme_override_fonts/font = ExtResource("1_f3ilt")
+theme_override_font_sizes/font_size = 23
+text = "Apollo
+"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="Label_Hermes" type="Label" parent="."]
+offset_left = 216.0
+offset_top = 504.792
+offset_right = 304.0
+offset_bottom = 543.792
+theme_override_fonts/font = ExtResource("1_f3ilt")
+theme_override_font_sizes/font_size = 23
+text = "Hermes
+"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="Label_Athena" type="Label" parent="."]
+offset_left = 800.0
+offset_top = 424.0
+offset_right = 888.0
+offset_bottom = 463.0
+theme_override_fonts/font = ExtResource("1_f3ilt")
+theme_override_font_sizes/font_size = 23
+text = "Athena
+"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="Sprite_Zeus" type="AnimatedSprite2D" parent="."]
+position = Vector2(432, 320)
+scale = Vector2(3.04167, 3.04167)
+frames = SubResource("SpriteFrames_wplv4")
+
+[node name="Sprite_Apollo" type="AnimatedSprite2D" parent="."]
+position = Vector2(1008.67, 397.5)
+scale = Vector2(3.04167, 3.04167)
+frames = SubResource("SpriteFrames_wplv4")
+frame = 1
+
+[node name="Sprite_Ares" type="AnimatedSprite2D" parent="."]
+position = Vector2(641, 296.542)
+scale = Vector2(3.04167, 3.04167)
+frames = SubResource("SpriteFrames_wplv4")
+frame = 4
+
+[node name="Sprite_Athena" type="AnimatedSprite2D" parent="."]
+position = Vector2(840, 327)
+scale = Vector2(3.04167, 3.04167)
+frames = SubResource("SpriteFrames_wplv4")
+frame = 3
+
+[node name="Sprite_Hermes" type="AnimatedSprite2D" parent="."]
+position = Vector2(264.667, 417.333)
+scale = Vector2(3.04167, 3.04167)
+frames = SubResource("SpriteFrames_wplv4")
+frame = 2
+
+[node name="ChooseButton" type="Button" parent="."]
+visible = false
+offset_left = 472.0
+offset_top = 507.0
+offset_right = 808.0
+offset_bottom = 546.0
+theme_override_font_sizes/font_size = 22
+disabled = true
+text = "Choose ABCDEF"

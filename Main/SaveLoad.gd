@@ -82,7 +82,7 @@ static func save_game(player):
 				"level": item.level,
 			})
 		elif item is UnitUpgrade:
-			inventorySaveObj["PassiveAbilities"].append({
+			inventorySaveObj["UnitUpgrades"].append({
 				"effect": item.effect,
 				"amount": item.amount,
 			})
@@ -100,7 +100,7 @@ static func save_game(player):
 				"key": ability.key,
 				"level": ability.level,
 			})
-		
+
 		for ability in unit_data.unit.passive_abilities:
 			passive_abilities.append({
 				"key": ability.key,
