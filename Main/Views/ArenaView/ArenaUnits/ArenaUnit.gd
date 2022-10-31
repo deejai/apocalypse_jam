@@ -81,6 +81,8 @@ func _ready():
 		STATUS.ROOT: {"duration": 0.0, "particles_instance": null, "particles_scene": Game.arena.particles_root},
 		STATUS.INVULN: {"duration": 0.0, "particles_instance": null, "particles_scene": null},
 		STATUS.HEAL: {"duration": 0.0, "particles_instance": null, "particles_scene": Game.arena.particles_heal},
+		STATUS.LIGHTNING: {"duration": 0.0, "particles_instance": null, "particles_scene": Game.arena.particles_lightning
+		},
 		STATUS.NOHEAL: {"duration": 0.0, "particles_instance": null, "particles_scene": null},
 		STATUS.ONFIRE: {"duration": 0.0, "particles_instance": null, "particles_scene": Game.arena.particles_fire},
 		STATUS.POISON: {"duration": 0.0, "particles_instance": null, "particles_scene": Game.arena.particles_poison},

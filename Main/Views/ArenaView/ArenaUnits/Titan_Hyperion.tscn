@@ -1,0 +1,68 @@
+[gd_scene load_steps=11 format=3 uid="uid://y31dtrmt1cxk"]
+
+[ext_resource type="Script" path="res://Main/Views/ArenaView/ArenaUnits/ArenaUnit.gd" id="1_i8bdw"]
+[ext_resource type="Texture2D" uid="uid://dfrusk4n6tlq4" path="res://Assets/titan-Hyperion.png" id="2_i0i56"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_tp8tv"]
+radius = 22.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nc10w"]
+atlas = ExtResource("2_i0i56")
+region = Rect2(0, 0, 64, 102)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hta8b"]
+atlas = ExtResource("2_i0i56")
+region = Rect2(128, 0, 64, 102)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q57rv"]
+atlas = ExtResource("2_i0i56")
+region = Rect2(64, 0, 64, 102)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_onpk5"]
+atlas = ExtResource("2_i0i56")
+region = Rect2(0, 0, 64, 102)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_np5np"]
+atlas = ExtResource("2_i0i56")
+region = Rect2(192, 0, 64, 102)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xalnx"]
+atlas = ExtResource("2_i0i56")
+region = Rect2(128, 0, 64, 102)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_o77n7"]
+animations = [{
+"frames": [SubResource("AtlasTexture_nc10w")],
+"loop": true,
+"name": &"Idle_Down",
+"speed": 5.0
+}, {
+"frames": [SubResource("AtlasTexture_hta8b")],
+"loop": true,
+"name": &"Idle_Up",
+"speed": 5.0
+}, {
+"frames": [SubResource("AtlasTexture_q57rv"), SubResource("AtlasTexture_onpk5")],
+"loop": true,
+"name": &"Walk_Down",
+"speed": 5.0
+}, {
+"frames": [SubResource("AtlasTexture_np5np"), SubResource("AtlasTexture_xalnx")],
+"loop": true,
+"name": &"Walk_Up",
+"speed": 5.0
+}]
+
+[node name="Unit" type="CharacterBody2D"]
+motion_mode = 1
+script = ExtResource("1_i8bdw")
+
+[node name="Collision" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_tp8tv")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -42)
+z_index = 4
+frames = SubResource("SpriteFrames_o77n7")
+animation = &"Idle_Up"
+playing = true

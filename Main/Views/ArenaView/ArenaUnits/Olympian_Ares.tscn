@@ -1,7 +1,7 @@
 [gd_scene load_steps=11 format=3 uid="uid://dw68klc2ytu1d"]
 
 [ext_resource type="Script" path="res://Main/Views/ArenaView/ArenaUnits/ArenaUnit.gd" id="1_v6a30"]
-[ext_resource type="Texture2D" uid="uid://dbpco66vppk87" path="res://Assets/Ares-sheet.png" id="2_jr6ur"]
+[ext_resource type="Texture2D" uid="uid://bh52xbl6hg2re" path="res://Assets/Ares-sheet.png" id="2_jr6ur"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_tp8tv"]
 radius = 22.0
