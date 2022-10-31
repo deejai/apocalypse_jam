@@ -54,6 +54,24 @@ static func heal(instance: AbilityEffect, flag: AbilityEffect.FLAG):
 		AbilityEffect.FLAG.TICK:
 			return
 
+static func hellfire(instance: AbilityEffect, flag: AbilityEffect.FLAG):
+	if not is_instance_valid(instance.props["target_unit"]):
+		instance.queue_free()
+		return
+
+	match flag:
+		AbilityEffect.FLAG.START:
+			instance.props["target_unit"].apply_status(ArenaUnit.STATUS.ONFIRE, .3)
+			return
+
+		AbilityEffect.FLAG.END:
+			return
+
+		AbilityEffect.FLAG.TICK:
+			instance.props["target_unit"].apply_status(ArenaUnit.STATUS.ONFIRE, .3)
+			instance.props["target_unit"].apply_damage(5 + instance.level * 3)
+			return
+
 static func poison_nova(instance: AbilityEffect, flag: AbilityEffect.FLAG):
 	if not is_instance_valid(instance.props["target_unit"]):
 		instance.queue_free()
@@ -84,11 +102,14 @@ static func summon_zombie(instance: AbilityEffect, flag: AbilityEffect.FLAG):
 static func flaming_spear(instance: AbilityEffect, flag: AbilityEffect.FLAG):
 	match flag:
 		AbilityEffect.FLAG.START:
-			var direction = instance.props["source_unit"].direction_to(instance.props["target_unit"])
+			var direction = instance.props["source_unit"].direction_to(instance.props["target_point"])
 			var alliance = instance.props["source_unit"].alliance
 			var spear = load("res://Main/Views/ArenaView/Projectiles/Spear.tscn").instantiate().init(alliance, direction, 300, 25)
 			spear.transform *= 2
 			spear.max_hits = -1
+			spear.payload = func(target):
+				target.apply_damage(10 + 5 * instance.level)
+				target.apply_status(ArenaUnit.STATUS.ONFIRE, 0.5)
 			Game.arena.add_child(spear)
 
 		AbilityEffect.FLAG.END:
@@ -199,7 +220,7 @@ static func get_ability_data():
 		"Conjure Spear": {
 			"icon": load("res://Assets/PNG/bg.png"),
 			"sound": Audio.effects.get_node("arrow1"),
-			"effect_fn": func(instance, flag): ActivatedAbility.mind_dart(instance, flag),
+			"effect_fn": func(instance, flag): ActivatedAbility.flaming_spear(instance, flag),
 			"targeting_type": Shared.TARGETING_TYPE.POINT,
 			"targets": Shared.TARGETS.OTHER,
 			"cooldown_fn": func(level): return max(3, 6 - level),
@@ -232,7 +253,7 @@ static func get_ability_data():
 			"duration_fn": func(level): return 0,
 			"description_fn": func(level): return str(10 + 5*level, " instant heal to a friendly unit")
 		},
-		"Zeus Storm": {
+		"Lightning Storm": {
 			"icon": load("res://Assets/PNG/bg.png"),
 			"sound": Audio.effects.get_node("lightning1"),
 			"effect_fn": func(instance, flag): ActivatedAbility.zeus_lightning(instance, flag),

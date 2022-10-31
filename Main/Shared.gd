@@ -6,7 +6,7 @@ enum REWARD_TYPE {NEW_UNIT, UNIT_UPGRADE, WILDCARD}
 enum TARGETING_TYPE {SELF, POINT, SINGLE_UNIT, UNITS_IN_AOE}
 enum TARGETS {SAME, OTHER, ALL}
 enum SPEC { NORMAL, HERO, SUMMON }
-enum BASE { OLYMPIAN_APOLLO, OLYMPIAN_ATHENA, OLYMPIAN_ARES, OLYMPIAN_HADES, OLYMPIAN_HERMES, OLYMPIAN_ZEUS, SOLDIER_SPEAR, SOLDIER_SWORD, SOLDIER_ARCHER, HEALER }
+enum BASE { OLYMPIAN_APOLLO, OLYMPIAN_ATHENA, OLYMPIAN_ARES, OLYMPIAN_HADES, OLYMPIAN_HERMES, OLYMPIAN_ZEUS, SOLDIER_SPEAR, SOLDIER_SWORD, SOLDIER_ARCHER, HEALER, TITAN_CRIUS, TITAN_CRONUS, TITAN_HYPERION, TITAN_OCEANUS, TITAN_PHOEBE, TITAN_THEMIS }
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -29,6 +29,12 @@ static func get_models():
 		BASE.SOLDIER_SPEAR: load("res://Main/Views/ArenaView/ArenaUnits/Soldier_Spear.tscn"),
 		BASE.SOLDIER_ARCHER: load("res://Main/Views/ArenaView/ArenaUnits/Soldier_Archer.tscn"),
 		BASE.HEALER: load("res://Main/Views/ArenaView/ArenaUnits/Healer.tscn"),
+		BASE.TITAN_CRIUS: load("res://Main/Views/ArenaView/ArenaUnits/Titan_Crius.tscn"),
+		BASE.TITAN_CRONUS: load("res://Main/Views/ArenaView/ArenaUnits/Titan_Cronus.tscn"),
+		BASE.TITAN_HYPERION: load("res://Main/Views/ArenaView/ArenaUnits/Titan_Hyperion.tscn"),
+		BASE.TITAN_OCEANUS: load("res://Main/Views/ArenaView/ArenaUnits/Titan_Oceanus.tscn"),
+		BASE.TITAN_PHOEBE: load("res://Main/Views/ArenaView/ArenaUnits/Titan_Phoebe.tscn"),
+		BASE.TITAN_THEMIS: load("res://Main/Views/ArenaView/ArenaUnits/Titan_Themis.tscn"),
 	}
 
 static func get_unit_data():
@@ -96,7 +102,7 @@ static func get_unit_data():
 			"speed": 130,
 			"attack_damage": 15,
 			"attack_speed": 100,
-			"activated_abilities":  ["Zeus Storm"],
+			"activated_abilities":  ["Lightning Storm"],
 			"passive_abilities": ["Interrupting Shock"]
 		},
 		BASE.HEALER: {
@@ -107,8 +113,8 @@ static func get_unit_data():
 			"speed": 100,
 			"attack_damage": 6,
 			"attack_speed": 100,
-			"activated_abilities": ["Heal"],
-			"passive_abilities": []
+			"activated_abilities": [],
+			"passive_abilities": ["Healing Wind"]
 		},
 		BASE.SOLDIER_SPEAR: {
 			"spec": SPEC.NORMAL,
@@ -136,5 +142,59 @@ static func get_unit_data():
 			"speed": 120,
 			"attack_damage": 8,
 			"attack_speed": 100,
-		}
+		},
+		BASE.TITAN_CRIUS: {
+			"spec": SPEC.HERO,
+			"voice": Audio.VOICE.HADES,
+			"range": 80,
+			"hp": 300,
+			"speed": 50,
+			"attack_damage": 13,
+			"attack_speed": 100,
+		},
+		BASE.TITAN_CRONUS: {
+			"spec": SPEC.HERO,
+			"voice": Audio.VOICE.HADES,
+			"range": 80,
+			"hp": 300,
+			"speed": 50,
+			"attack_damage": 13,
+			"attack_speed": 100,
+		},
+		BASE.TITAN_HYPERION: {
+			"spec": SPEC.HERO,
+			"voice": Audio.VOICE.HADES,
+			"range": 175,
+			"hp": 260,
+			"speed": 50,
+			"attack_damage": 13,
+			"attack_speed": 100,
+		},
+		BASE.TITAN_OCEANUS: {
+			"spec": SPEC.HERO,
+			"voice": Audio.VOICE.HADES,
+			"range": 100,
+			"hp": 400,
+			"speed": 50,
+			"attack_damage": 13,
+			"attack_speed": 100,
+		},
+		BASE.TITAN_PHOEBE: {
+			"spec": SPEC.HERO,
+			"voice": Audio.VOICE.HADES,
+			"range": 150,
+			"hp": 260,
+			"speed": 75,
+			"attack_damage": 7,
+			"attack_speed": 150,
+		},
+		BASE.TITAN_THEMIS: {
+			"spec": SPEC.HERO,
+			"voice": Audio.VOICE.HADES,
+			"range": 100,
+			"hp": 260,
+			"speed": 50,
+			"attack_damage": 13,
+			"attack_speed": 100,
+		},
 	}

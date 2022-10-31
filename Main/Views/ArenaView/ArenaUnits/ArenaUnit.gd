@@ -36,7 +36,7 @@ var projectile: PackedScene
 var ability_cooldowns: Dictionary = {}
 
 # statuses
-enum STATUS { STUN, SILENCE, ROOT, INVULN, NOHEAL, ONFIRE, POISON, HEAL, HIT }
+enum STATUS { STUN, SILENCE, ROOT, INVULN, NOHEAL, ONFIRE, POISON, HEAL, HIT, LIGHTNING }
 
 var statuses
 
@@ -76,18 +76,23 @@ func init(unit, alliance: ALLIANCE):
 
 func _ready():
 	statuses = {
-		STATUS.STUN: {"duration": 0.0, "particles_instance": null, "particles_scene": Game.arena.particles_stun},
-		STATUS.SILENCE: {"duration": 0.0, "particles_instance": null, "particles_scene": null},
-		STATUS.ROOT: {"duration": 0.0, "particles_instance": null, "particles_scene": Game.arena.particles_root},
-		STATUS.INVULN: {"duration": 0.0, "particles_instance": null, "particles_scene": null},
-		STATUS.HEAL: {"duration": 0.0, "particles_instance": null, "particles_scene": Game.arena.particles_heal},
-		STATUS.LIGHTNING: {"duration": 0.0, "particles_instance": null, "particles_scene": Game.arena.particles_lightning
-		},
-		STATUS.NOHEAL: {"duration": 0.0, "particles_instance": null, "particles_scene": null},
-		STATUS.ONFIRE: {"duration": 0.0, "particles_instance": null, "particles_scene": Game.arena.particles_fire},
-		STATUS.POISON: {"duration": 0.0, "particles_instance": null, "particles_scene": Game.arena.particles_poison},
-		STATUS.HIT: {"duration": 0.0, "particles_instance": null, "particles_scene": Game.arena.particles_bloodspurt},
+		STATUS.STUN: {"duration": 0.0, "particles_scene": Game.arena.particles_stun.instantiate()},
+		STATUS.SILENCE: {"duration": 0.0, "particles_scene": null},
+		STATUS.ROOT: {"duration": 0.0, "particles_scene": Game.arena.particles_root.instantiate()},
+		STATUS.INVULN: {"duration": 0.0, "particles_scene": null},
+		STATUS.HEAL: {"duration": 0.0, "particles_scene": Game.arena.particles_heal.instantiate()},
+		STATUS.LIGHTNING: {"duration": 0.0, "particles_scene": Game.arena.particles_lightning.instantiate()},
+		STATUS.NOHEAL: {"duration": 0.0, "particles_scene": null},
+		STATUS.ONFIRE: {"duration": 0.0, "particles_scene": Game.arena.particles_fire.instantiate()},
+		STATUS.POISON: {"duration": 0.0, "particles_scene": Game.arena.particles_poison.instantiate()},
+		STATUS.HIT: {"duration": 0.0, "particles_scene": Game.arena.particles_bloodspurt.instantiate()},
 	}
+
+	for status in statuses:
+		if(statuses[status]["particles_scene"] != null):
+			statuses[status]["particles_scene"].get_children()[0].emitting = false
+			add_child(statuses[status]["particles_scene"])
+	
 #	print(move_target)
 #	print($Collision.name)
 	move_target = position
@@ -234,21 +239,16 @@ func handle_statuses(delta):
 		statuses[status]["duration"] = max(0, statuses[status]["duration"]-delta)
 
 	for status in STATUS.values():
-		if not is_instance_valid(statuses[status]["particles_instance"]):
-			statuses[status]["particles_instance"] = null
+		if statuses[status]["particles_scene"] != null:
+			if statuses[status]["duration"] > 0:
+				if statuses[status]["particles_scene"] == null:
+					# status particles are not implemented
+					pass
+				else:
+					statuses[status]["particles_scene"].get_children()[0].emitting = true
 
-		if statuses[status]["duration"] > 0 and statuses[status]["particles_instance"] == null:
-			if statuses[status]["particles_scene"] == null:
-				# status particles are not implemented
-				statuses[status]["particles_instance"] = Game.arena.particles_unimplemented.instantiate()
-				add_child(statuses[status]["particles_instance"])
-			else:
-				statuses[status]["particles_instance"] = statuses[status]["particles_scene"].instantiate()
-				add_child(statuses[status]["particles_instance"])
-
-		elif statuses[status]["particles_instance"] != null and statuses[status]["duration"] == 0.0:
-			statuses[status]["particles_instance"].queue_free()
-			statuses[status]["particles_instance"] = null
+			elif statuses[status]["duration"] == 0.0:
+				statuses[status]["particles_scene"].get_children()[0].emitting = false
 
 func process_passive_abilities():
 	for ability in unit.passive_abilities:

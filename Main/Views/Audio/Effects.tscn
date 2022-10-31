@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://0cs27741ll0g"]
+[gd_scene load_steps=10 format=3 uid="uid://0cs27741ll0g"]
 
 [ext_resource type="AudioStream" uid="uid://c1kxf3321jyrd" path="res://Assets/Audio/Effects/Apollo Sun Arrow.wav" id="1_pnatg"]
 [ext_resource type="AudioStream" uid="uid://c66prcwlbb6vu" path="res://Assets/Audio/Effects/Ares Cycle of War.wav" id="2_jks5j"]
@@ -7,6 +7,8 @@
 [ext_resource type="AudioStream" uid="uid://ch6amug4vtnsb" path="res://Assets/Audio/Effects/Lightning Attack 1.wav" id="5_u8vsu"]
 [ext_resource type="AudioStream" uid="uid://bq4ujr10v60ye" path="res://Assets/Audio/Effects/Heal 2.wav" id="6_ml2g6"]
 [ext_resource type="AudioStream" uid="uid://wn4wydndende" path="res://Assets/Audio/Effects/UI Equip.wav" id="7_jts7c"]
+[ext_resource type="AudioStream" uid="uid://co60ufx0u1eon" path="res://Assets/Audio/Narration/Narration Lose the Game.wav" id="8_1fdlv"]
+[ext_resource type="AudioStream" uid="uid://hhag40w4bpi7" path="res://Assets/Audio/Narration/Narration Win the Game.wav" id="9_m1h8n"]
 
 [node name="Effects" type="Node2D"]
 
@@ -30,3 +32,9 @@ stream = ExtResource("6_ml2g6")
 
 [node name="ui_equip" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("7_jts7c")
+
+[node name="stinger_death" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_1fdlv")
+
+[node name="stinger_victory" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("9_m1h8n")

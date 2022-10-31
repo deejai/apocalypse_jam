@@ -62,4 +62,4 @@ func _init(level: int, p_type: TYPE = TYPE.RAND):
 			assert(false)
 
 static func get_boss_fight(level: int):
-	var options = ["Crius", "Hyperion", "Oceanus", "Themis", "Phoebe", "Cronus"]
+	var options = [Shared.BASE.TITAN_CRIUS, Shared.BASE.TITAN_HYPERION, Shared.BASE.TITAN_OCEANUS, Shared.BASE.TITAN_THEMIS, Shared.BASE.TITAN_PHOEBE, Shared.BASE.TITAN_CRONUS]

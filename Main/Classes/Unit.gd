@@ -53,8 +53,15 @@ func _init(base, level: int = 0):
 		Shared.BASE.SOLDIER_SPEAR, Shared.BASE.OLYMPIAN_ATHENA: projectile = load("res://Main/Views/ArenaView/Projectiles/Spear.tscn")
 		Shared.BASE.OLYMPIAN_ARES, Shared.BASE.SOLDIER_SWORD: projectile = load("res://Main/Views/ArenaView/Projectiles/Sword.tscn")
 		Shared.BASE.OLYMPIAN_APOLLO, Shared.BASE.SOLDIER_ARCHER: projectile = load("res://Main/Views/ArenaView/Projectiles/Arrow.tscn")
-		Shared.BASE.HEALER, Shared.BASE.OLYMPIAN_HERMES: projectile = load("res://Main/Views/ArenaView/Projectiles/Bubble.tscn")
+		Shared.BASE.HEALER: projectile = load("res://Main/Views/ArenaView/Projectiles/Vine.tscn")
+		Shared.BASE.OLYMPIAN_HERMES: projectile = load("res://Main/Views/ArenaView/Projectiles/Bubble.tscn")
 		Shared.BASE.OLYMPIAN_ZEUS: projectile = load("res://Main/Views/ArenaView/Projectiles/Zap.tscn")
+		Shared.BASE.OLYMPIAN_HADES: projectile = load("res://Main/Views/ArenaView/Projectiles/Fire.tscn")
+		Shared.BASE.TITAN_CRIUS: projectile = load("res://Main/Views/ArenaView/Projectiles/Fire.tscn")
+		Shared.BASE.TITAN_CRONUS: projectile = load("res://Main/Views/ArenaView/Projectiles/Spear.tscn")
+		Shared.BASE.TITAN_HYPERION: projectile = load("res://Main/Views/ArenaView/Projectiles/Fire.tscn")
+		Shared.BASE.TITAN_OCEANUS: projectile = load("res://Main/Views/ArenaView/Projectiles/Bubble.tscn")
+		Shared.BASE.TITAN_PHOEBE: projectile = load("res://Main/Views/ArenaView/Projectiles/Zap.tscn")
 		_: projectile = load("res://Main/Views/ArenaView/Projectiles/Spear.tscn")
 
 func get_meta_data():

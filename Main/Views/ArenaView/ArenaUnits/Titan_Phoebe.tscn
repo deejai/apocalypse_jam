@@ -1,0 +1,69 @@
+[gd_scene load_steps=11 format=3 uid="uid://bs3fy2ypf7ecb"]
+
+[ext_resource type="Script" path="res://Main/Views/ArenaView/ArenaUnits/ArenaUnit.gd" id="1_v6a30"]
+[ext_resource type="Texture2D" uid="uid://dhn2asllseo82" path="res://Assets/phoebe.png" id="2_o0kdu"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_tp8tv"]
+radius = 22.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3cu26"]
+atlas = ExtResource("2_o0kdu")
+region = Rect2(160, 0, 80, 116)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m0rca"]
+atlas = ExtResource("2_o0kdu")
+region = Rect2(0, 0, 80, 116)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ggjvu"]
+atlas = ExtResource("2_o0kdu")
+region = Rect2(240, 0, 80, 116)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_47fr2"]
+atlas = ExtResource("2_o0kdu")
+region = Rect2(160, 0, 80, 116)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u6fs3"]
+atlas = ExtResource("2_o0kdu")
+region = Rect2(80, 0, 80, 116)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nnxo0"]
+atlas = ExtResource("2_o0kdu")
+region = Rect2(0, 0, 80, 116)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_o77n7"]
+animations = [{
+"frames": [SubResource("AtlasTexture_3cu26")],
+"loop": true,
+"name": &"Idle_Down",
+"speed": 5.0
+}, {
+"frames": [SubResource("AtlasTexture_m0rca")],
+"loop": true,
+"name": &"Idle_Up",
+"speed": 5.0
+}, {
+"frames": [SubResource("AtlasTexture_ggjvu"), SubResource("AtlasTexture_47fr2")],
+"loop": true,
+"name": &"Walk_Down",
+"speed": 5.0
+}, {
+"frames": [SubResource("AtlasTexture_u6fs3"), SubResource("AtlasTexture_nnxo0")],
+"loop": true,
+"name": &"Walk_Up",
+"speed": 5.0
+}]
+
+[node name="Unit" type="CharacterBody2D"]
+motion_mode = 1
+script = ExtResource("1_v6a30")
+
+[node name="Collision" type="CollisionShape2D" parent="."]
+position = Vector2(0, -3)
+shape = SubResource("CircleShape2D_tp8tv")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -50)
+z_index = 4
+frames = SubResource("SpriteFrames_o77n7")
+animation = &"Idle_Down"
+playing = true

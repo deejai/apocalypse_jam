@@ -1,7 +1,7 @@
 [gd_scene load_steps=11 format=3 uid="uid://y31dtrmt1cxk"]
 
 [ext_resource type="Script" path="res://Main/Views/ArenaView/ArenaUnits/ArenaUnit.gd" id="1_i8bdw"]
-[ext_resource type="Texture2D" uid="uid://dfrusk4n6tlq4" path="res://Assets/titan-Hyperion.png" id="2_i0i56"]
+[ext_resource type="Texture2D" uid="uid://4jnmmc48yh42" path="res://Assets/titan-Hyperion.png" id="2_i0i56"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_tp8tv"]
 radius = 22.0

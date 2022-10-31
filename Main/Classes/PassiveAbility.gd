@@ -74,7 +74,7 @@ static func get_ability_data():
 			},
 		"Hermes Feet": {
 			"icon": load("res://Assets/PNG/bg.png"),
-			"sound": Audio.effects.get_node("apollow_woosh"),
+			"sound": Audio.effects.get_node("apollo_woosh"),
 			"effect_fn": func(instance, target):
 				target.apply_damage(1 + 1 * instance.level),
 			"cooldown": 1,

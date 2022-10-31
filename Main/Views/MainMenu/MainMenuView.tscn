@@ -7,7 +7,7 @@
 default_font_size = 14
 
 [sub_resource type="Theme" id="Theme_tf23h"]
-default_font_size = 22
+default_font_size = 33
 
 [node name="MainMenuView" type="Node2D"]
 script = ExtResource("1_o5j0x")
@@ -45,10 +45,11 @@ text = "Settings"
 metadata/_edit_use_anchors_ = true
 
 [node name="Label" type="Label" parent="."]
-offset_left = 466.0
-offset_top = 82.0
-offset_right = 768.0
-offset_bottom = 116.0
+offset_left = 467.0
+offset_top = 53.0
+offset_right = 769.0
+offset_bottom = 102.0
 theme = SubResource("Theme_tf23h")
-text = "Welcome to the Apocalypse!"
+text = "The Last Olympian"
+horizontal_alignment = 1
 metadata/_edit_use_anchors_ = true

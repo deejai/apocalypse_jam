@@ -1,7 +1,7 @@
 [gd_scene load_steps=11 format=3 uid="uid://c417vvax32lwn"]
 
 [ext_resource type="Script" path="res://Main/Views/ArenaView/ArenaUnits/ArenaUnit.gd" id="1_v6a30"]
-[ext_resource type="Texture2D" uid="uid://dlnoyaok0wnu4" path="res://Assets/titan-Themis.png" id="2_18621"]
+[ext_resource type="Texture2D" uid="uid://dmwgo8f8xo6di" path="res://Assets/titan-Themis.png" id="2_18621"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_tp8tv"]
 radius = 22.0
@@ -58,10 +58,11 @@ motion_mode = 1
 script = ExtResource("1_v6a30")
 
 [node name="Collision" type="CollisionShape2D" parent="."]
+position = Vector2(0, -5)
 shape = SubResource("CircleShape2D_tp8tv")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(0, -33)
+position = Vector2(0, -36)
 z_index = 4
 frames = SubResource("SpriteFrames_o77n7")
 animation = &"Idle_Up"

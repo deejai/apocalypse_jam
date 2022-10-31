@@ -11,6 +11,7 @@ var particles_bloodspurt = load("res://Main/Particles/Blood.tscn")
 var particles_heal = load("res://Main/Particles/Heal.tscn")
 var particles_groundelectric = load("res://Main/Particles/GroundElectric.tscn")
 var particles_groundfire = load("res://Main/Particles/GroundFire.tscn")
+var particles_root = load("res://Main/Particles/Root.tscn")
 
 var particles_unimplemented = load("res://Main/Particles/Unimplemented.tscn")
 
@@ -37,6 +38,9 @@ var highlighted_unit = null
 var targeting_ability = null
 
 var voice_cd: float = 0.0
+
+var lost: bool = false
+var lose_cd: float = 10.0
 
 func setMenuEnabled(enable: bool):
 	$Menu.visible = enable
@@ -92,6 +96,17 @@ func drag_select_rect():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	if len(player_arena_units) == 0:
+		if not lost:
+			Audio.battleMusic.stop()
+			Audio.effects.get_node("stinger_death").play()
+			lost = true
+
+		lose_cd = max(0.0, lose_cd - delta)
+		
+		if lose_cd == 0.0:
+			get_tree().change_scene_to_packed(main_menu)
+
 	voice_cd = max(0.0, voice_cd - delta)
 
 	for arr in [selected_units, player_arena_units, enemy_arena_units]:
@@ -128,12 +143,14 @@ func _process(delta):
 				ability_label.visible = true
 				ability_label.text = LootView.get_inventory_item_scene(ability).get_node("Label").text
 				ability_cd_img.color = Color(ability_cd_img.color, (highlighted_unit.ability_cooldowns[ability] / ability.cooldown))
+				print(str("a", ability_index))
 				ability_index += 1
 
 		for i in range(ability_index, 3):
-				var ability_img = get_node(str("UnitControl/Ability", ability_index+1))
-				var ability_cd_img = get_node(str("UnitControl/AbilityCd", ability_index+1))
-				var ability_label = get_node(str("UnitControl/Ability", ability_index+1, "/AbilityLabel"))
+				print(i)
+				var ability_img = get_node(str("UnitControl/Ability", i+1))
+				var ability_cd_img = get_node(str("UnitControl/AbilityCd", i+1))
+				var ability_label = get_node(str("UnitControl/Ability", i+1, "/AbilityLabel"))
 				ability_img.visible = false
 				ability_cd_img.visible = false
 				ability_label.visible = false
@@ -157,7 +174,7 @@ func _draw():
 	for arena_unit in selected_units:
 		if(is_instance_valid(arena_unit.attack_target)):
 			draw_arc(arena_unit.attack_target.position, 20, 0, TAU, 50, Color.RED, 2.0, true)
-			
+
 	if(in_targeting_mode):
 		if is_instance_valid(highlighted_unit):
 			draw_circle(get_global_mouse_position(), max(15, targeting_ability.area_of_effect), Color(Color.DARK_RED, 0.3))
@@ -398,6 +415,7 @@ func engage_ability(ability_index: int):
 	match targeting_ability.targeting_type:
 		Shared.TARGETING_TYPE.SELF:
 			# cast immediately
+			Audio.data[highlighted_unit.unit.voice].EnemyCast[randi()%len(Audio.data[highlighted_unit.unit.voice].EnemyCast)].play()
 			if targeting_ability.aoe > 0:
 				units_to_affect = get_units_in_aoe(
 					highlighted_unit.position,
@@ -413,6 +431,10 @@ func engage_ability(ability_index: int):
 	cast_on_units(units_to_affect)
 
 func cast_on_units(targets: Array):
+	if len(targets) > 0 and targets[0].alliance == highlighted_unit.alliance:
+		Audio.data[highlighted_unit.unit.voice].FriendlyCast[randi()%len(Audio.data[highlighted_unit.unit.voice].FriendlyCast)].play()
+	elif len(targets) > 0 and targets[0].alliance != highlighted_unit.alliance:
+		Audio.data[highlighted_unit.unit.voice].EnemyCast[randi()%len(Audio.data[highlighted_unit.unit.voice].EnemyCast)].play()
 	for unit in targets:
 		var effect = AbilityEffect.new(
 			{"source_unit": highlighted_unit, "target_unit": unit},

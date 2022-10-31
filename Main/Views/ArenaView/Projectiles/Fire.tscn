@@ -1,0 +1,27 @@
+[gd_scene load_steps=5 format=3 uid="uid://o7rinwawqleg"]
+
+[ext_resource type="Script" path="res://Main/Views/ArenaView/Projectiles/Projectile.gd" id="1_0ot1x"]
+[ext_resource type="Texture2D" uid="uid://dklr41ixick27" path="res://Assets/projectile_fire.png" id="2_emmhg"]
+[ext_resource type="AudioStream" uid="uid://bl0ad5o43b856" path="res://Assets/Audio/Effects/Fire Attack 1.wav" id="3_u1dv4"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_uwwku"]
+size = Vector2(11.5, 11)
+
+[node name="Spear" type="Node2D"]
+script = ExtResource("1_0ot1x")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_emmhg")
+
+[node name="Area2D" type="Area2D" parent="."]
+position = Vector2(10.5, -0.25)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(-10.25, 0.75)
+shape = SubResource("RectangleShape2D_uwwku")
+
+[node name="Sound" type="Node" parent="."]
+
+[node name="Spawn" type="AudioStreamPlayer" parent="Sound"]
+stream = ExtResource("3_u1dv4")
+volume_db = -4.0

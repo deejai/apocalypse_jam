@@ -99,18 +99,19 @@ func update_use_item_button():
 
 	if selected_item != null and selected_item is ActivatedAbility or selected_item is PassiveAbility:
 		if selected_unit != null and len(selected_unit.activated_abilities) + len(selected_unit.passive_abilities) < 3:
-			$UseItemButton.text = "Learn Ability"
-			$UseItemButton.disabled = false
-			_use_item_button_function = func():
-				if selected_item is ActivatedAbility:
-					selected_unit.activated_abilities.append(selected_item)
-				elif selected_item is PassiveAbility:
-					selected_unit.passive_abilities.append(selected_item)
+			if selected_item not in selected_unit.activated_abilities and selected_item not in selected_unit.passive_abilities:
+				$UseItemButton.text = "Learn Ability"
+				$UseItemButton.disabled = false
+				_use_item_button_function = func():
+					if selected_item is ActivatedAbility:
+						selected_unit.activated_abilities.append(selected_item)
+					elif selected_item is PassiveAbility:
+						selected_unit.passive_abilities.append(selected_item)
 
-				Game.player.inventory.pop_at(Game.player.inventory.find(selected_item))
-				$Items.remove_item(selected_item_index)
+					Game.player.inventory.pop_at(Game.player.inventory.find(selected_item))
+					$Items.remove_item(selected_item_index)
 
-				_on_units_item_selected(selected_unit_index)
+					_on_units_item_selected(selected_unit_index)
 
 	elif selected_item != null and selected_item is UnitUpgrade:
 		if selected_unit != null:

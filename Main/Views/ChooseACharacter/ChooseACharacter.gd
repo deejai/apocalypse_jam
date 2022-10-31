@@ -21,6 +21,10 @@ var name_info = {
 		"base": Shared.BASE.OLYMPIAN_ZEUS,
 		"name": "Zeus",
 	},
+	"Sprite_Hades": {
+		"base": Shared.BASE.OLYMPIAN_HADES,
+		"name": "Hades",
+	},
 }
 
 var olympian_key = null
@@ -46,7 +50,8 @@ func _draw():
 
 func _input(event):
 	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
-		for choice in [$Sprite_Apollo, $Sprite_Ares, $Sprite_Athena, $Sprite_Hermes, $Sprite_Zeus]:
+		for key in name_info.keys():
+			var choice = get_node(key)
 			var texture = choice.get_sprite_frames().get_frame("default", choice.get_frame())
 			var twidth = texture.get_width() * choice.scale.x
 			var theight = texture.get_height() * choice.scale.y

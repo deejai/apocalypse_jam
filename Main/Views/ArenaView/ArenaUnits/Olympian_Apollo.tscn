@@ -53,7 +53,7 @@ script = ExtResource("1_v6a30")
 shape = SubResource("CircleShape2D_tp8tv")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(0, -22)
+position = Vector2(1, -30)
 z_index = 4
 frames = SubResource("SpriteFrames_o77n7")
 animation = &"Idle_Up"

@@ -1,7 +1,7 @@
 [gd_scene load_steps=11 format=3 uid="uid://fciicjjjrjx"]
 
 [ext_resource type="Script" path="res://Main/Views/ArenaView/ArenaUnits/ArenaUnit.gd" id="1_v6a30"]
-[ext_resource type="Texture2D" uid="uid://dpm5k5upoq847" path="res://Assets/titan-Oceanus.png" id="2_f75gr"]
+[ext_resource type="Texture2D" uid="uid://bs4g7hbiuoqwg" path="res://Assets/titan-Oceanus.png" id="2_f75gr"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_tp8tv"]
 radius = 22.0
@@ -61,7 +61,7 @@ script = ExtResource("1_v6a30")
 shape = SubResource("CircleShape2D_tp8tv")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(1, -41)
+position = Vector2(1, -43)
 z_index = 4
 frames = SubResource("SpriteFrames_o77n7")
 animation = &"Idle_Up"

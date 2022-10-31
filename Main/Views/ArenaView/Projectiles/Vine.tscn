@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=3 uid="uid://dnb40hsqraepc"]
+
+[ext_resource type="Script" path="res://Main/Views/ArenaView/Projectiles/Projectile.gd" id="1_0ot1x"]
+[ext_resource type="Texture2D" uid="uid://blmwg408gyp2a" path="res://Assets/projectile_vine.png" id="2_7psaa"]
+[ext_resource type="AudioStream" uid="uid://c6ovypb4x717h" path="res://Assets/Audio/Effects/Body Impact 2.wav" id="3_vajpu"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_uwwku"]
+size = Vector2(11, 9.5)
+
+[node name="Spear" type="Node2D"]
+script = ExtResource("1_0ot1x")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(1, -2)
+texture = ExtResource("2_7psaa")
+
+[node name="Area2D" type="Area2D" parent="."]
+position = Vector2(10.5, -0.25)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(-9, 0)
+shape = SubResource("RectangleShape2D_uwwku")
+
+[node name="Sound" type="Node" parent="."]
+
+[node name="Spawn" type="AudioStreamPlayer" parent="Sound"]
+stream = ExtResource("3_vajpu")
+volume_db = -4.0
