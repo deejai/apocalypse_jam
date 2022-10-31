@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://btnuj1rtn7wfp"]
 
 [ext_resource type="Script" path="res://Main/Views/MainMenu/MainMenuView.gd" id="1_o5j0x"]
-[ext_resource type="Texture2D" uid="uid://b87uuop0o8c0h" path="res://Assets/bg_colleseum.png" id="2_us8kp"]
+[ext_resource type="Texture2D" uid="uid://dp7w31tei583x" path="res://Assets/bg_colleseum.png" id="2_us8kp"]
 
 [sub_resource type="Theme" id="Theme_ktljd"]
 default_font_size = 14

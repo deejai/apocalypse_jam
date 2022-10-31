@@ -97,7 +97,7 @@ static func flaming_spear(instance: AbilityEffect, flag: AbilityEffect.FLAG):
 		AbilityEffect.FLAG.TICK:
 			pass
 
-static func hellfire(instance: AbilityEffect, flag: AbilityEffect.FLAG):
+static func zues_lightning(instance: AbilityEffect, flag: AbilityEffect.FLAG):
 	if not is_instance_valid(instance.props["target_unit"]):
 		instance.queue_free()
 		return
@@ -112,6 +112,39 @@ static func hellfire(instance: AbilityEffect, flag: AbilityEffect.FLAG):
 
 		AbilityEffect.FLAG.TICK:
 			instance.props["target_unit"].apply_damage(5 + instance.level*3)
+			pass
+
+static func hand_of_hades(instance: AbilityEffect, flag: AbilityEffect.FLAG):
+	if not is_instance_valid(instance.props["target_unit"]):
+		instance.queue_free()
+		return
+
+	match flag:
+		AbilityEffect.FLAG.START:
+			instance.props["target_unit"].apply_status(ArenaUnit.STATUS.ROOT, 5 + instance.level)
+			pass
+
+		AbilityEffect.FLAG.END:
+			pass
+
+		AbilityEffect.FLAG.TICK:
+			instance.props["target_unit"].apply_damage(5 + instance.level*3)
+			pass
+			
+static func cycle_of_war(instance: AbilityEffect, flag: AbilityEffect.FLAG):
+	if not is_instance_valid(instance.props["target_unit"]):
+		instance.queue_free()
+		return
+
+	match flag:
+		AbilityEffect.FLAG.START:
+			pass
+
+		AbilityEffect.FLAG.END:
+			pass
+
+		AbilityEffect.FLAG.TICK:
+			instance.props["target_unit"].apply_damage(20 + instance.level*5)
 			pass
 
 # Called when the node enters the scene tree for the first time.

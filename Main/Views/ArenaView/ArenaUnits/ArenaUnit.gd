@@ -78,7 +78,7 @@ func _ready():
 	statuses = {
 		STATUS.STUN: {"duration": 0.0, "particles_instance": null, "particles_scene": Game.arena.particles_stun},
 		STATUS.SILENCE: {"duration": 0.0, "particles_instance": null, "particles_scene": null},
-		STATUS.ROOT: {"duration": 0.0, "particles_instance": null, "particles_scene": null},
+		STATUS.ROOT: {"duration": 0.0, "particles_instance": null, "particles_scene": Game.arena.particles_root},
 		STATUS.INVULN: {"duration": 0.0, "particles_instance": null, "particles_scene": null},
 		STATUS.HEAL: {"duration": 0.0, "particles_instance": null, "particles_scene": Game.arena.particles_heal},
 		STATUS.NOHEAL: {"duration": 0.0, "particles_instance": null, "particles_scene": null},
