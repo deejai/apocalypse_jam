@@ -54,6 +54,7 @@ func _init(base, level: int = 0):
 		Shared.BASE.OLYMPIAN_ARES, Shared.BASE.SOLDIER_SWORD: projectile = load("res://Main/Views/ArenaView/Projectiles/Sword.tscn")
 		Shared.BASE.OLYMPIAN_APOLLO, Shared.BASE.SOLDIER_ARCHER: projectile = load("res://Main/Views/ArenaView/Projectiles/Arrow.tscn")
 		Shared.BASE.HEALER, Shared.BASE.OLYMPIAN_HERMES: projectile = load("res://Main/Views/ArenaView/Projectiles/Bubble.tscn")
+		Shared.BASE.OLYMPIAN_ZEUS: projectile = load("res://Main/Views/ArenaView/Projectiles/Zap.tscn")
 		_: projectile = load("res://Main/Views/ArenaView/Projectiles/Spear.tscn")
 
 func get_meta_data():

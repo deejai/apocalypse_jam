@@ -60,3 +60,6 @@ func _init(level: int, p_type: TYPE = TYPE.RAND):
 
 		_:
 			assert(false)
+
+static func get_boss_fight(level: int):
+	var options = ["Crius", "Hyperion", "Oceanus", "Themis", "Phoebe", "Cronus"]

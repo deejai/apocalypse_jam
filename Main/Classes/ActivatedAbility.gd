@@ -167,7 +167,7 @@ static func get_ability_data():
 			"icon": load("res://Assets/PNG/bg.png"),
 			"sound": Audio.effects.get_node("arrow1"),
 			"effect_fn": func(instance, flag): ActivatedAbility.mind_dart(instance, flag),
-			"targeting_type": Shared.TARGETING_TYPE.SINGLE_UNIT,
+			"targeting_type": Shared.TARGETING_TYPE.POINT,
 			"targets": Shared.TARGETS.OTHER,
 			"cooldown_fn": func(level): return max(3, 6 - level),
 			"range_fn": func(level): return 200,

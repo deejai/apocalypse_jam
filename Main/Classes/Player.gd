@@ -5,8 +5,9 @@ class_name Player
 var inventory: Array = []
 var floor: Floor = null
 
-var squad: Array = [
-]
+var squad: Array = []
+
+var defeated_titans: Array = []
 
 func _init(newgame: bool = true):
 	if newgame:
