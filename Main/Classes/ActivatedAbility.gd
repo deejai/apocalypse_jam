@@ -138,13 +138,13 @@ static func cycle_of_war(instance: AbilityEffect, flag: AbilityEffect.FLAG):
 
 	match flag:
 		AbilityEffect.FLAG.START:
+			instance.props["target_unit"].apply_damage(20 + instance.level*5)
 			pass
 
 		AbilityEffect.FLAG.END:
 			pass
 
 		AbilityEffect.FLAG.TICK:
-			instance.props["target_unit"].apply_damage(20 + instance.level*5)
 			pass
 
 # Called when the node enters the scene tree for the first time.
