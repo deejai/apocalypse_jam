@@ -72,7 +72,7 @@ static func get_ability_data():
 			"targets": Shared.TARGETS.OTHER,
 			"description_fn": func(level): return str("Damage nearby enemies for ", 1+1 * level, " hp every second")
 			},
-			"Hermes Feet": {
+		"Hermes Feet": {
 			"icon": load("res://Assets/PNG/bg.png"),
 			"sound": Audio.effects.get_node("apollow_woosh"),
 			"effect_fn": func(instance, target):
