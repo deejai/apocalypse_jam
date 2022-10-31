@@ -62,11 +62,12 @@ func init(unit, alliance: ALLIANCE):
 	if self.alliance == ALLIANCE.ENEMY:
 		facing_up = false
 
+	var active_cd_mod = randf()
 	for ability in unit.activated_abilities:
-		ability_cooldowns[ability] = 0.0
+		ability_cooldowns[ability] = 1.5 + active_cd_mod # wait a couple seconds before you can cast abilities
 
 	for ability in unit.passive_abilities:
-		ability_cooldowns[ability] = 0.0
+		ability_cooldowns[ability] = randf() * 2.0 # offset passive ticks from each other
 
 	# idk if this logic is helpful
 #	$Collision.shape.radius = 50 if unit.size == "Large" else 30 if  unit.size == "Medium" else 15

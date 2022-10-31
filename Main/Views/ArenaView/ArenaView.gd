@@ -46,7 +46,7 @@ func setMenuEnabled(enable: bool):
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	Game.arena = self
-	
+
 	#add_child(Audio.battleMusic)
 	#Audio.battleMusic.play()
 
@@ -114,6 +114,31 @@ func _process(delta):
 		# save the game here?
 		queue_free()
 		get_tree().change_scene_to_packed(loot_view)
+
+	if is_instance_valid(highlighted_unit):
+		$UnitControl.visible = true
+		var ability_index = 0
+		for arr in [highlighted_unit.unit.activated_abilities, highlighted_unit.unit.passive_abilities]:
+			for ability in arr:
+				var ability_img = get_node(str("UnitControl/Ability", ability_index+1))
+				var ability_cd_img = get_node(str("UnitControl/AbilityCd", ability_index+1))
+				var ability_label = get_node(str("UnitControl/Ability", ability_index+1, "/AbilityLabel"))
+				ability_img.visible = true
+				ability_cd_img.visible = true
+				ability_label.visible = true
+				ability_label.text = LootView.get_inventory_item_scene(ability).get_node("Label").text
+				ability_cd_img.color = Color(ability_cd_img.color, (highlighted_unit.ability_cooldowns[ability] / ability.cooldown))
+				ability_index += 1
+
+		for i in range(ability_index, 3):
+				var ability_img = get_node(str("UnitControl/Ability", ability_index+1))
+				var ability_cd_img = get_node(str("UnitControl/AbilityCd", ability_index+1))
+				var ability_label = get_node(str("UnitControl/Ability", ability_index+1, "/AbilityLabel"))
+				ability_img.visible = false
+				ability_cd_img.visible = false
+				ability_label.visible = false
+	else:
+		$UnitControl.visible = false
 
 	ai_decide_targets()
 	player_auto_attack()
@@ -225,6 +250,9 @@ func _input(event: InputEvent):
 						selected_units = [clicked_unit] if clicked_unit else []
 						for arena_unit in selected_units:
 							arena_unit.selected = true
+							if(voice_cd == 0.0):
+								voice_cd = 0.1
+								Audio.data[arena_unit.unit.voice].Greeting[randi()%len(Audio.data[arena_unit.unit.voice].Greeting)].play()
 					else:
 						for arena_unit in selected_units:
 							arena_unit.selected = false
@@ -247,7 +275,7 @@ func _input(event: InputEvent):
 							voice_lines.append(Audio.data[arena_unit.unit.voice].Greeting[randi()%len(Audio.data[arena_unit.unit.voice].Greeting)])
 
 						if(voice_cd == 0.0):
-							voice_cd = 2.5
+							voice_cd = 0.1
 							# play up to 3 random voice lines from selected units
 							for i in range(min(3, len(voice_lines))):
 								voice_lines.pop_at(randi() % len(voice_lines)).play()
@@ -279,7 +307,7 @@ func _input(event: InputEvent):
 							voice_lines.append(Audio.data[arena_unit.unit.voice].Response[randi()%len(Audio.data[arena_unit.unit.voice].Response)])
 
 						if(voice_cd == 0.0):
-							voice_cd = 2.5
+							voice_cd = 2.0
 							# play up to 3 random voice lines from selected units
 							for i in range(min(3, len(voice_lines))):
 								voice_lines.pop_at(randi() % len(voice_lines)).play()

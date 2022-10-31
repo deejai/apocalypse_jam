@@ -81,7 +81,6 @@ static func get_ability_data():
 			"targets": Shared.TARGETS.OTHER,
 			"description_fn": func(level): return str("Damage nearby enemies for ", 1+1 * level, " hp every second")
 			}
-
 	}
 
 func _set_details():

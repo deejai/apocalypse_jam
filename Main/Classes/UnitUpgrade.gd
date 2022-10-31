@@ -17,13 +17,13 @@ func _init(level:int, effect: EFFECT = EFFECT.RAND):
 	var multiplier
 	match self.effect:
 		EFFECT.MORE_HP:
-			multiplier = 18
+			multiplier = 24
 		EFFECT.MORE_SPEED:
-			multiplier = 12
+			multiplier = 18
 		EFFECT.MORE_DAMAGE:
 			multiplier = 3
 		EFFECT.MORE_RANGE:
-			multiplier = 12
+			multiplier = 18
 		_:
 			assert(false)
 

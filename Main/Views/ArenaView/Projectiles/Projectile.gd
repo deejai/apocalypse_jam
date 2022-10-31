@@ -13,6 +13,7 @@ var alliance: ArenaUnit.ALLIANCE
 var payload_fn: Callable = func(proj, target):
 	target.apply_damage(proj.damage)
 	target.apply_status(ArenaUnit.STATUS.HIT, .3)
+var units_hit = {}
 
 func init(alliance: ArenaUnit.ALLIANCE, position: Vector2, direction: Vector2, speed: int, damage: int):
 	self.alliance = alliance
@@ -41,7 +42,8 @@ func _process(delta):
 	position += speed * delta * direction
 
 	for target in $Area2D.get_overlapping_bodies():
-		if target is ArenaUnit:
+		if target is ArenaUnit and not units_hit.has(target):
 			if target.alliance != alliance:
 				payload_fn.call(self, target)
+				units_hit[target] = true
 				hits += 1

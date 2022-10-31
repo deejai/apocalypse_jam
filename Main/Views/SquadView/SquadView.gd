@@ -65,7 +65,7 @@ func _on_units_item_selected(index):
 				var label = scene.get_node("Label").text
 				$Abilities.add_item(label, texture)
 				$Abilities.set_item_metadata(i, {"data": ability})
-				
+
 	else:
 		$UnitData.text = "No unit selected"
 

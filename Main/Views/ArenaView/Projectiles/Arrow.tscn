@@ -1,8 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://c3qh451dlvpj8"]
+[gd_scene load_steps=5 format=3 uid="uid://mr4sxpcadmh3"]
 
 [ext_resource type="Script" path="res://Main/Views/ArenaView/Projectiles/Projectile.gd" id="1_0ot1x"]
-[ext_resource type="Texture2D" uid="uid://dnrxppp2gneaj" path="res://Assets/proj_spear.png" id="2_6ddj6"]
-[ext_resource type="AudioStream" uid="uid://cu8barvupj73n" path="res://Assets/Audio/Effects/spear_throw.wav" id="3_xra8w"]
+[ext_resource type="Texture2D" uid="uid://bqs8dgq3yooa0" path="res://Assets/projectile_arrow.png" id="2_7fxtj"]
+[ext_resource type="AudioStream" uid="uid://bafitmleoxiuw" path="res://Assets/Audio/Effects/Arrow 4.wav" id="3_q5q1q"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_uwwku"]
 size = Vector2(11, 9.5)
@@ -11,7 +11,7 @@ size = Vector2(11, 9.5)
 script = ExtResource("1_0ot1x")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("2_6ddj6")
+texture = ExtResource("2_7fxtj")
 
 [node name="Area2D" type="Area2D" parent="."]
 position = Vector2(10.5, -0.25)
@@ -22,4 +22,5 @@ shape = SubResource("RectangleShape2D_uwwku")
 [node name="Sound" type="Node" parent="."]
 
 [node name="Spawn" type="AudioStreamPlayer" parent="Sound"]
-stream = ExtResource("3_xra8w")
+stream = ExtResource("3_q5q1q")
+volume_db = -4.0

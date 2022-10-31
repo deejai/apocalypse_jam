@@ -1480,49 +1480,12 @@ text = "Main Menu"
 position = Vector2(1180, 287)
 scale = Vector2(1.1875, 1.02857)
 
-[node name="Portrait" type="Polygon2D" parent="UnitControl"]
-position = Vector2(3.36841, 4.86111)
-scale = Vector2(1.01053, 1.16667)
-z_index = 650
-color = Color(0.74902, 0.847059, 0.823529, 1)
-polygon = PackedVector2Array(-65.6842, -40.8334, -65.6842, -9.72223, -37.0526, -9.72223, -37.0526, -40.8334)
-
-[node name="Ability1" type="Polygon2D" parent="UnitControl"]
-position = Vector2(3.36841, 49.5835)
-scale = Vector2(1.01053, 1.16667)
-z_index = 650
-color = Color(0.74902, 0.847059, 0.823529, 1)
-polygon = PackedVector2Array(-65.6842, -40.8334, -65.6842, -9.72223, -37.0526, -9.72223, -37.0526, -40.8334)
-
-[node name="Ability2" type="Polygon2D" parent="UnitControl"]
-position = Vector2(50.5263, 49.5835)
-scale = Vector2(1.01053, 1.16667)
-z_index = 650
-color = Color(0.74902, 0.847059, 0.823529, 1)
-polygon = PackedVector2Array(-65.6842, -40.8334, -65.6842, -9.72223, -37.0526, -9.72223, -37.0526, -40.8334)
-
-[node name="Ability3" type="Polygon2D" parent="UnitControl"]
-position = Vector2(97.6843, 49.5834)
-scale = Vector2(1.01053, 1.16667)
-z_index = 650
-color = Color(0.74902, 0.847059, 0.823529, 1)
-polygon = PackedVector2Array(-65.6842, -40.8334, -65.6842, -9.72223, -37.0526, -9.72223, -37.0526, -40.8334)
-
 [node name="HighlightedUnitBackground" type="Polygon2D" parent="UnitControl"]
+position = Vector2(0, 7.08337)
+scale = Vector2(1, 1.14167)
 z_index = 600
 color = Color(0.654902, 0.843137, 0.929412, 1)
 polygon = PackedVector2Array(-75, -50, 75, -50, 75, 50, -75, 50)
-metadata/_edit_lock_ = true
-
-[node name="Label" type="Label" parent="UnitControl/HighlightedUnitBackground"]
-offset_left = -16.8421
-offset_top = -42.7778
-offset_right = 59.1579
-offset_bottom = -22.7778
-theme_override_fonts/font = ExtResource("2_mrydh")
-theme_override_font_sizes/font_size = 12
-text = "Selected Unit"
-metadata/_edit_use_anchors_ = true
 
 [node name="HP_fg" type="Polygon2D" parent="UnitControl"]
 position = Vector2(164.756, -6.7081)
@@ -1537,6 +1500,125 @@ scale = Vector2(2.76471, 0.312499)
 z_index = 650
 color = Color(0.788235, 0.392157, 0.388235, 1)
 polygon = PackedVector2Array(-65.6842, -40.8334, -65.6842, -9.72223, -37.0526, -9.72223, -37.0526, -26.2966, -37.0526, -40.8334)
+
+[node name="Label" type="Label" parent="UnitControl"]
+offset_left = -16.8421
+offset_top = -41.7547
+offset_right = 59.1579
+offset_bottom = -21.7547
+theme_override_fonts/font = ExtResource("2_mrydh")
+theme_override_font_sizes/font_size = 12
+text = "Selected Unit"
+metadata/_edit_use_anchors_ = true
+
+[node name="Portrait" type="Polygon2D" parent="UnitControl"]
+position = Vector2(3.36841, 4.86111)
+scale = Vector2(1.01053, 1.16667)
+z_index = 650
+color = Color(0.74902, 0.847059, 0.823529, 1)
+polygon = PackedVector2Array(-65.6842, -40.8334, -65.6842, -9.72223, -37.0526, -9.72223, -37.0526, -40.8334)
+
+[node name="Ability1" type="Polygon2D" parent="UnitControl"]
+position = Vector2(3.36841, 49.5835)
+scale = Vector2(1.01053, 1.16667)
+z_index = 650
+color = Color(0.74902, 0.847059, 0.823529, 1)
+polygon = PackedVector2Array(-65.6842, -40.8334, -65.6842, -9.72223, -37.0526, -9.72223, -37.0526, -40.8334)
+
+[node name="Hotkey" type="Label" parent="UnitControl/Ability1"]
+offset_left = -56.6664
+offset_top = -35.8333
+offset_right = -32.6664
+offset_bottom = -9.83334
+text = "Q"
+metadata/_edit_use_anchors_ = true
+
+[node name="AbilityLabel" type="Label" parent="UnitControl/Ability1"]
+offset_left = -73.3331
+offset_top = -10.0001
+offset_right = -29.3331
+offset_bottom = 11.9999
+theme_override_constants/line_spacing = 0
+theme_override_font_sizes/font_size = 7
+text = "Interrupting Shock lv 1"
+horizontal_alignment = 1
+autowrap_mode = 3
+metadata/_edit_use_anchors_ = true
+
+[node name="Ability2" type="Polygon2D" parent="UnitControl"]
+position = Vector2(50.5263, 49.5835)
+scale = Vector2(1.01053, 1.16667)
+z_index = 650
+color = Color(0.74902, 0.847059, 0.823529, 1)
+polygon = PackedVector2Array(-65.6842, -40.8334, -65.6842, -9.72223, -37.0526, -9.72223, -37.0526, -40.8334)
+
+[node name="Hotkey" type="Label" parent="UnitControl/Ability2"]
+offset_left = -56.6664
+offset_top = -35.8333
+offset_right = -32.6664
+offset_bottom = -9.83334
+text = "W"
+metadata/_edit_use_anchors_ = true
+
+[node name="AbilityLabel" type="Label" parent="UnitControl/Ability2"]
+offset_left = -72.4998
+offset_top = -10.0001
+offset_right = -28.4998
+offset_bottom = 11.9999
+theme_override_constants/line_spacing = 0
+theme_override_font_sizes/font_size = 7
+text = "Interrupting Shock lv 1"
+horizontal_alignment = 1
+autowrap_mode = 3
+metadata/_edit_use_anchors_ = true
+
+[node name="Ability3" type="Polygon2D" parent="UnitControl"]
+position = Vector2(97.6844, 49.5834)
+scale = Vector2(1.01053, 1.16667)
+z_index = 650
+color = Color(0.74902, 0.847059, 0.823529, 1)
+polygon = PackedVector2Array(-65.6842, -40.8334, -65.6842, -9.72223, -37.0526, -9.72223, -37.0526, -40.8334)
+
+[node name="Hotkey" type="Label" parent="UnitControl/Ability3"]
+offset_left = -56.6665
+offset_top = -35.8333
+offset_right = -32.6665
+offset_bottom = -9.83328
+text = "E"
+metadata/_edit_use_anchors_ = true
+
+[node name="AbilityLabel" type="Label" parent="UnitControl/Ability3"]
+offset_left = -73.3333
+offset_top = -10.0
+offset_right = -29.3333
+offset_bottom = 12.0
+theme_override_constants/line_spacing = 0
+theme_override_font_sizes/font_size = 7
+text = "Interrupting Shock lv 1"
+horizontal_alignment = 1
+autowrap_mode = 3
+metadata/_edit_use_anchors_ = true
+
+[node name="AbilityCd1" type="Polygon2D" parent="UnitControl"]
+position = Vector2(3.36841, 49.5835)
+scale = Vector2(1.01053, 1.16667)
+z_index = 651
+color = Color(0.54902, 0.878431, 0.968627, 0.635294)
+polygon = PackedVector2Array(-65.6842, -40.8334, -65.6842, -9.72223, -37.0526, -9.72223, -37.0526, -40.8334)
+
+[node name="AbilityCd2" type="Polygon2D" parent="UnitControl"]
+position = Vector2(50.5263, 49.5835)
+scale = Vector2(1.01053, 1.16667)
+z_index = 651
+color = Color(0.54902, 0.878431, 0.968627, 0.635294)
+polygon = PackedVector2Array(-65.6842, -40.8334, -65.6842, -9.72223, -37.0526, -9.72223, -37.0526, -40.8334)
+
+[node name="AbilityCd3" type="Polygon2D" parent="UnitControl"]
+position = Vector2(97.6844, 49.5834)
+scale = Vector2(1.01053, 1.16667)
+z_index = 651
+color = Color(0.54902, 0.878431, 0.968627, 0.635294)
+polygon = PackedVector2Array(-65.6842, -40.8334, -65.6842, -9.72223, -37.0526, -9.72223, -37.0526, -40.8334)
 
 [node name="TileMap" type="TileMap" parent="."]
 scale = Vector2(2, 2)

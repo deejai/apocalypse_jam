@@ -36,9 +36,11 @@ func _ready():
 			data[v][key] = []
 			for vl in voiceSceneMap[v].get_node(key).get_children():
 				if key in ["Hit"]:
+					vl.volume_db = -6
+				elif key in ["Response", "Greeting"] and v == VOICE.SOLDIER:
 					vl.volume_db = -9
 				else:
-					vl.volume_db = -6
+					vl.volume_db = -3
 				data[v][key].append(vl)
 	for line in voiceSceneMap: 
 		add_child(voiceSceneMap[line])

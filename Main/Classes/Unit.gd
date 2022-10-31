@@ -51,6 +51,8 @@ func _init(base, level: int = 0):
 	
 	match base:
 		Shared.BASE.SOLDIER_SPEAR: projectile = load("res://Main/Views/ArenaView/Projectiles/Spear.tscn")
+		Shared.BASE.OLYMPIAN_ARES, Shared.BASE.SOLDIER_SWORD: projectile = load("res://Main/Views/ArenaView/Projectiles/Sword.tscn")
+		Shared.BASE.OLYMPIAN_APOLLO, Shared.BASE.SOLDIER_ARCHER: projectile = load("res://Main/Views/ArenaView/Projectiles/Arrow.tscn")
 		_: projectile = load("res://Main/Views/ArenaView/Projectiles/Spear.tscn")
 
 func get_meta_data():

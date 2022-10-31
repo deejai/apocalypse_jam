@@ -69,7 +69,7 @@ static func poison_nova(instance: AbilityEffect, flag: AbilityEffect.FLAG):
 		AbilityEffect.FLAG.TICK:
 			instance.props["target_unit"].apply_damage(7 + instance.level * 3)
 
-static func summon_imp(instance: AbilityEffect, flag: AbilityEffect.FLAG):
+static func summon_zombie(instance: AbilityEffect, flag: AbilityEffect.FLAG):
 	match flag:
 		AbilityEffect.FLAG.START:
 			print("Tried to summon imp, but failed")
@@ -81,11 +81,7 @@ static func summon_imp(instance: AbilityEffect, flag: AbilityEffect.FLAG):
 		AbilityEffect.FLAG.TICK:
 			pass
 
-static func throw_spear(instance: AbilityEffect, flag: AbilityEffect.FLAG):
-	if not is_instance_valid(instance.props["target_unit"]) or not is_instance_valid(instance.props["source_unit"]):
-		instance.queue_free()
-		return
-
+static func flaming_spear(instance: AbilityEffect, flag: AbilityEffect.FLAG):
 	match flag:
 		AbilityEffect.FLAG.START:
 			var direction = instance.props["source_unit"].direction_to(instance.props["target_unit"])
@@ -156,6 +152,18 @@ func get_meta_data():
 static func get_ability_data():
 	return {
 		"Mind Dart": {
+			"icon": load("res://Assets/PNG/bg.png"),
+			"sound": Audio.effects.get_node("arrow1"),
+			"effect_fn": func(instance, flag): ActivatedAbility.mind_dart(instance, flag),
+			"targeting_type": Shared.TARGETING_TYPE.SINGLE_UNIT,
+			"targets": Shared.TARGETS.OTHER,
+			"cooldown_fn": func(level): return max(3, 6 - level),
+			"range_fn": func(level): return 200,
+			"area_of_effect_fn": func(level): return 0,
+			"duration_fn": func(level): return 0,
+			"description_fn": func(level): return str("Shoot a projectile that deals ", 10 + 5*level, " instant damage to a unit")
+		},
+		"Conjure Spear": {
 			"icon": load("res://Assets/PNG/bg.png"),
 			"sound": Audio.effects.get_node("arrow1"),
 			"effect_fn": func(instance, flag): ActivatedAbility.mind_dart(instance, flag),
