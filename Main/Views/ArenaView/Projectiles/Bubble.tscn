@@ -1,8 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://mr4sxpcadmh3"]
+[gd_scene load_steps=5 format=3 uid="uid://dxgyu5b52ehew"]
 
 [ext_resource type="Script" path="res://Main/Views/ArenaView/Projectiles/Projectile.gd" id="1_0ot1x"]
-[ext_resource type="Texture2D" uid="uid://bqs8dgq3yooa0" path="res://Assets/projectile_arrow.png" id="2_7fxtj"]
-[ext_resource type="AudioStream" uid="uid://boi4yt55oocqv" path="res://Assets/Audio/Effects/Arrow 2.wav" id="3_2ri7m"]
+[ext_resource type="Texture2D" uid="uid://bttc0d2tx278x" path="res://Assets/projectile_bubble.png" id="2_ijk1w"]
+[ext_resource type="AudioStream" uid="uid://ddlsnpw7b4kub" path="res://Assets/Audio/Effects/UI Unequip.wav" id="3_25350"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_uwwku"]
 size = Vector2(11, 9.5)
@@ -11,16 +11,17 @@ size = Vector2(11, 9.5)
 script = ExtResource("1_0ot1x")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("2_7fxtj")
+texture = ExtResource("2_ijk1w")
 
 [node name="Area2D" type="Area2D" parent="."]
 position = Vector2(10.5, -0.25)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(-9, 0)
 shape = SubResource("RectangleShape2D_uwwku")
 
 [node name="Sound" type="Node" parent="."]
 
 [node name="Spawn" type="AudioStreamPlayer" parent="Sound"]
-stream = ExtResource("3_2ri7m")
+stream = ExtResource("3_25350")
 volume_db = -4.0
