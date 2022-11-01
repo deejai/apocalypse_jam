@@ -52,7 +52,7 @@ static func get_unit_data():
 			"attack_damage": 15,
 			"attack_speed": 100,
 			"activated_abilities":  ["Hellfire"],
-			"passive_abilities": []
+			"passive_abilities": ["Apollos Heat"]
 		},
 		BASE.OLYMPIAN_ARES:  {
 			"spec": SPEC.HERO,
@@ -62,8 +62,8 @@ static func get_unit_data():
 			"speed": 100,
 			"attack_damage": 30,
 			"attack_speed": 50,
-			"activated_abilities":  [],
-			"passive_abilities": []
+			"activated_abilities": ["Cycle of War"],
+			"passive_abilities": ["Ares Anger"]
 		},
 		BASE.OLYMPIAN_ATHENA:  {
 			"spec": SPEC.HERO,
@@ -74,7 +74,7 @@ static func get_unit_data():
 			"attack_damage": 15,
 			"attack_speed": 100,
 			"activated_abilities":  ["Heal"],
-			"passive_abilities": []
+			"passive_abilities": ["Healing Wind"]
 		},
 		BASE.OLYMPIAN_HADES:  {
 			"spec": SPEC.HERO,
@@ -84,8 +84,8 @@ static func get_unit_data():
 			"speed": 100,
 			"attack_damage": 10,
 			"attack_speed": 100,
-			"activated_abilities":  [],
-			"passive_abilities": []
+			"activated_abilities":  ["Hand of Hades"],
+			"passive_abilities": ["Hades Despair"]
 		},
 		BASE.OLYMPIAN_HERMES:  {
 			"spec": SPEC.HERO,
@@ -96,7 +96,7 @@ static func get_unit_data():
 			"attack_damage": 8,
 			"attack_speed": 200,
 			"activated_abilities":  ["Mind Dart"],
-			"passive_abilities": []
+			"passive_abilities": ["Hermes Feet"]
 		},
 		BASE.OLYMPIAN_ZEUS:  {
 			"spec": SPEC.HERO,
@@ -193,6 +193,7 @@ static func get_unit_data():
 			"speed": 50,
 			"attack_damage": 13,
 			"attack_speed": 100,
+			"passive_abilities": ["Hermes Feet"]
 		},
 		BASE.TITAN_CRONUS: {
 			"spec": SPEC.HERO,
@@ -202,6 +203,7 @@ static func get_unit_data():
 			"speed": 50,
 			"attack_damage": 13,
 			"attack_speed": 100,
+			"passive_abilities": ["Interrupting Shock"]
 		},
 		BASE.TITAN_HYPERION: {
 			"spec": SPEC.HERO,
@@ -211,6 +213,7 @@ static func get_unit_data():
 			"speed": 50,
 			"attack_damage": 13,
 			"attack_speed": 100,
+			"passive_abilities": ["Apollos Heat"]
 		},
 		BASE.TITAN_OCEANUS: {
 			"spec": SPEC.HERO,
@@ -220,6 +223,7 @@ static func get_unit_data():
 			"speed": 50,
 			"attack_damage": 13,
 			"attack_speed": 100,
+			"passive_abilities": ["Ares Anger"]
 		},
 		BASE.TITAN_PHOEBE: {
 			"spec": SPEC.HERO,
@@ -229,6 +233,7 @@ static func get_unit_data():
 			"speed": 75,
 			"attack_damage": 7,
 			"attack_speed": 150,
+			"passive_abilities": ["Healing Wind"]
 		},
 		BASE.TITAN_THEMIS: {
 			"spec": SPEC.HERO,
@@ -238,5 +243,6 @@ static func get_unit_data():
 			"speed": 50,
 			"attack_damage": 13,
 			"attack_speed": 100,
+			"passive_abilities": ["Hades Despair"]
 		},
 	}

@@ -76,10 +76,19 @@ static func get_ability_data():
 			"icon": load("res://Assets/PNG/bg.png"),
 			"sound": Audio.effects.get_node("apollo_woosh"),
 			"effect_fn": func(instance, target):
-				target.apply_status(ArenaUnit.STATUS.BUFF, 0.5),
+				target.apply_status(ArenaUnit.STATUS.SPEED_BUFF, 1),
 			"cooldown": 1,
 			"targets": Shared.TARGETS.OTHER,
-			"description_fn": func(level): return str("Damage nearby enemies for ", 1+1 * level, " hp every second")
+			"description_fn": func(level): return str("Increae the speed of nearby friendly units")
+			},
+		"Ares Anger": {
+			"icon": load("res://Assets/PNG/bg.png"),
+			"sound": Audio.effects.get_node("apollo_woosh"),
+			"effect_fn": func(instance, target):
+				target.apply_status(ArenaUnit.STATUS.DAMAGE_BUFF, 1),
+			"cooldown": 1,
+			"targets": Shared.TARGETS.OTHER,
+			"description_fn": func(level): return str("Increase the damage of nearby friendly units")
 			}
 	}
 
