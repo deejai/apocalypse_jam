@@ -125,13 +125,14 @@ static func zues_lightning(instance: AbilityEffect, flag: AbilityEffect.FLAG):
 
 	match flag:
 		AbilityEffect.FLAG.START:
-			instance.props["target_unit"].apply_status(ArenaUnit.STATUS.ONFIRE, 3)
+			instance.props["target_unit"].apply_status(ArenaUnit.STATUS.LIGHTNING, 0.5)
 			pass
 
 		AbilityEffect.FLAG.END:
 			pass
 
 		AbilityEffect.FLAG.TICK:
+			instance.props["target_unit"].apply_status(ArenaUnit.STATUS.LIGHTNING, 0.5)
 			instance.props["target_unit"].apply_damage(5 + instance.level*3)
 			pass
 
