@@ -85,6 +85,8 @@ func _ready():
 		STATUS.NOHEAL: {"duration": 0.0, "particles_scene": null},
 		STATUS.ONFIRE: {"duration": 0.0, "particles_scene": Game.arena.particles_fire.instantiate()},
 		STATUS.POISON: {"duration": 0.0, "particles_scene": Game.arena.particles_poison.instantiate()},
+		STATUS.SPEED_BUFF: {"duration": 0.0, "particles_scene": Game.arena.particles_magic.instantiate()},
+		STATUS.DAMAGE_BUFF: {"duration": 0.0, "particles_scene": Game.arena.particles_magic.instantiate()},
 		STATUS.HIT: {"duration": 0.0, "particles_scene": Game.arena.particles_bloodspurt.instantiate()},
 	}
 
@@ -215,9 +217,13 @@ func get_attack_damage():
 	return attack_damage * attack_damage_mult + attack_damage_add
 
 func get_attack_speed():
+	if(statuses[STATUS.SPEED_BUFF]["duration"] > 0.0):
+		attack_speed_mult=2
 	return attack_speed * attack_speed_mult + attack_speed_add
 
 func get_speed():
+	if(statuses[STATUS.SPEED_BUFF]["duration"] > 0.0):
+		speed_mult=2
 	return speed * speed_mult + speed_add
 
 func auto_attack(target: ArenaUnit):
