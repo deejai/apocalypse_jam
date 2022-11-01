@@ -118,7 +118,7 @@ static func flaming_spear(instance: AbilityEffect, flag: AbilityEffect.FLAG):
 		AbilityEffect.FLAG.TICK:
 			pass
 
-static func zues_lightning(instance: AbilityEffect, flag: AbilityEffect.FLAG):
+static func zeus_lightning(instance: AbilityEffect, flag: AbilityEffect.FLAG):
 	if not is_instance_valid(instance.props["target_unit"]):
 		instance.queue_free()
 		return

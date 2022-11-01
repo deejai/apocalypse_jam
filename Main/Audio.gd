@@ -66,7 +66,7 @@ func _process(delta):
 		menuMusic.stop()
 		battleMusic.stop()
 		bossMusic.play()
-	elif Game.arena != null and !battleMusic.is_playing():
+	elif Game.arena != null and !battleMusic.is_playing() and not Game.player.floor.current.boss_node:
 		menuMusic.stop()
 		bossMusic.stop()
 		battleMusic.play()

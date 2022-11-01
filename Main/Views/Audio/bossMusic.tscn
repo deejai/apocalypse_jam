@@ -1,7 +1,7 @@
 [gd_scene load_steps=2 format=3 uid="uid://v3gnx4imet5f"]
 
-[ext_resource type="AudioStream" uid="uid://byn2n8rqwilpw" path="res://Assets/Audio/Music/Battle Theme FOR more intense.wav" id="1_x0pb2"]
+[ext_resource type="AudioStream" uid="uid://dfa7xde4taxxu" path="res://Assets/Audio/Music/Boss Theme FOR.wav" id="1_1rlxm"]
 
 [node name="bossMusic" type="AudioStreamPlayer"]
-stream = ExtResource("1_x0pb2")
+stream = ExtResource("1_1rlxm")
 volume_db = -12.0

@@ -56,7 +56,8 @@ func _ready():
 
 	# place our units
 	print(particles_stun)
-	load_units(Game.next_battle.enemies, enemy_arena_units, ArenaUnit.ALLIANCE.ENEMY)
+	if Game.player.floor.current.boss_node:
+		load_units(Game.next_battle.enemies, enemy_arena_units, ArenaUnit.ALLIANCE.ENEMY)
 	load_units(Game.player.squad, player_arena_units, ArenaUnit.ALLIANCE.PLAYER)
 	Game.next_battle = null
 	# generate enemy units based on progress and current map node
