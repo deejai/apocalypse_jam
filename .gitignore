@@ -5,3 +5,6 @@ Assets/Ignore
 Assets/Audio/**.wav.import
 *.import
 *.DS_Store
+/game.exe
+/game.pck
+/game.cmd

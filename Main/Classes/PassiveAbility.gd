@@ -56,7 +56,7 @@ static func get_ability_data():
 			"icon": load("res://Assets/PNG/bg.png"),
 			"sound": Audio.effects.get_node("fireattack1"),
 			"effect_fn": func(instance, target):
-				target.apply_status(ArenaUnit.STATUS.FIRE, 0.3)
+				target.apply_status(ArenaUnit.STATUS.ONFIRE, 0.3)
 				target.apply_damage(4 + 1 * instance.level),
 			"cooldown": 1,
 			"targets": Shared.TARGETS.OTHER,

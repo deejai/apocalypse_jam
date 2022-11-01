@@ -1,7 +1,7 @@
 [gd_scene load_steps=16 format=3 uid="uid://du7i8t66yv6xb"]
 
-[ext_resource type="AudioStream" uid="uid://dq856lg6qouto" path="res://Assets/Audio/Voice/misc/hyup.wav" id="1_udtji"]
-[ext_resource type="AudioStream" uid="uid://d4nekm0j1rkdw" path="res://Assets/Audio/Voice/misc/okaye.wav" id="2_sqpdf"]
+[ext_resource type="AudioStream" uid="uid://bad6uaglcyyn2" path="res://Assets/Audio/Voice/Zeus/zeusok1.wav" id="1_o0ef2"]
+[ext_resource type="AudioStream" uid="uid://c1c2pkfcbu0wd" path="res://Assets/Audio/Voice/Zeus/zeusok2.wav" id="2_1t0x4"]
 [ext_resource type="AudioStream" uid="uid://vysnmw2qxgj1" path="res://Assets/Audio/Voice/Soldiers/funnydeath1.wav" id="3_wpchy"]
 [ext_resource type="AudioStream" uid="uid://b0qxos3ag6tad" path="res://Assets/Audio/Voice/Soldiers/longdeath7.wav" id="4_5p2r0"]
 [ext_resource type="AudioStream" uid="uid://dydcccme6wquj" path="res://Assets/Audio/Voice/Soldiers/hit2.wav" id="5_u72wc"]
@@ -21,10 +21,10 @@
 [node name="Response" type="Node" parent="."]
 
 [node name="1" type="AudioStreamPlayer" parent="Response"]
-stream = ExtResource("1_udtji")
+stream = ExtResource("1_o0ef2")
 
 [node name="2" type="AudioStreamPlayer" parent="Response"]
-stream = ExtResource("2_sqpdf")
+stream = ExtResource("2_1t0x4")
 
 [node name="Die" type="Node" parent="."]
 
