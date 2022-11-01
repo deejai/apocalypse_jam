@@ -53,13 +53,36 @@ func _init(level: int, p_type: TYPE = TYPE.RAND):
 		TYPE.SPAM_UNIT:
 			# roll to determine enemy type
 			# spawn ~4-(6 + level) of them
-			enemies.append({"unit": Unit.new(Shared.BASE.SOLDIER_ARCHER, level), "start_position": Vector2(450, 75)})
+			var base = [Shared.BASE.SOLDIER_SWORD, Shared.BASE.HEALER, Shared.BASE.SOLDIER_ARCHER, Shared.BASE.SOLDIER_SPEAR][randi() % 4]
+			for r in range(2):
+				for c in range(randi_range(3, 4+level * (3-r))):
+					var x_offset = 0 if r == 0 else 75
+					var position = Vector2(x_offset + 300 + c*150, 50 + 25 * r)
+					enemies.append({"unit": Unit.new(base, level), "start_position": position})
 
 		TYPE.RANGE_PLUS_TANKS:
-			enemies.append({"unit": Unit.new(Shared.BASE.SOLDIER_ARCHER, level), "start_position": Vector2(450, 75)})
+			for c in range(randi_range(3,4+level)):
+				var position = Vector2(150 + c*150, 100)
+				var healer_unit = Unit.new(Shared.BASE.SOLDIER_ARCHER, level)
+				enemies.append({"unit": healer_unit, "start_position": position})
+			var strong_unit = Unit.new(Shared.BASE.SOLDIER_SPEAR, level)
+			enemies.append({"unit": strong_unit, "start_position": Vector2(650, 200)})
+			enemies.append({"unit": strong_unit, "start_position": Vector2(450, 200)})
 
 		_:
 			assert(false)
 
-static func get_boss_fight(level: int):
-	var options = [Shared.BASE.TITAN_CRIUS, Shared.BASE.TITAN_HYPERION, Shared.BASE.TITAN_OCEANUS, Shared.BASE.TITAN_THEMIS, Shared.BASE.TITAN_PHOEBE, Shared.BASE.TITAN_CRONUS]
+static func get_boss_fight(level: int, remaining_titans):
+	var battle = Battle.new(level)
+	var titan = remaining_titans.pop_at(randi() % len(remaining_titans))
+	var enemies = []
+	enemies.append({"unit": Unit.new(titan, level), "start_position": Vector2(450, 70)})
+	var enemy_bases = [Shared.BASE.SOLDIER_SWORD_UNDEAD, Shared.BASE.SOLDIER_ARCHER_UNDEAD, Shared.BASE.SOLDIER_SPEAR_UNDEAD, Shared.BASE.HEALER_UNDEAD]
+	var x_pos = 200
+	for base in enemy_bases:
+		enemies.append({"unit": Unit.new(base, level), "start_position": Vector2(x_pos, 140)})
+		x_pos += 80
+
+	battle.enemies = enemies
+
+	return battle

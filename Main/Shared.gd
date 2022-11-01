@@ -6,7 +6,7 @@ enum REWARD_TYPE {NEW_UNIT, UNIT_UPGRADE, WILDCARD}
 enum TARGETING_TYPE {SELF, POINT, SINGLE_UNIT, UNITS_IN_AOE}
 enum TARGETS {SAME, OTHER, ALL}
 enum SPEC { NORMAL, HERO, SUMMON }
-enum BASE { OLYMPIAN_APOLLO, OLYMPIAN_ATHENA, OLYMPIAN_ARES, OLYMPIAN_HADES, OLYMPIAN_HERMES, OLYMPIAN_ZEUS, SOLDIER_SPEAR, SOLDIER_SWORD, SOLDIER_ARCHER, HEALER, TITAN_CRIUS, TITAN_CRONUS, TITAN_HYPERION, TITAN_OCEANUS, TITAN_PHOEBE, TITAN_THEMIS }
+enum BASE { OLYMPIAN_APOLLO, OLYMPIAN_ATHENA, OLYMPIAN_ARES, OLYMPIAN_HADES, OLYMPIAN_HERMES, OLYMPIAN_ZEUS, SOLDIER_SPEAR, SOLDIER_SWORD, SOLDIER_ARCHER, HEALER, TITAN_CRIUS, TITAN_CRONUS, TITAN_HYPERION, TITAN_OCEANUS, TITAN_PHOEBE, TITAN_THEMIS, SOLDIER_SWORD_UNDEAD, SOLDIER_ARCHER_UNDEAD, SOLDIER_SPEAR_UNDEAD, HEALER_UNDEAD }
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -29,6 +29,10 @@ static func get_models():
 		BASE.SOLDIER_SPEAR: load("res://Main/Views/ArenaView/ArenaUnits/Soldier_Spear.tscn"),
 		BASE.SOLDIER_ARCHER: load("res://Main/Views/ArenaView/ArenaUnits/Soldier_Archer.tscn"),
 		BASE.HEALER: load("res://Main/Views/ArenaView/ArenaUnits/Healer.tscn"),
+		BASE.SOLDIER_SWORD_UNDEAD: load("res://Main/Views/ArenaView/ArenaUnits/Soldier_Sword_Undead.tscn"),
+		BASE.SOLDIER_SPEAR_UNDEAD: load("res://Main/Views/ArenaView/ArenaUnits/Soldier_Spear_Undead.tscn"),
+		BASE.SOLDIER_ARCHER_UNDEAD: load("res://Main/Views/ArenaView/ArenaUnits/Soldier_Archer_Undead.tscn"),
+		BASE.HEALER_UNDEAD: load("res://Main/Views/ArenaView/ArenaUnits/Healer_Undead.tscn"),
 		BASE.TITAN_CRIUS: load("res://Main/Views/ArenaView/ArenaUnits/Titan_Crius.tscn"),
 		BASE.TITAN_CRONUS: load("res://Main/Views/ArenaView/ArenaUnits/Titan_Cronus.tscn"),
 		BASE.TITAN_HYPERION: load("res://Main/Views/ArenaView/ArenaUnits/Titan_Hyperion.tscn"),
@@ -142,6 +146,44 @@ static func get_unit_data():
 			"speed": 120,
 			"attack_damage": 8,
 			"attack_speed": 100,
+		},
+		BASE.HEALER_UNDEAD: {
+			"spec": SPEC.NORMAL,
+			"voice": Audio.VOICE.HADES,
+			"range": 100,
+			"hp": 170,
+			"speed": 100,
+			"attack_damage": 9,
+			"attack_speed": 115,
+			"activated_abilities": [],
+			"passive_abilities": ["Healing Wind"]
+		},
+		BASE.SOLDIER_SPEAR_UNDEAD: {
+			"spec": SPEC.NORMAL,
+			"voice": Audio.VOICE.HADES,
+			"range": 50,
+			"hp": 240,
+			"speed": 80,
+			"attack_damage": 15,
+			"attack_speed": 115,
+		},
+		BASE.SOLDIER_SWORD_UNDEAD: {
+			"spec": SPEC.NORMAL,
+			"voice": Audio.VOICE.HADES,
+			"range": 50,
+			"hp": 200,
+			"speed": 150,
+			"attack_damage": 11,
+			"attack_speed": 115,
+		},
+		BASE.SOLDIER_ARCHER_UNDEAD: {
+			"spec": SPEC.NORMAL,
+			"voice": Audio.VOICE.HADES,
+			"range": 150,
+			"hp": 170,
+			"speed": 120,
+			"attack_damage": 11,
+			"attack_speed": 115,
 		},
 		BASE.TITAN_CRIUS: {
 			"spec": SPEC.HERO,

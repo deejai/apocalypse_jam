@@ -8,7 +8,7 @@ var start: FloorNode
 var current: FloorNode
 var end: FloorNode
 
-func _init(level: int):
+func _init(level: int, remaining_titans):
 	if level == -1:
 		# manual mode. used for loading from save
 		return
@@ -38,6 +38,8 @@ func _init(level: int):
 		
 	var boss_node = FloorNode.new(0)
 	boss_node.boss_node = true
+	if len(remaining_titans) > 0:
+		boss_node.battle = Battle.get_boss_fight(level, remaining_titans)
 	for pn in prev_nodes:
 		FloorNode.link(pn, boss_node)
 

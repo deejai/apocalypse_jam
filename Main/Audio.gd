@@ -1,6 +1,7 @@
 extends Node
 
 var battleMusic = load("res://Main/Views/Audio/battleMusic.tscn").instantiate()
+var bossMusic = load("res://Main/Views/Audio/bossMusic.tscn").instantiate()
 var menuMusic = load("res://Main/Views/Audio/menuMusic.tscn").instantiate()
 var effects = load("res://Main/Views/Audio/Effects.tscn").instantiate()
 
@@ -47,6 +48,7 @@ func _ready():
 
 	add_child(menuMusic)
 	add_child(battleMusic)
+	add_child(bossMusic)
 	add_child(effects)
 	add_child(narration)
 
@@ -54,14 +56,20 @@ func _ready():
 func _process(delta):
 	if Game.pause_music:
 		battleMusic.stop()
+		bossMusic.stop()
 		menuMusic.stop()
 	elif Game.arena == null and !menuMusic.is_playing():
 		battleMusic.stop()
+		bossMusic.stop()
 		menuMusic.play()
+	elif Game.arena != null and Game.player.floor.current.boss_node and !bossMusic.is_playing():
+		menuMusic.stop()
+		battleMusic.stop()
+		bossMusic.play()
 	elif Game.arena != null and !battleMusic.is_playing():
 		menuMusic.stop()
+		bossMusic.stop()
 		battleMusic.play()
-
 
 var narrations = {
 		"NewGame": {

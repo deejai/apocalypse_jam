@@ -3,12 +3,21 @@ extends Node2D
 var main_menu = load("res://Main/Views/MainMenu/MainMenuView.tscn")
 var nav_frame = load("res://Main/Views/Components/NavFrame/NavFrame.tscn")
 var arena_view = load("res://Main/Views/ArenaView/ArenaView.tscn")
+var narration = load("res://Main/Views/Narration/Narration.tscn")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	Game.arena = null
 
 	SaveLoad.save_game(Game.player)
+	
+	if(Game.player.floor.current.completed and Game.player.floor.current.boss_node):
+		if Game.player.floor.level < 5:
+			Game.next_narration = Audio.narrations[str("Floor", Game.player.floor.level)]
+			Game.player.floor = Floor.new(Game.player.floor.level+1, Game.player.remaining_titans)
+			get_tree().change_scene_to_packed(narration)
+		else:
+			print("you win")
 
 	add_child(nav_frame.instantiate())
 

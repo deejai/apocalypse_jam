@@ -1,10 +1,10 @@
 [gd_scene load_steps=8 format=3 uid="uid://c26hukr65fua5"]
 
 [ext_resource type="Script" path="res://Main/Views/MapView/MapViewNode.gd" id="1_2xf4i"]
-[ext_resource type="Texture2D" uid="uid://bb8n85snrllha" path="res://Assets/RPG_Fantasy_256/Helmet.png" id="2_psqmw"]
-[ext_resource type="Texture2D" uid="uid://b13uhvayq4dym" path="res://Assets/RPG_Fantasy_256/Tools.png" id="3_vtgq3"]
-[ext_resource type="Texture2D" uid="uid://buguiqnm6nkme" path="res://Assets/RPG_Fantasy_256/Backpack1.png" id="4_jfdjn"]
-[ext_resource type="Texture2D" uid="uid://dwy53847a8pdh" path="res://Assets/RPG_Fantasy_256/X.png" id="5_cwrfa"]
+[ext_resource type="Texture2D" uid="uid://htpvg5iueml7" path="res://Assets/RPG_Fantasy_256/Helmet.png" id="2_psqmw"]
+[ext_resource type="Texture2D" uid="uid://dngagj3h60pjl" path="res://Assets/RPG_Fantasy_256/Tools.png" id="3_vtgq3"]
+[ext_resource type="Texture2D" uid="uid://cgp75ksuahw04" path="res://Assets/RPG_Fantasy_256/Backpack1.png" id="4_jfdjn"]
+[ext_resource type="Texture2D" uid="uid://b8ksncbh0b0w7" path="res://Assets/RPG_Fantasy_256/X.png" id="5_cwrfa"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_8ifpi"]
 radius = 22.64
