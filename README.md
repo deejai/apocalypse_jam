@@ -2,9 +2,9 @@
 
 ### Current Status
 
-<b>Pre-Development</b>
+<b>Alpha - Submitted to Game Jam</b>
 
-There is some scaffolding and a few empty scenes you can navigate
+https://itch.io/jam/apocalypse-jam-2022/rate/1772447
 
 ### Run the Game
 
