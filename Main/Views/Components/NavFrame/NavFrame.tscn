@@ -10,13 +10,14 @@ color = Color(0.219608, 0.592157, 0.835294, 0.34902)
 polygon = PackedVector2Array(0, 620, 1280, 620, 1280, 720, 0, 720)
 
 [node name="Level" type="Label" parent="Bar"]
-offset_left = 1155.0
+offset_left = 930.0
 offset_top = 641.0
 offset_right = 1245.0
 offset_bottom = 698.0
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 27
 text = "Floor 0"
+horizontal_alignment = 2
 vertical_alignment = 1
 
 [node name="Squad" type="Button" parent="Bar"]
@@ -25,7 +26,7 @@ offset_top = 639.0
 offset_right = 93.0
 offset_bottom = 670.0
 scale = Vector2(2.05936, 2.05936)
-text = "Squad"
+text = "Manage Team"
 
 [node name="ReturnToMainMenu" type="Button" parent="Bar"]
 offset_right = 8.0
