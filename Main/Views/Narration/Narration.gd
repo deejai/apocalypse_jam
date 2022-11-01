@@ -1,6 +1,7 @@
 extends Node2D
 
 var map_view = load("res://Main/Views/MapView/MapView.tscn")
+var main_menu = load("res://Main/Views/MainMenu/MainMenuView.tscn")
 
 var time_passed: float = 0.0
 var clip_length: float
@@ -24,7 +25,10 @@ func _process(delta):
 	$Text.position.y = 720 - min(100.0 * time_passed, (720 + $Text.size.y) * (time_passed / clip_length))
 
 	if $Text.position.y < -$Text.get_combined_minimum_size().y:
-		proceed()
+		if not Game.win:
+			proceed()
+		else:
+			get_tree().change_scene_to_packed(main_menu)
 
 func _input(event):
 	if event is InputEventMouseButton and event.pressed:

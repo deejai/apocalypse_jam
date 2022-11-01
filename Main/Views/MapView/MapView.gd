@@ -17,7 +17,9 @@ func _ready():
 			Game.player.floor = Floor.new(Game.player.floor.level+1, Game.player.remaining_titans)
 			get_tree().change_scene_to_packed(narration)
 		else:
-			print("you win")
+			Game.next_narration = Audio.narrations["Floor4"]
+			Game.win = true
+			get_tree().change_scene_to_packed(narration)
 
 	add_child(nav_frame.instantiate())
 
