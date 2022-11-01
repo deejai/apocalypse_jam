@@ -36,7 +36,7 @@ var projectile: PackedScene
 var ability_cooldowns: Dictionary = {}
 
 # statuses
-enum STATUS { STUN, SILENCE, ROOT, INVULN, NOHEAL, ONFIRE, POISON, HEAL, HIT, LIGHTNING }
+enum STATUS { STUN, SILENCE, ROOT, INVULN, NOHEAL, ONFIRE, POISON, HEAL, HIT, LIGHTNING, SPEED_BUFF, DAMAGE_BUFF }
 
 var statuses
 

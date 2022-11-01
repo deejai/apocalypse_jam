@@ -12,7 +12,7 @@ var particles_heal = load("res://Main/Particles/Heal.tscn")
 var particles_groundelectric = load("res://Main/Particles/GroundElectric.tscn")
 var particles_groundfire = load("res://Main/Particles/GroundFire.tscn")
 var particles_root = load("res://Main/Particles/Root.tscn")
-
+var particles_magic = load("res://Main/Particles/Magic.tscn")
 var particles_unimplemented = load("res://Main/Particles/Unimplemented.tscn")
 
 var tombstone = load("res://Main/Views/ArenaView/ArenaUnits/Tombstone.tscn")
