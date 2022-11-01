@@ -21,7 +21,94 @@ var passive_abilities = []
 
 # @TODO: add more stats, add animations
 
+<<<<<<< HEAD
 func _init(base, level: int = 0):
+=======
+var data = {
+	BASE.OLYMPIAN_HERMES:	{
+		"spec": SPEC.HERO,
+		"range": 25,
+		"hp": 150,
+		"speed": 200,
+		"attack_damage": 5,
+		"attack_speed": 200,
+	},
+	BASE.OLYMPIAN_APOLLO:  {
+		"spec": SPEC.HERO,
+		"range": 200,
+		"hp": 150,
+		"speed": 150,
+		"attack_damage": 10,
+		"attack_speed": 100,
+	},
+	BASE.OLYMPIAN_ZEUS:		{
+		"spec": SPEC.HERO,
+		"range": 150,
+		"hp": 200,
+		"speed": 130,
+		"attack_damage": 10,
+		"attack_speed": 100,
+	},
+	BASE.OLYMPIAN_ARES:		{
+		"spec": SPEC.HERO,
+		"range": 50,
+		"hp": 300,
+		"speed": 75,
+		"attack_damage": 15,
+		"attack_speed": 100,
+	},
+	BASE.OLYMPIAN_ATHENA:		{
+		"spec": SPEC.HERO,
+		"range": 50,
+		"hp": 200,
+		"speed": 100,
+		"attack_damage": 10,
+		"attack_speed": 100,
+	},
+	BASE.OLYMPIAN_HADES:		{
+		"spec": SPEC.HERO,
+		"range": 150,
+		"hp": 150,
+		"speed": 100,
+		"attack_damage": 8,
+		"attack_speed": 100,
+	},
+	BASE.HEALER: {
+		"spec": SPEC.NORMAL,
+		"range": 200,
+		"hp": 60,
+		"speed": 100,
+		"attack_damage": 4,
+		"attack_speed": 100,
+	},
+	BASE.SOLDIER_SPEAR: {
+		"spec": SPEC.NORMAL,
+		"range": 125,
+		"hp": 100,
+		"speed": 080,
+		"attack_damage": 11,
+		"attack_speed": 100,
+	},
+	BASE.SOLDIER_SWORD: {
+		"spec": SPEC.NORMAL,
+		"range": 75,
+		"hp": 100,
+		"speed": 150,
+		"attack_damage": 10,
+		"attack_speed": 100,
+	},
+	BASE.SOLDIER_ARCHER: {
+		"spec": SPEC.NORMAL,
+		"range": 250,
+		"hp": 60,
+		"speed": 120,
+		"attack_damage": 8,
+		"attack_speed": 100,
+	}
+}
+
+func _init(base: Unit.BASE):
+>>>>>>> 56c714f343991859e6fca498e5f6afe507382300
 	self.base = base
 	
 	

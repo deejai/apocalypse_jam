@@ -55,10 +55,15 @@ func _ready():
 	#Audio.battleMusic.play()
 
 	# place our units
+<<<<<<< HEAD
 	print(particles_stun)
 	if Game.player.floor.current.boss_node:
 		load_units(Game.next_battle.enemies, enemy_arena_units, ArenaUnit.ALLIANCE.ENEMY)
 	load_units(Game.player.squad, player_arena_units, ArenaUnit.ALLIANCE.PLAYER)
+=======
+	load_units(Game.next_battle.enemies, enemy_arena_units, ArenaUnit.ALLIANCE.ENEMY)
+	load_units(Game.player.squad_active, player_arena_units, ArenaUnit.ALLIANCE.PLAYER)
+>>>>>>> 56c714f343991859e6fca498e5f6afe507382300
 	Game.next_battle = null
 	# generate enemy units based on progress and current map node
 	# place enemy units
@@ -275,15 +280,28 @@ func _input(event: InputEvent):
 						for arena_unit in selected_units:
 							arena_unit.selected = false
 
+<<<<<<< HEAD
 						selected_units = []
 						for arena_unit in player_arena_units:
 							if(drag_select_rect().has_point(arena_unit.position)):
 								arena_unit.selected = true
 								selected_units.append(arena_unit)
+=======
+				mouse_left_pressed = false
+				
+				if len(selected_units) > 0 and selected_units[0].alliance == ArenaUnit.ALLIANCE.PLAYER:
+					Audio.soldier_voice_yessir.play()
+>>>>>>> 56c714f343991859e6fca498e5f6afe507382300
 
 					mouse_left_pressed = false
 
+<<<<<<< HEAD
 					update_sidebar_units()
+=======
+			if event.button_index == MOUSE_BUTTON_MASK_RIGHT:
+				if len(selected_units) > 0 and selected_units[0].alliance == ArenaUnit.ALLIANCE.PLAYER:
+					var attack_target = null
+>>>>>>> 56c714f343991859e6fca498e5f6afe507382300
 
 					if len(selected_units) > 0 and selected_units[0].alliance == ArenaUnit.ALLIANCE.PLAYER:
 						highlighted_unit = selected_units[0]
@@ -292,6 +310,7 @@ func _input(event: InputEvent):
 						for arena_unit in selected_units:
 							voice_lines.append(Audio.data[arena_unit.unit.voice].Greeting[randi()%len(Audio.data[arena_unit.unit.voice].Greeting)])
 
+<<<<<<< HEAD
 						if(voice_cd == 0.0):
 							voice_cd = 0.1
 							# play up to 3 random voice lines from selected units
@@ -329,6 +348,9 @@ func _input(event: InputEvent):
 							# play up to 3 random voice lines from selected units
 							for i in range(min(3, len(voice_lines))):
 								voice_lines.pop_at(randi() % len(voice_lines)).play()
+=======
+					Audio.soldier_voice_ok.play()
+>>>>>>> 56c714f343991859e6fca498e5f6afe507382300
 	else:
 		pass
 
@@ -371,6 +393,7 @@ func player_auto_attack():
 
 		if closest_enemy:
 			arena_unit.auto_attack(closest_enemy)
+<<<<<<< HEAD
 
 func get_units_in_aoe(point: Vector2, aoe: int, alliances: Array):
 	var arrs = []
@@ -454,3 +477,5 @@ func update_sidebar_units():
 		var icon = arena_unit.get_node("AnimatedSprite2D").get_sprite_frames().get_frame("Idle_Down", 0)
 		$SidePanel/SelectedUnits.add_icon_item(icon, true)
 		$SidePanel/SelectedUnits.set_item_selectable(i, true)
+=======
+>>>>>>> 56c714f343991859e6fca498e5f6afe507382300

@@ -50,6 +50,7 @@ func _init(level: int, p_type: TYPE = TYPE.RAND):
 				enemies.append({"unit": ranged_unit, "start_position": Vector2(150 + c*150, 50 + 25 + 120)})
 				enemies.append({"unit": strong_unit, "start_position": Vector2(150 + c*150, 50 + 25 + 180)})
 
+<<<<<<< HEAD
 		TYPE.SPAM_UNIT:
 			# roll to determine enemy type
 			# spawn ~4-(6 + level) of them
@@ -86,3 +87,13 @@ static func get_boss_fight(level: int, remaining_titans):
 	battle.enemies = enemies
 
 	return battle
+=======
+			var beefy_soldier = Unit.new(Unit.BASE.SOLDIER_SPEAR)
+			beefy_soldier.attack_damage *= 2
+			beefy_soldier.hp *= 2
+			enemies.append({"unit": beefy_soldier, "start_position": Vector2(450, 50 + 25 + 150)})
+			print(enemies)
+
+#	for i in range(len(positions)):
+#		enemies.append({"unit": Unit.new(Unit.BASE.SOLDIER_SWORD), "start_position": positions[i]})
+>>>>>>> 56c714f343991859e6fca498e5f6afe507382300

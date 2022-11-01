@@ -1,7 +1,11 @@
 [gd_scene load_steps=3 format=3 uid="uid://bwninh6kj626c"]
 
 [ext_resource type="Script" path="res://Main/Views/MapView/MapView.gd" id="1_vvenp"]
+<<<<<<< HEAD
 [ext_resource type="Texture2D" uid="uid://bv4i563pc2b64" path="res://Assets/bg_barren.png" id="2_w7xiq"]
+=======
+[ext_resource type="Texture2D" uid="uid://c5405eqhxbt4y" path="res://Assets/bg_barren.png" id="2_w7xiq"]
+>>>>>>> 56c714f343991859e6fca498e5f6afe507382300
 
 [node name="MapView" type="Node2D"]
 script = ExtResource("1_vvenp")

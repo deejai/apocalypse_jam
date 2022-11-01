@@ -2,6 +2,11 @@ extends Node
 
 class_name ActivatedAbility
 
+<<<<<<< HEAD
+=======
+enum TARGETING_TYPE {SELF, POINT, UNIT, UNIT_ENEMY, UNIT_PLAYER}
+
+>>>>>>> 56c714f343991859e6fca498e5f6afe507382300
 var key: String
 var icon: CompressedTexture2D
 var cooldown: float

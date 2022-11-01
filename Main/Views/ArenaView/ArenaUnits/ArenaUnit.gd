@@ -129,7 +129,11 @@ func _process(delta):
 		if position.distance_to(attack_target.position) > unit.range:
 			move_to_target(attack_target.position)
 		else:
+<<<<<<< HEAD
 			$AnimatedSprite2D.animation = "Idle_Up" if facing_up else "Idle_Down"
+=======
+			$AnimatedSprite2D.animation = "Idle"
+>>>>>>> 56c714f343991859e6fca498e5f6afe507382300
 			auto_attack(attack_target)
 	else:
 		move_to_target(move_target)
@@ -227,6 +231,7 @@ func get_speed():
 	return speed * speed_mult + speed_add
 
 func auto_attack(target: ArenaUnit):
+<<<<<<< HEAD
 	if(statuses[STATUS.STUN]["duration"] > 0.0):
 		return
 
@@ -234,11 +239,18 @@ func auto_attack(target: ArenaUnit):
 		var direction = position.direction_to(target.position)
 		var spear = projectile.instantiate().init(alliance, position, direction, 350, get_attack_damage())
 		Game.arena.add_child(spear)
+=======
+	if attack_cd == 0:
+		var direction = position.direction_to(target.position)
+		var spear = projectile.instantiate().init(alliance, position, direction, 350, get_attack_damage())
+		get_parent().add_child(spear)
+>>>>>>> 56c714f343991859e6fca498e5f6afe507382300
 		attack_cd = 2 * (100.0 / get_attack_speed())
 
 func in_range(target: ArenaUnit):
 	var collision_radius_sum =  $Collision.shape.radius + target.get_node("Collision").shape.radius
 	return position.distance_to(target.position) - collision_radius_sum <= unit.range
+<<<<<<< HEAD
 
 func handle_statuses(delta):
 	for status in STATUS.values():
@@ -282,3 +294,5 @@ static func affected_alliances(alliance: ArenaUnit.ALLIANCE, which):
 		_:
 			assert(false)
 			return []
+=======
+>>>>>>> 56c714f343991859e6fca498e5f6afe507382300
